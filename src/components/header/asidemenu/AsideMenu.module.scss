@@ -1,0 +1,113 @@
+@use "../../../shared/global/globalStyles/globalStyles.scss" as *;
+@use "../../../shared/global/globalStyles/fonts" as *;
+@use "../../../shared/global/globalStyles/mixins" as *;
+@use "../../../shared/global/globalStyles/vars" as *;
+
+.menu {
+  position: fixed;
+  top: 0;
+  right: 0;
+  left: 0;
+  background-color: $color-background;
+  z-index: 3;
+  opacity: 0;
+  pointer-events: none;
+  height: 100vh;
+  width: 100%;
+  transform: translateX(-100%);
+  transition: transform 0.3s, opacity 0.3s;
+
+  @include on-desktop {
+    height: 56px;
+  }
+
+  &__top {
+    background-color: $color-primary;
+
+    &_container {
+      @include container;
+    }
+  }
+
+  &__header {
+    padding-block: 24px;
+
+    border-bottom: 1px solid $color-secondary-grey;
+
+    @include on-tablet {
+      border: none;
+    }
+
+    &_container {
+      @include container;
+    }
+
+    &_content {
+      display: flex;
+      flex-direction: row;
+      justify-content: space-between;
+      width: 100%;
+
+      @include on-tablet {
+        gap: 80px;
+        width: auto;
+      }
+    }
+
+    &_icon {
+      cursor: pointer;
+      background: none;
+      border: none;
+      padding: 0;
+      margin: 0;
+
+      width: 24px;
+      height: 24px;
+    }
+
+    &_image {
+      width: 80%;
+    }
+  }
+
+  &__logo {
+    width: 130px;
+  }
+
+  &__logoimage {
+    width: 100%;
+  }
+
+  &__middle {
+    display: flex;
+    justify-content: center;
+
+    margin-top: 40px;
+  }
+
+  &__bottom {
+    position: fixed;
+    bottom: 0;
+    left: 0;
+    right: 0;
+    border-top: 1px solid $color-secondary-grey;
+
+    &_icons {
+      display: flex;
+      flex-direction: row;
+      justify-content: space-between;
+      align-items: center;
+      padding-block: 24px;
+    }
+
+    &_container {
+      @include container;
+    }
+  }
+}
+
+.shown {
+  opacity: 1;
+  transform: translateX(0);
+  pointer-events: all;
+}

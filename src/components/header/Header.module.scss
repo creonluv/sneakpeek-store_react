@@ -1,0 +1,187 @@
+@use "../../shared/global/globalStyles/globalStyles.scss" as *;
+@use "../../shared/global/globalStyles/fonts" as *;
+@use "../../shared/global/globalStyles/mixins" as *;
+@use "../../shared/global/globalStyles/vars" as *;
+
+.header {
+  &__top {
+    background-color: $color-primary;
+
+    &_container {
+      @include container;
+    }
+  }
+
+  &__middle {
+    padding-block: 24px;
+
+    border-bottom: 1px solid $color-secondary-grey;
+
+    @include on-tablet {
+      border: none;
+    }
+
+    &_container {
+      display: flex;
+      flex-direction: row;
+      justify-content: space-between;
+
+      @include container;
+    }
+
+    &_left {
+      display: none;
+
+      @include on-tablet {
+        display: inline-block;
+      }
+    }
+
+    &_right {
+      display: flex;
+      flex-direction: row;
+      justify-content: space-between;
+      width: 100%;
+
+      @include on-tablet {
+        gap: 80px;
+        width: auto;
+      }
+    }
+
+    &_icons {
+      display: none;
+
+      @include on-tablet {
+        display: flex;
+        flex-direction: row;
+        gap: 16px;
+      }
+    }
+
+    &_burger {
+      @include on-tablet {
+        display: none;
+      }
+    }
+  }
+
+  &__bottom {
+    display: none;
+
+    &_container {
+      @include container;
+    }
+
+    @include on-tablet {
+      display: block;
+      padding-block: 16px;
+      border-top: 1px solid $color-secondary-grey;
+      border-bottom: 1px solid $color-secondary-grey;
+    }
+  }
+
+  &__logo {
+    @include on-tablet {
+      width: 120px;
+    }
+
+    @include on-big-desktop {
+      width: 160px;
+    }
+  }
+
+  &__logoimage {
+    width: 100%;
+  }
+
+  &__form {
+    position: relative;
+
+    @include on-tablet {
+      display: initial;
+    }
+  }
+
+  &__search {
+    border: none;
+    border-bottom: 1px solid $color-secondary-grey;
+    background: transparent;
+    outline: none;
+    padding: 4px;
+    color: $color-secondary;
+    width: 190px;
+
+    @include on-tablet {
+      width: 305px;
+    }
+
+    &_button {
+      all: unset;
+      background: none;
+      border: none;
+      box-shadow: none;
+      cursor: pointer;
+
+      position: absolute;
+      top: 20%;
+      right: 2px;
+      max-width: 28px;
+      max-height: 28px;
+      transform: translateY(-50%);
+    }
+
+    &_icon {
+      width: 24px;
+      height: 24px;
+    }
+  }
+
+  &__nav {
+    display: flex;
+    justify-content: center;
+  }
+
+  &__icon {
+    cursor: pointer;
+    background: none;
+    border: none;
+    padding: 0;
+    margin: 0;
+  }
+}
+
+.select {
+  position: relative;
+  display: inline-block;
+
+  &__items {
+    display: inline-block;
+    background-color: transparent;
+    border: none;
+    width: 100%;
+    letter-spacing: 1px;
+    color: $color-reverse;
+    padding-block: 8px;
+    cursor: pointer;
+  }
+}
+
+.menu {
+  display: flex;
+  flex-direction: column;
+  gap: 40px;
+  align-items: center;
+
+  @include on-tablet {
+    flex-direction: row;
+  }
+
+  &__link {
+    display: inline-block;
+    text-decoration: none;
+    color: $color-secondary;
+
+    @include hover(color, $color-text);
+  }
+}

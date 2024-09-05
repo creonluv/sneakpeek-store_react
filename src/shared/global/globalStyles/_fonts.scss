@@ -1,0 +1,148 @@
+@use "./mixins" as *;
+@use "./vars" as *;
+
+// Announcement of fonts
+@font-face {
+  font-family: "TT Firs Neue";
+  font-weight: normal;
+  font-style: normal;
+  src: url("../../../../public/fonts/TTFirsNeue-Regular.eot");
+  src: local("TT Firs Neue Regular"), local("TTFirsNeue-Regular"),
+    url("../../../../public/fonts/TTFirsNeue-Regular.eot?#iefix")
+      format("embedded-opentype"),
+    url("../../../../public/fonts/TTFirsNeue-Regular.woff2") format("woff2"),
+    url("../../../../public/fonts/TTFirsNeue-Regular.woff") format("woff"),
+    url("../../../../public/fonts/TTFirsNeue-Regular.ttf") format("truetype");
+}
+
+@font-face {
+  font-family: "TT Firs Neue";
+  font-weight: 500;
+  font-style: normal;
+  src: url("../../../../public/fonts/TTFirsNeue-Medium.eot");
+  src: local("TT Firs Neue Medium"), local("TTFirsNeue-Medium"),
+    url("../../../../public/fonts/TTFirsNeue-Medium.eot?#iefix")
+      format("embedded-opentype"),
+    url("../../../../public/fonts/TTFirsNeue-Medium.woff2") format("woff2"),
+    url("../../../../public/fonts/TTFirsNeue-Medium.woff") format("woff"),
+    url("../../../../public/fonts/TTFirsNeue-Medium.ttf") format("truetype");
+}
+
+@font-face {
+  font-family: "TT Firs Neue";
+  font-weight: 600;
+  font-style: normal;
+  src: url("../../../../public/fonts/TTFirsNeue-DemiBold.eot");
+  src: local("TT Firs Neue DemiBold"), local("TTFirsNeue-DemiBold"),
+    url("../../../../public/fonts/TTFirsNeue-DemiBold.eot?#iefix")
+      format("embedded-opentype"),
+    url("../../../../public/fonts/TTFirsNeue-DemiBold.woff2") format("woff2"),
+    url("../../../../public/fonts/TTFirsNeue-DemiBold.woff") format("woff"),
+    url("../../../../public/fonts/TTFirsNeue-DemiBold.ttf") format("truetype");
+}
+
+// Mixins for headers
+@mixin header-1 {
+  font-size: clamp(78px, 4vw + 1rem, 96px);
+  font-weight: 600;
+  line-height: 1;
+  letter-spacing: em(0.396, 198);
+  text-transform: uppercase;
+  color: var(--color-text);
+}
+
+@mixin header-2 {
+  font-size: clamp(32px, 2vw + 1rem, 64px);
+  font-weight: 500;
+  line-height: 87%;
+  letter-spacing: em(0.128, 64);
+  color: var(--color-text);
+}
+
+@mixin header-3 {
+  font-size: 24px;
+  font-weight: 600;
+  line-height: 1.29;
+  letter-spacing: 0%;
+  text-transform: capitalize;
+  color: var(--color-text);
+}
+
+@mixin header-4 {
+  font-size: 16px;
+  font-weight: 600;
+  line-height: normal;
+  text-transform: uppercase;
+  color: var(--color-text);
+}
+
+@mixin body-text {
+  font-size: 14px;
+  font-weight: 400;
+  line-height: 21px;
+  color: var(--color-text-muted);
+}
+
+@mixin small-text {
+  font-size: 12px;
+  font-weight: 400;
+  line-height: normal;
+  color: var(--color-text-muted);
+}
+
+@mixin buttons {
+  font-weight: 600;
+  font-size: 14px;
+  line-height: 21px;
+}
+
+@mixin text-light {
+  font-size: clamp(12px, 1vw + 1rem, 16px);
+  color: var(--color-text-reverse);
+}
+
+@mixin text-reverse {
+  font-size: clamp(12px, 2vw + 1rem, 24px);
+  font-weight: 500;
+  color: var(--color-text-reverse);
+}
+
+// Headlines
+h1,
+.title-1 {
+  @include header-1;
+}
+
+h2,
+.title-2 {
+  @include header-2;
+}
+
+.title-2--reverse {
+  line-height: normal;
+  color: var(--color-text-reverse);
+}
+
+h3,
+.title-3 {
+  @include header-3;
+}
+
+h4,
+.title-4 {
+  @include header-4;
+}
+
+h5,
+.title-5 {
+  @include small-text;
+}
+
+.text-muted {
+  @include body-text;
+}
+
+.button-wrapper {
+  display: inline-flex;
+  position: relative;
+}

@@ -1,0 +1,27 @@
+// fonts
+$fontFamily: "TT Firs Neue";
+
+// colors
+$color-primary: #2a2a2a;
+$color-accent: #f93f04;
+$color-accent-secondary: #ff6230;
+$color-background: #ffffff;
+$color-primary-grey: #f9f9f9;
+$color-system-grey: #9b9b9b;
+$color-secondary-grey: #dadada;
+
+$color-text: $color-primary;
+$color-secondary: $color-system-grey;
+$color-reverse: $color-background;
+$color-text-reverse: $color-reverse;
+$color-text-muted: $color-system-grey;
+$color-text-accent: $color-accent;
+
+$color-border: $color-primary;
+$color-border-reverse: $color-reverse;
+
+// sizes
+$mobile-min-width: 320px;
+$tablet-min-width: 768px;
+$desktop-min-width: 1200px;
+$large-screen-min-width: 1440px;
