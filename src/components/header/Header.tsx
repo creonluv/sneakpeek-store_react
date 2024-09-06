@@ -65,13 +65,13 @@ export const Header = () => {
 
             <div className={styles.header__middle_icons}>
               <a className={styles.header__icon} href="">
+                <img src={likes} alt="likes" />
+              </a>
+              <a className={styles.header__icon} href="">
                 <img src={cart} alt="cart" />
               </a>
               <a className={styles.header__icon} href="">
                 <img src={account} alt="account" />
-              </a>
-              <a className={styles.header__icon} href="">
-                <img src={likes} alt="likes" />
               </a>
             </div>
 
@@ -100,7 +100,7 @@ export const Header = () => {
             <ul className={`${styles.header__menu} ${styles.menu}`}>
               <li className={styles.menu__item}>
                 <a href="" className={styles.menu__link}>
-                  New
+                  New arrives
                 </a>
               </li>
 
@@ -119,6 +119,12 @@ export const Header = () => {
               <li className={styles.menu__item}>
                 <a href="" className={styles.menu__link}>
                   Kids
+                </a>
+              </li>
+
+              <li className={styles.menu__item}>
+                <a href="" className={styles.menu__link}>
+                  Brands
                 </a>
               </li>
 

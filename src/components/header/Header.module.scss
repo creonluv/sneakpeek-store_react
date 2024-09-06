@@ -113,7 +113,7 @@
     width: 190px;
 
     @include on-tablet {
-      width: 305px;
+      width: 256px;
     }
 
     &_button {
@@ -180,8 +180,8 @@
   &__link {
     display: inline-block;
     text-decoration: none;
-    color: $color-secondary;
+    color: $color-text;
 
-    @include hover(color, $color-text);
+    @include hover(scale, 0.95);
   }
 }

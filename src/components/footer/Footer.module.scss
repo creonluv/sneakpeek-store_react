@@ -67,7 +67,7 @@
     font-size: 12px;
     line-height: 15px;
     letter-spacing: 0.5px;
-    color: var(--color-text-muted);
+    color: $color-secondary;
 
     &_bold {
       color: $color-text;
@@ -76,6 +76,8 @@
       font-weight: 600;
       line-height: 21px;
     }
+
+    @include hover(color, $color-secondary-grey);
   }
 
   &__items {
