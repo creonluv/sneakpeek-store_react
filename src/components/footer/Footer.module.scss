@@ -1,0 +1,104 @@
+@use "../../shared/global/globalStyles/globalStyles.scss" as *;
+@use "../../shared/global/globalStyles/vars" as *;
+@use "../../shared/global/globalStyles/mixins" as *;
+@use "../../shared/global/globalStyles/fonts" as *;
+
+.footer {
+  border-top: 1px solid $color-secondary-grey;
+
+  &__container {
+    display: flex;
+    flex-direction: column;
+    gap: 24px;
+    padding-block: 64px;
+    @include container;
+
+    @include on-desktop {
+      flex-direction: row;
+      justify-content: space-between;
+    }
+  }
+
+  &__left {
+    display: flex;
+    flex-direction: column;
+    gap: 12px;
+  }
+
+  &__social {
+    display: flex;
+    flex-direction: row;
+    gap: 8px;
+
+    &_link {
+      display: flex;
+      justify-content: center;
+      align-items: center;
+      width: 32px;
+      height: 32px;
+      border: 1px solid $color-primary;
+      border-radius: 50%;
+      transition: all 0.3s ease;
+
+      &:hover {
+        color: $color-background;
+        background-color: $color-primary;
+
+        .footer__social_icon path {
+          fill: $color-background;
+        }
+      }
+    }
+  }
+
+  &__nav {
+    display: flex;
+    flex-direction: column;
+    gap: 24px;
+
+    @include on-tablet {
+      flex-direction: row;
+      gap: 96px;
+    }
+  }
+
+  &__link {
+    text-decoration: none;
+    font-size: 12px;
+    line-height: 15px;
+    letter-spacing: 0.5px;
+    color: var(--color-text-muted);
+
+    &_bold {
+      color: $color-text;
+      text-decoration: none;
+      font-size: 16px;
+      font-weight: 600;
+      line-height: 21px;
+    }
+  }
+
+  &__items {
+    display: flex;
+    flex-direction: column;
+    gap: 4px;
+    color: $color-secondary;
+
+    &_main {
+      display: flex;
+      flex-direction: column;
+      gap: 8px;
+    }
+  }
+
+  &__copyright {
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    font-size: 12px;
+    line-height: 15px;
+    padding: 8px;
+    color: $color-background;
+    background-color: $color-primary;
+  }
+}
