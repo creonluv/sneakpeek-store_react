@@ -1,0 +1,16 @@
+@use "../../shared/global/globalStyles/globalStyles.scss" as *;
+@use "../../shared/global/globalStyles/fonts" as *;
+@use "../../shared/global/globalStyles/mixins" as *;
+@use "../../shared/global/globalStyles/vars" as *;
+
+.button {
+  background: none;
+  border: none;
+  padding: 0;
+  margin: 0;
+
+  width: 100%;
+  height: 100%;
+
+  @include hover(transform, rotate(-15deg));
+}

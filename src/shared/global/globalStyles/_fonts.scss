@@ -4,7 +4,7 @@
 // Announcement of fonts
 @font-face {
   font-family: "TT Firs Neue";
-  font-weight: normal;
+  font-weight: 400;
   font-style: normal;
   src: url("../../../../public/fonts/TTFirsNeue-Regular.eot");
   src: local("TT Firs Neue Regular"), local("TTFirsNeue-Regular"),
@@ -43,68 +43,68 @@
 
 // Mixins for headers
 @mixin header-1 {
-  font-size: clamp(78px, 4vw + 1rem, 96px);
+  font-size: 88px;
+
+  @include on-tablet {
+    font-size: 168px;
+  }
+
+  @include on-desktop {
+    font-size: 192px;
+  }
+
+  @include on-big-desktop {
+    font-size: 208px;
+  }
+
   font-weight: 600;
   line-height: 1;
   letter-spacing: em(0.396, 198);
   text-transform: uppercase;
-  color: var(--color-text);
+  color: $color-text;
 }
 
 @mixin header-2 {
-  font-size: clamp(32px, 2vw + 1rem, 64px);
+  font-size: clamp(72px, 2vw + 1rem, 96px);
   font-weight: 500;
   line-height: 87%;
   letter-spacing: em(0.128, 64);
-  color: var(--color-text);
+  color: $color-text;
 }
 
 @mixin header-3 {
   font-size: 24px;
-  font-weight: 600;
+  font-weight: 500;
   line-height: 1.29;
   letter-spacing: 0%;
-  text-transform: capitalize;
-  color: var(--color-text);
+  color: $color-text;
 }
 
 @mixin header-4 {
   font-size: 16px;
-  font-weight: 600;
+  font-weight: 400;
   line-height: normal;
-  text-transform: uppercase;
-  color: var(--color-text);
+  color: $color-text;
 }
 
 @mixin body-text {
   font-size: 14px;
   font-weight: 400;
   line-height: 21px;
-  color: var(--color-text-muted);
+  color: $color-secondary;
 }
 
 @mixin small-text {
   font-size: 12px;
   font-weight: 400;
   line-height: normal;
-  color: var(--color-text-muted);
+  color: $color-secondary;
 }
 
 @mixin buttons {
   font-weight: 600;
   font-size: 14px;
   line-height: 21px;
-}
-
-@mixin text-light {
-  font-size: clamp(12px, 1vw + 1rem, 16px);
-  color: var(--color-text-reverse);
-}
-
-@mixin text-reverse {
-  font-size: clamp(12px, 2vw + 1rem, 24px);
-  font-weight: 500;
-  color: var(--color-text-reverse);
 }
 
 // Headlines
@@ -116,11 +116,6 @@ h1,
 h2,
 .title-2 {
   @include header-2;
-}
-
-.title-2--reverse {
-  line-height: normal;
-  color: var(--color-text-reverse);
 }
 
 h3,
