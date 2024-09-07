@@ -33,6 +33,18 @@ export const MainScreen = () => {
           </div>
         </div>
       </div>
+
+      <ul className={styles.mainscreen__items}>
+        {[1, 2, 3, 4, 5, 6, 7, 8, 9].map((item) => (
+          <li className="mainscreen__item" key={item}>
+            <img
+              className={styles.mainscreen__image}
+              src={`src/assets/img/mainscreen/items/item-${item}.png`}
+              alt={`item-${item}.png`}
+            />
+          </li>
+        ))}
+      </ul>
     </section>
   );
 };

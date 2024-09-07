@@ -4,6 +4,10 @@
 @use "../../shared/global/globalStyles/vars" as *;
 
 .mainscreen {
+  display: flex;
+  flex-direction: column;
+  gap: 24px;
+
   &__container {
     display: flex;
     flex-direction: column;
@@ -71,5 +75,18 @@
     @include on-tablet {
       display: block;
     }
+  }
+
+  &__items {
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+    margin-left: calc(50% - 50vw);
+    margin-right: calc(50% - 50vw);
+  }
+
+  &__image {
+    width: 100px;
+    height: auto;
   }
 }
