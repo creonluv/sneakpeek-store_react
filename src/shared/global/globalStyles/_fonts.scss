@@ -54,7 +54,7 @@
   }
 
   @include on-big-desktop {
-    font-size: 208px;
+    font-size: 232px;
   }
 
   font-weight: 600;
@@ -105,6 +105,22 @@
   font-weight: 600;
   font-size: 14px;
   line-height: 21px;
+}
+
+@mixin price {
+  font-size: 24px;
+  font-weight: 600;
+  line-height: 1.29;
+  letter-spacing: 0%;
+  color: $color-text;
+}
+
+@mixin titlecards {
+  font-weight: 600;
+  font-size: 16px;
+  line-height: 21px;
+  text-transform: uppercase;
+  color: $color-text;
 }
 
 // Headlines

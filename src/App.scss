@@ -1,0 +1,33 @@
+@use "./shared/global/globalStyles/mixins" as *;
+
+button {
+  background: transparent;
+  border: none;
+  padding: 0;
+  margin: 0;
+  font: inherit;
+  color: inherit;
+  cursor: pointer;
+}
+
+.page {
+  display: flex;
+  flex-direction: column;
+  justify-content: space-between;
+  min-height: 100vh;
+
+  &__container {
+    display: flex;
+    flex-direction: column;
+    gap: 96px;
+    padding: 4rem 0;
+  }
+
+  &__cards {
+    display: flex;
+    flex-direction: row;
+    gap: 20px;
+
+    @include container;
+  }
+}

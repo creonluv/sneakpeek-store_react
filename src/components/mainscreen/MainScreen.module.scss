@@ -20,7 +20,8 @@
   &__content {
     position: relative;
     border-radius: 5px;
-    overflow: hidden;
+
+    width: 100%;
   }
 
   &__text {
