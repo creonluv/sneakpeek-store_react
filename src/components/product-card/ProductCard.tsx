@@ -12,7 +12,7 @@ export const ProductCard = () => {
         <img className={styles.card__img} src={photo} alt="img-of-item" />
       </a>
 
-      <a className={styles.card__link} href="/">
+      <a className={styles.card__linkInfo} href="/">
         <div className={styles.card__information}>
           <div className={styles.card__description}>
             <p className={styles.card__producer}>Nike SB</p>

@@ -13,8 +13,6 @@
     flex-direction: column;
     justify-content: center;
     align-items: center;
-
-    @include container;
   }
 
   &__title {

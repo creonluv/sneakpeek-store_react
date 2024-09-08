@@ -34,7 +34,7 @@ export const MainScreen = () => {
         </div>
       </div>
 
-      <ul className={styles.mainscreen__items}>
+      {/* <ul className={styles.mainscreen__items}>
         {[1, 2, 3, 4, 5, 6, 7, 8, 9].map((item) => (
           <li className="mainscreen__item" key={item}>
             <img
@@ -44,7 +44,7 @@ export const MainScreen = () => {
             />
           </li>
         ))}
-      </ul>
+      </ul> */}
     </section>
   );
 };

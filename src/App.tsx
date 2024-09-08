@@ -2,7 +2,7 @@ import "./App.scss";
 import { Footer } from "./components/footer";
 import { Header } from "./components/header";
 import { MainScreen } from "./components/mainscreen";
-import { ProductCard } from "./components/product-card";
+import { ProductSlider } from "./components/product-slider";
 
 function App() {
   return (
@@ -12,11 +12,7 @@ function App() {
       <main className="page__container">
         <MainScreen />
         <div className="page__cards">
-          <ProductCard />
-          <ProductCard />
-          <ProductCard />
-          <ProductCard />
-          <ProductCard />
+          <ProductSlider type={"normal"} />
         </div>
       </main>
 
