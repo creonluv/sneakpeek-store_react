@@ -1,23 +1,19 @@
 const BASE_URL = "http://localhost:9091/api";
 
-function wait(delay: number): Promise<void> {
+export function wait(delay: number) {
   return new Promise((resolve) => {
     setTimeout(resolve, delay);
   });
 }
 
-interface RequestOptions extends RequestInit {
-  method: string;
-  body?: string;
-  headers?: HeadersInit;
-}
+type RequestMethod = "GET" | "POST" | "PATCH" | "DELETE";
 
-async function request<T>(
+function request<T>(
   url: string,
-  method: string = "GET",
+  method: RequestMethod = "GET",
   data: any = null
 ): Promise<T> {
-  const options: RequestOptions = { method };
+  const options: RequestInit = { method };
 
   if (data) {
     options.body = JSON.stringify(data);
@@ -26,20 +22,20 @@ async function request<T>(
     };
   }
 
-  await wait(300);
-  const response = await fetch(BASE_URL + url, options);
+  return wait(500)
+    .then(() => fetch(BASE_URL + url, options))
+    .then((response) => {
+      if (!response.ok) {
+        throw new Error();
+      }
 
-  if (!response.ok) {
-    throw new Error(`HTTP error! status: ${response.status}`);
-  }
-
-  return response.json();
+      return response.json();
+    });
 }
 
 export const client = {
   get: <T>(url: string) => request<T>(url),
   post: <T>(url: string, data: any) => request<T>(url, "POST", data),
   patch: <T>(url: string, data: any) => request<T>(url, "PATCH", data),
-  put: <T>(url: string, data: any) => request<T>(url, "PUT", data),
   delete: <T>(url: string) => request<T>(url, "DELETE"),
 };

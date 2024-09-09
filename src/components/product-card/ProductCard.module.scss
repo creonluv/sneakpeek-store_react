@@ -17,14 +17,17 @@
     text-decoration: none;
     color: inherit;
     display: block;
+    height: 330px;
+    width: 272px;
 
     @include on-tablet {
       height: 363px;
-      width: 288px;
+      width: 272px;
     }
 
     @include on-desktop {
       height: 408px;
+      width: 288px;
     }
 
     @include on-big-desktop {
@@ -37,8 +40,6 @@
     cursor: pointer;
     text-decoration: none;
     color: inherit;
-    display: block;
-    width: 100%;
   }
 
   &__img {
@@ -54,6 +55,12 @@
   }
 
   &__title {
+    display: block;
+    width: 100%;
+    white-space: normal;
+    overflow: hidden;
+    text-overflow: ellipsis;
+
     @include titlecards;
   }
 
