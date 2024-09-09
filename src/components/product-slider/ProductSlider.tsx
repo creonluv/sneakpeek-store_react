@@ -1,14 +1,16 @@
-import { useEffect, useRef, useState } from "react";
+import { useCallback, useEffect, useRef, useState } from "react";
 import styles from "./ProductSlider.module.scss";
 import { ProductCard } from "../product-card";
 import { ButtonSlider } from "../button-slider";
 import { SliderIndicator } from "./slider-indicator";
+import { Product } from "../../types/Products";
 
 type Props = {
+  products: Product[];
   type: string;
 };
 
-export const ProductSlider: React.FC<Props> = ({ type }) => {
+export const ProductSlider: React.FC<Props> = ({ products, type }) => {
   const [productWidth, setProductWidth] = useState(0);
   const [scrollPosition, setScrollPosition] = useState(0);
   const [totalCards, setTotalCards] = useState(0);
@@ -17,26 +19,42 @@ export const ProductSlider: React.FC<Props> = ({ type }) => {
   const scrollingByScript = useRef(false);
 
   useEffect(() => {
-    if (productsRef.current) {
-      const firstProduct = productsRef.current.firstElementChild;
+    const updateProductWidth = () => {
+      if (productsRef.current) {
+        const firstProduct = productsRef.current
+          .firstElementChild as HTMLElement;
 
-      if (firstProduct) {
-        setProductWidth(firstProduct.clientWidth);
+        if (firstProduct) {
+          setProductWidth(firstProduct.clientWidth);
+        }
+        setTotalCards(productsRef.current.children.length);
       }
-      setTotalCards(productsRef.current.children.length);
+    };
+
+    updateProductWidth();
+
+    window.addEventListener("resize", updateProductWidth);
+
+    return () => {
+      window.removeEventListener("resize", updateProductWidth);
+    };
+  }, [products]);
+
+  useEffect(() => {
+    if (productsRef.current) {
       setCardsInView(
         Math.floor(productsRef.current.clientWidth / productWidth)
       );
     }
   }, [productWidth]);
 
-  useEffect(() => {
-    const handleScroll = () => {
-      if (!scrollingByScript.current && productsRef.current) {
-        setScrollPosition(productsRef.current.scrollLeft);
-      }
-    };
+  const handleScroll = useCallback(() => {
+    if (!scrollingByScript.current && productsRef.current) {
+      setScrollPosition(productsRef.current.scrollLeft);
+    }
+  }, [scrollingByScript, productsRef.current]);
 
+  useEffect(() => {
     if (productsRef.current) {
       productsRef.current.addEventListener("scroll", handleScroll);
     }
@@ -46,9 +64,9 @@ export const ProductSlider: React.FC<Props> = ({ type }) => {
         productsRef.current.removeEventListener("scroll", handleScroll);
       }
     };
-  }, []);
+  }, [handleScroll]);
 
-  const handlePrevClick = () => {
+  const handlePrevClick = useCallback(() => {
     if (productsRef.current) {
       const prevScroll = productsRef.current.scrollLeft - productWidth;
 
@@ -64,9 +82,9 @@ export const ProductSlider: React.FC<Props> = ({ type }) => {
         scrollingByScript.current = false;
       }, 500);
     }
-  };
+  }, [productWidth]);
 
-  const handleNextClick = () => {
+  const handleNextClick = useCallback(() => {
     if (productsRef.current) {
       const maxScroll =
         productsRef.current.scrollWidth - productsRef.current.clientWidth;
@@ -90,13 +108,15 @@ export const ProductSlider: React.FC<Props> = ({ type }) => {
           behavior: "smooth",
         });
 
+        console.log(productWidth);
+
         setTimeout(() => {
           setScrollPosition(nextScroll);
           scrollingByScript.current = false;
         }, 500);
       }
     }
-  };
+  }, [productWidth]);
 
   useEffect(() => {
     const interval = setInterval(() => {
@@ -106,7 +126,7 @@ export const ProductSlider: React.FC<Props> = ({ type }) => {
     return () => {
       clearInterval(interval);
     };
-  }, [productWidth, scrollPosition]);
+  }, [handleNextClick]);
 
   const titleOfBlock =
     type === "normal"
@@ -129,16 +149,11 @@ export const ProductSlider: React.FC<Props> = ({ type }) => {
           />
         </div>
       </div>
-
       <div className={styles.goods__cards_wrapper}>
         <div className={styles.goods__cards} ref={productsRef}>
-          <ProductCard />
-          <ProductCard />
-          <ProductCard />
-          <ProductCard />
-          <ProductCard />
-          <ProductCard />
-          <ProductCard />
+          {products.map((product) => (
+            <ProductCard key={product.id} product={product} />
+          ))}
         </div>
       </div>
 
