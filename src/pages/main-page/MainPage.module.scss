@@ -1,0 +1,10 @@
+@use "../../shared/global/globalStyles/globalStyles.scss" as *;
+@use "../../shared/global/globalStyles/vars" as *;
+@use "../../shared/global/globalStyles/mixins" as *;
+@use "../../shared/global/globalStyles/fonts" as *;
+
+.homepage {
+  display: flex;
+  flex-direction: column;
+  gap: 96px;
+}

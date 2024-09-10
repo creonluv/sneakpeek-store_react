@@ -1,4 +1,6 @@
-const categories = [
+import { Category } from "../../../types/Categories";
+
+const categories: Category[] = [
   {
     id: 1,
     description: "More than 1000 pairs+",

@@ -4,13 +4,19 @@ import { ProductCard } from "../product-card";
 import { ButtonSlider } from "../button-slider";
 import { SliderIndicator } from "./slider-indicator";
 import { Product } from "../../types/Products";
+import { Category } from "../../types/Categories";
 
 type Props = {
-  products: Product[];
+  products?: Product[];
   type: string;
+  categories?: Category[];
 };
 
-export const ProductSlider: React.FC<Props> = ({ products, type }) => {
+export const ProductSlider: React.FC<Props> = ({
+  products,
+  type,
+  categories,
+}) => {
   const [productWidth, setProductWidth] = useState(0);
   const [scrollPosition, setScrollPosition] = useState(0);
   const [totalCards, setTotalCards] = useState(0);
@@ -151,9 +157,13 @@ export const ProductSlider: React.FC<Props> = ({ products, type }) => {
       </div>
       <div className={styles.goods__cards_wrapper}>
         <div className={styles.goods__cards} ref={productsRef}>
-          {products.map((product) => (
-            <ProductCard key={product.id} product={product} />
-          ))}
+          {products
+            ? products.map((product) => (
+                <ProductCard key={product.id} product={product} type={type} />
+              ))
+            : categories?.map((product) => (
+                <ProductCard key={product.id} category={product} type={type} />
+              ))}
         </div>
       </div>
 
