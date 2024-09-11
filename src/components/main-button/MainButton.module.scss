@@ -1,0 +1,25 @@
+@use "../../shared/global/globalStyles/globalStyles.scss" as *;
+@use "../../shared/global/globalStyles/fonts" as *;
+@use "../../shared/global/globalStyles/mixins" as *;
+@use "../../shared/global/globalStyles/vars" as *;
+
+.button {
+  display: inline-block;
+  border-radius: 16px;
+  background-color: $color-accent;
+  width: 100%;
+  padding-block: 16px;
+
+  &__body {
+    display: flex;
+    flex-direction: row;
+    justify-content: center;
+    align-items: center;
+    gap: 3px;
+  }
+
+  &__title {
+    @include buttons;
+    color: $color-background;
+  }
+}

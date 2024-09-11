@@ -7,6 +7,7 @@ import styles from "./MainPage.module.scss";
 import { useDispatch } from "react-redux";
 import { RootState } from "../../app/store";
 import categories from "../../shared/global/utils/categories";
+import { PromoTimer } from "../../components/promo-timer";
 
 export const MainPage = () => {
   const dispatch = useDispatch();
@@ -23,6 +24,7 @@ export const MainPage = () => {
     <section className={styles.homepage}>
       <MainScreen />
       <ProductSlider products={products} type={"normal"} />
+      <PromoTimer />
       <ProductSlider categories={categories} type={"category"} />
       <ProductSlider products={reversedProducts} type={"another"} />
     </section>
