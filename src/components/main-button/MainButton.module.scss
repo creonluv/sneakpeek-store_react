@@ -6,9 +6,19 @@
 .button {
   display: inline-block;
   border-radius: 16px;
-  background-color: $color-accent;
   width: 100%;
   padding-block: 16px;
+  background-color: $color-accent;
+
+  &__transparent {
+    background-color: transparent;
+    border: 2px solid $color-background;
+    width: 234px;
+
+    .button__title {
+      color: $color-background;
+    }
+  }
 
   &__body {
     display: flex;

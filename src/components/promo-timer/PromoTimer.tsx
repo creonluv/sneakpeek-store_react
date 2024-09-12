@@ -63,7 +63,7 @@ export const PromoTimer = () => {
         </div>
 
         <div className={styles.sale__button}>
-          <MainButton />
+          <MainButton title="Buy Now" icon={true} transparent={false} />
         </div>
       </div>
     </section>

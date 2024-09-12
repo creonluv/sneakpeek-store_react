@@ -60,10 +60,6 @@
   @include on-tablet {
     --columns: 12;
   }
-
-  @include on-desktop {
-    --columns: 24;
-  }
 }
 
 @mixin hover($_property, $_toValue) {
