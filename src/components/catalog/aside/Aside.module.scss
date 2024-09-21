@@ -1,0 +1,58 @@
+@use "../../../shared/global/globalStyles/globalStyles.scss" as *;
+@use "../../../shared/global/globalStyles/vars" as *;
+@use "../../../shared/global/globalStyles/mixins" as *;
+@use "../../../shared/global/globalStyles/fonts" as *;
+
+.aside {
+  display: flex;
+  flex-direction: column;
+  gap: 32px;
+  position: initial;
+  overflow-y: initial;
+}
+
+.filter {
+  display: flex;
+  flex-direction: column;
+  gap: 16px;
+
+  &__spoiler {
+    display: flex;
+    flex-direction: row;
+    justify-content: space-between;
+  }
+
+  &__title {
+    @include header-3;
+    font-weight: 600;
+  }
+
+  &__content {
+    display: flex;
+    flex-direction: column;
+    gap: 10px;
+    max-height: 0;
+    overflow: hidden;
+    transition: max-height 0.3s ease-out;
+  }
+
+  &__arrow {
+    transition: transform 0.3s ease-out;
+    transform: rotate(-90deg);
+    width: 4%;
+  }
+
+  &__showMoreButton {
+    display: flex;
+    justify-content: start;
+    color: $color-accent;
+  }
+}
+
+.filter__content.open {
+  max-height: 500px;
+}
+
+.filter__arrow.open {
+  transform: rotate(90deg);
+}

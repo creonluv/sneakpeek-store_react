@@ -1,0 +1,22 @@
+@use "../../shared/global/globalStyles/globalStyles.scss" as *;
+@use "../../shared/global/globalStyles/vars" as *;
+@use "../../shared/global/globalStyles/mixins" as *;
+@use "../../shared/global/globalStyles/fonts" as *;
+
+.breadcrumbs {
+  display: flex;
+  flex-direction: row;
+  align-items: center;
+}
+
+.breadcrumbs > * {
+  display: inline-block;
+  margin-right: 8px;
+}
+
+.crumbFirst {
+  display: flex;
+  flex-direction: row;
+  align-items: center;
+  gap: 8px;
+}

@@ -79,12 +79,19 @@
     display: flex;
     justify-content: space-between;
     align-items: center;
+    overflow: visible;
     margin-left: calc(50% - 50vw);
+    flex-wrap: wrap;
     margin-right: calc(50% - 50vw);
+    width: 100vw;
+  }
+
+  &__item {
+    flex-shrink: 0;
   }
 
   &__image {
-    width: 100px;
+    max-width: 100px;
     height: auto;
   }
 }
