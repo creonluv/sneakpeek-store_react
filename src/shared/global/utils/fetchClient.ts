@@ -26,10 +26,18 @@ function request<T>(
     .then(() => fetch(BASE_URL + url, options))
     .then((response) => {
       if (!response.ok) {
-        throw new Error();
+        return response.text().then((errorMessage) => {
+          throw new Error(
+            `Network response was not ok: ${response.status} - ${errorMessage}`
+          );
+        });
       }
 
       return response.json();
+    })
+    .catch((error) => {
+      console.error("Виникла помилка при отриманні даних:", error);
+      throw error;
     });
 }
 

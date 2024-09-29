@@ -1,33 +1,30 @@
-import React, { useState, useEffect } from "react";
+import React, { useState, useEffect, useMemo } from "react";
 import { useDispatch } from "react-redux";
 import { useAppSelector } from "../../../app/hooks";
 import { RootState } from "../../../app/store";
 import btnBack from "../../../assets/img/icons/btn-back.svg";
 import styles from "./Aside.module.scss";
-import {
-  fetchFilterData,
-  toggleCategory,
-  toggleProducer,
-  toggleSize,
-  toggleGender,
-} from "../../../features/catalog";
+import { fetchFilterData } from "../../../features/catalog";
 import { FilterType } from "../../../types/Filters";
 import classNames from "classnames";
+import Slider from "rc-slider";
+import "rc-slider/assets/index.css";
+import { updateUrlWithFiltersAndPrice } from "../../../helpers/updateUrlWithParams";
 import { useNavigate } from "react-router-dom";
-import Slider from "rc-slider"; // Використовуємо бібліотеку rc-slider
-import "rc-slider/assets/index.css"; // Не забудь імпортувати стилі для ползунка
+import {
+  setPriceRange,
+  toggleCategory,
+  toggleGender,
+  toggleProducer,
+  toggleSize,
+} from "../../../features/params";
 
 const filterConfigs = [
-  { type: "category" as FilterType, label: "Category" },
-  { type: "producer" as FilterType, label: "Producer" },
-  { type: "size" as FilterType, label: "Size" },
-  { type: "gender" as FilterType, label: "Gender" },
-  // Add more filters if needed
+  { type: "categoryIds" as FilterType, label: "Category" },
+  { type: "producerIds" as FilterType, label: "Producer" },
+  { type: "sizeIds" as FilterType, label: "Size" },
+  { type: "genderIds" as FilterType, label: "Gender" },
 ];
-
-interface LocalSelected {
-  [key: string]: Set<number>;
-}
 
 export const Aside: React.FC = () => {
   const dispatch = useDispatch();
@@ -35,104 +32,90 @@ export const Aside: React.FC = () => {
 
   const [openSections, setOpenSections] = useState<Record<FilterType, boolean>>(
     {
-      category: true,
-      producer: false,
-      size: false,
-      gender: false,
+      categoryIds: true,
+      producerIds: false,
+      sizeIds: false,
+      genderIds: false,
     }
   );
 
-  const [localSelected, setLocalSelected] = useState<LocalSelected>({
-    category: new Set(),
-    producer: new Set(),
-    size: new Set(),
-    gender: new Set(),
-  });
-
-  const [priceRange, setPriceRange] = useState<[number, number]>([0, 1000]); // Стан для зберігання діапазону цін
-
   const [showMore, setShowMore] = useState<Record<FilterType, boolean>>({
-    category: false,
-    producer: false,
-    size: false,
-    gender: false,
+    categoryIds: false,
+    producerIds: false,
+    sizeIds: false,
+    genderIds: false,
   });
 
   useEffect(() => {
     dispatch(fetchFilterData() as any);
   }, [dispatch]);
 
+  const { categories, producers, sizes, genders } = useAppSelector(
+    (state: RootState) => state.catalog
+  );
+
   const {
-    categories,
-    producers,
-    sizes,
-    genders,
     selectedCategories,
     selectedProducers,
     selectedSizes,
     selectedGenders,
-  } = useAppSelector((state: RootState) => state.catalog);
+    priceRange,
+    selectedSort,
+  } = useAppSelector((state: RootState) => state.params);
+
+  const selectedFilters = useMemo(
+    () => ({
+      categoryIds: [...selectedCategories],
+      producerIds: [...selectedProducers],
+      sizeIds: [...selectedSizes],
+      genderIds: [...selectedGenders],
+    }),
+    [selectedCategories, selectedProducers, selectedSizes, selectedGenders]
+  );
 
   useEffect(() => {
-    setLocalSelected({
-      category: new Set(selectedCategories),
-      producer: new Set(selectedProducers),
-      size: new Set(selectedSizes),
-      gender: new Set(selectedGenders),
-    });
-  }, [selectedCategories, selectedProducers, selectedSizes, selectedGenders]);
-
-  const updateUrl = () => {
-    const queryParams = new URLSearchParams();
-
-    Object.entries(localSelected).forEach(([filterType, ids]) => {
-      ids.forEach((id) => {
-        queryParams.append(filterType, id.toString());
-      });
-    });
-
-    // Додаємо діапазон цін до URL
-    queryParams.append("minPrice", priceRange[0].toString());
-    queryParams.append("maxPrice", priceRange[1].toString());
-
-    navigate(`?${queryParams.toString()}`);
-  };
-
-  useEffect(() => {
-    updateUrl();
-  }, [localSelected, priceRange, navigate]);
+    updateUrlWithFiltersAndPrice(
+      navigate,
+      selectedFilters,
+      priceRange,
+      selectedSort
+    );
+  }, [selectedFilters, priceRange]);
 
   const handleCheckboxChange = (type: FilterType, id: number) => {
-    setLocalSelected((prev) => {
-      const newSet = new Set(prev[type]);
-
-      if (newSet.has(id)) {
-        newSet.delete(id);
-      } else {
-        newSet.add(id);
-      }
-
-      return { ...prev, [type]: newSet };
-    });
-
     switch (type) {
-      case "category":
+      case "categoryIds":
         dispatch(toggleCategory(id));
         break;
-      case "producer":
+
+      case "producerIds":
         dispatch(toggleProducer(id));
         break;
-      case "size":
+
+      case "sizeIds":
         dispatch(toggleSize(id));
         break;
-      case "gender":
+
+      case "genderIds":
         dispatch(toggleGender(id));
         break;
     }
+
+    updateUrlWithFiltersAndPrice(
+      navigate,
+      {
+        categoryIds: selectedFilters.categoryIds,
+        producerIds: selectedFilters.producerIds,
+        sizeIds: selectedFilters.sizeIds,
+        genderIds: selectedFilters.genderIds,
+      },
+      priceRange,
+      selectedSort
+    );
   };
 
   const isChecked = (type: FilterType, id: number) => {
-    return localSelected[type].has(id);
+    return selectedFilters[type].includes(id);
   };
 
   const toggleSection = (type: FilterType) => {
@@ -141,14 +124,18 @@ export const Aside: React.FC = () => {
 
   const getItems = (type: FilterType) => {
     switch (type) {
-      case "category":
+      case "categoryIds":
         return categories;
-      case "producer":
+
+      case "producerIds":
         return producers;
-      case "size":
+
+      case "sizeIds":
         return sizes;
-      case "gender":
+
+      case "genderIds":
         return genders;
+
       default:
         return [];
     }
@@ -156,6 +143,10 @@ export const Aside: React.FC = () => {
 
   const handleShowMoreClick = (type: FilterType) => {
     setShowMore((prev) => ({ ...prev, [type]: true }));
+  };
+
+  const handlePriceRangeChange = (value: [number, number]) => {
+    dispatch(setPriceRange(value));
   };
 
   return (
@@ -174,6 +165,7 @@ export const Aside: React.FC = () => {
             alt="btn-back"
           />
         </div>
+
         <div
           className={classNames(styles.filter__content, {
             [styles.open]: openSections["priceRange" as FilterType],
@@ -182,9 +174,11 @@ export const Aside: React.FC = () => {
           <Slider
             range
             min={0}
-            max={1000}
+            max={10000}
             value={priceRange}
-            onChange={(value) => setPriceRange(value as [number, number])}
+            onChange={(value) =>
+              handlePriceRangeChange(value as [number, number])
+            }
           />
           <div className={styles.filter__priceLabels}>
             <span>${priceRange[0]}</span> - <span>${priceRange[1]}</span>
@@ -228,8 +222,12 @@ export const Aside: React.FC = () => {
                     className={styles.checkbox__index}
                     checked={isChecked(type, item.id)}
                     onChange={() => handleCheckboxChange(type, item.id)}
+                    id={`checkbox-${item.id}`}
                   />
-                  <label className={styles.checkbox__label} htmlFor={item.name}>
+                  <label
+                    className={styles.checkbox__label}
+                    htmlFor={`checkbox-${item.id}`}
+                  >
                     {item.name}
                   </label>
                 </li>

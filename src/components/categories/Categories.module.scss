@@ -1,0 +1,32 @@
+@use "../../shared/global/globalStyles/globalStyles.scss" as *;
+@use "../../shared/global/globalStyles/vars" as *;
+@use "../../shared/global/globalStyles/mixins" as *;
+@use "../../shared/global/globalStyles/fonts" as *;
+
+.categories {
+  display: flex;
+  flex-direction: row;
+  justify-content: space-between;
+
+  &__chips {
+    display: flex;
+    flex-direction: row;
+    gap: 8px;
+  }
+
+  &__chip {
+    display: flex;
+    flex-direction: row;
+    gap: 6px;
+    border-radius: 10px;
+    padding-inline: 10px;
+    padding-block: 8px;
+    border: 1px solid $color-secondary-grey;
+  }
+
+  &__left {
+    display: flex;
+    flex-direction: row;
+    gap: 24px;
+  }
+}

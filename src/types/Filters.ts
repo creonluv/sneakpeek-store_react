@@ -1,1 +1,5 @@
-export type FilterType = "category" | "producer" | "size" | "gender";
+export type FilterType =
+  | "categoryIds"
+  | "producerIds"
+  | "sizeIds"
+  | "genderIds";
