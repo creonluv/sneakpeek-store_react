@@ -14,10 +14,10 @@ export interface FiltersState {
   producers: Item[];
   sizes: Item[];
   genders: Item[];
-  selectedCategories: Set<number>;
-  selectedProducers: Set<number>;
-  selectedSizes: Set<number>;
-  selectedGenders: Set<number>;
+  selectedCategories: number[];
+  selectedProducers: number[];
+  selectedSizes: number[];
+  selectedGenders: number[];
   status: "idle" | "loading" | "succeeded" | "failed";
   error: string;
   isLoading: boolean;
@@ -28,10 +28,10 @@ const initialState: FiltersState = {
   producers: [],
   sizes: [],
   genders: [],
-  selectedCategories: new Set(),
-  selectedProducers: new Set(),
-  selectedSizes: new Set(),
-  selectedGenders: new Set(),
+  selectedCategories: [],
+  selectedProducers: [],
+  selectedSizes: [],
+  selectedGenders: [],
   status: "idle",
   error: "",
   isLoading: false,
@@ -61,55 +61,7 @@ export const fetchFilterData = createAsyncThunk<FetchFilterDataResponse>(
 const filterSlice = createSlice({
   name: "filters",
   initialState,
-  reducers: {
-    toggleCategory(state, action: PayloadAction<number>) {
-      const categoryId = action.payload;
-      if (state.selectedCategories.has(categoryId)) {
-        state.selectedCategories.delete(categoryId);
-      } else {
-        state.selectedCategories.add(categoryId);
-      }
-    },
-    toggleProducer(state, action: PayloadAction<number>) {
-      const producerId = action.payload;
-      if (state.selectedProducers.has(producerId)) {
-        state.selectedProducers.delete(producerId);
-      } else {
-        state.selectedProducers.add(producerId);
-      }
-    },
-    toggleSize(state, action: PayloadAction<number>) {
-      const sizeId = action.payload;
-      if (state.selectedSizes.has(sizeId)) {
-        state.selectedSizes.delete(sizeId);
-      } else {
-        state.selectedSizes.add(sizeId);
-      }
-    },
-    toggleGender(state, action: PayloadAction<number>) {
-      const genderId = action.payload;
-      if (state.selectedGenders.has(genderId)) {
-        state.selectedGenders.delete(genderId);
-      } else {
-        state.selectedGenders.add(genderId);
-      }
-    },
-    setFiltersFromUrl(
-      state,
-      action: PayloadAction<{
-        categories: Set<number>;
-        producers: Set<number>;
-        sizes: Set<number>;
-        genders: Set<number>;
-      }>
-    ) {
-      const { categories, producers, sizes, genders } = action.payload;
-      state.selectedCategories = categories;
-      state.selectedProducers = producers;
-      state.selectedSizes = sizes;
-      state.selectedGenders = genders;
-    },
-  },
+  reducers: {},
   extraReducers: (builder) => {
     builder
       .addCase(fetchFilterData.pending, (state) => {
@@ -135,11 +87,6 @@ const filterSlice = createSlice({
   },
 });
 
-export const {
-  toggleCategory,
-  toggleProducer,
-  toggleSize,
-  toggleGender,
-  setFiltersFromUrl,
-} = filterSlice.actions;
+export const {} = filterSlice.actions;
+
 export const catalogReducer = filterSlice.reducer;

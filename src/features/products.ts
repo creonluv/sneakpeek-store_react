@@ -18,6 +18,7 @@ export const fetchAllProducts = createAsyncThunk<Product[], void>(
   "products/fetchAllProducts",
   async () => {
     const products = await getProducts();
+
     if (Array.isArray(products)) {
       return products;
     } else {
