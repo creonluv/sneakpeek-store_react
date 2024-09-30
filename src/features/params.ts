@@ -1,5 +1,5 @@
 import { createSlice, PayloadAction } from "@reduxjs/toolkit";
-import { SortOptions } from "../types/SortOptions";
+import { SortOptions, SortOrder } from "../types/SortOptions";
 
 export interface ParamsState {
   selectedCategories: number[];
@@ -22,12 +22,39 @@ const initialState: ParamsState = {
   priceRange: [0, 10000],
 };
 
-const loadFromLocalStorage = (defaultState: ParamsState): ParamsState => {
-  const savedParams = localStorage.getItem("filterParams");
-  return savedParams ? JSON.parse(savedParams) : defaultState;
+const loadFromUrl = (
+  params: URLSearchParams,
+  defaultState: ParamsState
+): ParamsState => {
+  const categoriesIds = params.getAll("categoryIds").map(Number);
+  const producersIds = params.getAll("producerIds").map(Number);
+  const sizesIds = params.getAll("sizeIds").map(Number);
+  const gendersIds = params.getAll("genderIds").map(Number);
+
+  const priceRange: [number, number] = [
+    Number(params.get("minPrice") || 0),
+    Number(params.get("maxPrice") || 10000),
+  ];
+
+  const sortField =
+    params.get("sortField") || defaultState.selectedSort.sortField;
+  const sortOrder: SortOrder =
+    (params.get("sortOrder") as SortOrder) ||
+    defaultState.selectedSort.sortOrder;
+
+  return {
+    ...defaultState,
+    selectedCategories: categoriesIds,
+    selectedProducers: producersIds,
+    selectedSizes: sizesIds,
+    selectedGenders: gendersIds,
+    priceRange,
+    selectedSort: { sortField, sortOrder },
+  };
 };
 
-const loadedState: ParamsState = loadFromLocalStorage(initialState);
+const params = new URLSearchParams(window.location.search);
+const loadedState: ParamsState = loadFromUrl(params, initialState);
 
 const paramsSlice = createSlice({
   name: "params",
@@ -42,7 +69,6 @@ const paramsSlice = createSlice({
       } else {
         state.selectedCategories.push(categoryId);
       }
-      saveToLocalStorage(state);
     },
     toggleProducer(state, action: PayloadAction<number>) {
       const producerId = action.payload;
@@ -53,7 +79,6 @@ const paramsSlice = createSlice({
       } else {
         state.selectedProducers.push(producerId);
       }
-      saveToLocalStorage(state);
     },
     toggleSize(state, action: PayloadAction<number>) {
       const sizeId = action.payload;
@@ -62,7 +87,6 @@ const paramsSlice = createSlice({
       } else {
         state.selectedSizes.push(sizeId);
       }
-      saveToLocalStorage(state);
     },
     toggleGender(state, action: PayloadAction<number>) {
       const genderId = action.payload;
@@ -73,11 +97,9 @@ const paramsSlice = createSlice({
       } else {
         state.selectedGenders.push(genderId);
       }
-      saveToLocalStorage(state);
     },
     toggleSort(state, action: PayloadAction<SortOptions>) {
       state.selectedSort = action.payload;
-      saveToLocalStorage(state);
     },
     setFiltersFromUrl(
       state,
@@ -94,18 +116,12 @@ const paramsSlice = createSlice({
       state.selectedProducers = producersIds;
       state.selectedSizes = sizesIds;
       state.selectedGenders = gendersIds;
-      saveToLocalStorage(state);
     },
     setPriceRange(state, action: PayloadAction<[number, number]>) {
       state.priceRange = action.payload;
-      saveToLocalStorage(state);
     },
   },
 });
-
-const saveToLocalStorage = (state: ParamsState) => {
-  localStorage.setItem("filterParams", JSON.stringify(state));
-};
 
 export const {
   toggleCategory,
