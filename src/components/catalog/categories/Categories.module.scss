@@ -11,6 +11,7 @@
   &__chips {
     display: flex;
     flex-direction: row;
+    align-items: center;
     gap: 8px;
   }
 
@@ -68,7 +69,8 @@
   font-size: 16px;
   background-color: transparent;
   transition: border-color 0.2s ease;
-  padding: 10px;
+  padding-inline: 10px;
+  padding-block: 8px;
   border: 1px solid $color-secondary-grey;
   border-radius: 10px;
 }

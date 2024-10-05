@@ -1,10 +1,10 @@
 import React from "react";
-import { useAppSelector } from "../../app/hooks";
-import { RootState } from "../../app/store";
+import { useAppSelector } from "../../../app/hooks";
+import { RootState } from "../../../app/store";
 import styles from "./Pagination.module.scss";
 import { useDispatch } from "react-redux";
-import { setCurrentPage } from "../../features/params";
-import { updateUrlWithFiltersAndPrice } from "../../helpers/updateUrlWithParams";
+import { setCurrentPage } from "../../../features/params";
+import { updateUrlWithFiltersAndPrice } from "../../../helpers/updateUrlWithParams";
 import { useNavigate } from "react-router-dom";
 
 export const Pagination: React.FC = () => {

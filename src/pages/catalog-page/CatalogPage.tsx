@@ -8,7 +8,7 @@ import { useEffect } from "react";
 import { fetchProductsCatalog } from "../../features/catalogProducts";
 import { useLocation } from "react-router-dom";
 import { ProductCard } from "../../components/product-card";
-import { Pagination } from "../../components/pagination";
+import { Pagination } from "../../components/catalog/pagination";
 import { AsideAdaptive } from "../../components/catalog/asideAdaptive";
 import { useAsideContext } from "../../context/AsideContext";
 
