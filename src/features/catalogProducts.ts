@@ -49,7 +49,6 @@ export const fetchProductsCatalog = createAsyncThunk<
   async (search: string): Promise<ProductsFromServer> => {
     try {
       const products = await getProductsByPage(1, search);
-      console.log(products);
       return products as ProductsFromServer;
     } catch (error) {
       console.error("Помилка під час отримання продуктів:", error);

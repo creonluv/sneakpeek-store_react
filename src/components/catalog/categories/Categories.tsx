@@ -1,9 +1,9 @@
 import React from "react";
-import { RootState } from "../../app/store";
+import { RootState } from "../../../app/store";
 import styles from "./Categories.module.scss";
-import { useAppSelector, useAppDispatch } from "../../app/hooks";
-import { getNameById } from "../../helpers/getNameOfFilter";
-import { updateUrlWithFiltersAndPrice } from "../../helpers/updateUrlWithParams";
+import { useAppSelector, useAppDispatch } from "../../../app/hooks";
+import { getNameById } from "../../../helpers/getNameOfFilter";
+import { updateUrlWithFiltersAndPrice } from "../../../helpers/updateUrlWithParams";
 import { useNavigate } from "react-router-dom";
 import {
   setFiltersFromUrl,
@@ -12,9 +12,11 @@ import {
   toggleProducer,
   toggleSize,
   toggleSort,
-} from "../../features/params";
-import { sortDiff } from "../../helpers/sortDiff";
-import { FilterType } from "../../types/Filters";
+} from "../../../features/params";
+import { sortDiff } from "../../../helpers/sortDiff";
+import { FilterType } from "../../../types/Filters";
+import { useAsideContext } from "../../../context/AsideContext";
+import aside from "../../../assets/img/icons/aside.svg";
 
 export const Categories: React.FC = () => {
   const dispatch = useAppDispatch();
@@ -24,6 +26,8 @@ export const Categories: React.FC = () => {
     (state: RootState) => state.catalog
   );
 
+  const { toggleAside } = useAsideContext();
+
   const {
     selectedCategories,
     selectedProducers,
@@ -31,6 +35,7 @@ export const Categories: React.FC = () => {
     selectedGenders,
     selectedSort,
     priceRange,
+    currentPage,
   } = useAppSelector((state: RootState) => state.params);
 
   const selectedItems = [
@@ -62,6 +67,7 @@ export const Categories: React.FC = () => {
       producerIds: toggleProducer,
       sizeIds: toggleSize,
       genderIds: toggleGender,
+      priceRange: toggleGender,
     };
 
     dispatch(actions[type](id));
@@ -85,7 +91,8 @@ export const Categories: React.FC = () => {
       navigate,
       selectedFilters,
       priceRange,
-      selectedSort
+      selectedSort,
+      currentPage
     );
   };
 
@@ -117,7 +124,8 @@ export const Categories: React.FC = () => {
       navigate,
       selectedFilters,
       priceRange,
-      selectedOption
+      selectedOption,
+      currentPage
     );
   };
 
@@ -141,13 +149,13 @@ export const Categories: React.FC = () => {
       </div>
       <div className={styles.categories__right}>
         <select
-          className="products__options"
+          className={styles.products__options}
           onChange={handleSortChange}
           value={`${selectedSort.sortField} ${selectedSort.sortOrder}`}
         >
           {sortDiff.map((item, index) => (
             <option
-              className="products__option"
+              className={styles.products__option}
               key={index}
               value={`${item.sortField} ${item.sortOrder}`}
             >
@@ -155,6 +163,13 @@ export const Categories: React.FC = () => {
             </option>
           ))}
         </select>
+
+        <button
+          onClick={toggleAside}
+          className={styles.categories__toggleAsideButton}
+        >
+          <img src={aside} alt="Toggle Aside" />{" "}
+        </button>
       </div>
     </div>
   );

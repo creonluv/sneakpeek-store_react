@@ -19,7 +19,7 @@ button {
   &__container {
     display: flex;
     flex-direction: column;
-    gap: 96px;
+    gap: 48px;
     padding: 4rem 0;
 
     @include container;

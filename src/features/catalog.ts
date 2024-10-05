@@ -14,10 +14,6 @@ export interface FiltersState {
   producers: Item[];
   sizes: Item[];
   genders: Item[];
-  selectedCategories: number[];
-  selectedProducers: number[];
-  selectedSizes: number[];
-  selectedGenders: number[];
   status: "idle" | "loading" | "succeeded" | "failed";
   error: string;
   isLoading: boolean;
@@ -28,10 +24,6 @@ const initialState: FiltersState = {
   producers: [],
   sizes: [],
   genders: [],
-  selectedCategories: [],
-  selectedProducers: [],
-  selectedSizes: [],
-  selectedGenders: [],
   status: "idle",
   error: "",
   isLoading: false,

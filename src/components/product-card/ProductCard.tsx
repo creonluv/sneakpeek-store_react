@@ -10,10 +10,11 @@ import jeensImg from "../../assets/img/categories/jeans.png";
 import accesImg from "../../assets/img/categories/acces.png";
 import { Product } from "../../types/Products";
 import { Category } from "../../types/Categories";
+import { ProductCatalog } from "../../types/ProductsToCatalog";
 // import pressIcon from "../../assets/img/icons/heart-pressed.svg";
 
 type Props = {
-  product?: Product;
+  product?: Product | ProductCatalog;
   type: string;
   category?: Category;
 };

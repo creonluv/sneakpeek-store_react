@@ -61,6 +61,7 @@ export const Aside: React.FC = () => {
     selectedGenders,
     priceRange,
     selectedSort,
+    currentPage,
   } = useAppSelector((state: RootState) => state.params);
 
   const selectedFilters = useMemo(
@@ -78,40 +79,26 @@ export const Aside: React.FC = () => {
       navigate,
       selectedFilters,
       priceRange,
-      selectedSort
+      selectedSort,
+      currentPage
     );
-  }, [selectedFilters, priceRange]);
+  }, [selectedFilters, priceRange, navigate, selectedSort]);
 
   const handleCheckboxChange = (type: FilterType, id: number) => {
     switch (type) {
       case "categoryIds":
         dispatch(toggleCategory(id));
         break;
-
       case "producerIds":
         dispatch(toggleProducer(id));
         break;
-
       case "sizeIds":
         dispatch(toggleSize(id));
         break;
-
       case "genderIds":
         dispatch(toggleGender(id));
         break;
     }
-
-    updateUrlWithFiltersAndPrice(
-      navigate,
-      {
-        categoryIds: selectedFilters.categoryIds,
-        producerIds: selectedFilters.producerIds,
-        sizeIds: selectedFilters.sizeIds,
-        genderIds: selectedFilters.genderIds,
-      },
-      priceRange,
-      selectedSort
-    );
   };
 
   const isChecked = (type: FilterType, id: number) => {
@@ -126,16 +113,12 @@ export const Aside: React.FC = () => {
     switch (type) {
       case "categoryIds":
         return categories;
-
       case "producerIds":
         return producers;
-
       case "sizeIds":
         return sizes;
-
       case "genderIds":
         return genders;
-
       default:
         return [];
     }
@@ -148,7 +131,6 @@ export const Aside: React.FC = () => {
   const handlePriceRangeChange = (value: [number, number]) => {
     dispatch(setPriceRange(value));
   };
-
   return (
     <aside className={styles.aside}>
       <div className={classNames(styles.aside__filter, styles.filter)}>
@@ -179,6 +161,7 @@ export const Aside: React.FC = () => {
             onChange={(value) =>
               handlePriceRangeChange(value as [number, number])
             }
+            className={styles.filter__slider}
           />
           <div className={styles.filter__priceLabels}>
             <span>${priceRange[0]}</span> - <span>${priceRange[1]}</span>

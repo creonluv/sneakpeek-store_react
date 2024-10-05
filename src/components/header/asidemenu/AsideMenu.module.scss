@@ -104,6 +104,11 @@
       @include container;
     }
   }
+
+  &__aside {
+    padding-top: 32px;
+    @include container;
+  }
 }
 
 .shown {

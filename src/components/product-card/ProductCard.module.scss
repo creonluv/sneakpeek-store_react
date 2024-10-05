@@ -18,21 +18,21 @@
     color: inherit;
     display: block;
     height: 330px;
-    width: 272px;
+    // width: 272px;
 
     @include on-tablet {
       height: 363px;
-      width: 272px;
+      // width: 272px;
     }
 
     @include on-desktop {
       height: 408px;
-      width: 288px;
+      // width: 288px;
     }
 
     @include on-big-desktop {
       width: 348px;
-      height: 448px;
+      // height: 448px;
     }
   }
 

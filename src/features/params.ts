@@ -8,6 +8,7 @@ export interface ParamsState {
   selectedGenders: number[];
   selectedSort: SortOptions;
   priceRange: [number, number];
+  currentPage: number;
 }
 
 const initialState: ParamsState = {
@@ -20,6 +21,7 @@ const initialState: ParamsState = {
     sortOrder: "asc",
   },
   priceRange: [0, 10000],
+  currentPage: 1,
 };
 
 const loadFromUrl = (
@@ -120,6 +122,9 @@ const paramsSlice = createSlice({
     setPriceRange(state, action: PayloadAction<[number, number]>) {
       state.priceRange = action.payload;
     },
+    setCurrentPage(state, action: PayloadAction<number>) {
+      state.currentPage = action.payload;
+    },
   },
 });
 
@@ -131,6 +136,7 @@ export const {
   toggleSort,
   setFiltersFromUrl,
   setPriceRange,
+  setCurrentPage,
 } = paramsSlice.actions;
 
 export const paramsReducer = paramsSlice.reducer;

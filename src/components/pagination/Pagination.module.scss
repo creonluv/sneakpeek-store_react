@@ -1,0 +1,35 @@
+@use "../../shared/global/globalStyles/globalStyles.scss" as *;
+@use "../../shared/global/globalStyles/fonts" as *;
+@use "../../shared/global/globalStyles/mixins" as *;
+@use "../../shared/global/globalStyles/vars" as *;
+
+.pagination {
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  margin: 24px;
+}
+
+.pageButton {
+  background-color: $color-accent;
+  color: white;
+  border: none;
+  border-radius: 4px;
+  padding: 10px 15px;
+  margin: 0 5px;
+  cursor: pointer;
+  transition: background-color 0.3s;
+}
+
+.pageButton:hover:not(:disabled) {
+  background-color: $color-accent;
+}
+
+.pageButton:disabled {
+  background-color: $color-secondary-grey;
+  cursor: not-allowed;
+}
+
+.currentPage {
+  background-color: $color-accent;
+}

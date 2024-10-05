@@ -1,0 +1,82 @@
+@use "../../../shared/global/globalStyles/globalStyles.scss" as *;
+@use "../../../shared/global/globalStyles/vars" as *;
+@use "../../../shared/global/globalStyles/mixins" as *;
+@use "../../../shared/global/globalStyles/fonts" as *;
+
+.categories {
+  display: flex;
+  flex-direction: row;
+  justify-content: space-between;
+
+  &__chips {
+    display: flex;
+    flex-direction: row;
+    gap: 8px;
+  }
+
+  &__chip {
+    display: flex;
+    flex-direction: row;
+    gap: 6px;
+    border-radius: 10px;
+    padding-inline: 10px;
+    padding-block: 8px;
+    border: 1px solid $color-secondary-grey;
+  }
+
+  &__left {
+    display: none;
+
+    @include on-tablet {
+      display: flex;
+      flex-direction: row;
+      gap: 24px;
+    }
+  }
+
+  &__right {
+    width: 100%;
+    display: flex;
+    flex-direction: row;
+    gap: 12px;
+
+    @include on-tablet {
+      width: auto;
+      justify-content: baseline;
+      gap: 8px;
+    }
+  }
+
+  &__toggleAsideButton {
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    padding: 12px;
+    background-color: $color-accent;
+    border-radius: 10px;
+
+    @include on-tablet {
+      display: none;
+    }
+  }
+}
+
+.products__options {
+  font-family: "TT Firs Neue", sans-serif;
+  width: 100%;
+  border: none;
+  font-size: 16px;
+  background-color: transparent;
+  transition: border-color 0.2s ease;
+  padding: 10px;
+  border: 1px solid $color-secondary-grey;
+  border-radius: 10px;
+}
+
+.products__options:focus {
+  outline: none;
+}
+
+.products__option:hover {
+  cursor: pointer;
+}

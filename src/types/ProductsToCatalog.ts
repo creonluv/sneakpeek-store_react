@@ -1,4 +1,4 @@
-interface Product {
+export interface ProductCatalog {
   id: number;
   producer: {
     id: number;
@@ -36,7 +36,7 @@ interface Pageable {
 }
 
 export interface ProductsFromServer {
-  content: Product[];
+  content: ProductCatalog[];
   pageable: Pageable;
   last: boolean;
   totalPages: number;
