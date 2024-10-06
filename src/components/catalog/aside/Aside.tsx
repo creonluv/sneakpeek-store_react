@@ -199,16 +199,16 @@ export const Aside: React.FC = () => {
               })}
             >
               {itemsToShow.map((item) => (
-                <li className={styles.checkbox} key={item.id}>
+                <li className="checkbox" key={item.id}>
                   <input
                     type="checkbox"
-                    className={styles.checkbox__index}
+                    className="checkbox__index"
                     checked={isChecked(type, item.id)}
                     onChange={() => handleCheckboxChange(type, item.id)}
                     id={`checkbox-${item.id}`}
                   />
                   <label
-                    className={styles.checkbox__label}
+                    className="checkbox__label"
                     htmlFor={`checkbox-${item.id}`}
                   >
                     {item.name}

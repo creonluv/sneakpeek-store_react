@@ -1,4 +1,4 @@
-@use "./shared/global/globalStyles/mixins" as *;
+@use "./shared/global/globalStyles/global" as *;
 
 button {
   background: transparent;
@@ -24,4 +24,154 @@ button {
 
     @include container;
   }
+}
+
+.button-wrapper {
+  display: inline-flex;
+  position: relative;
+}
+
+* {
+  padding: 0;
+  margin: 0;
+}
+
+ul {
+  padding: 0;
+  margin: 0;
+  list-style: none;
+}
+
+a {
+  text-decoration: none;
+  color: inherit;
+  background-color: transparent;
+  border: none;
+  padding: 0;
+  margin: 0;
+}
+
+body {
+  scroll-behavior: smooth;
+  background-color: $color-background;
+
+  font-family: "TT Firs Neue", sans-serif;
+  font-size: 16px;
+  color: $color-text;
+}
+
+.checkbox {
+  position: relative;
+  display: flex;
+  align-items: center;
+  gap: 10px;
+
+  &__index {
+    position: absolute;
+    opacity: 0;
+    visibility: visible;
+    width: 18px;
+    height: 18px;
+    cursor: pointer;
+    margin: 0;
+    z-index: 1;
+
+    &:checked + .checkbox__label::before {
+      content: "\2713";
+      font-size: 10px;
+      line-height: 18px;
+      text-align: center;
+      color: #fff;
+      background-color: $color-accent-secondary;
+      border: 1px solid $color-accent-secondary;
+    }
+  }
+
+  &__label {
+    position: relative;
+    padding-left: 28px;
+    cursor: pointer;
+
+    &::before {
+      content: "";
+      display: block;
+      position: absolute;
+      top: 0;
+      left: 0;
+      width: 18px;
+      height: 18px;
+      border: 1px solid $color-system-grey;
+      border-radius: 3px;
+      background-color: transparent;
+    }
+  }
+}
+
+@font-face {
+  font-family: "TT Firs Neue";
+  font-weight: 400;
+  font-style: normal;
+  src: url("../../../../public/fonts/TTFirsNeue-Regular.eot");
+  src: local("TT Firs Neue Regular"), local("TTFirsNeue-Regular"),
+    url("../../../../public/fonts/TTFirsNeue-Regular.eot?#iefix")
+      format("embedded-opentype"),
+    url("../../../../public/fonts/TTFirsNeue-Regular.woff2") format("woff2"),
+    url("../../../../public/fonts/TTFirsNeue-Regular.woff") format("woff"),
+    url("../../../../public/fonts/TTFirsNeue-Regular.ttf") format("truetype");
+}
+
+@font-face {
+  font-family: "TT Firs Neue";
+  font-weight: 500;
+  font-style: normal;
+  src: url("../../../../public/fonts/TTFirsNeue-Medium.eot");
+  src: local("TT Firs Neue Medium"), local("TTFirsNeue-Medium"),
+    url("../../../../public/fonts/TTFirsNeue-Medium.eot?#iefix")
+      format("embedded-opentype"),
+    url("../../../../public/fonts/TTFirsNeue-Medium.woff2") format("woff2"),
+    url("../../../../public/fonts/TTFirsNeue-Medium.woff") format("woff"),
+    url("../../../../public/fonts/TTFirsNeue-Medium.ttf") format("truetype");
+}
+
+@font-face {
+  font-family: "TT Firs Neue";
+  font-weight: 600;
+  font-style: normal;
+  src: url("../../../../public/fonts/TTFirsNeue-DemiBold.eot");
+  src: local("TT Firs Neue DemiBold"), local("TTFirsNeue-DemiBold"),
+    url("../../../../public/fonts/TTFirsNeue-DemiBold.eot?#iefix")
+      format("embedded-opentype"),
+    url("../../../../public/fonts/TTFirsNeue-DemiBold.woff2") format("woff2"),
+    url("../../../../public/fonts/TTFirsNeue-DemiBold.woff") format("woff"),
+    url("../../../../public/fonts/TTFirsNeue-DemiBold.ttf") format("truetype");
+}
+
+// Headlines
+h1,
+.title-1 {
+  @include header-1;
+}
+
+h2,
+.title-2 {
+  @include header-2;
+}
+
+h3,
+.title-3 {
+  @include header-3;
+}
+
+h4,
+.title-4 {
+  @include header-4;
+}
+
+h5,
+.title-5 {
+  @include small-text;
+}
+
+.text-muted {
+  @include body-text;
 }

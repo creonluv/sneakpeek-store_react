@@ -1,3 +1,4 @@
+import { Link } from "react-router-dom";
 import styles from "./ProductCard.module.scss";
 
 import clockIcon from "../../assets/img/icons/clock.svg";
@@ -11,15 +12,20 @@ import accesImg from "../../assets/img/categories/acces.png";
 import { Product } from "../../types/Products";
 import { Category } from "../../types/Categories";
 import { ProductCatalog } from "../../types/ProductsToCatalog";
-// import pressIcon from "../../assets/img/icons/heart-pressed.svg";
 
 type Props = {
   product?: Product | ProductCatalog;
   type: string;
   category?: Category;
+  id: number;
 };
 
-export const ProductCard: React.FC<Props> = ({ product, type, category }) => {
+export const ProductCard: React.FC<Props> = ({
+  product,
+  type,
+  category,
+  id,
+}) => {
   const photosOfCategory = [
     shoesImg,
     tshirtsImg,
@@ -30,7 +36,7 @@ export const ProductCard: React.FC<Props> = ({ product, type, category }) => {
 
   return (
     <div className={styles.card}>
-      <a className={styles.card__link} href="/">
+      <Link className={styles.card__link} to={`/product/${id}`}>
         <img
           className={styles.card__img}
           src={
@@ -42,9 +48,9 @@ export const ProductCard: React.FC<Props> = ({ product, type, category }) => {
           }
           alt="img-of-item"
         />
-      </a>
+      </Link>
 
-      <a className={styles.card__linkInfo} href="/">
+      <Link className={styles.card__linkInfo} to={`/product/${id}`}>
         <div className={styles.card__information}>
           <div className={styles.card__description}>
             {product && (
@@ -62,7 +68,7 @@ export const ProductCard: React.FC<Props> = ({ product, type, category }) => {
             <p className={styles.card__price}>${product?.price || "N/A"}</p>
           )}
         </div>
-      </a>
+      </Link>
 
       <div className={styles.card__infolabel}>
         {type !== "category" ? "new" : category?.infolabel || "N/A"}

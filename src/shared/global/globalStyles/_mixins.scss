@@ -93,3 +93,84 @@
     display: block;
   }
 }
+
+@mixin header-1 {
+  font-size: 88px;
+
+  @include on-tablet {
+    font-size: 168px;
+  }
+
+  @include on-desktop {
+    font-size: 192px;
+  }
+
+  @include on-big-desktop {
+    font-size: 232px;
+  }
+
+  font-weight: 600;
+  line-height: 1;
+  letter-spacing: em(0.396, 198);
+  text-transform: uppercase;
+  color: $color-text;
+}
+
+@mixin header-2 {
+  font-size: clamp(72px, 2vw + 1rem, 96px);
+  font-weight: 500;
+  line-height: 87%;
+  letter-spacing: em(0.128, 64);
+  color: $color-text;
+}
+
+@mixin header-3 {
+  font-size: 24px;
+  font-weight: 500;
+  line-height: 1.29;
+  letter-spacing: 0%;
+  color: $color-text;
+}
+
+@mixin header-4 {
+  font-size: 16px;
+  font-weight: 400;
+  line-height: normal;
+  color: $color-text;
+}
+
+@mixin body-text {
+  font-size: 16px;
+  font-weight: 400;
+  line-height: 21px;
+  color: $color-secondary;
+}
+
+@mixin small-text {
+  font-size: 12px;
+  font-weight: 400;
+  line-height: normal;
+  color: $color-secondary;
+}
+
+@mixin buttons {
+  font-weight: 500;
+  font-size: 14px;
+  line-height: 21px;
+}
+
+@mixin price {
+  font-size: 24px;
+  font-weight: 600;
+  line-height: 1.29;
+  letter-spacing: 0%;
+  color: $color-text;
+}
+
+@mixin titlecards {
+  font-weight: 600;
+  font-size: 16px;
+  line-height: 21px;
+  text-transform: uppercase;
+  color: $color-text;
+}

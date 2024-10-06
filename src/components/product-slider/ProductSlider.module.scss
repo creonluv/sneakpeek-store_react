@@ -1,7 +1,4 @@
-@use "../../shared/global/globalStyles/globalStyles.scss" as *;
-@use "../../shared/global/globalStyles/fonts" as *;
-@use "../../shared/global/globalStyles/mixins" as *;
-@use "../../shared/global/globalStyles/vars" as *;
+@use "../../shared/global/globalStyles/global" as *;
 
 .goods {
   display: flex;
