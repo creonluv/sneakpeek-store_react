@@ -74,12 +74,12 @@ export const ProductSlider: React.FC<Props> = ({
 
   const handlePrevClick = useCallback(() => {
     if (productsRef.current) {
-      const prevScroll = productsRef.current.scrollLeft - productWidth;
+      const prevScroll = productsRef.current.scrollLeft - (285 + 20);
 
       scrollingByScript.current = true;
 
       productsRef.current.scrollBy({
-        left: -productWidth - 16,
+        left: -(285 + 20),
         behavior: "smooth",
       });
 
@@ -88,13 +88,14 @@ export const ProductSlider: React.FC<Props> = ({
         scrollingByScript.current = false;
       }, 500);
     }
-  }, [productWidth]);
+  }, []);
 
   const handleNextClick = useCallback(() => {
     if (productsRef.current) {
       const maxScroll =
         productsRef.current.scrollWidth - productsRef.current.clientWidth;
-      const nextScroll = productsRef.current.scrollLeft + productWidth;
+
+      const nextScroll = productsRef.current.scrollLeft + (285 + 20);
 
       scrollingByScript.current = true;
 
@@ -110,11 +111,9 @@ export const ProductSlider: React.FC<Props> = ({
         }, 500);
       } else {
         productsRef.current.scrollBy({
-          left: productWidth + 16,
+          left: 285 + 20, // Прокручуємо рівно на ширину картки плюс відступ
           behavior: "smooth",
         });
-
-        console.log(productWidth);
 
         setTimeout(() => {
           setScrollPosition(nextScroll);
@@ -122,7 +121,7 @@ export const ProductSlider: React.FC<Props> = ({
         }, 500);
       }
     }
-  }, [productWidth]);
+  }, []);
 
   useEffect(() => {
     const interval = setInterval(() => {
@@ -159,10 +158,14 @@ export const ProductSlider: React.FC<Props> = ({
         <div className={styles.goods__cards} ref={productsRef}>
           {products
             ? products.map((product) => (
-                <ProductCard key={product.id} product={product} type={type} />
+                <div key={product.id} className={styles.goods__card}>
+                  <ProductCard product={product} type={type} id={product.id} />
+                </div>
               ))
             : categories?.map((product) => (
-                <ProductCard key={product.id} category={product} type={type} />
+                <div key={product.id} className={styles.goods__card}>
+                  <ProductCard category={product} type={type} id={product.id} />
+                </div>
               ))}
         </div>
       </div>
