@@ -34,10 +34,6 @@
   @include on-desktop {
     max-width: 1200px;
   }
-
-  @include on-big-desktop {
-    max-width: 1440px;
-  }
 }
 
 @mixin container {
@@ -53,7 +49,7 @@
   --columns: 4;
 
   display: grid;
-  column-gap: 16px;
+  column-gap: 20px;
   row-gap: 32px;
   grid-template-columns: repeat(var(--columns), 1fr);
 
@@ -105,10 +101,6 @@
     font-size: 192px;
   }
 
-  @include on-big-desktop {
-    font-size: 232px;
-  }
-
   font-weight: 600;
   line-height: 1;
   letter-spacing: em(0.396, 198);
@@ -155,7 +147,7 @@
 
 @mixin buttons {
   font-weight: 500;
-  font-size: 14px;
+  font-size: 16px;
   line-height: 21px;
 }
 
