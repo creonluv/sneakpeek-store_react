@@ -64,6 +64,7 @@ const paramsSlice = createSlice({
   reducers: {
     toggleCategory(state, action: PayloadAction<number>) {
       const categoryId = action.payload;
+
       if (state.selectedCategories.includes(categoryId)) {
         state.selectedCategories = state.selectedCategories.filter(
           (id) => id !== categoryId
@@ -74,6 +75,7 @@ const paramsSlice = createSlice({
     },
     toggleProducer(state, action: PayloadAction<number>) {
       const producerId = action.payload;
+
       if (state.selectedProducers.includes(producerId)) {
         state.selectedProducers = state.selectedProducers.filter(
           (id) => id !== producerId
@@ -84,6 +86,7 @@ const paramsSlice = createSlice({
     },
     toggleSize(state, action: PayloadAction<number>) {
       const sizeId = action.payload;
+
       if (state.selectedSizes.includes(sizeId)) {
         state.selectedSizes = state.selectedSizes.filter((id) => id !== sizeId);
       } else {
@@ -92,6 +95,7 @@ const paramsSlice = createSlice({
     },
     toggleGender(state, action: PayloadAction<number>) {
       const genderId = action.payload;
+
       if (state.selectedGenders.includes(genderId)) {
         state.selectedGenders = state.selectedGenders.filter(
           (id) => id !== genderId

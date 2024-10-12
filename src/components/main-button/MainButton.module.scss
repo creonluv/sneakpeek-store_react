@@ -6,6 +6,7 @@
   width: 100%;
   padding-block: 16px;
   background-color: $color-accent;
+  transition: background-color 0.3s;
 
   &__transparent {
     background-color: transparent;
@@ -28,5 +29,21 @@
   &__title {
     @include buttons;
     color: $color-background;
+  }
+
+  &__pressed {
+    background-color: $color-background;
+
+    .button__title {
+      color: $color-text;
+    }
+  }
+
+  &:hover {
+    background-color: darken($color-accent, 5%);
+  }
+
+  &:active {
+    transform: scale(0.99);
   }
 }

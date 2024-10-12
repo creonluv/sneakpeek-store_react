@@ -11,6 +11,7 @@ import { ProductCard } from "../../components/product-card";
 import { Pagination } from "../../components/catalog/pagination";
 import { AsideAdaptive } from "../../components/catalog/asideAdaptive";
 import { useAsideContext } from "../../context/AsideContext";
+import { fetchAllProducts } from "../../features/products";
 
 export const CatalogPage = () => {
   const dispatch = useDispatch();
@@ -19,6 +20,10 @@ export const CatalogPage = () => {
   const { products } = useAppSelector(
     (state: RootState) => state.catalogProducts
   );
+
+  useEffect(() => {
+    dispatch(fetchAllProducts() as any);
+  }, [dispatch]);
 
   useEffect(() => {
     dispatch(fetchProductsCatalog(location.search) as any);
@@ -48,7 +53,12 @@ export const CatalogPage = () => {
 
           <div className={styles.catalogpage__products}>
             {products.content.map((product) => (
-              <ProductCard product={product} type={"normal"} key={product.id} />
+              <ProductCard
+                product={product}
+                type={"normal"}
+                key={product.id}
+                id={product.id}
+              />
             ))}
           </div>
 

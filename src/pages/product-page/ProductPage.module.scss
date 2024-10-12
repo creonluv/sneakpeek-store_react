@@ -1,0 +1,208 @@
+@use "../../shared/global/globalStyles/global" as *;
+
+.productpage {
+  display: flex;
+  flex-direction: column;
+  gap: 16px;
+
+  &__body {
+    @include page-grid;
+    row-gap: 70px;
+
+    @include on-tablet {
+      row-gap: 110px;
+    }
+  }
+
+  &__topLeft {
+    grid-column: 1 / -1;
+    height: 100%;
+
+    @include on-desktop {
+      grid-column: 1 / 8;
+    }
+  }
+
+  &__slider {
+    grid-column: 1 / -1;
+  }
+
+  &__topRight {
+    grid-column: 1 / -1;
+    height: 100%;
+
+    @include on-desktop {
+      grid-column: 8 / -1;
+    }
+  }
+
+  &__info {
+    display: flex;
+    flex-direction: column;
+    gap: 16px;
+    height: 100%;
+
+    @include on-tablet {
+      justify-content: space-between;
+    }
+  }
+
+  &__interactive_top {
+    display: flex;
+    flex-direction: column;
+    gap: 36px;
+  }
+
+  &__interactive {
+    display: flex;
+    flex-direction: column;
+    justify-content: space-between;
+  }
+
+  &__information {
+    display: flex;
+    flex-direction: column;
+    gap: 48px;
+  }
+
+  &__description {
+    display: flex;
+    flex-direction: column;
+    gap: 4px;
+  }
+
+  &__producer {
+    @include small-text;
+  }
+
+  &__title {
+    @include header-3;
+    font-weight: 600;
+  }
+
+  &__sex {
+    @include header-4;
+  }
+
+  &__cost {
+    @include price;
+  }
+
+  &__block {
+    display: flex;
+    flex-direction: column;
+    gap: 8px;
+  }
+
+  &__sizes {
+    display: flex;
+    flex-direction: row;
+    gap: 8px;
+  }
+
+  &__size {
+    width: 100%;
+    padding-block: 12px;
+    border-radius: 5px;
+    border: 1px solid $color-secondary-grey;
+    text-align: center;
+    cursor: pointer;
+    transition: background-color 0.3s ease, transform 0.2s ease;
+
+    &:active {
+      transform: scale(0.97);
+      background-color: $color-secondary-grey;
+    }
+
+    &_checked {
+      background-color: $color-secondary-grey;
+    }
+
+    &_disabled {
+      opacity: 0.3;
+    }
+  }
+
+  &__dropdowns {
+    display: flex;
+    flex-direction: column;
+    gap: 16px;
+  }
+
+  &__dropdown {
+    font-family: "TT Firs Neue";
+    color: $color-text;
+    font-size: 16px;
+
+    display: block;
+    border: none;
+    background-color: transparent;
+    cursor: pointer;
+  }
+
+  &__buttons {
+    display: flex;
+    flex-direction: row;
+    gap: 8px;
+  }
+
+  &__serial {
+    color: $color-secondary;
+    @include small-text;
+  }
+
+  &__tabs {
+    grid-column: 1 / -1;
+
+    display: flex;
+    flex-direction: column;
+    gap: 16px;
+  }
+
+  &__buttonsWrapper {
+    display: flex;
+    flex-direction: column;
+    gap: 16px;
+  }
+
+  &__tabsButtons {
+    display: flex;
+    flex-direction: row;
+    gap: 32px;
+
+    @include on-tablet {
+      gap: 64px;
+    }
+  }
+
+  &__tablink {
+    cursor: pointer;
+    color: $color-text-muted;
+    position: relative;
+  }
+
+  &__active {
+    color: $color-text;
+  }
+
+  &__active::after {
+    content: "";
+    position: absolute;
+    top: 36.5px;
+    left: 0;
+    width: 100%;
+    height: 2px;
+    background-color: $color-text;
+  }
+
+  &__line {
+    border: none;
+    height: 1px;
+    background-color: $color-secondary-grey;
+  }
+
+  &__tabContent {
+    @include body-text;
+    color: $color-text;
+  }
+}

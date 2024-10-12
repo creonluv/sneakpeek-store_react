@@ -6,18 +6,27 @@ import {
   catalogProductsReducer,
   CatalogProductsState,
 } from "../features/catalogProducts";
+import { productReducer, ProductState } from "../features/product";
+import {
+  SelectedProducts,
+  selectedProductsReducer,
+} from "../features/selectedProducts";
 
 export const store: EnhancedStore<{
   products: ProductsState;
   catalog: FiltersState;
   params: ParamsState;
   catalogProducts: CatalogProductsState;
+  product: ProductState;
+  selectedProducts: SelectedProducts;
 }> = configureStore({
   reducer: {
     products: productsReducer,
     catalog: catalogReducer,
     params: paramsReducer,
     catalogProducts: catalogProductsReducer,
+    product: productReducer,
+    selectedProducts: selectedProductsReducer,
   },
 });
 

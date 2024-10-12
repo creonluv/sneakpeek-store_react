@@ -6,6 +6,8 @@ import { Provider } from "react-redux";
 import { store } from "./app/store";
 import { StrictMode } from "react";
 import { AsideProvider } from "./context/AsideContext";
+import { ProductPage } from "./pages/product-page/ProductPage";
+import ScrollToTop from "./components/scrollToTop/scrollToTop";
 
 export const Root = () => {
   return (
@@ -13,11 +15,16 @@ export const Root = () => {
       <Provider store={store}>
         <StrictMode>
           <Router>
+            <ScrollToTop />
             <Routes>
               <Route path="/" element={<App />}>
                 <Route index element={<MainPage />} />
 
                 <Route path="catalog" element={<CatalogPage />} />
+
+                <Route path="product">
+                  <Route path=":productId" element={<ProductPage />} />
+                </Route>
 
                 <Route
                   path="*"

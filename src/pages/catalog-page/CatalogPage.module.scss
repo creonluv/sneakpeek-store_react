@@ -1,7 +1,5 @@
-@use "../../shared/global/globalStyles/globalStyles.scss" as *;
-@use "../../shared/global/globalStyles/vars" as *;
+@use "../../shared/global/globalStyles/global" as *;
 @use "../../shared/global/globalStyles/mixins" as *;
-@use "../../shared/global/globalStyles/fonts" as *;
 
 .catalogpage {
   &__body {
@@ -43,13 +41,14 @@
   &__products {
     display: grid;
     grid-template-columns: repeat(1, 1fr);
-    gap: 16px;
+    row-gap: 30px;
+    column-gap: 20px;
 
     @include on-tablet {
       grid-template-columns: repeat(2, 1fr);
     }
 
-    @include on-desktop {
+    @include on-big-desktop {
       grid-template-columns: repeat(3, 1fr);
     }
   }

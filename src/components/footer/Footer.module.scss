@@ -1,6 +1,7 @@
 @use "../../shared/global/globalStyles/global" as *;
 
 .footer {
+  width: 100%;
   border-top: 1px solid $color-secondary-grey;
 
   &__container {
