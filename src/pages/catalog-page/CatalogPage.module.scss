@@ -1,5 +1,6 @@
-@use "../../shared/global/globalStyles/global" as *;
-@use "../../shared/global/globalStyles/mixins" as *;
+@use "../../shared/globalStyles/global" as *;
+
+@use "../../shared/globalStyles/mixins" as *;
 
 .catalogpage {
   &__body {

@@ -1,5 +1,5 @@
 import { Item } from "../features/catalog";
-import { client } from "../shared/global/utils/fetchClient";
+import { client } from "../shared/utils/fetchClient";
 import { CareInstructions } from "../types/CareInstructions";
 
 export async function getCategories(): Promise<Item[]> {

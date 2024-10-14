@@ -1,4 +1,4 @@
-import { Category } from "../../../types/Categories";
+import { Category } from "../../types/Categories";
 
 const categories: Category[] = [
   {

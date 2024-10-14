@@ -34,6 +34,13 @@ export const ProductPage = () => {
 
   const imagesArr = Array.isArray(product?.images) ? product?.images : [];
 
+  // const newImagesArr: any = [];
+
+  // if (imagesArr) {
+  //   const newImagesArr = [...imagesArr];
+  //   newImagesArr.unshift(String(product?.main_photo_id));
+  // }
+
   console.log(selectedProducts);
 
   console.log(selectedProducts);

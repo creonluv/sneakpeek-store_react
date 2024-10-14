@@ -1,4 +1,4 @@
-import { client } from "../shared/global/utils/fetchClient";
+import { client } from "../shared/utils/fetchClient";
 import { ProductInstance } from "../types/ProductInstance";
 import { Product } from "../types/Products";
 

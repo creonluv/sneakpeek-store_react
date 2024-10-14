@@ -23,6 +23,7 @@ export const BackBtn = () => {
       <span className={styles.button__back_icon}>
         <img src={btnBack} alt="btn-back" />
       </span>
+
       <span className={styles.button__back_text}>Back</span>
     </button>
   );

@@ -6,7 +6,7 @@ import { fetchAllProducts } from "../../features/products";
 import styles from "./MainPage.module.scss";
 import { useDispatch } from "react-redux";
 import { RootState } from "../../app/store";
-import categories from "../../shared/global/utils/categories";
+import categories from "../../shared/utils/categories";
 import { PromoTimer } from "../../components/promo-timer";
 
 export const MainPage = () => {
