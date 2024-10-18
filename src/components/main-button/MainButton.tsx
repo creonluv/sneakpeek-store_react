@@ -12,13 +12,7 @@ type Props = {
   product?: Product;
 };
 
-export const MainButton: React.FC<Props> = ({
-  title,
-  icon,
-  transparent,
-  callback,
-  product,
-}) => {
+export const MainButton: React.FC<Props> = ({ title, icon, transparent, callback, product }) => {
   const [isPressed, setIsPressed] = useState(false);
 
   const handleClick = () => {
@@ -40,9 +34,7 @@ export const MainButton: React.FC<Props> = ({
       <div className={styles.button__body}>
         <p className={styles.button__title}>{title}</p>
 
-        {icon && (
-          <img className={styles.button__icon} src={arrowWhite} alt="arrow" />
-        )}
+        {icon && <img className={styles.button__icon} src={arrowWhite} alt="arrow" />}
       </div>
     </button>
   );

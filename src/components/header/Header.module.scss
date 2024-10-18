@@ -50,10 +50,11 @@
 
     &_icons {
       display: none;
+      position: relative;
 
       @include on-tablet {
         display: flex;
-        flex-direction: row;
+        align-items: center;
         gap: 16px;
       }
     }
@@ -182,5 +183,28 @@
     color: $color-text;
 
     @include hover(scale, 0.95);
+  }
+}
+
+.list {
+  position: absolute;
+  right: 0;
+  top: calc(100% + 5px);
+  display: flex;
+  flex-direction: column;
+  justify-content: flex-start;
+  text-align-last: left;
+  gap: 10px;
+  width: 200px;
+  border: 1px solid $color-system-grey;
+  border-radius: 5px;
+  background-color: $color-reverse;
+  transition: all 0.3s ease;
+  z-index: 10;
+
+  &__item {
+    font-size: 18px;
+    padding: 10px;
+    transition: all 0.2s ease;
   }
 }

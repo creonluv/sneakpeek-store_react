@@ -1,3 +1,5 @@
+import { refresh } from "../../api/auth";
+
 const BASE_URL = "http://localhost:9091/api";
 
 export function wait(delay: number) {
@@ -8,11 +10,16 @@ export function wait(delay: number) {
 
 type RequestMethod = "GET" | "POST" | "PATCH" | "DELETE";
 
-function request<T>(
-  url: string,
-  method: RequestMethod = "GET",
-  data: any = null
-): Promise<T> {
+async function handleRefresh() {
+  try {
+    await refresh();
+  } catch (error) {
+    console.error("Помилка при оновленні токена:", error);
+    throw error;
+  }
+}
+
+async function request<T>(url: string, method: RequestMethod = "GET", data: any = null): Promise<T> {
   const options: RequestInit = { method };
 
   if (data) {
@@ -22,23 +29,29 @@ function request<T>(
     };
   }
 
-  return wait(500)
-    .then(() => fetch(BASE_URL + url, options))
-    .then((response) => {
-      if (!response.ok) {
-        return response.text().then((errorMessage) => {
-          throw new Error(
-            `Network response was not ok: ${response.status} - ${errorMessage}`
-          );
-        });
+  try {
+    await wait(500);
+    const response = await fetch(BASE_URL + url, options);
+
+    if (!response.ok) {
+      if (response.status === 401) {
+        await handleRefresh();
+        return request<T>(url, method, data);
       }
 
-      return response.json();
-    })
-    .catch((error) => {
-      console.error("Виникла помилка при отриманні даних:", error);
-      throw error;
-    });
+      if (response.status === 403) {
+      }
+
+      const errorMessage = await response.text();
+      throw new Error(`Помилка мережі: ${response.status} - ${errorMessage}`);
+    }
+
+    const text = await response.text();
+    return text ? JSON.parse(text) : ({} as T);
+  } catch (error) {
+    console.error("Виникла помилка при отриманні даних:", error);
+    throw error;
+  }
 }
 
 export const client = {

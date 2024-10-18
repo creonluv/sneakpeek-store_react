@@ -8,9 +8,24 @@ import burger from "../../assets/img/icons/burger.svg";
 
 import { useState } from "react";
 import { AsideMenu } from "./asidemenu/AsideMenu";
+import { Link } from "react-router-dom";
+
+import { logout } from "../../api/auth";
+
+import { useAuthContext } from "../../context/AuthContext";
 
 export const Header = () => {
   const [isMenuOpen, setIsMenuOpen] = useState(false);
+  const [isModalOpen, setIsModalOpen] = useState(false);
+  const { isAuth, signout } = useAuthContext();
+
+  const toggleModal = () => setIsModalOpen(!isModalOpen);
+
+  async function handleLogout() {
+    await logout();
+    signout();
+    toggleModal();
+  }
 
   return (
     <header className={styles.header}>
@@ -41,25 +56,16 @@ export const Header = () => {
       <div className={styles.header__middle}>
         <div className={styles.header__middle_container}>
           <div className={styles.header__middle_left}>
-            <a className={styles.header__logo} href="/">
+            <Link className={styles.header__logo} to="/">
               <img className={styles.header__logoimage} src={logo} alt="LOGO" />
-            </a>
+            </Link>
           </div>
 
           <div className={styles.header__middle_right}>
             <form className={styles.header__form}>
-              <input
-                className={styles.header__search}
-                type="text"
-                name="search"
-                placeholder="Search"
-              />
+              <input className={styles.header__search} type="text" name="search" placeholder="Search" />
               <button className={styles.header__search_button} type="submit">
-                <img
-                  className={styles.header__search_icon}
-                  src={iconSearch}
-                  alt="search"
-                />
+                <img className={styles.header__search_icon} src={iconSearch} alt="search" />
               </button>
             </form>
 
@@ -70,24 +76,53 @@ export const Header = () => {
               <a className={styles.header__icon} href="">
                 <img src={cart} alt="cart" />
               </a>
-              <a className={styles.header__icon} href="">
+              <button className={styles.header__icon} onClick={toggleModal}>
                 <img src={account} alt="account" />
-              </a>
+              </button>
+              <div className={`${styles.list} ${isModalOpen ? "" : "_hidden"}`}>
+                {isAuth ? (
+                  <>
+                    <Link className={styles.list__item} to="/profile" onClick={toggleModal}>
+                      User profile
+                    </Link>
+                    <button className={styles.list__item} onClick={handleLogout}>
+                      Logout
+                    </button>
+                  </>
+                ) : (
+                  <>
+                    <Link className={styles.list__item} to="/login" onClick={toggleModal}>
+                      Login
+                    </Link>
+                    <Link className={styles.list__item} to="/register" onClick={toggleModal}>
+                      Register
+                    </Link>
+                  </>
+                )}
+              </div>
+              {/* <div className={`${styles.overlay} ${isModalOpen ? "" : "_hidden"}`}>
+                <div className={styles.modal}>
+                  <button className={styles.closeButton} onClick={toggleModal}>
+                    ✖
+                  </button>
+                  {isAuth ? (
+                    <>
+                      <button>User Profile</button>
+                      <button onClick={handleLogout}>Logout</button>
+                    </>
+                  ) : (
+                    <>
+                      <button>Register</button>
+                      <button>Login</button>
+                    </>
+                  )}
+                </div>
+              </div> */}
             </div>
 
-            <div
-              onClick={() => setIsMenuOpen(true)}
-              className={styles.header__middle_burger}
-            >
-              <button
-                onClick={() => setIsMenuOpen(true)}
-                className={styles.header__icon}
-              >
-                <img
-                  className={styles.header__button_image}
-                  src={burger}
-                  alt="menu"
-                />
+            <div onClick={() => setIsMenuOpen(true)} className={styles.header__middle_burger}>
+              <button onClick={() => setIsMenuOpen(true)} className={styles.header__icon}>
+                <img className={styles.header__button_image} src={burger} alt="menu" />
               </button>
             </div>
           </div>
