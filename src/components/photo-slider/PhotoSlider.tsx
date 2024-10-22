@@ -49,11 +49,9 @@ export const PhotoSlider: React.FC<Props> = ({ images }) => {
         {images?.slice(0, 6).map((image, index) => (
           <img
             key={index}
-            src={`http://localhost:9091/api/images/${image}`}
+            src={`https://localhost:8443/api/images/${image}`}
             alt={`mini-photo-${index}`}
-            className={`${styles.slider__photo} ${
-              index === currentIndex ? styles.slider__selected : ""
-            }`}
+            className={`${styles.slider__photo} ${index === currentIndex ? styles.slider__selected : ""}`}
             onClick={() => handleImageClick(index)}
           />
         ))}
@@ -63,32 +61,22 @@ export const PhotoSlider: React.FC<Props> = ({ images }) => {
         {selectedImg && (
           <img
             className={styles.slider__main_photo}
-            src={`http://localhost:9091/api/images/${selectedImg}`}
+            src={`https://localhost:8443/api/images/${selectedImg}`}
             alt="main-photo"
           />
         )}
 
         <div className={styles.slider__infolabel}>
           new
-          <img
-            className={styles.slider__infolabel_icon}
-            src={clockIcon}
-            alt=""
-          />
+          <img className={styles.slider__infolabel_icon} src={clockIcon} alt="" />
         </div>
 
         <div className={styles.slider__togles}>
-          <button
-            className={styles.slider__togles_button}
-            onClick={handlePrevClick}
-          >
+          <button className={styles.slider__togles_button} onClick={handlePrevClick}>
             <img className={styles.slider__togle} src={arrowSlider} alt="" />
           </button>
 
-          <button
-            className={`${styles.slider__togles_button} ${styles.left}`}
-            onClick={handleNextClick}
-          >
+          <button className={`${styles.slider__togles_button} ${styles.left}`} onClick={handleNextClick}>
             <img className={styles.slider__togle} src={arrowSlider} alt="" />
           </button>
         </div>
