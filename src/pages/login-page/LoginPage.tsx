@@ -40,7 +40,6 @@ const LoginPage: React.FC = () => {
   };
 
   useEffect(() => {
-    console.log(isAuth);
     if (isAuth) {
       navigate("/");
     }

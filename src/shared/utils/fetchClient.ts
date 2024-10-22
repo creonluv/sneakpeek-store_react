@@ -1,6 +1,8 @@
 import { refresh } from "../../api/auth";
 
-const BASE_URL = "http://localhost:9091/api";
+import { ErrorType } from "../../types/Auth";
+
+const BASE_URL = "https://localhost:8443/api";
 
 export function wait(delay: number) {
   return new Promise((resolve) => {
@@ -20,7 +22,7 @@ async function handleRefresh() {
 }
 
 async function request<T>(url: string, method: RequestMethod = "GET", data: any = null): Promise<T> {
-  const options: RequestInit = { method };
+  const options: RequestInit = { method, credentials: "include" };
 
   if (data) {
     options.body = JSON.stringify(data);
@@ -39,7 +41,17 @@ async function request<T>(url: string, method: RequestMethod = "GET", data: any 
         return request<T>(url, method, data);
       }
 
-      if (response.status === 403) {
+      const error = await response.json();
+
+      if (response.status === 400) {
+        switch (error.errorType) {
+          case ErrorType.INVALID_DATA_REGISTER:
+            console.log("Invalid data during registration.");
+            break;
+          case ErrorType.INVALID_LOGIN_DATA:
+            console.log("Invalid login data.");
+            break;
+        }
       }
 
       const errorMessage = await response.text();
