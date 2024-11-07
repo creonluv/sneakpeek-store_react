@@ -15,5 +15,9 @@ export const logout = (): Promise<void> => {
 };
 
 export const refresh = (): Promise<AuthResponse> => {
-  return client.post<AuthResponse>(`/auth/refresh`, null);
+  return client.post<AuthResponse>(`/auth/refresh-token`, null);
+};
+
+export const checkAuth = (): Promise<void> => {
+  return client.post(`/auth/check-auth`, null);
 };
