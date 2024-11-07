@@ -31,7 +31,6 @@ const selectedProductsSlice = createSlice({
       } else {
         state.selectedProducts.push(selectedProduct);
       }
-      console.log(state);
     },
 
     toggleSize(state, action: PayloadAction<number>) {

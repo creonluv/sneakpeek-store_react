@@ -6,18 +6,29 @@ import account from "../../assets/img/icons/account.svg";
 import likes from "../../assets/img/icons/likes.svg";
 import burger from "../../assets/img/icons/burger.svg";
 
-import { useState } from "react";
+import { useEffect, useState } from "react";
 import { AsideMenu } from "./asidemenu/AsideMenu";
 import { Link } from "react-router-dom";
 
 import { logout } from "../../api/auth";
 
 import { useAuthContext } from "../../context/AuthContext";
+import { useAppDispatch, useAppSelector } from "../../app/hooks";
+import { RootState } from "../../app/store";
+import { fetchBucket } from "../../features/bucket";
 
 export const Header = () => {
   const [isMenuOpen, setIsMenuOpen] = useState(false);
   const [isModalOpen, setIsModalOpen] = useState(false);
   const { isAuth, signout } = useAuthContext();
+
+  const dispatch = useAppDispatch();
+
+  const { bucket } = useAppSelector((state: RootState) => state.bucket);
+
+  useEffect(() => {
+    dispatch(fetchBucket() as any);
+  }, [dispatch]);
 
   const toggleModal = () => setIsModalOpen(!isModalOpen);
 
@@ -63,9 +74,18 @@ export const Header = () => {
 
           <div className={styles.header__middle_right}>
             <form className={styles.header__form}>
-              <input className={styles.header__search} type="text" name="search" placeholder="Search" />
+              <input
+                className={styles.header__search}
+                type="text"
+                name="search"
+                placeholder="Search"
+              />
               <button className={styles.header__search_button} type="submit">
-                <img className={styles.header__search_icon} src={iconSearch} alt="search" />
+                <img
+                  className={styles.header__search_icon}
+                  src={iconSearch}
+                  alt="search"
+                />
               </button>
             </form>
 
@@ -73,28 +93,48 @@ export const Header = () => {
               <a className={styles.header__icon} href="">
                 <img src={likes} alt="likes" />
               </a>
-              <a className={styles.header__icon} href="">
+              <Link className={styles.header__icon} to="bucket">
                 <img src={cart} alt="cart" />
-              </a>
+                {bucket?.cart_items.length && (
+                  <div className={styles.header__counter}>
+                    {bucket?.cart_items.length}
+                  </div>
+                )}
+              </Link>
               <button className={styles.header__icon} onClick={toggleModal}>
                 <img src={account} alt="account" />
               </button>
               <div className={`${styles.list} ${isModalOpen ? "" : "_hidden"}`}>
                 {isAuth ? (
                   <>
-                    <Link className={styles.list__item} to="/profile" onClick={toggleModal}>
+                    <Link
+                      className={styles.list__item}
+                      to="/profile"
+                      onClick={toggleModal}
+                    >
                       User profile
                     </Link>
-                    <button className={styles.list__item} onClick={handleLogout}>
+                    <button
+                      className={styles.list__item}
+                      onClick={handleLogout}
+                    >
                       Logout
                     </button>
                   </>
                 ) : (
                   <>
-                    <Link className={styles.list__item} to="/login" onClick={toggleModal}>
+                    <Link
+                      className={styles.list__item}
+                      to="/login"
+                      onClick={toggleModal}
+                    >
                       Login
                     </Link>
-                    <Link className={styles.list__item} to="/register" onClick={toggleModal}>
+                    <Link
+                      className={styles.list__item}
+                      to="/register"
+                      onClick={toggleModal}
+                    >
                       Register
                     </Link>
                   </>
@@ -120,9 +160,19 @@ export const Header = () => {
               </div> */}
             </div>
 
-            <div onClick={() => setIsMenuOpen(true)} className={styles.header__middle_burger}>
-              <button onClick={() => setIsMenuOpen(true)} className={styles.header__icon}>
-                <img className={styles.header__button_image} src={burger} alt="menu" />
+            <div
+              onClick={() => setIsMenuOpen(true)}
+              className={styles.header__middle_burger}
+            >
+              <button
+                onClick={() => setIsMenuOpen(true)}
+                className={styles.header__icon}
+              >
+                <img
+                  className={styles.header__button_image}
+                  src={burger}
+                  alt="menu"
+                />
               </button>
             </div>
           </div>

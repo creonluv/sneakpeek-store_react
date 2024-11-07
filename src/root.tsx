@@ -11,6 +11,7 @@ import { ProductPage } from "./pages/product-page/ProductPage";
 import ScrollToTop from "./components/scrollToTop/scrollToTop";
 import RegisterPage from "./pages/register-page/RegisterPage";
 import LoginPage from "./pages/login-page/LoginPage";
+import { BucketPage } from "./pages/bucket-page";
 
 export const Root = () => {
   return (
@@ -33,6 +34,8 @@ export const Root = () => {
                   <Route path="register" element={<RegisterPage />} />
 
                   <Route path="login" element={<LoginPage />} />
+
+                  <Route path="bucket" element={<BucketPage />} />
 
                   <Route
                     path="*"

@@ -1,0 +1,234 @@
+@use "../../shared/globalStyles/global" as *;
+@use "../../shared/globalStyles/mixins" as *;
+
+.bucketpage {
+  display: flex;
+  flex-direction: column;
+  gap: 20px;
+
+  &__container {
+    @include page-grid;
+    row-gap: 70px;
+
+    @include on-tablet {
+      row-gap: 110px;
+    }
+  }
+
+  &__header {
+    grid-column: 1 / -1;
+
+    display: flex;
+    flex-direction: row;
+    gap: 6px;
+  }
+
+  &__title,
+  &__price {
+    @include header-3;
+    font-weight: 600;
+  }
+
+  &__subtitle {
+    @include small-text;
+  }
+
+  &__slider {
+    grid-column: 1 / -1;
+  }
+
+  &__left {
+    grid-column: 1 / -1;
+
+    @include on-tablet {
+      grid-column: 1 / 8;
+    }
+
+    display: flex;
+    flex-direction: column;
+    gap: 16px;
+  }
+
+  &__right {
+    grid-column: 1 / -1;
+
+    @include on-tablet {
+      grid-column: 8 / -1;
+    }
+  }
+
+  &__subtotal {
+    display: flex;
+    flex-direction: row;
+    justify-content: space-between;
+    padding: 30px;
+    background-color: $color-primary-grey;
+    border-radius: 5px;
+  }
+
+  &__items {
+    display: flex;
+    flex-direction: column;
+    gap: 16px;
+    position: relative;
+  }
+
+  &__item {
+    display: flex;
+    flex-direction: row;
+    gap: 20px;
+    border: 1px solid $color-primary-grey;
+    border-radius: 5px;
+    padding: 30px;
+  }
+
+  &__itemLeft {
+    max-width: 50%;
+  }
+
+  &__img {
+    width: 100%;
+    object-fit: cover;
+    border-radius: 5px;
+  }
+
+  &__itemRight {
+    display: flex;
+    flex-direction: column;
+    justify-content: space-between;
+  }
+
+  &__itemRightMain {
+    display: flex;
+    flex-direction: column;
+    gap: 12px;
+  }
+
+  &__itemTop {
+    display: flex;
+    flex-direction: row;
+    justify-content: space-between;
+  }
+
+  &__gender {
+    @include header-4;
+  }
+
+  &__total {
+    display: flex;
+    flex-direction: row;
+    justify-content: space-between;
+  }
+
+  &__card {
+    display: flex;
+    flex-direction: column;
+    gap: 16px;
+    border: 1px solid $color-primary-grey;
+    border-radius: 5px;
+    padding: 30px;
+  }
+
+  &__main {
+    display: flex;
+    flex-direction: column;
+    gap: 24px;
+  }
+
+  &__middle {
+    display: flex;
+    flex-direction: column;
+    gap: 10px;
+  }
+
+  &__info {
+    display: flex;
+    flex-direction: row;
+    justify-content: space-between;
+  }
+
+  &__infoKey {
+    @include body-text;
+  }
+
+  &__infoValue {
+    font-weight: 500;
+  }
+
+  &__line {
+    width: 100%;
+    height: 0.5px;
+    background-color: $color-primary-grey;
+  }
+
+  &__bottom {
+    display: flex;
+    flex-direction: column;
+    gap: 8px;
+  }
+
+  &__sizeTitle {
+    @include body-text;
+  }
+
+  &__sizes {
+    display: flex;
+    flex-direction: row;
+    gap: 4px;
+  }
+
+  &__counter {
+    display: flex;
+    flex-direction: row;
+    align-items: center;
+    gap: 6px;
+  }
+
+  &__counterButton {
+    width: 32px;
+    height: 32px;
+    border-radius: 5px;
+    background-color: $color-primary-grey;
+    color: $color-system-grey;
+
+    @include hover(background-color, $color-secondary-grey);
+  }
+
+  &__loader {
+    position: absolute;
+    top: 50%;
+    left: 50%;
+    transform: translate(-50%, -50%);
+    width: 100%;
+    height: 100%;
+    pointer-events: none;
+    border-radius: 5px;
+  }
+
+  &__bottomItem {
+    display: flex;
+    flex-direction: row;
+    justify-content: space-between;
+  }
+
+  &__icons {
+    display: flex;
+    flex-direction: row;
+    align-items: center;
+    gap: 6px;
+  }
+
+  &__icon {
+    width: 120%;
+    height: 120%;
+  }
+
+  &__buttonBottom {
+    display: flex;
+    width: 16px;
+    height: 16px;
+    align-items: center;
+
+    @include hover(transform, scale(0.95));
+  }
+}

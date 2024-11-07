@@ -1,6 +1,5 @@
-import { useDispatch } from "react-redux";
 import styles from "./ProductPage.module.scss";
-import { useAppSelector } from "../../app/hooks";
+import { useAppDispatch, useAppSelector } from "../../app/hooks";
 import { RootState } from "../../app/store";
 import { useEffect, useState } from "react";
 import { fetchProductData } from "../../features/product";
@@ -11,13 +10,13 @@ import { useParams } from "react-router-dom";
 import { generateRandomNumber } from "../../helpers/generateRandom";
 import { MainButton } from "../../components/main-button";
 import buttonFav from "../../assets/img/icons/button.svg";
-import { toggleBuyButton, toggleSize } from "../../features/selectedProducts";
-import { Product } from "../../types/Products";
 import { TabsContent } from "../../components/tabscontent";
 import { BackBtn } from "../../components/back-button";
+import { fetchBucket, toggleItemInBucket } from "../../features/bucket";
+import { itemInBucket } from "../../types/Bucket";
 
 export const ProductPage = () => {
-  const dispatch = useDispatch();
+  const dispatch = useAppDispatch();
   const { productId } = useParams();
   const [rndNum, setRndNum] = useState(0);
   const [activeTab, setActiveTab] = useState(0);
@@ -27,24 +26,33 @@ export const ProductPage = () => {
   );
 
   const { products } = useAppSelector((state: RootState) => state.products);
-
-  const { selectedProducts, selectedProductInstances } = useAppSelector(
-    (state: RootState) => state.selectedProducts
-  );
+  const { bucket } = useAppSelector((state: RootState) => state.bucket);
 
   const imagesArr = Array.isArray(product?.images) ? product?.images : [];
 
-  // const newImagesArr: any = [];
+  useEffect(() => {
+    dispatch(fetchBucket() as any);
+  }, [dispatch]);
 
-  // if (imagesArr) {
-  //   const newImagesArr = [...imagesArr];
-  //   newImagesArr.unshift(String(product?.main_photo_id));
-  // }
+  const instanceOfItemInBucket = bucket?.cart_items.find(
+    (item) => item.product_instance.product.id === Number(productId)
+  )?.product_instance.id;
 
-  console.log(selectedProducts);
+  const everyInstanceOfItemInBucket = bucket?.cart_items.filter(
+    (item) => item.product_instance.product.id === Number(productId)
+  );
 
-  console.log(selectedProducts);
-  console.log(selectedProductInstances);
+  console.log(everyInstanceOfItemInBucket);
+
+  const [productInstance, setProductInstance] = useState<number | undefined>(
+    undefined
+  );
+
+  useEffect(() => {
+    if (instanceOfItemInBucket) {
+      setProductInstance(instanceOfItemInBucket);
+    }
+  }, [instanceOfItemInBucket]);
 
   useEffect(() => {
     if (productId) {
@@ -61,14 +69,21 @@ export const ProductPage = () => {
     setRndNum(randomNumber);
   }, [setRndNum]);
 
-  const handleSizeButton = (instanceId: number) => {
-    dispatch(toggleSize(instanceId));
+  const handleSizeButton = (instance: number) => {
+    setProductInstance((prevInstance) =>
+      prevInstance === instance ? undefined : instance
+    );
   };
 
-  const handleBuyButton = (product: Product) => {
-    if (product) {
-      dispatch(toggleBuyButton(product));
-    }
+  const handleBuyButton = () => {
+    const itemInBucket: itemInBucket = {
+      cart_id: bucket?.id,
+      product_instance_id: productInstance,
+      quantity: 1,
+    };
+
+    dispatch(toggleItemInBucket(itemInBucket));
+    dispatch(fetchBucket() as any);
   };
 
   const tabs = [
@@ -123,9 +138,8 @@ export const ProductPage = () => {
                       <div
                         key={productInstanceInfo.product_instance_id}
                         className={`${styles.productpage__size} ${
-                          selectedProductInstances.includes(
-                            productInstanceInfo.product_instance_id
-                          )
+                          productInstanceInfo.product_instance_id ===
+                          productInstance
                             ? styles.productpage__size_checked
                             : ""
                         } ${
@@ -150,9 +164,11 @@ export const ProductPage = () => {
                     title={"Buy Now"}
                     icon={true}
                     transparent={false}
-                    callback={product ? handleBuyButton : undefined}
+                    callback={handleBuyButton}
                     product={product ? product : undefined}
                   />
+
+                  {/* <div onClick={handleBuyButton}>BUY</div> */}
 
                   <a className={styles.productpage__button} href="">
                     <img src={buttonFav} alt="" />

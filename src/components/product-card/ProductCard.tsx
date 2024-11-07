@@ -20,8 +20,19 @@ type Props = {
   id: number;
 };
 
-export const ProductCard: React.FC<Props> = ({ product, type, category, id }) => {
-  const photosOfCategory = [shoesImg, tshirtsImg, hoodiesImg, jeensImg, accesImg];
+export const ProductCard: React.FC<Props> = ({
+  product,
+  type,
+  category,
+  id,
+}) => {
+  const photosOfCategory = [
+    shoesImg,
+    tshirtsImg,
+    hoodiesImg,
+    jeensImg,
+    accesImg,
+  ];
 
   return (
     <div className={styles.card}>
@@ -30,7 +41,7 @@ export const ProductCard: React.FC<Props> = ({ product, type, category, id }) =>
           className={styles.card__img}
           src={
             type !== "category"
-              ? `https://localhost:8443/api/images/${product?.main_photo_id}`
+              ? `https://sneakpeekmyapp:8443/api/images/${product?.main_photo_id}`
               : category?.id
               ? photosOfCategory[category.id - 1]
               : photosOfCategory[0]
@@ -42,27 +53,41 @@ export const ProductCard: React.FC<Props> = ({ product, type, category, id }) =>
       <Link className={styles.card__linkInfo} to={`/product/${id}`}>
         <div className={styles.card__information}>
           <div className={styles.card__description}>
-            {product && <p className={styles.card__producer}>{product?.producer?.name || "Unknown Producer"}</p>}
+            {product && (
+              <p className={styles.card__producer}>
+                {product?.producer?.name || "Unknown Producer"}
+              </p>
+            )}
 
             <p className={styles.card__title}>
               {product && (product?.name || "Unnamed Product")}
               {category && category?.description}
             </p>
           </div>
-          {product && <p className={styles.card__price}>${product?.price || "N/A"}</p>}
+          {product && (
+            <p className={styles.card__price}>${product?.price || "N/A"}</p>
+          )}
         </div>
       </Link>
 
       <div className={styles.card__infolabel}>
         {type !== "category" ? "new" : category?.infolabel || "N/A"}
 
-        <img className={styles.card__infolabel_icon} src={type !== "category" ? clockIcon : arrowIcon} alt="" />
+        <img
+          className={styles.card__infolabel_icon}
+          src={type !== "category" ? clockIcon : arrowIcon}
+          alt=""
+        />
       </div>
 
       {product && (
         <div className={styles.card__button}>
           <button className={styles.card__buttonIcon}>
-            <img className={styles.card__buttonIconImg} src={heartIcon} alt="" />
+            <img
+              className={styles.card__buttonIconImg}
+              src={heartIcon}
+              alt=""
+            />
           </button>
         </div>
       )}

@@ -1,6 +1,6 @@
 import { getProducts } from "../api/api-products";
 import { Product } from "../types/Products";
-import { PayloadAction, createSlice, createAsyncThunk } from "@reduxjs/toolkit";
+import { createSlice, createAsyncThunk, PayloadAction } from "@reduxjs/toolkit";
 
 export type ProductsState = {
   products: Product[];
@@ -33,19 +33,19 @@ export const productsSlice = createSlice({
   reducers: {},
   extraReducers: (builder) => {
     builder
-      .addCase(fetchAllProducts.pending, (state) => {
+      .addCase(fetchAllProducts.pending, (state: ProductsState) => {
         state.loading = true;
       })
       .addCase(
         fetchAllProducts.fulfilled,
-        (state, action: PayloadAction<Product[]>) => {
+        (state: ProductsState, action: PayloadAction<Product[]>) => {
           state.products = action.payload;
           state.loading = false;
         }
       )
-      .addCase(fetchAllProducts.rejected, (state) => {
+      .addCase(fetchAllProducts.rejected, (state: ProductsState, action) => {
         state.loading = false;
-        state.error = "Error!";
+        state.error = action.error.message || "Error!";
       });
   },
 });
