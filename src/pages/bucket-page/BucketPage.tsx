@@ -26,8 +26,6 @@ export const BucketPage = () => {
     (state: RootState) => state.bucket
   );
 
-  console.log(bucket);
-
   const debouncedUpdateItemInBucket = debounce((dispatch, payload) => {
     dispatch(updateItemInBucket(payload));
   }, 500);

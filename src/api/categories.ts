@@ -5,6 +5,7 @@ import { CareInstructions } from "../types/CareInstructions";
 export async function getCategories(): Promise<Item[]> {
   return client.get(`/categories`);
 }
+
 export const getMaterialAndCareOfProduct = (
   id: string
 ): Promise<CareInstructions> => {

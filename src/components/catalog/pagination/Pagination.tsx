@@ -1,15 +1,15 @@
-import React from "react";
-import { useAppSelector } from "../../../app/hooks";
+import React, { useEffect } from "react";
+import { useAppSelector, useAppDispatch } from "../../../app/hooks";
 import { RootState } from "../../../app/store";
 import styles from "./Pagination.module.scss";
-import { useDispatch } from "react-redux";
 import { setCurrentPage } from "../../../features/params";
 import { updateUrlWithFiltersAndPrice } from "../../../helpers/updateUrlWithParams";
-import { useNavigate } from "react-router-dom";
+import { useNavigate, useLocation } from "react-router-dom";
 
 export const Pagination: React.FC = () => {
-  const dispatch = useDispatch();
+  const dispatch = useAppDispatch();
   const navigate = useNavigate();
+  const location = useLocation();
 
   const { products } = useAppSelector(
     (state: RootState) => state.catalogProducts
@@ -25,32 +25,42 @@ export const Pagination: React.FC = () => {
     currentPage,
   } = useAppSelector((state: RootState) => state.params);
 
-  const handlePageChange = (page: string | number) => {
-    const numericPage = typeof page === "number" ? page : Number(page);
+  useEffect(() => {
+    const params = new URLSearchParams(location.search);
+    const pageFromUrl = params.get("page");
+    const page = pageFromUrl ? parseInt(pageFromUrl, 10) : 1;
 
-    dispatch(setCurrentPage(numericPage));
+    if (page !== currentPage) {
+      dispatch(setCurrentPage(page));
+    }
+  }, [location.search, dispatch, currentPage]);
 
-    const selectedFilters = {
-      categoryIds: selectedCategories,
-      producerIds: selectedProducers,
-      sizeIds: selectedSizes,
-      genderIds: selectedGenders,
-    };
+  const handlePageChange = (page: number) => {
+    if (page !== currentPage) {
+      dispatch(setCurrentPage(page));
 
-    updateUrlWithFiltersAndPrice(
-      navigate,
-      selectedFilters,
-      priceRange,
-      selectedSort,
-      numericPage
-    );
+      const selectedFilters = {
+        categoryIds: selectedCategories,
+        producerIds: selectedProducers,
+        sizeIds: selectedSizes,
+        genderIds: selectedGenders,
+      };
+
+      updateUrlWithFiltersAndPrice(
+        navigate,
+        selectedFilters,
+        priceRange,
+        selectedSort,
+        page
+      );
+    }
   };
 
   const renderPageNumbers = () => {
     const totalPages = products.totalPages;
     const maxVisiblePages = 5;
 
-    const pageNumbers = [];
+    const pageNumbers: (number | string)[] = [];
 
     if (totalPages <= maxVisiblePages) {
       for (let i = 1; i <= totalPages; i++) {
@@ -89,7 +99,7 @@ export const Pagination: React.FC = () => {
       return (
         <button
           key={page}
-          onClick={() => handlePageChange(page)}
+          onClick={() => handlePageChange(page as number)}
           disabled={currentPage === page}
           className={`${styles.pageButton} ${
             currentPage === page ? styles.currentPage : ""

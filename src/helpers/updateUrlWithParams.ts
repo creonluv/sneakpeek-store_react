@@ -5,7 +5,8 @@ export const updateUrlWithFiltersAndPrice = (
   filters: { [key: string]: number[] },
   priceRange: [number, number] | null,
   sortOption: SortOptions | null,
-  currentPage: number
+  currentPage: number,
+  resetPage: boolean = false
 ) => {
   const params = new URLSearchParams(window.location.search);
 
@@ -35,7 +36,7 @@ export const updateUrlWithFiltersAndPrice = (
     params.delete("sortOrder");
   }
 
-  params.set("page", currentPage.toString());
+  params.set("page", resetPage ? "1" : currentPage.toString());
 
   navigate(`?${params.toString()}`);
 };

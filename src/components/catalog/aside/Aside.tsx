@@ -80,7 +80,8 @@ export const Aside: React.FC = () => {
       selectedFilters,
       priceRange,
       selectedSort,
-      currentPage
+      currentPage,
+      true
     );
   }, [selectedFilters, priceRange, navigate, selectedSort]);
 
@@ -131,6 +132,7 @@ export const Aside: React.FC = () => {
   const handlePriceRangeChange = (value: [number, number]) => {
     dispatch(setPriceRange(value));
   };
+
   return (
     <aside className={styles.aside}>
       <div className={classNames(styles.aside__filter, styles.filter)}>
@@ -199,23 +201,19 @@ export const Aside: React.FC = () => {
               })}
             >
               {itemsToShow.map((item) => (
-                <li className="checkbox" key={item.id}>
-                  <input
-                    type="checkbox"
-                    className="checkbox__index"
-                    checked={isChecked(type, item.id)}
-                    onChange={() => handleCheckboxChange(type, item.id)}
-                    id={`checkbox-${item.id}`}
-                  />
-                  <label
-                    className="checkbox__label"
-                    htmlFor={`checkbox-${item.id}`}
-                  >
+                <li className={styles.checkbox} key={item.id}>
+                  <label className={styles.checkbox__label}>
+                    <input
+                      type="checkbox"
+                      className={styles.checkbox__index}
+                      checked={isChecked(type, item.id)}
+                      onChange={() => handleCheckboxChange(type, item.id)}
+                      id={`checkbox-${item.id}`}
+                    />
                     {item.name}
                   </label>
                 </li>
               ))}
-
               {items.length > 4 && !showMore[type] && (
                 <button
                   onClick={() => handleShowMoreClick(type)}
