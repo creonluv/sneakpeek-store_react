@@ -1,0 +1,56 @@
+@use "../../shared/globalStyles/global" as *;
+
+.favouritepage {
+  display: flex;
+  flex-direction: column;
+  gap: 20px;
+
+  &__container {
+    @include page-grid;
+    row-gap: 70px;
+
+    @include on-tablet {
+      row-gap: 110px;
+    }
+  }
+
+  &__header {
+    grid-column: 1 / -1;
+
+    display: flex;
+    flex-direction: row;
+    gap: 6px;
+  }
+
+  &__title {
+    @include header-3;
+    font-weight: 600;
+  }
+
+  &__subtitle {
+    @include small-text;
+  }
+
+  &__slider {
+    grid-column: 1 / -1;
+  }
+
+  &__productsBody {
+    grid-column: 1 / -1;
+  }
+
+  &__products {
+    display: grid;
+    grid-template-columns: repeat(1, 1fr);
+    row-gap: 30px;
+    column-gap: 20px;
+
+    @include on-tablet {
+      grid-template-columns: repeat(2, 1fr);
+    }
+
+    @include on-big-desktop {
+      grid-template-columns: repeat(3, 1fr);
+    }
+  }
+}

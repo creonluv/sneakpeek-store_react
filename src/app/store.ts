@@ -6,6 +6,7 @@ import { catalogProductsReducer } from "../features/catalogProducts";
 import { productReducer } from "../features/product";
 import { selectedProductsReducer } from "../features/selectedProducts";
 import { bucketReducer } from "../features/bucket";
+import { favouriteReducer } from "../features/favourite";
 
 export const store = configureStore({
   reducer: {
@@ -16,6 +17,7 @@ export const store = configureStore({
     product: productReducer,
     selectedProducts: selectedProductsReducer,
     bucket: bucketReducer,
+    favourite: favouriteReducer,
   },
 });
 

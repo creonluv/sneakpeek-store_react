@@ -12,6 +12,7 @@ import ScrollToTop from "./components/scrollToTop/scrollToTop";
 import RegisterPage from "./pages/register-page/RegisterPage";
 import LoginPage from "./pages/login-page/LoginPage";
 import { BucketPage } from "./pages/bucket-page";
+import { FavouritePage } from "./pages/favourite-page";
 
 export const Root = () => {
   return (
@@ -36,6 +37,8 @@ export const Root = () => {
                   <Route path="login" element={<LoginPage />} />
 
                   <Route path="bucket" element={<BucketPage />} />
+
+                  <Route path="favourite" element={<FavouritePage />} />
 
                   <Route
                     path="*"

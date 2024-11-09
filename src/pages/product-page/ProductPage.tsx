@@ -14,6 +14,10 @@ import { TabsContent } from "../../components/tabscontent";
 import { BackBtn } from "../../components/back-button";
 import { fetchBucket, toggleItemInBucket } from "../../features/bucket";
 import { itemInBucket } from "../../types/Bucket";
+import {
+  fetchFavourite,
+  toggleItemInFavourite,
+} from "../../features/favourite";
 
 export const ProductPage = () => {
   const dispatch = useAppDispatch();
@@ -24,6 +28,9 @@ export const ProductPage = () => {
   const { product, productInstancesAndSizes, materialAndCare } = useAppSelector(
     (state: RootState) => state.product
   );
+
+  const { favourite } = useAppSelector((state: RootState) => state.favourite);
+  console.log(favourite);
 
   const { products } = useAppSelector((state: RootState) => state.products);
   const { bucket } = useAppSelector((state: RootState) => state.bucket);
@@ -56,12 +63,12 @@ export const ProductPage = () => {
 
   useEffect(() => {
     if (productId) {
-      dispatch(fetchProductData(productId) as any);
+      dispatch(fetchProductData(productId));
     }
   }, [dispatch, productId]);
 
   useEffect(() => {
-    dispatch(fetchAllProducts() as any);
+    dispatch(fetchAllProducts());
   }, [dispatch]);
 
   useEffect(() => {
@@ -83,7 +90,12 @@ export const ProductPage = () => {
     };
 
     dispatch(toggleItemInBucket(itemInBucket));
-    dispatch(fetchBucket() as any);
+    dispatch(fetchBucket());
+  };
+
+  const handleFavButton = (id: number) => {
+    dispatch(toggleItemInFavourite(id));
+    dispatch(fetchFavourite());
   };
 
   const tabs = [
@@ -168,11 +180,18 @@ export const ProductPage = () => {
                     product={product ? product : undefined}
                   />
 
-                  {/* <div onClick={handleBuyButton}>BUY</div> */}
-
-                  <a className={styles.productpage__button} href="">
+                  <button
+                    className={styles.productpage__button}
+                    onClick={() => {
+                      if (productId !== undefined) {
+                        handleFavButton(+productId);
+                      } else {
+                        console.error("productId is undefined");
+                      }
+                    }}
+                  >
                     <img src={buttonFav} alt="" />
-                  </a>
+                  </button>
                 </div>
 
                 <div className={styles.productpage__dropdowns}>

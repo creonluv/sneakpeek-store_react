@@ -12,6 +12,7 @@ import { Pagination } from "../../components/catalog/pagination";
 import { AsideAdaptive } from "../../components/catalog/asideAdaptive";
 import { useAsideContext } from "../../context/AsideContext";
 import { fetchAllProducts } from "../../features/products";
+import { fetchFavourite } from "../../features/favourite";
 
 export const CatalogPage = () => {
   const dispatch = useDispatch();
@@ -21,13 +22,16 @@ export const CatalogPage = () => {
     (state: RootState) => state.catalogProducts
   );
 
+  const { favourite } = useAppSelector((state: RootState) => state.favourite);
+
   useEffect(() => {
     dispatch(fetchAllProducts() as any);
   }, [dispatch]);
 
   useEffect(() => {
     dispatch(fetchProductsCatalog(location.search) as any);
-  }, [location.search]);
+    dispatch(fetchFavourite() as any);
+  }, [location.search, favourite.length]);
 
   const { isAsideOpen, toggleAside } = useAsideContext();
 

@@ -1,9 +1,10 @@
 import { Link } from "react-router-dom";
 import styles from "./ProductCard.module.scss";
-
+import { RootState } from "../../app/store";
 import clockIcon from "../../assets/img/icons/clock.svg";
 import arrowIcon from "../../assets/img/icons/arrow.svg";
 import heartIcon from "../../assets/img/icons/heart.svg";
+import heartPressedIcon from "../../assets/img/icons/heart-pressed.svg";
 import shoesImg from "../../assets/img/categories/shoes.png";
 import tshirtsImg from "../../assets/img/categories/t-shirts.png";
 import hoodiesImg from "../../assets/img/categories/hoodies.png";
@@ -12,9 +13,13 @@ import accesImg from "../../assets/img/categories/acces.png";
 import { Product } from "../../types/Products";
 import { Category } from "../../types/Categories";
 import { ProductCatalog } from "../../types/ProductsToCatalog";
+import { Product as ProductFav } from "../../types/Bucket";
+import { useAppDispatch, useAppSelector } from "../../app/hooks";
+import { toggleItemInFavourite } from "../../features/favourite";
+import { useCallback } from "react";
 
 type Props = {
-  product?: Product | ProductCatalog;
+  product?: Product | ProductCatalog | ProductFav;
   type: string;
   category?: Category;
   id: number;
@@ -33,6 +38,19 @@ export const ProductCard: React.FC<Props> = ({
     jeensImg,
     accesImg,
   ];
+
+  const dispatch = useAppDispatch();
+
+  const { favourite } = useAppSelector((state: RootState) => state.favourite);
+
+  const elemementInFavourite = favourite.find((item) => item.id === id);
+
+  const handleFavButton = useCallback(
+    (id: number) => {
+      dispatch(toggleItemInFavourite(id));
+    },
+    [dispatch]
+  );
 
   return (
     <div className={styles.card}>
@@ -82,12 +100,23 @@ export const ProductCard: React.FC<Props> = ({
 
       {product && (
         <div className={styles.card__button}>
-          <button className={styles.card__buttonIcon}>
-            <img
-              className={styles.card__buttonIconImg}
-              src={heartIcon}
-              alt=""
-            />
+          <button
+            className={styles.card__buttonIcon}
+            onClick={() => handleFavButton(id)}
+          >
+            {elemementInFavourite?.id ? (
+              <img
+                className={styles.card__buttonIconImg}
+                src={heartPressedIcon}
+                alt=""
+              />
+            ) : (
+              <img
+                className={styles.card__buttonIconImg}
+                src={heartIcon}
+                alt=""
+              />
+            )}
           </button>
         </div>
       )}

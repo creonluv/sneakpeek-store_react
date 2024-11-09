@@ -27,7 +27,7 @@ interface Producer {
   name: string;
 }
 
-interface Product {
+export interface Product {
   id: number;
   producer: Producer;
   category: Category;

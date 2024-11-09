@@ -60,7 +60,7 @@ export const Pagination: React.FC = () => {
       const startPage = Math.max(2, currentPage - 1);
       const endPage = Math.min(totalPages - 1, currentPage + 1);
 
-      pageNumbers.push(1); // Перша сторінка завжди додається
+      pageNumbers.push(1);
 
       if (startPage > 2) {
         pageNumbers.push("...");
@@ -74,7 +74,7 @@ export const Pagination: React.FC = () => {
         pageNumbers.push("...");
       }
 
-      pageNumbers.push(totalPages); // Остання сторінка завжди додається
+      pageNumbers.push(totalPages);
     }
 
     return pageNumbers.map((page, index) => {

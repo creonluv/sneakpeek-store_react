@@ -16,6 +16,7 @@ import { useAuthContext } from "../../context/AuthContext";
 import { useAppDispatch, useAppSelector } from "../../app/hooks";
 import { RootState } from "../../app/store";
 import { fetchBucket } from "../../features/bucket";
+import { fetchFavourite } from "../../features/favourite";
 
 export const Header = () => {
   const [isMenuOpen, setIsMenuOpen] = useState(false);
@@ -25,9 +26,11 @@ export const Header = () => {
   const dispatch = useAppDispatch();
 
   const { bucket } = useAppSelector((state: RootState) => state.bucket);
+  const { favourite } = useAppSelector((state: RootState) => state.favourite);
 
   useEffect(() => {
-    dispatch(fetchBucket() as any);
+    dispatch(fetchBucket());
+    dispatch(fetchFavourite());
   }, [dispatch]);
 
   const toggleModal = () => setIsModalOpen(!isModalOpen);
@@ -90,9 +93,14 @@ export const Header = () => {
             </form>
 
             <div className={styles.header__middle_icons}>
-              <a className={styles.header__icon} href="">
+              <Link className={styles.header__icon} to="favourite">
                 <img src={likes} alt="likes" />
-              </a>
+                {favourite?.length && (
+                  <div className={styles.header__counter}>
+                    {favourite?.length}
+                  </div>
+                )}
+              </Link>
               <Link className={styles.header__icon} to="bucket">
                 <img src={cart} alt="cart" />
                 {bucket?.cart_items.length && (
