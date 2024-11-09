@@ -59,7 +59,7 @@ export const ProductCard: React.FC<Props> = ({
           className={styles.card__img}
           src={
             type !== "category"
-              ? `https://sneakpeekmyapp:8443/api/images/${product?.main_photo_id}`
+              ? `https://localhost:9091/api/images/${product?.main_photo_id}`
               : category?.id
               ? photosOfCategory[category.id - 1]
               : photosOfCategory[0]

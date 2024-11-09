@@ -87,7 +87,7 @@ export const BucketPage = () => {
                 <div className={styles.bucketpage__itemLeft}>
                   <img
                     className={styles.bucketpage__img}
-                    src={`https://sneakpeekmyapp:8443/api/images/${item.product_instance.product.main_photo_id}`}
+                    src={`https://localhost:9091/api/images/${item.product_instance.product.main_photo_id}`}
                     alt=""
                   />
                 </div>

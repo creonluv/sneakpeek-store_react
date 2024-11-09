@@ -1,7 +1,7 @@
 import { refresh } from "../../api/auth";
 import { ErrorType } from "../../types/Auth";
 
-const BASE_URL = "https://sneakpeekmyapp:8443/api";
+const BASE_URL = "https://localhost:9091/api";
 
 export function wait(delay: number) {
   return new Promise((resolve) => {
@@ -53,6 +53,7 @@ async function request<T>(
       ) {
         console.log("Invalid data during registration.");
       }
+
       if (
         response.status === 401 &&
         (error?.error_type === ErrorType.ACCESS_TOKEN_EXPIRED ||
@@ -69,11 +70,18 @@ async function request<T>(
         console.log("Invalid login data.");
       }
 
+      // if (
+      //   response.status === 401 &&
+      //   error?.error_type === ErrorType.USER_NOT_AUTHORIZED
+      // ) {
+      //   window.location.href = "http://localhost:5173/login";
+      // }
+
       if (
         response.status === 403 &&
         error?.error_type === ErrorType.REFRESH_TOKEN_EXPIRED
       ) {
-        // Handle refresh token expired case
+        // window.location.href = "http://localhost:5173/login";
       }
 
       try {
