@@ -29,9 +29,11 @@ export const Header = () => {
   const { favourite } = useAppSelector((state: RootState) => state.favourite);
 
   useEffect(() => {
-    dispatch(fetchBucket());
-    dispatch(fetchFavourite());
-  }, [dispatch]);
+    if(isAuth) {
+      dispatch(fetchBucket());
+      dispatch(fetchFavourite());
+    }
+  }, [dispatch, isAuth]);
 
   const toggleModal = () => setIsModalOpen(!isModalOpen);
 

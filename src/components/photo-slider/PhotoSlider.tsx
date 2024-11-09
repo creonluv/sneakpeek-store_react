@@ -49,7 +49,7 @@ export const PhotoSlider: React.FC<Props> = ({ images }) => {
         {images?.slice(0, 6).map((image, index) => (
           <img
             key={index}
-            src={`https://sneakpeekmyapp:8443/api/images/${image}`}
+            src={`https://localhost:9091/api/images/${image}`}
             alt={`mini-photo-${index}`}
             className={`${styles.slider__photo} ${
               index === currentIndex ? styles.slider__selected : ""
@@ -63,7 +63,7 @@ export const PhotoSlider: React.FC<Props> = ({ images }) => {
         {selectedImg && (
           <img
             className={styles.slider__main_photo}
-            src={`https://sneakpeekmyapp:8443/api/images/${selectedImg}`}
+            src={`https://localhost:9091/api/images/${selectedImg}`}
             alt="main-photo"
           />
         )}

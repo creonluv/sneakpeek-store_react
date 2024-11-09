@@ -13,16 +13,15 @@ import { fetchProductsCatalog } from "./features/catalogProducts";
 function App() {
   const dispatch = useDispatch();
   const location = useLocation();
-
   const isBreadCrumbsVisible =
     location.pathname !== "/" && location.pathname !== "/404";
 
-  useEffect(() => {
-    dispatch(fetchBucket() as any);
-    dispatch(fetchFavourite() as any);
-    dispatch(fetchAllProducts() as any);
-    dispatch(fetchProductsCatalog(location.search) as any);
-  }, [dispatch]);
+  // useEffect(() => {
+  //   dispatch(fetchBucket() as any);
+  //   dispatch(fetchFavourite() as any);
+  //   dispatch(fetchAllProducts() as any);
+  //   dispatch(fetchProductsCatalog(location.search) as any);
+  // }, [dispatch]);
 
   return (
     <div className="page">

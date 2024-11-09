@@ -13,6 +13,7 @@ import RegisterPage from "./pages/register-page/RegisterPage";
 import LoginPage from "./pages/login-page/LoginPage";
 import { BucketPage } from "./pages/bucket-page";
 import { FavouritePage } from "./pages/favourite-page";
+import ProtectedRoute from "./components/protected-route/ProtectedRoute";
 
 export const Root = () => {
   return (
@@ -25,20 +26,15 @@ export const Root = () => {
               <Routes>
                 <Route path="/" element={<App />}>
                   <Route index element={<MainPage />} />
-
-                  <Route path="catalog" element={<CatalogPage />} />
-
-                  <Route path="product">
-                    <Route path=":productId" element={<ProductPage />} />
-                  </Route>
-
                   <Route path="register" element={<RegisterPage />} />
-
                   <Route path="login" element={<LoginPage />} />
 
-                  <Route path="bucket" element={<BucketPage />} />
-
-                  <Route path="favourite" element={<FavouritePage />} />
+                  <Route element={<ProtectedRoute />}>
+                    <Route path="catalog" element={<CatalogPage />} />
+                    <Route path="product/:productId" element={<ProductPage />} />
+                    <Route path="bucket" element={<BucketPage />} />
+                    <Route path="favourite" element={<FavouritePage />} />
+                  </Route>
 
                   <Route
                     path="*"
