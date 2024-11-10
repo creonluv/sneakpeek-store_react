@@ -127,7 +127,7 @@ export const BucketPage = () => {
                       <button
                         className={styles.bucketpage__counterButton}
                         onClick={() => handleCounter(item, false)}
-                        disabled={loading}
+                        disabled={item.quantity === 1}
                       >
                         -
                       </button>

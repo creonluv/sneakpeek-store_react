@@ -192,6 +192,12 @@
     color: $color-system-grey;
 
     @include hover(background-color, $color-secondary-grey);
+
+    &:disabled {
+      background-color: $color-primary-grey;
+      color: $color-secondary-grey;
+      cursor: not-allowed;
+    }
   }
 
   &__loader {
