@@ -13,16 +13,14 @@ import {
 import { CartItem, UpdateItemInBucketPayload } from "../../types/Bucket";
 import { debounce } from "lodash";
 import { Loader } from "../../components/loader";
-
-import fav from "../../assets/img/icons/heart.svg";
-import favpressed from "../../assets/img/icons/heart-pressed.svg";
 import del from "../../assets/img/icons/del.svg";
+import { Link } from "react-router-dom";
 
 export const BucketPage = () => {
   const dispatch = useAppDispatch();
 
   const { products } = useAppSelector((state: RootState) => state.products);
-  const { bucket, loading, error } = useAppSelector(
+  const { bucket, loading } = useAppSelector(
     (state: RootState) => state.bucket
   );
 
@@ -31,8 +29,8 @@ export const BucketPage = () => {
   }, 500);
 
   useEffect(() => {
-    dispatch(fetchBucket() as any);
-    dispatch(fetchAllProducts() as any);
+    dispatch(fetchBucket());
+    dispatch(fetchAllProducts());
   }, [dispatch]);
 
   const handleCounter = useCallback(
@@ -79,18 +77,22 @@ export const BucketPage = () => {
         <div className={styles.bucketpage__left}>
           <div className={styles.bucketpage__items}>
             {bucket?.cart_items.map((item) => (
-              <div key={item.id} className={styles.bucketpage__item}>
+              <div className={styles.bucketpage__item}>
                 <div className={styles.bucketpage__loader}>
                   {loading && <Loader />}
                 </div>
 
-                <div className={styles.bucketpage__itemLeft}>
+                <Link
+                  key={item.id}
+                  className={styles.bucketpage__itemLeft}
+                  to={`/product/${item.product_instance.product.id}`}
+                >
                   <img
                     className={styles.bucketpage__img}
                     src={`https://localhost:9091/api/images/${item.product_instance.product.main_photo_id}`}
                     alt=""
                   />
-                </div>
+                </Link>
 
                 <div className={styles.bucketpage__itemRight}>
                   <div className={styles.bucketpage__itemRightMain}>
@@ -100,9 +102,15 @@ export const BucketPage = () => {
                           {item.product_instance.product.producer.name}
                         </span>
 
-                        <h3 className={styles.bucketpage__title}>
-                          {item.product_instance.product.name}
-                        </h3>
+                        <Link
+                          key={item.id}
+                          className={styles.bucketpage__link}
+                          to={`/product/${item.product_instance.product.id}`}
+                        >
+                          <h3 className={styles.bucketpage__title}>
+                            {item.product_instance.product.name}
+                          </h3>
+                        </Link>
                       </div>
 
                       <div className={styles.bucketpage__price}>
@@ -137,21 +145,13 @@ export const BucketPage = () => {
                       <button
                         className={styles.bucketpage__counterButton}
                         onClick={() => handleCounter(item, true)}
-                        disabled={loading}
+                        disabled={item.quantity === 10}
                       >
                         +
                       </button>
                     </div>
 
                     <div className={styles.bucketpage__icons}>
-                      <button className={styles.bucketpage__buttonBottom}>
-                        <img
-                          className={styles.bucketpage__icon}
-                          src={fav}
-                          alt="fav"
-                        />
-                      </button>
-
                       <button
                         className={styles.bucketpage__buttonBottom}
                         onClick={() => handleDeleteItem(item.id)}
