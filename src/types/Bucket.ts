@@ -45,6 +45,7 @@ interface ProductInstance {
   product: Product;
   size: Size;
   color: Color;
+  present: number;
 }
 
 export interface CartItem {

@@ -54,6 +54,8 @@ export const BucketPage = () => {
     [dispatch]
   );
 
+  console.log(bucket?.cart_items);
+
   const calculateTotalPrice = useCallback((cartItems: CartItem[]) => {
     return cartItems.reduce(
       (total, item) =>
@@ -77,7 +79,7 @@ export const BucketPage = () => {
         <div className={styles.bucketpage__left}>
           <div className={styles.bucketpage__items}>
             {bucket?.cart_items.map((item) => (
-              <div className={styles.bucketpage__item}>
+              <div key={item.id} className={styles.bucketpage__item}>
                 <div className={styles.bucketpage__loader}>
                   {loading && <Loader />}
                 </div>
@@ -145,7 +147,10 @@ export const BucketPage = () => {
                       <button
                         className={styles.bucketpage__counterButton}
                         onClick={() => handleCounter(item, true)}
-                        disabled={item.quantity === 10}
+                        disabled={
+                          item.quantity ===
+                          bucket?.cart_items[item.id]?.product_instance.present
+                        }
                       >
                         +
                       </button>
@@ -182,7 +187,9 @@ export const BucketPage = () => {
             <div className={styles.bucketpage__main}>
               <div className={styles.bucketpage__middle}>
                 <div className={styles.bucketpage__info}>
-                  <p className={styles.bucketpage__infoKey}>2 items:</p>
+                  <p className={styles.bucketpage__infoKey}>
+                    {bucket?.cart_items.length} items:
+                  </p>
                   <p className={styles.bucketpage__infoValue}>${totalPrice}</p>
                 </div>
               </div>

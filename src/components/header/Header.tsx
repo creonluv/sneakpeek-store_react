@@ -29,7 +29,7 @@ export const Header = () => {
   const { favourite } = useAppSelector((state: RootState) => state.favourite);
 
   useEffect(() => {
-    if(isAuth) {
+    if (isAuth) {
       dispatch(fetchBucket());
       dispatch(fetchFavourite());
     }
@@ -97,7 +97,7 @@ export const Header = () => {
             <div className={styles.header__middle_icons}>
               <Link className={styles.header__icon} to="favourite">
                 <img src={likes} alt="likes" />
-                {favourite?.length && (
+                {favourite?.length > 0 && (
                   <div className={styles.header__counter}>
                     {favourite?.length}
                   </div>
@@ -105,7 +105,7 @@ export const Header = () => {
               </Link>
               <Link className={styles.header__icon} to="bucket">
                 <img src={cart} alt="cart" />
-                {bucket?.cart_items.length && (
+                {(bucket?.cart_items?.length ?? 0) > 0 && (
                   <div className={styles.header__counter}>
                     {bucket?.cart_items.length}
                   </div>

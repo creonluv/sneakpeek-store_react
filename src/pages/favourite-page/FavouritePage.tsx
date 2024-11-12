@@ -21,7 +21,9 @@ export const FavouritePage = () => {
     <section className={styles.favouritepage}>
       <div className={styles.favouritepage__header}>
         <h3 className={styles.favouritepage__title}>Favourite</h3>
-        <span className={styles.favouritepage__subtitle}>1</span>
+        <span className={styles.favouritepage__subtitle}>
+          {favourite.length}
+        </span>
       </div>
 
       <div className={styles.favouritepage__container}>
