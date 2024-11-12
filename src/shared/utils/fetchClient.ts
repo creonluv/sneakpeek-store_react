@@ -70,18 +70,18 @@ async function request<T>(
         console.log("Invalid login data.");
       }
 
-      // if (
-      //   response.status === 401 &&
-      //   error?.error_type === ErrorType.USER_NOT_AUTHORIZED
-      // ) {
-      //   window.location.href = "http://localhost:5173/login";
-      // }
+      if (
+        response.status === 401 &&
+        error?.error_type === ErrorType.USER_NOT_AUTHORIZED
+      ) {
+        window.history.pushState({}, '', '/login');
+      }
 
       if (
         response.status === 403 &&
         error?.error_type === ErrorType.REFRESH_TOKEN_EXPIRED
       ) {
-        // window.location.href = "http://localhost:5173/login";
+        window.history.pushState({}, '', '/login');
       }
 
       try {
