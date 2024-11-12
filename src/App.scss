@@ -115,3 +115,106 @@ h5,
   opacity: 0;
   visibility: hidden;
 }
+
+.button-wrapper {
+  display: inline-flex;
+  position: relative;
+}
+
+.button {
+  display: inline-flex;
+  justify-content: center;
+  align-items: center;
+  text-align: center;
+  gap: 5px;
+  @include adaptiveValue("font-size", 16, 12);
+  font-weight: 600;
+  border-radius: 12px;
+  text-transform: capitalize;
+  transition: all 0.3s ease;
+
+  &_full-size {
+    width: 100%;
+  }
+
+  &_lg {
+    line-height: 87%;
+    letter-spacing: percent(0.032, 16);
+    @include adaptiveValue("padding-top", 16, 14);
+    @include adaptiveValue("padding-bottom", 16, 14);
+    @include adaptiveValue("padding-right", 32, 20);
+    @include adaptiveValue("padding-left", 32, 20);
+  }
+
+  &_md {
+    @include adaptiveValue("padding-top", 16, 8);
+    @include adaptiveValue("padding-bottom", 16, 8);
+    @include adaptiveValue("padding-right", 36, 18);
+    @include adaptiveValue("padding-left", 36, 18);
+  }
+
+  &_default {
+    color:$color-text-reverse;
+    background-color: $color-background;
+
+    .icon-arrow {
+      @include adaptiveValue("font-size", 16, 8);
+      @include adaptiveValue("margin-left", 10, 5);
+    }
+
+    // TODO
+    &:active {
+      color: $color-text-accent;
+      background-color: $color-background-reverse;
+    }
+
+    @include hover(color, $color-text-reverse);
+    @include hover(background-color, $color-background-secondary);
+  }
+
+  &_reverse {
+    color: $color-text-accent;
+    background-color: $color-background-reverse;
+
+    // TODO
+    &:active {
+      color: $color-text-reverse;
+      background-color: $color-background;
+    }
+  }
+
+  &_transparent {
+    border: 2px solid $color-border-reverse;
+    color: $color-text-reverse;
+    background-color: transparent;
+
+    .icon-arrow {
+      @include adaptiveValue("font-size", 16, 8);
+      @include adaptiveValue("margin-left", 10, 5);
+    }
+  }
+
+  &_ghost {
+    outline: 2px solid $color-primary;
+    background-color: transparent;
+
+    .icon-arrow {
+      font-size: 12px;
+      margin-right: 8px;
+    }
+  }
+
+  &_light {
+    color: $color-text-accent;
+    background-color: $color-background-reverse;
+  }
+
+  &_authorization {
+    width: 100%;
+  }
+
+  &__icon {
+    width: 20px;
+    height: 20px;
+  }
+}

@@ -99,7 +99,7 @@ const RegisterPage: React.FC = () => {
               </label>
             </div>
             <div className={styles.form__button}>
-              <button className="button button_lg button_default" type="submit">
+              <button className="button button_lg button_default button_full-size" type="submit">
                 Register
               </button>
             </div>

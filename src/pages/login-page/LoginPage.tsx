@@ -75,8 +75,8 @@ const LoginPage: React.FC = () => {
               />
             </div>
             <div className={styles.form__button}>
-              <div className={styles.form__button}>
-                <button className="button button_lg button_default" type="submit">
+              <div className={`${styles.form__button} button-wrapper`}>
+                <button className="button button_lg button_default button_full-size" type="submit">
                   Login
                 </button>
               </div>
