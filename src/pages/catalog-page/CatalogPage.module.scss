@@ -53,4 +53,11 @@
       grid-template-columns: repeat(3, 1fr);
     }
   }
+
+  &__errorSearch {
+    @include header-3;
+    text-align: center;
+    margin-top: 24px;
+    grid-column: 1 / -1;
+  }
 }

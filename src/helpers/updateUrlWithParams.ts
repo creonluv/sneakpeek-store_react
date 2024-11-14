@@ -6,7 +6,8 @@ export const updateUrlWithFiltersAndPrice = (
   priceRange: [number, number] | null,
   sortOption: SortOptions | null,
   currentPage: number,
-  resetPage: boolean = false
+  resetPage: boolean = false,
+  name: string | null
 ) => {
   const params = new URLSearchParams(window.location.search);
 

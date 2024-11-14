@@ -9,6 +9,7 @@ export interface ParamsState {
   selectedSort: SortOptions;
   priceRange: [number, number];
   currentPage: number;
+  name: string | null;
 }
 
 const initialState: ParamsState = {
@@ -22,6 +23,7 @@ const initialState: ParamsState = {
   },
   priceRange: [0, 10000],
   currentPage: 1,
+  name: "",
 };
 
 const loadFromUrl = (
@@ -32,6 +34,9 @@ const loadFromUrl = (
   const producersIds = params.getAll("producerIds").map(Number);
   const sizesIds = params.getAll("sizeIds").map(Number);
   const gendersIds = params.getAll("genderIds").map(Number);
+  const name = params.get("name");
+
+  console.log("REDUX: " + name);
 
   const priceRange: [number, number] = [
     Number(params.get("minPrice") || 0),
@@ -40,6 +45,7 @@ const loadFromUrl = (
 
   const sortField =
     params.get("sortField") || defaultState.selectedSort.sortField;
+
   const sortOrder: SortOrder =
     (params.get("sortOrder") as SortOrder) ||
     defaultState.selectedSort.sortOrder;
@@ -52,6 +58,7 @@ const loadFromUrl = (
     selectedGenders: gendersIds,
     priceRange,
     selectedSort: { sortField, sortOrder },
+    name,
   };
 };
 
@@ -129,6 +136,9 @@ const paramsSlice = createSlice({
     setCurrentPage(state, action: PayloadAction<number>) {
       state.currentPage = action.payload;
     },
+    setInputSearch(state, action: PayloadAction<string>) {
+      state.name = action.payload;
+    },
   },
 });
 
@@ -141,6 +151,7 @@ export const {
   setFiltersFromUrl,
   setPriceRange,
   setCurrentPage,
+  setInputSearch,
 } = paramsSlice.actions;
 
 export const paramsReducer = paramsSlice.reducer;

@@ -8,7 +8,7 @@ import burger from "../../assets/img/icons/burger.svg";
 
 import { useEffect, useState } from "react";
 import { AsideMenu } from "./asidemenu/AsideMenu";
-import { Link } from "react-router-dom";
+import { Link, useNavigate } from "react-router-dom";
 
 import { logout } from "../../api/auth";
 
@@ -21,9 +21,11 @@ import { fetchFavourite } from "../../features/favourite";
 export const Header = () => {
   const [isMenuOpen, setIsMenuOpen] = useState(false);
   const [isModalOpen, setIsModalOpen] = useState(false);
+  const [searchTerm, setSearchTerm] = useState("");
   const { isAuth, signout } = useAuthContext();
 
   const dispatch = useAppDispatch();
+  const navigate = useNavigate();
 
   const { bucket } = useAppSelector((state: RootState) => state.bucket);
   const { favourite } = useAppSelector((state: RootState) => state.favourite);
@@ -35,13 +37,63 @@ export const Header = () => {
     }
   }, [dispatch, isAuth]);
 
+  // useEffect(() => {
+  //   const handler = setTimeout(() => {
+  //     dispatch(setInputSearch(searchTerm));
+
+  //     updateUrlWithFiltersAndPrice(
+  //       navigate,
+  //       {
+  //         categoryIds: selectedCategories,
+  //         producerIds: selectedProducers,
+  //         sizeIds: selectedSizes,
+  //         genderIds: selectedGenders,
+  //       },
+  //       priceRange,
+  //       selectedSort,
+  //       currentPage,
+  //       true,
+  //       searchTerm
+  //     );
+  //   }, 500);
+
+  //   return () => {
+  //     clearTimeout(handler);
+  //   };
+  // }, [
+  //   searchTerm,
+  //   dispatch,
+  //   navigate,
+  //   selectedCategories,
+  //   selectedProducers,
+  //   selectedSizes,
+  //   selectedGenders,
+  //   priceRange,
+  //   selectedSort,
+  //   currentPage,
+  // ]);
+
   const toggleModal = () => setIsModalOpen(!isModalOpen);
+
+  const handleChangeInputSearch = (
+    event: React.ChangeEvent<HTMLInputElement>
+  ) => {
+    setSearchTerm(event.target.value);
+  };
 
   async function handleLogout() {
     await logout();
     signout();
     toggleModal();
   }
+
+  const handleSearchSubmit = (event: React.FormEvent<HTMLFormElement>) => {
+    event.preventDefault();
+
+    navigate(
+      `catalog/?minPrice=0&maxPrice=10000&sortField=name&sortOrder=asc&page=1&name=${searchTerm}`
+    );
+  };
 
   return (
     <header className={styles.header}>
@@ -78,12 +130,14 @@ export const Header = () => {
           </div>
 
           <div className={styles.header__middle_right}>
-            <form className={styles.header__form}>
+            <form className={styles.header__form} onSubmit={handleSearchSubmit}>
               <input
                 className={styles.header__search}
                 type="text"
                 name="search"
                 placeholder="Search"
+                value={searchTerm}
+                onChange={handleChangeInputSearch}
               />
               <button className={styles.header__search_button} type="submit">
                 <img
@@ -150,24 +204,6 @@ export const Header = () => {
                   </>
                 )}
               </div>
-              {/* <div className={`${styles.overlay} ${isModalOpen ? "" : "_hidden"}`}>
-                <div className={styles.modal}>
-                  <button className={styles.closeButton} onClick={toggleModal}>
-                    ✖
-                  </button>
-                  {isAuth ? (
-                    <>
-                      <button>User Profile</button>
-                      <button onClick={handleLogout}>Logout</button>
-                    </>
-                  ) : (
-                    <>
-                      <button>Register</button>
-                      <button>Login</button>
-                    </>
-                  )}
-                </div>
-              </div> */}
             </div>
 
             <div

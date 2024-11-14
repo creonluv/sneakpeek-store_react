@@ -62,6 +62,7 @@ export const Aside: React.FC = () => {
     priceRange,
     selectedSort,
     currentPage,
+    name,
   } = useAppSelector((state: RootState) => state.params);
 
   const selectedFilters = useMemo(
@@ -81,7 +82,8 @@ export const Aside: React.FC = () => {
       priceRange,
       selectedSort,
       currentPage,
-      true
+      true,
+      name
     );
   }, [selectedFilters, priceRange, navigate, selectedSort]);
 

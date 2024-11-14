@@ -36,6 +36,7 @@ export const Categories: React.FC = () => {
     selectedSort,
     priceRange,
     currentPage,
+    name,
   } = useAppSelector((state: RootState) => state.params);
 
   const selectedItems = [

@@ -66,6 +66,12 @@ export const CatalogPage = () => {
             ))}
           </div>
 
+          {products.content.length === 0 && (
+            <p className={styles.catalogpage__errorSearch}>
+              Oooops! No products found!
+            </p>
+          )}
+
           <Pagination />
         </div>
       </div>
