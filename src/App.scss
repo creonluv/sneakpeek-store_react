@@ -153,6 +153,13 @@ h5,
     @include adaptiveValue("padding-left", 36, 18);
   }
 
+  &_sm {
+    @include adaptiveValue("padding-top", 8, 4);
+    @include adaptiveValue("padding-bottom", 8, 4);
+    @include adaptiveValue("padding-right", 18, 9);
+    @include adaptiveValue("padding-left", 18, 9);
+  }
+
   &_default {
     color:$color-text-reverse;
     background-color: $color-background;
@@ -216,5 +223,12 @@ h5,
   &__icon {
     width: 20px;
     height: 20px;
+  }
+
+  &._disabled {
+    background-color: #d3d3d3; /* Світло-сірий фон */
+    color: #a1a1a1; /* Світло-сірий текст */
+    cursor: not-allowed; /* Змінюємо курсор на "заборонено" */
+    border: 1px solid #ccc;
   }
 }

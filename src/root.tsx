@@ -14,6 +14,7 @@ import LoginPage from "./pages/login-page/LoginPage";
 import { BucketPage } from "./pages/bucket-page";
 import { FavouritePage } from "./pages/favourite-page";
 import ProtectedRoute from "./components/protected-route/ProtectedRoute";
+import ProfilePage from "./pages/profile-page/ProfilePage";
 
 export const Root = () => {
   return (
@@ -34,6 +35,7 @@ export const Root = () => {
                     <Route path="product/:productId" element={<ProductPage />} />
                     <Route path="bucket" element={<BucketPage />} />
                     <Route path="favourite" element={<FavouritePage />} />
+                    <Route path="profile" element={<ProfilePage />} />
                   </Route>
 
                   <Route
