@@ -15,6 +15,7 @@ import { BucketPage } from "./pages/bucket-page";
 import { FavouritePage } from "./pages/favourite-page";
 import ProtectedRoute from "./components/protected-route/ProtectedRoute";
 import ProfilePage from "./pages/profile-page/ProfilePage";
+import NotFoundPage from "./pages/notfound-page/NotFoundPage";
 
 export const Root = () => {
   return (
@@ -40,12 +41,7 @@ export const Root = () => {
 
                   <Route
                     path="*"
-                    element={
-                      <div>
-                        <h1>404 - Page Not Found</h1>
-                        <p>Sorry, the page you're looking for doesn't exist.</p>
-                      </div>
-                    }
+                    element={<NotFoundPage/>}
                   />
                 </Route>
               </Routes>
