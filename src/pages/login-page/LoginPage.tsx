@@ -1,11 +1,13 @@
 import { ChangeEvent, FormEvent, useState, useEffect } from "react";
-import { useNavigate } from "react-router-dom";
+import { Link, useNavigate } from "react-router-dom";
 
 import { login } from "../../api/auth";
 
 import { useAuthContext } from "../../context/AuthContext";
 
 import { AuthData } from "../../types/Auth";
+
+import MySwal from "../../shared/utils/myswal";
 
 import logo from "../../assets/img/logo.svg";
 
@@ -34,8 +36,21 @@ const LoginPage: React.FC = () => {
     try {
       await login(formData);
       signin();
+      await MySwal.fire({
+        title: "Success!",
+        text: "Login successful. Redirecting to the homepage...",
+        icon: "success",
+        timer: 3000,
+        showConfirmButton: false,
+      });
     } catch (error) {
       console.error("Error during registration:", error);
+      await MySwal.fire({
+        title: "Error",
+        text: "An error occurred during login.",
+        icon: "error",
+        confirmButtonText: "Try Again",
+      });
     }
   };
 
@@ -53,11 +68,17 @@ const LoginPage: React.FC = () => {
             <div className={styles.form__title}>
               <img className={styles.form__logo} src={logo} alt="logo" />
               <h1 className={`${styles.form__title} title-2`}>Login</h1>
+              <p className="text-muted">
+                Don't have an account?{" "}
+                <Link to="/register" className={styles.form__link}>
+                  Register here
+                </Link>
+              </p>
             </div>
-            <div className={styles.form__group}>
+            <div className={`${styles.form__group} group`}>
               <input
                 type="text"
-                className={styles.form__input}
+                className={`${styles.form__input} input`}
                 placeholder="Username"
                 name="username"
                 value={formData.username}
@@ -66,7 +87,7 @@ const LoginPage: React.FC = () => {
               />
               <input
                 type="password"
-                className={styles.form__input}
+                className={`${styles.form__input} input`}
                 placeholder="Password"
                 name="password"
                 value={formData.password}

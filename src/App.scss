@@ -226,9 +226,53 @@ h5,
   }
 
   &._disabled {
-    background-color: #d3d3d3; /* Світло-сірий фон */
-    color: #a1a1a1; /* Світло-сірий текст */
-    cursor: not-allowed; /* Змінюємо курсор на "заборонено" */
+    background-color: #d3d3d3;
+    color: #a1a1a1;
+    cursor: not-allowed;
     border: 1px solid #ccc;
   }
 }
+
+.input {
+  border-radius: 10px;
+  background: $color-primary-grey;
+  height: 53px;
+  width: 100%;
+  padding: 10px 20px 10px 20px;
+  color: #757575;
+}
+
+.group {
+  display: flex;
+  flex-direction: column;
+  justify-content: center;
+  gap: 15px;
+  margin-bottom: 30px;
+}
+
+/* custom SweetAlert2 styles */
+.custom-popup {
+  border-radius: 15px;
+  background-color: #f0f0f0;
+}
+
+.custom-title {
+  font-size: 1.5rem;
+  font-weight: bold;
+}
+
+.custom-confirm-button {
+  background-color: $color-accent;
+  color: white;
+}
+
+.custom-deny-button {
+  background-color: #dc3545;
+  color: white;
+}
+
+.custom-footer {
+  font-size: 1rem;
+  color: #777;
+}
+

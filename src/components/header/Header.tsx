@@ -12,6 +12,8 @@ import { Link, useNavigate } from "react-router-dom";
 
 import { logout } from "../../api/auth";
 
+import MySwal from "../../shared/utils/myswal";
+
 import { useAuthContext } from "../../context/AuthContext";
 import { useAppDispatch, useAppSelector } from "../../app/hooks";
 import { RootState } from "../../app/store";
@@ -85,6 +87,13 @@ export const Header = () => {
     await logout();
     signout();
     toggleModal();
+    await MySwal.fire({
+      title: "Success!",
+      text: "Logout successfully.",
+      icon: "success",
+      timer: 3000,
+      showConfirmButton: false,
+    });
   }
 
   const handleSearchSubmit = (event: React.FormEvent<HTMLFormElement>) => {
