@@ -61,7 +61,7 @@
     display: flex;
     align-items: center;
     gap: 2px;
-    background-color: $color-background;
+    background-color: $color-background-reverse;
     border-radius: 11px;
     color: $color-text-accent;
     padding-block: 6px;
@@ -75,7 +75,7 @@
     display: flex;
     justify-content: center;
     align-items: center;
-    background-color: $color-background;
+    background-color: $color-background-reverse;
     border-radius: 50%;
     height: 36px;
     width: 36px;

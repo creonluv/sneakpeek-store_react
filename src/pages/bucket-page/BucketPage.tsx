@@ -4,7 +4,6 @@ import { useAppDispatch, useAppSelector } from "../../app/hooks";
 import { RootState } from "../../app/store";
 import { useCallback, useEffect } from "react";
 import { fetchAllProducts } from "../../features/products";
-import { MainButton } from "../../components/main-button";
 import {
   deleteItemInBucket,
   fetchBucket,
@@ -15,6 +14,8 @@ import { debounce } from "lodash";
 import { Loader } from "../../components/loader";
 import del from "../../assets/img/icons/del.svg";
 import { Link } from "react-router-dom";
+import { useAuthContext } from "../../context/AuthContext";
+import arrowWhite from "../../assets/img/icons/arrow-white.svg";
 
 export const BucketPage = () => {
   const dispatch = useAppDispatch();
@@ -23,14 +24,17 @@ export const BucketPage = () => {
   const { bucket, loading } = useAppSelector(
     (state: RootState) => state.bucket
   );
+  const { isAuth } = useAuthContext();
 
   const debouncedUpdateItemInBucket = debounce((dispatch, payload) => {
     dispatch(updateItemInBucket(payload));
   }, 500);
 
   useEffect(() => {
-    dispatch(fetchBucket());
-    dispatch(fetchAllProducts());
+    if (isAuth) {
+      dispatch(fetchBucket());
+      dispatch(fetchAllProducts());
+    }
   }, [dispatch]);
 
   const handleCounter = useCallback(
@@ -53,8 +57,6 @@ export const BucketPage = () => {
     },
     [dispatch]
   );
-
-  console.log(bucket?.cart_items);
 
   const calculateTotalPrice = useCallback((cartItems: CartItem[]) => {
     return cartItems.reduce(
@@ -202,11 +204,13 @@ export const BucketPage = () => {
                   <h3 className={styles.bucketpage__price}>${totalPrice}</h3>
                 </div>
 
-                <MainButton
-                  title="Go to checkout"
-                  icon={true}
-                  transparent={false}
-                />
+                <button
+                  className={`button button_lg button_default button_full-size`}
+                  type="submit"
+                >
+                  Go to checkout
+                  <img className="icon-arrow" src={arrowWhite} alt="" />
+                </button>
               </div>
             </div>
           </div>

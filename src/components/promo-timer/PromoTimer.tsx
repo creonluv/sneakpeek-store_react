@@ -1,8 +1,6 @@
-import { useEffect, useState } from "react";
 import styles from "./PromoTimer.module.scss";
 import sale from "../../assets/img/sale/sale-1.jpg";
-import { TimeLeft } from "../../types/Times";
-import { MainButton } from "../main-button";
+import arrowWhite from "../../assets/img/icons/arrow-white.svg";
 
 export const PromoTimer = () => {
   // const calculateTimeLeft = (): TimeLeft => {
@@ -63,7 +61,13 @@ export const PromoTimer = () => {
         </div>
 
         <div className={styles.sale__button}>
-          <MainButton title="Buy Now" icon={true} transparent={false} />
+          <button
+            className={`button button_lg button_default button_full-size`}
+            type="submit"
+          >
+            Buy Now
+            <img className="icon-arrow" src={arrowWhite} alt="" />
+          </button>
         </div>
       </div>
     </section>

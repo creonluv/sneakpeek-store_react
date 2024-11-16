@@ -6,9 +6,8 @@ import { fetchProductData } from "../../features/product";
 import { ProductSlider } from "../../components/product-slider";
 import { fetchAllProducts } from "../../features/products";
 import { PhotoSlider } from "../../components/photo-slider";
-import { useParams } from "react-router-dom";
+import { useNavigate, useParams } from "react-router-dom";
 import { generateRandomNumber } from "../../helpers/generateRandom";
-import { MainButton } from "../../components/main-button";
 import buttonFav from "../../assets/img/icons/button.svg";
 import { TabsContent } from "../../components/tabscontent";
 import { BackBtn } from "../../components/back-button";
@@ -18,6 +17,8 @@ import {
   fetchFavourite,
   toggleItemInFavourite,
 } from "../../features/favourite";
+import arrowWhite from "../../assets/img/icons/arrow-white.svg";
+import { useAuthContext } from "../../context/AuthContext";
 
 export const ProductPage = () => {
   const dispatch = useAppDispatch();
@@ -25,15 +26,18 @@ export const ProductPage = () => {
   const [rndNum, setRndNum] = useState(0);
   const [activeTab, setActiveTab] = useState(0);
 
+  const navigate = useNavigate();
+
   const { product, productInstancesAndSizes, materialAndCare } = useAppSelector(
     (state: RootState) => state.product
   );
 
   const { favourite } = useAppSelector((state: RootState) => state.favourite);
   console.log(favourite);
-
   const { products } = useAppSelector((state: RootState) => state.products);
   const { bucket } = useAppSelector((state: RootState) => state.bucket);
+
+  const { isAuth } = useAuthContext();
 
   const imagesArr = Array.isArray(product?.images) ? product?.images : [];
 
@@ -44,6 +48,14 @@ export const ProductPage = () => {
   const instanceOfItemInBucket = bucket?.cart_items.find(
     (item) => item.product_instance.product.id === Number(productId)
   )?.product_instance.id;
+
+  const isAddedToBucket = bucket?.cart_items.some(
+    (item) =>
+      productId !== undefined && item.product_instance.product.id === +productId
+  );
+
+  console.log(bucket?.cart_items);
+  console.log(productId);
 
   const everyInstanceOfItemInBucket = bucket?.cart_items.filter(
     (item) => item.product_instance.product.id === Number(productId)
@@ -83,6 +95,10 @@ export const ProductPage = () => {
   };
 
   const handleBuyButton = () => {
+    if (!isAuth) {
+      navigate("/login");
+    }
+
     const itemInBucket: itemInBucket = {
       cart_id: bucket?.id,
       product_instance_id: productInstance,
@@ -172,26 +188,31 @@ export const ProductPage = () => {
                 </div>
 
                 <div className={styles.productpage__buttons}>
-                  <MainButton
-                    title={"Buy Now"}
-                    icon={true}
-                    transparent={false}
-                    callback={handleBuyButton}
-                    product={product ? product : undefined}
-                  />
-
                   <button
-                    className={styles.productpage__button}
-                    onClick={() => {
-                      if (productId !== undefined) {
-                        handleFavButton(+productId);
-                      } else {
-                        console.error("productId is undefined");
-                      }
-                    }}
+                    className={`button button_lg button_default button_full-size ${
+                      isAddedToBucket ? "active" : ""
+                    }`}
+                    type="submit"
+                    onClick={handleBuyButton}
                   >
-                    <img src={buttonFav} alt="" />
+                    {isAddedToBucket ? "Already in Bucket" : "Add to Bucket"}
+                    <img className="icon-arrow" src={arrowWhite} alt="" />
                   </button>
+
+                  {isAuth && (
+                    <button
+                      className={styles.productpage__button}
+                      onClick={() => {
+                        if (productId !== undefined) {
+                          handleFavButton(+productId);
+                        } else {
+                          console.error("productId is undefined");
+                        }
+                      }}
+                    >
+                      <img src={buttonFav} alt="" />
+                    </button>
+                  )}
                 </div>
 
                 <div className={styles.productpage__dropdowns}>

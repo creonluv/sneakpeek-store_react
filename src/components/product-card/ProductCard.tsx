@@ -17,6 +17,7 @@ import { Product as ProductFav } from "../../types/Bucket";
 import { useAppDispatch, useAppSelector } from "../../app/hooks";
 import { toggleItemInFavourite } from "../../features/favourite";
 import { useCallback } from "react";
+import { useAuthContext } from "../../context/AuthContext";
 
 type Props = {
   product?: Product | ProductCatalog | ProductFav;
@@ -42,6 +43,8 @@ export const ProductCard: React.FC<Props> = ({
   const dispatch = useAppDispatch();
 
   const { favourite } = useAppSelector((state: RootState) => state.favourite);
+
+  const { isAuth } = useAuthContext();
 
   const elemementInFavourite = favourite.find((item) => item.id === id);
 
@@ -98,7 +101,7 @@ export const ProductCard: React.FC<Props> = ({
         />
       </div>
 
-      {product && (
+      {isAuth && product && (
         <div className={styles.card__button}>
           <button
             className={styles.card__buttonIcon}

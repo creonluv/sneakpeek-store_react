@@ -128,7 +128,7 @@ h5,
   text-align: center;
   gap: 5px;
   @include adaptiveValue("font-size", 16, 12);
-  font-weight: 600;
+  font-weight: 500;
   border-radius: 12px;
   text-transform: capitalize;
   transition: all 0.3s ease;
@@ -161,18 +161,18 @@ h5,
   }
 
   &_default {
-    color:$color-text-reverse;
+    color: $color-text-reverse;
     background-color: $color-background;
 
     .icon-arrow {
-      @include adaptiveValue("font-size", 16, 8);
-      @include adaptiveValue("margin-left", 10, 5);
+      @include adaptiveValue("width", 16, 8);
     }
 
     // TODO
-    &:active {
+    &.active {
       color: $color-text-accent;
       background-color: $color-background-reverse;
+      border: 1px solid $color-border;
     }
 
     @include hover(color, $color-text-reverse);
