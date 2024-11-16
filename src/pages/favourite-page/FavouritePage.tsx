@@ -6,15 +6,19 @@ import { fetchAllProducts } from "../../features/products";
 import { ProductSlider } from "../../components/product-slider";
 import { fetchFavourite } from "../../features/favourite";
 import { ProductCard } from "../../components/product-card";
+import { useAuthContext } from "../../context/AuthContext";
 
 export const FavouritePage = () => {
   const dispatch = useAppDispatch();
   const { products } = useAppSelector((state: RootState) => state.products);
   const { favourite } = useAppSelector((state: RootState) => state.favourite);
+  const { isAuth } = useAuthContext();
 
   useEffect(() => {
-    dispatch(fetchAllProducts());
-    dispatch(fetchFavourite());
+    if (isAuth) {
+      dispatch(fetchAllProducts());
+      dispatch(fetchFavourite());
+    }
   }, [dispatch]);
 
   return (

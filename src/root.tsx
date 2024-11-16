@@ -28,12 +28,13 @@ export const Root = () => {
               <Routes>
                 <Route path="/" element={<App />}>
                   <Route index element={<MainPage />} />
+                  <Route path="catalog" element={<CatalogPage />} />
+                  <Route path="product/:productId" element={<ProductPage />} />
+
                   <Route path="register" element={<RegisterPage />} />
                   <Route path="login" element={<LoginPage />} />
 
                   <Route element={<ProtectedRoute />}>
-                    <Route path="catalog" element={<CatalogPage />} />
-                    <Route path="product/:productId" element={<ProductPage />} />
                     <Route path="bucket" element={<BucketPage />} />
                     <Route path="favourite" element={<FavouritePage />} />
                     <Route path="profile" element={<ProfilePage />} />
