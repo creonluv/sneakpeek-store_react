@@ -12,9 +12,8 @@ import { Link, useNavigate } from "react-router-dom";
 
 import { logout } from "../../api/auth";
 
-import MySwal from "../../shared/utils/myswal";
-
 import { useAuthContext } from "../../context/AuthContext";
+import { useModalContext } from '../../context/ModalContext';
 import { useAppDispatch, useAppSelector } from "../../app/hooks";
 import { RootState } from "../../app/store";
 import { fetchBucket } from "../../features/bucket";
@@ -25,6 +24,7 @@ export const Header = () => {
   const [isModalOpen, setIsModalOpen] = useState(false);
   const [searchTerm, setSearchTerm] = useState("");
   const { isAuth, signout } = useAuthContext();
+  const { showModal } = useModalContext();
 
   const dispatch = useAppDispatch();
   const navigate = useNavigate();
@@ -87,13 +87,7 @@ export const Header = () => {
     await logout();
     signout();
     toggleModal();
-    await MySwal.fire({
-      title: "Success!",
-      text: "Logout successfully.",
-      icon: "success",
-      timer: 3000,
-      showConfirmButton: false,
-    });
+    showModal("Success!", "Logout successfully.", "success");
   }
 
   const handleSearchSubmit = (event: React.FormEvent<HTMLFormElement>) => {

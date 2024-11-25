@@ -4,10 +4,9 @@ import { Link, useNavigate } from "react-router-dom";
 import { login } from "../../api/auth";
 
 import { useAuthContext } from "../../context/AuthContext";
+import { useModalContext } from '../../context/ModalContext';
 
 import { AuthData } from "../../types/Auth";
-
-import MySwal from "../../shared/utils/myswal";
 
 import logo from "../../assets/img/logo.svg";
 
@@ -16,6 +15,7 @@ import styles from "./LoginPage.module.scss";
 const LoginPage: React.FC = () => {
   const navigate = useNavigate();
   const { isAuth, signin } = useAuthContext();
+  const { showModal } = useModalContext();
 
   const [formData, setFormData] = useState<AuthData>({
     username: "",
@@ -36,21 +36,9 @@ const LoginPage: React.FC = () => {
     try {
       await login(formData);
       signin();
-      await MySwal.fire({
-        title: "Success!",
-        text: "Login successful. Redirecting to the homepage...",
-        icon: "success",
-        timer: 3000,
-        showConfirmButton: false,
-      });
+      showModal("Success!", "Login successful. Redirecting to the homepage...", "success");
     } catch (error) {
-      console.error("Error during registration:", error);
-      await MySwal.fire({
-        title: "Error",
-        text: "An error occurred during login.",
-        icon: "error",
-        confirmButtonText: "Try Again",
-      });
+      showModal("Error!", "An error occurred during login.", "error");
     }
   };
 

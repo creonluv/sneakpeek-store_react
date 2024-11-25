@@ -4,8 +4,7 @@ import { Link, useNavigate } from "react-router-dom";
 import { register } from "../../api/auth";
 
 import { useAuthContext } from "../../context/AuthContext";
-
-import MySwal from "../../shared/utils/myswal";
+import { useModalContext } from '../../context/ModalContext';
 
 import logo from "../../assets/img/logo.svg";
 
@@ -20,6 +19,7 @@ interface FormData {
 const RegisterPage: React.FC = () => {
   const navigate = useNavigate();
   const { isAuth, signin } = useAuthContext();
+  const { showModal } = useModalContext();
 
   const [formData, setFormData] = useState<FormData>({
     username: "",
@@ -39,36 +39,22 @@ const RegisterPage: React.FC = () => {
 
   const handleSubmit = async (e: FormEvent<HTMLFormElement>) => {
     e.preventDefault();
-
-    if (ref.current?.checked) {
-      try {
-        await register(formData);
-        signin();
-        await MySwal.fire({
-          title: "Success!",
-          text: "Registration successful. Redirecting to the homepage...",
-          icon: "success",
-          timer: 3000,
-          showConfirmButton: false,
-        });
-      } catch (error) {
-        console.error("Error during registration:", error);
-        await MySwal.fire({
-          title: "Error",
-          text: "An error occurred during registration.",
-          icon: "error",
-          confirmButtonText: "Try Again",
-        });
-      }
-    } else {
-      await MySwal.fire({
-        title: "Warning",
-        text: "You must agree to the terms and conditions.",
-        icon: "warning",
-        confirmButtonText: "Got it",
-      });
+  
+    if (!ref.current?.checked) {
+      showModal("Warning!", "You must agree to the terms and conditions.", "warning");
+      return;
+    }
+  
+    try {
+      await register(formData);
+      signin();
+  
+      showModal("Success!", "Registration successful. Redirecting to the homepage...", "success");
+    } catch {
+      showModal("Error!", "An error occurred during registration.", "error");
     }
   };
+  
 
   useEffect(() => {
     if (isAuth) {
