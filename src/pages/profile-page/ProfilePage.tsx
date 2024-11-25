@@ -1,163 +1,105 @@
 import React, { useEffect, useState } from "react";
 
-import { getMyProfile, editMyProfile } from "../../api/profile";
+import { useModalContext } from '../../context/ModalContext';
+
+import { getMyProfile, editMyProfile, editMyImage } from "../../api/profile";
 import { editUser } from "../../api/user";
+
+import { BASE_URL } from "../../shared/utils/fetchClient";
 
 import { Profile } from "../../types/Profile";
 
-import MySwal from "../../shared/utils/myswal";
+import { UploadAvatar } from "../../components/upload-avatar";
+import { ChangePassword } from "../../components/change-password/ChangePassword";
 
 import styles from "./ProfilePage.module.scss";
-
-interface PasswordData {
-  old_password: string,
-  new_password: string,
-  confirm_new_password: string,
-}
 
 const ProfilePage: React.FC = () => {
   const [profile, setProfile] = useState<Profile | null>(null);
   const [initialProfile, setInitialProfile] = useState<Profile | null>(null);
-  const [isChanged, setIsChanged] = useState(false);
-  const [formData, setFormData] = useState<PasswordData>({
-    old_password: '',
-    new_password: '',
-    confirm_new_password: '',
-  });
 
-  const handleSubmit = async (data: PasswordData) => {
-    const { old_password, new_password, confirm_new_password } = data;
+  const [src, setSrc] = useState<string | undefined>(undefined);
+  const [preview, setPreview] = useState<string | undefined>(undefined);
+  const [imageUrl, setImageUrl] = useState<string | null>(null);
 
-    if (!old_password || !new_password || !confirm_new_password) {
-      MySwal.fire({
-        title: 'Error!',
-        text: 'All fields are required!',
-        icon: 'error',
-      });
-      return;
-    }
+  const [isChanged, setIsChanged] = useState<boolean>(false);
+  const [isImageChanged, setIsImageChanged] = useState<boolean>(false);
+  const [refreshProfile, setRefreshProfile] = useState<boolean>(false);
 
-    if (new_password !== confirm_new_password) {
-      MySwal.fire({
-        title: 'Error!',
-        text: 'New password and confirmation do not match!',
-        icon: 'error',
-      });
-      return;
-    }
-
-    try {
-      // TODO password api
-      MySwal.fire({
-        title: 'Success!',
-        text: 'Your password has been successfully changed.',
-        icon: 'success',
-      });
-    } catch (error) {
-      MySwal.fire({
-        title: 'Error!',
-        text: 'There was an error changing your password.',
-        icon: 'error',
-      });
-    }
-  };
+  const { showModal } = useModalContext();
 
   const handleChange = (e: React.ChangeEvent<HTMLInputElement>) => {
-    if (profile) {
-      const { name, value } = e.target;
-  
-      if (name === 'username' || name === 'email') {
-        const updatedProfile = { 
-          ...profile, 
-          user: { 
-            ...profile.user, 
-            [name]: value 
-          } 
-        };
-        setProfile(updatedProfile);
-        setIsChanged(JSON.stringify(updatedProfile) !== JSON.stringify(initialProfile));
-      }
-  
-      else if (name === 'phone') {
-        const updatedProfile = { 
-          ...profile, 
-          phone_number: value 
-        };
-        setProfile(updatedProfile);
-        setIsChanged(JSON.stringify(updatedProfile) !== JSON.stringify(initialProfile));
-      }
-  
-      else {
-        const updatedProfile = { ...profile, [name]: value };
-        setProfile(updatedProfile);
-        setIsChanged(JSON.stringify(updatedProfile) !== JSON.stringify(initialProfile));
-      }
-    }
+    if(!profile) return;
+
+    const { name, value } = e.target;
+    const updatedProfile = {
+      ...profile,
+      ...(name === 'username' || name === 'email'
+        ? { user: { ...profile.user, [name]: value } }
+        : { [name]: value }),
+    };
+    
+    setProfile(updatedProfile);
+    setIsChanged(JSON.stringify(updatedProfile) !== JSON.stringify(initialProfile));
   };
-  
 
   const handleSave = async () => {
-    if (profile) {
-      try {
-        if (profile.user.username !== initialProfile?.user.username || profile.user.email !== initialProfile?.user.email) {
-          await editUser({id: profile.user.id, username: profile.user.username, email: profile.user.email}, profile.user.id);
-        }
+    if (!profile) return;
 
-        const response = await editMyProfile(profile, profile.id);
-        console.log("Profile updated successfully", response);
+    const { user, id } = profile;
+
+    if(isChanged) {
+      try {
+        if (user.username !== initialProfile?.user.username || user.email !== initialProfile?.user.email) {
+          await editUser(user, user.id);
+        }
+    
+        await editMyProfile(profile, id);
+        showModal("Success!", "Profile was successfully updated.", "success");
+    
+        setInitialProfile(profile);
+        setRefreshProfile(prev => !prev);
       } catch (error) {
-        console.error("Failed to update profile:", error);
+        showModal("Error!", "Failed to update profile.", "error");
+        setProfile(initialProfile);
+      } finally {
+        setIsChanged(false);
       }
-      setInitialProfile(profile);
-      setIsChanged(false);
+    }
+
+    if(isImageChanged) {
+      try {
+        await editMyImage({ image: preview }, profile.id);
+        setIsImageChanged(false);
+        setRefreshProfile(prev => !prev);
+      } catch (error) {
+        showModal("Error!", "Failed to update profile image.", "error");
+      }
     }
   };
 
   const handleCancel = () => {
     setProfile(initialProfile);
+    setSrc(imageUrl || "");
+    setPreview(imageUrl || "");
     setIsChanged(false);
-  };
-
-  const openModal = () => {
-    MySwal.fire({
-      title: 'Change Password',
-      html: `
-        <div class="group">
-          <input id="old_password" class="input" placeholder="Old password" value="${formData.old_password}" type="password">
-          <input id="new_password" class="input" placeholder="New password" value="${formData.new_password}" type="password">
-          <input id="confirm_new_password" class="input" placeholder="Confirm new password" value="${formData.confirm_new_password}" type="password">
-        </div>
-      `,
-      focusConfirm: false,
-    }).then((result) => {
-      if (result.isConfirmed) {
-        const old_password = (document.getElementById('old_password') as HTMLInputElement).value;
-        const new_password = (document.getElementById('new_password') as HTMLInputElement).value;
-        const confirm_new_password = (document.getElementById('confirm_new_password') as HTMLInputElement).value;
-        setFormData({
-          old_password,
-          new_password,
-          confirm_new_password,
-        });
-        handleSubmit({ old_password, new_password, confirm_new_password });
-      }
-    });
+    setIsImageChanged(false);
   };
 
   useEffect(() => {
     const fetchProfile = async () => {
       try {
         const data = await getMyProfile();
-        console.log(data);
+        setImageUrl(data?.image?.id ? `${BASE_URL}/images/${data?.image?.id}` : null);
         setProfile(data);
         setInitialProfile(data);
       } catch (error) {
-        console.error("Failed to load profile:", error);
+        showModal("Error!", "Failed to load profile.", "error");
       }
     };
 
     fetchProfile();
-  }, []);
+  }, [refreshProfile]);
 
   if (!profile) {
     return <div>Loading...</div>;
@@ -171,14 +113,14 @@ const ProfilePage: React.FC = () => {
             <h1 className={`${styles.profile__title} title-3`}>User Profile</h1>
             <div className={styles.profile__buttons}>
               <button
-                className={`${styles.profile__button} button button_sm button_default ${!isChanged ? "_disabled" : ""}`}
+                className={`${styles.profile__button} button button_sm button_default ${!isChanged && !isImageChanged ? "_disabled" : ""}`}
                 onClick={handleSave}
-                disabled={!isChanged}
+                disabled={!isChanged && !isImageChanged}
               >
                 Save
               </button>
               <button
-                className={`${styles.profile__button} button button_sm button_reverse ${!isChanged ? "_disabled" : ""}`}
+                className={`${styles.profile__button} button button_sm button_reverse ${!isChanged && !isImageChanged ? "_disabled" : ""}`}
                 onClick={handleCancel}
               >
                 Cancel
@@ -190,17 +132,11 @@ const ProfilePage: React.FC = () => {
               <h2 className={`${styles.profile__subtitle} title-3`}>Basic Info</h2>
               <div className={styles.profile__content}>
                 <div className={styles.profile__info}>
-                  <img
-                    className={styles.profile__img}
-                    src={profile?.image?.id ? `https://localhost:9091/api/images/${profile?.image?.id}` : ""}
-                    alt="User"
-                  />
+                  <UploadAvatar profile={profile} setIsImageChanged={(value: boolean) => { setIsImageChanged(value) }} src={src} preview={preview} setSrc={(value: string | undefined) => {setSrc(value)}} setPreview={(value: string | undefined) => {setPreview(value)}} imageUrl={imageUrl} />
                   <div className={styles.profile__block}>
                     <div className={styles.profile__username}>{profile?.user?.username}</div>
                     <div className={`${styles.profile__id} text-muted`}>ID: {profile?.id}</div>
-                    <button className={`${styles.profile__changePassword} button button_sm button_ghost`} onClick={openModal}>
-                      Change password
-                    </button>
+                    <ChangePassword />
                   </div>
                 </div>
                 <div className={styles.profile__inputs}>
@@ -211,7 +147,7 @@ const ProfilePage: React.FC = () => {
                       id="name"
                       name="name"
                       className={styles.profile__input}
-                      value={profile?.name}
+                      value={profile.name ?? ""}
                       onChange={handleChange}
                     />
                   </div>
@@ -222,7 +158,7 @@ const ProfilePage: React.FC = () => {
                       id="surname"
                       name="surname"
                       className={styles.profile__input}
-                      value={profile?.surname}
+                      value={profile.surname ?? ""}
                       onChange={handleChange}
                     />
                   </div>
@@ -233,7 +169,7 @@ const ProfilePage: React.FC = () => {
                       id="username"
                       name="username"
                       className={styles.profile__input}
-                      value={profile?.user?.username}
+                      value={profile.user.username ?? ""}
                       onChange={handleChange}
                     />
                   </div>
@@ -255,18 +191,18 @@ const ProfilePage: React.FC = () => {
                       id="email"
                       name="email"
                       className={styles.profile__input}
-                      value={profile?.user?.email}
+                      value={profile.user.email ?? ""}
                       onChange={handleChange}
                     />
                   </div>
                   <div className={styles.profile__group}>
-                    <label htmlFor="phone" className={styles.profile__label}>Phone</label>
+                    <label htmlFor="phone_number" className={styles.profile__label}>Phone</label>
                     <input
                       type="text"
-                      id="phone"
-                      name="phone"
+                      id="phone_number"
+                      name="phone_number"
                       className={styles.profile__input}
-                      value={profile?.phone_number}
+                      value={profile.phone_number ?? ""}
                       onChange={handleChange}
                     />
                   </div>
@@ -278,24 +214,13 @@ const ProfilePage: React.FC = () => {
               <div className={styles.profile__content}>
                 <div className={styles.profile__inputs}>
                   <div className={styles.profile__group}>
-                    <label htmlFor="country" className={styles.profile__label}>Country</label>
-                    <input
-                      type="text"
-                      id="country"
-                      name="country"
-                      className={styles.profile__input}
-                      value={profile?.country}
-                      onChange={handleChange}
-                    />
-                  </div>
-                  <div className={styles.profile__group}>
                     <label htmlFor="state" className={styles.profile__label}>State</label>
                     <input
                       type="text"
                       id="state"
                       name="state"
                       className={styles.profile__input}
-                      value={profile?.state}
+                      value={profile.state ?? ""}
                       onChange={handleChange}
                     />
                   </div>
@@ -306,7 +231,7 @@ const ProfilePage: React.FC = () => {
                       id="city"
                       name="city"
                       className={styles.profile__input}
-                      value={profile?.city}
+                      value={profile.city ?? ""}
                       onChange={handleChange}
                     />
                   </div>
@@ -317,7 +242,7 @@ const ProfilePage: React.FC = () => {
                       id="street"
                       name="street"
                       className={styles.profile__input}
-                      value={profile?.street}
+                      value={profile.street ?? ""}
                       onChange={handleChange}
                     />
                   </div>
@@ -328,7 +253,7 @@ const ProfilePage: React.FC = () => {
                       id="apartment"
                       name="apartment"
                       className={styles.profile__input}
-                      value={profile?.apartment}
+                      value={profile.apartment ?? ""}
                       onChange={handleChange}
                     />
                   </div>

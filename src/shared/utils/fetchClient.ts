@@ -1,7 +1,7 @@
 import { refresh } from "../../api/auth";
 import { ErrorType } from "../../types/Auth";
 
-const BASE_URL = "https://localhost:9091/api";
+export const BASE_URL = "https://localhost:9091/api";
 
 export function wait(delay: number) {
   return new Promise((resolve) => {
@@ -32,6 +32,7 @@ async function request<T>(
 
   if (data) {
     options.body = JSON.stringify(data);
+    
     options.headers = {
       "Content-Type": "application/json; charset=UTF-8",
     };

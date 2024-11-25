@@ -16,40 +16,43 @@ import { FavouritePage } from "./pages/favourite-page";
 import ProtectedRoute from "./components/protected-route/ProtectedRoute";
 import ProfilePage from "./pages/profile-page/ProfilePage";
 import NotFoundPage from "./pages/notfound-page/NotFoundPage";
+import { ModalProvider } from "./context/ModalContext";
 
 export const Root = () => {
   return (
-    <AuthProvider>
-      <AsideProvider>
-        <Provider store={store}>
-          <StrictMode>
-            <Router>
-              <ScrollToTop />
-              <Routes>
-                <Route path="/" element={<App />}>
-                  <Route index element={<MainPage />} />
-                  <Route path="catalog" element={<CatalogPage />} />
-                  <Route path="product/:productId" element={<ProductPage />} />
+    <ModalProvider>
+      <AuthProvider>
+        <AsideProvider>
+          <Provider store={store}>
+            <StrictMode>
+              <Router>
+                <ScrollToTop />
+                <Routes>
+                  <Route path="/" element={<App />}>
+                    <Route index element={<MainPage />} />
+                    <Route path="catalog" element={<CatalogPage />} />
+                    <Route path="product/:productId" element={<ProductPage />} />
 
-                  <Route path="register" element={<RegisterPage />} />
-                  <Route path="login" element={<LoginPage />} />
+                    <Route path="register" element={<RegisterPage />} />
+                    <Route path="login" element={<LoginPage />} />
 
-                  <Route element={<ProtectedRoute />}>
-                    <Route path="bucket" element={<BucketPage />} />
-                    <Route path="favourite" element={<FavouritePage />} />
-                    <Route path="profile" element={<ProfilePage />} />
+                    <Route element={<ProtectedRoute />}>
+                      <Route path="bucket" element={<BucketPage />} />
+                      <Route path="favourite" element={<FavouritePage />} />
+                      <Route path="profile" element={<ProfilePage />} />
+                    </Route>
+
+                    <Route
+                      path="*"
+                      element={<NotFoundPage/>}
+                    />
                   </Route>
-
-                  <Route
-                    path="*"
-                    element={<NotFoundPage/>}
-                  />
-                </Route>
-              </Routes>
-            </Router>
-          </StrictMode>
-        </Provider>
-      </AsideProvider>
-    </AuthProvider>
+                </Routes>
+              </Router>
+            </StrictMode>
+          </Provider>
+        </AsideProvider>
+      </AuthProvider>
+    </ModalProvider>
   );
 };

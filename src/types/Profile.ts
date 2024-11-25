@@ -14,6 +14,10 @@ export interface User extends BaseUser {
   role: Role;
 }
 
+export interface UploadImage {
+  image: string | undefined
+}
+
 export interface Image {
   id: number;
 }
@@ -33,4 +37,9 @@ export interface BaseProfile {
 export interface Profile extends BaseProfile {
   user: User;
   image: Image;
+}
+
+export interface ChangePasswordRequest {
+  old_password: string,
+  new_password: string
 }
