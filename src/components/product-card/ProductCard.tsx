@@ -52,7 +52,7 @@ export const ProductCard: React.FC<Props> = ({
     (id: number) => {
       dispatch(toggleItemInFavourite(id));
     },
-    [dispatch]
+    [dispatch, favourite]
   );
 
   return (

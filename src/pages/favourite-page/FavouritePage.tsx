@@ -19,7 +19,7 @@ export const FavouritePage = () => {
       dispatch(fetchAllProducts());
       dispatch(fetchFavourite());
     }
-  }, [dispatch]);
+  }, [dispatch, favourite]);
 
   return (
     <section className={styles.favouritepage}>
