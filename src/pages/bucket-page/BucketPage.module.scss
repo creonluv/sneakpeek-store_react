@@ -63,7 +63,7 @@
     flex-direction: row;
     justify-content: space-between;
     padding: 30px;
-    background-color: $color-primary-grey;
+    background-color: var(--color-primary-grey);
     border-radius: 5px;
   }
 
@@ -78,7 +78,7 @@
     display: flex;
     flex-direction: column;
     gap: 20px;
-    border: 1px solid $color-primary-grey;
+    border: 1px solid var(--color-primary-grey);
     border-radius: 5px;
     padding: 30px;
 
@@ -135,7 +135,7 @@
     display: flex;
     flex-direction: column;
     gap: 16px;
-    border: 1px solid $color-primary-grey;
+    border: 1px solid var(--color-primary-grey);
     border-radius: 5px;
     padding: 30px;
   }
@@ -169,7 +169,7 @@
   &__line {
     width: 100%;
     height: 0.5px;
-    background-color: $color-primary-grey;
+    background-color: var(--color-primary-grey);
   }
 
   &__bottom {
@@ -199,14 +199,14 @@
     width: 32px;
     height: 32px;
     border-radius: 5px;
-    background-color: $color-primary-grey;
-    color: $color-system-grey;
+    background-color: var(--color-primary-grey);
+    color: var(--color-system-grey);
 
-    @include hover(background-color, $color-secondary-grey);
+    @include hover(background-color, var(--color-secondary-grey));
 
     &:disabled {
-      background-color: $color-primary-grey;
-      color: $color-secondary-grey;
+      background-color: var(--color-primary-grey);
+      color: var(--color-secondary-grey);
       cursor: not-allowed;
     }
   }

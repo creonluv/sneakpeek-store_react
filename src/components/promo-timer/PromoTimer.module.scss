@@ -12,7 +12,7 @@
 
   &__content {
     padding: 48px;
-    background-color: $color-primary-grey;
+    background-color: var(--color-primary-grey);
     border-radius: 5px;
     display: flex;
     flex-direction: column;
@@ -43,7 +43,7 @@
     display: block;
     width: 100%;
     height: 1px;
-    background-color: $color-secondary-grey;
+    background-color: var(--color-secondary-grey);
   }
 
   &__button {

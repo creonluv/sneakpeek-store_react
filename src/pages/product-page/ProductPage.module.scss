@@ -104,18 +104,18 @@
     width: 100%;
     padding-block: 12px;
     border-radius: 5px;
-    border: 1px solid $color-secondary-grey;
+    border: 1px solid var(--color-secondary-grey);
     text-align: center;
     cursor: pointer;
     transition: background-color 0.3s ease, transform 0.2s ease;
 
     &:active {
       transform: scale(0.97);
-      background-color: $color-secondary-grey;
+      background-color: var(--color-secondary-grey);
     }
 
     &_checked {
-      background-color: $color-secondary-grey;
+      background-color: var(--color-secondary-grey);
     }
 
     &_disabled {
@@ -131,7 +131,7 @@
 
   &__dropdown {
     font-family: "TT Firs Neue";
-    color: $color-text;
+    color: var(--color-text);
     font-size: 16px;
 
     display: block;
@@ -147,7 +147,7 @@
   }
 
   &__serial {
-    color: $color-secondary;
+    color: var(--color-system-grey);
     @include small-text;
   }
 
@@ -177,12 +177,12 @@
 
   &__tablink {
     cursor: pointer;
-    color: $color-text-muted;
+    color: var(--color-text-muted);
     position: relative;
   }
 
   &__active {
-    color: $color-text;
+    color: var(--color-text);
   }
 
   &__active::after {
@@ -192,17 +192,17 @@
     left: 0;
     width: 100%;
     height: 2px;
-    background-color: $color-text;
+    background-color: var(--color-text);
   }
 
   &__line {
     border: none;
     height: 1px;
-    background-color: $color-secondary-grey;
+    background-color: var(--color-secondary-grey);
   }
 
   &__tabContent {
     @include body-text;
-    color: $color-text;
+    color: var(--color-text);
   }
 }

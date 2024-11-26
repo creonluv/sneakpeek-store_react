@@ -5,16 +5,16 @@
   border-radius: 16px;
   width: 100%;
   padding-block: 16px;
-  background-color: $color-accent;
+  background-color: var(--color-accent);
   transition: background-color 0.3s;
 
   &__transparent {
     background-color: transparent;
-    border: 2px solid $color-background;
+    border: 2px solid var(--color-background);
     width: 234px;
 
     .button__title {
-      color: $color-background;
+      color: var(--color-background);
     }
   }
 
@@ -28,19 +28,19 @@
 
   &__title {
     @include buttons;
-    color: $color-background;
+    color: var(--color-background);
   }
 
   &__pressed {
-    background-color: $color-background;
+    background-color: var(--color-background);
 
     .button__title {
-      color: $color-text;
+      color: var(--color-text);
     }
   }
 
   &:hover {
-    background-color: darken($color-accent, 5%);
+    background-color: darken(var(--color-accent, 5%));
   }
 
   &:active {

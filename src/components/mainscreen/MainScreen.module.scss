@@ -26,11 +26,11 @@
   &__text {
     @include header-4;
 
-    color: $color-background-reverse;
+    color: var(--color-background-reverse);
 
     @include on-tablet {
       @include header-3;
-      color: $color-background-reverse;
+      color: var(--color-background-reverse);
     }
   }
 

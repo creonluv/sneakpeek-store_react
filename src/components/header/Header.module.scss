@@ -13,13 +13,13 @@
     width: 16px;
     height: 16px;
     border-radius: 50%;
-    color: $color-background-reverse;
-    background-color: $color-accent;
+    color: var(--color-background-reverse);
+    background-color: var(--color-accent);
     font-size: 12px;
   }
 
   &__top {
-    background-color: $color-primary;
+    background-color: var(--color-primary);
 
     &_container {
       @include container;
@@ -29,7 +29,7 @@
   &__middle {
     padding-block: 24px;
 
-    border-bottom: 1px solid $color-secondary-grey;
+    border-bottom: 1px solid var(--color-secondary-grey);
 
     @include on-tablet {
       border: none;
@@ -91,8 +91,8 @@
     @include on-tablet {
       display: block;
       padding-block: 16px;
-      border-top: 1px solid $color-secondary-grey;
-      border-bottom: 1px solid $color-secondary-grey;
+      border-top: 1px solid var(--color-secondary-grey);
+      border-bottom: 1px solid var(--color-secondary-grey);
     }
   }
 
@@ -120,11 +120,11 @@
 
   &__search {
     border: none;
-    border-bottom: 1px solid $color-secondary-grey;
+    border-bottom: 1px solid var(--color-secondary-grey);
     background: transparent;
     outline: none;
     padding: 4px;
-    color: $color-secondary;
+    color: var(--color-system-grey);
     width: 190px;
 
     @include on-tablet {
@@ -177,7 +177,7 @@
     border: none;
     width: 100%;
     letter-spacing: 1px;
-    color: $color-reverse;
+    color: var(--color-reverse);
     padding-block: 8px;
     cursor: pointer;
   }
@@ -196,7 +196,7 @@
   &__link {
     display: inline-block;
     text-decoration: none;
-    color: $color-text;
+    color: var(--color-text);
 
     @include hover(scale, 0.95);
   }
@@ -212,9 +212,9 @@
   text-align-last: left;
   gap: 10px;
   width: 200px;
-  border: 1px solid $color-system-grey;
+  border: 1px solid var(--color-system-grey);
   border-radius: 5px;
-  background-color: $color-reverse;
+  background-color: var(--color-reverse);
   transition: all 0.3s ease;
   z-index: 10;
 

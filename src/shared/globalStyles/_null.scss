@@ -21,11 +21,11 @@ body {
 body {
   line-height: normal;
   scroll-behavior: smooth;
-  background-color: $color-background-reverse;
+  background-color: var(--color-background-reverse);
 
   font-family: "TT Firs Neue", sans-serif;
   font-size: 16px;
-  color: $color-text;
+  color: var(--color-text);
   overflow-x: hidden;
 }
 

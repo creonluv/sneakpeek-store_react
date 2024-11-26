@@ -56,8 +56,8 @@ button {
       line-height: 18px;
       text-align: center;
       color: #fff;
-      background-color: $color-accent-secondary;
-      border: 1px solid $color-accent-secondary;
+      background-color: var(--color-accent-secondary);
+      border: 1px solid var(--color-accent-secondary);
     }
   }
 
@@ -74,7 +74,7 @@ button {
       left: 0;
       width: 18px;
       height: 18px;
-      border: 1px solid $color-system-grey;
+      border: 1px solid var(--color-system-grey);
       border-radius: 3px;
       background-color: transparent;
     }
@@ -161,8 +161,8 @@ h5,
   }
 
   &_default {
-    color: $color-text-reverse;
-    background-color: $color-background;
+    color: var(--color-text-reverse);
+    background-color: var(--color-background);
 
     .icon-arrow {
       @include adaptiveValue("width", 16, 8);
@@ -170,29 +170,29 @@ h5,
 
     // TODO
     &.active {
-      color: $color-text-accent;
-      background-color: $color-background-reverse;
-      border: 1px solid $color-border;
+      color: var(--color-text-accent);
+      background-color: var(--color-background-reverse);
+      border: 1px solid var(--color-border);
     }
 
-    @include hover(color, $color-text-reverse);
-    @include hover(background-color, $color-background-secondary);
+    @include hover(color, var(--color-text-reverse));
+    @include hover(background-color, var(--color-background-secondary));
   }
 
   &_reverse {
-    color: $color-text-accent;
-    background-color: $color-background-reverse;
+    color: var(--color-text-accent);
+    background-color: var(--color-background-reverse);
 
     // TODO
     &:active {
-      color: $color-text-reverse;
-      background-color: $color-background;
+      color: var(--color-text-reverse);
+      background-color: var(--color-background);
     }
   }
 
   &_transparent {
-    border: 2px solid $color-border-reverse;
-    color: $color-text-reverse;
+    border: 2px solid var(--color-border-reverse);
+    color: var(--color-text-reverse);
     background-color: transparent;
 
     .icon-arrow {
@@ -202,7 +202,7 @@ h5,
   }
 
   &_ghost {
-    outline: 2px solid $color-primary;
+    outline: 2px solid var(--color-primary);
     background-color: transparent;
 
     .icon-arrow {
@@ -212,8 +212,8 @@ h5,
   }
 
   &_light {
-    color: $color-text-accent;
-    background-color: $color-background-reverse;
+    color: var(--color-text-accent);
+    background-color: var(--color-background-reverse);
   }
 
   &_authorization {
@@ -235,7 +235,7 @@ h5,
 
 .input {
   border-radius: 10px;
-  background: $color-primary-grey;
+  background: var(--color-primary-grey);
   height: 53px;
   width: 100%;
   padding: 10px 20px 10px 20px;
@@ -262,7 +262,7 @@ h5,
 }
 
 .custom-confirm-button {
-  background-color: $color-accent;
+  background-color: var(--color-accent);
   color: white;
 }
 
@@ -290,6 +290,6 @@ h5,
 
 .checkbox__index {
   margin-right: 10px;
-  accent-color: $color-accent;
+  accent-color: var(--color-accent);
   transform: scale(1.38);
 }

@@ -6,7 +6,7 @@
   gap: 32px;
   position: initial;
   overflow-y: initial;
-  background-color: white;
+  background-color: var(--color-reverse);
 }
 
 .filter {
@@ -56,7 +56,7 @@
   &__showMoreButton {
     display: flex;
     justify-content: start;
-    color: $color-accent;
+    color: var(--color-accent);
   }
 }
 
@@ -74,6 +74,6 @@
 
 .checkbox__index {
   margin-right: 10px;
-  accent-color: $color-accent;
+  accent-color: var(--color-accent);
   transform: scale(1.38);
 }

@@ -7,14 +7,14 @@
   &__progressBar {
     width: 100%;
     height: 4px;
-    background-color: $color-secondary-grey;
+    background-color: var(--color-secondary-grey);
     border-radius: 2px;
     overflow: hidden;
   }
 
   &__progress {
     height: 100%;
-    background-color: $color-primary;
+    background-color: var(--color-primary);
     border-radius: 2px;
     transition: width 0.3s ease-in-out;
   }

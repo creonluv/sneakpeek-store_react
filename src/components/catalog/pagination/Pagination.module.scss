@@ -8,8 +8,8 @@
 }
 
 .pageButton {
-  background-color: $color-accent;
-  color: white;
+  background-color: var(--color-accent);
+  color: var(--color-reverse);
   border: none;
   border-radius: 4px;
   padding: 10px 15px;
@@ -19,14 +19,14 @@
 }
 
 .pageButton:hover:not(:disabled) {
-  background-color: $color-accent;
+  background-color: var(--color-accent);
 }
 
 .pageButton:disabled {
-  background-color: $color-secondary-grey;
+  background-color: var(--color-secondary-grey);
   cursor: not-allowed;
 }
 
 .currentPage {
-  background-color: $color-accent;
+  background-color: var(--color-accent);
 }

@@ -110,7 +110,7 @@
   line-height: 1;
   letter-spacing: em(0.396, 198);
   text-transform: uppercase;
-  color: $color-text;
+  color: var(--color-text);
 }
 
 @mixin header-2 {
@@ -118,7 +118,7 @@
   font-weight: 500;
   line-height: 87%;
   letter-spacing: em(0.128, 64);
-  color: $color-text;
+  color: var(--color-text);
 }
 
 @mixin header-3 {
@@ -126,28 +126,28 @@
   font-weight: 500;
   line-height: 1.29;
   letter-spacing: 0%;
-  color: $color-text;
+  color: var(--color-text);
 }
 
 @mixin header-4 {
   font-size: 16px;
   font-weight: 400;
   line-height: normal;
-  color: $color-text;
+  color: var(--color-text);
 }
 
 @mixin body-text {
   font-size: 16px;
   font-weight: 400;
   line-height: 21px;
-  color: $color-secondary;
+  color: var(--color-system-grey);
 }
 
 @mixin small-text {
   font-size: 12px;
   font-weight: 400;
   line-height: normal;
-  color: $color-secondary-grey;
+  color: var(--color-secondary-grey);
 }
 
 @mixin buttons {
@@ -161,7 +161,7 @@
   font-weight: 600;
   line-height: 1.29;
   letter-spacing: 0%;
-  color: $color-text;
+  color: var(--color-text);
 }
 
 @mixin titlecards {
@@ -169,7 +169,7 @@
   font-size: 16px;
   line-height: 21px;
   text-transform: uppercase;
-  color: $color-text;
+  color: var(--color-text);
 }
 
 @mixin adaptiveValue(

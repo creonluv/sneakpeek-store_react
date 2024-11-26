@@ -5,7 +5,7 @@
   top: 0;
   right: 0;
   left: 0;
-  background-color: $color-background-reverse;
+  background-color: var(--color-background-reverse);
   z-index: 3;
   opacity: 0;
   pointer-events: none;
@@ -19,7 +19,7 @@
   }
 
   &__top {
-    background-color: $color-primary;
+    background-color: var(--color-primary);
 
     &_container {
       @include container;
@@ -29,7 +29,7 @@
   &__header {
     padding-block: 24px;
 
-    border-bottom: 1px solid $color-secondary-grey;
+    border-bottom: 1px solid var(--color-secondary-grey);
 
     @include on-tablet {
       border: none;
@@ -87,7 +87,7 @@
     bottom: 0;
     left: 0;
     right: 0;
-    border-top: 1px solid $color-secondary-grey;
+    border-top: 1px solid var(--color-secondary-grey);
 
     &_icons {
       display: flex;
