@@ -13,12 +13,13 @@ import { CartItem, UpdateItemInBucketPayload } from "../../types/Bucket";
 import { debounce } from "lodash";
 import { Loader } from "../../components/loader";
 import del from "../../assets/img/icons/del.svg";
-import { Link } from "react-router-dom";
+import { Link, useNavigate } from "react-router-dom";
 import { useAuthContext } from "../../context/AuthContext";
 import arrowWhite from "../../assets/img/icons/arrow-white.svg";
 
 export const BucketPage = () => {
   const dispatch = useAppDispatch();
+  const navigate = useNavigate();
 
   const { products } = useAppSelector((state: RootState) => state.products);
   const { bucket, loading } = useAppSelector(
@@ -36,6 +37,8 @@ export const BucketPage = () => {
       dispatch(fetchAllProducts());
     }
   }, [dispatch]);
+
+  console.log(bucket);
 
   const handleCounter = useCallback(
     (product: CartItem, isIncrement: boolean) => {
@@ -80,100 +83,104 @@ export const BucketPage = () => {
       <div className={styles.bucketpage__container}>
         <div className={styles.bucketpage__left}>
           <div className={styles.bucketpage__items}>
-            {bucket?.cart_items.map((item) => (
-              <div key={item.id} className={styles.bucketpage__item}>
-                <div className={styles.bucketpage__loader}>
-                  {loading && <Loader />}
-                </div>
+            {bucket?.cart_items.map((item, index) => {
+              console.log(bucket?.cart_items[index]?.product_instance.present);
 
-                <Link
-                  key={item.id}
-                  className={styles.bucketpage__itemLeft}
-                  to={`/product/${item.product_instance.product.id}`}
-                >
-                  <img
-                    className={styles.bucketpage__img}
-                    src={`https://localhost:9091/api/images/${item.product_instance.product.main_photo_id}`}
-                    alt=""
-                  />
-                </Link>
+              return (
+                <div key={item.id} className={styles.bucketpage__item}>
+                  <div className={styles.bucketpage__loader}>
+                    {loading && <Loader />}
+                  </div>
 
-                <div className={styles.bucketpage__itemRight}>
-                  <div className={styles.bucketpage__itemRightMain}>
-                    <div className={styles.bucketpage__itemTop}>
-                      <div className={styles.bucketpage__titles}>
-                        <span className={styles.bucketpage__subtitle}>
-                          {item.product_instance.product.producer.name}
+                  <Link
+                    key={item.id}
+                    className={styles.bucketpage__itemLeft}
+                    to={`/product/${item.product_instance.product.id}`}
+                  >
+                    <img
+                      className={styles.bucketpage__img}
+                      src={`https://localhost:9091/api/images/${item.product_instance.product.main_photo_id}`}
+                      alt=""
+                    />
+                  </Link>
+
+                  <div className={styles.bucketpage__itemRight}>
+                    <div className={styles.bucketpage__itemRightMain}>
+                      <div className={styles.bucketpage__itemTop}>
+                        <div className={styles.bucketpage__titles}>
+                          <span className={styles.bucketpage__subtitle}>
+                            {item.product_instance.product.producer.name}
+                          </span>
+
+                          <Link
+                            key={item.id}
+                            className={styles.bucketpage__link}
+                            to={`/product/${item.product_instance.product.id}`}
+                          >
+                            <h3 className={styles.bucketpage__title}>
+                              {item.product_instance.product.name}
+                            </h3>
+                          </Link>
+                        </div>
+
+                        <div className={styles.bucketpage__price}>
+                          ${item.product_instance.product.price}
+                        </div>
+                      </div>
+
+                      <h4 className={styles.bucketpage__gender}>
+                        {item.product_instance.product.gender.name}
+                      </h4>
+
+                      <div className={styles.bucketpage__sizes}>
+                        <span className={styles.bucketpage__sizeTitle}>
+                          Size:
                         </span>
+                        <p>{item.product_instance.size.name}</p>
+                      </div>
+                    </div>
 
-                        <Link
-                          key={item.id}
-                          className={styles.bucketpage__link}
-                          to={`/product/${item.product_instance.product.id}`}
+                    <div className={styles.bucketpage__bottomItem}>
+                      <div className={styles.bucketpage__counter}>
+                        <button
+                          className={styles.bucketpage__counterButton}
+                          onClick={() => handleCounter(item, false)}
+                          disabled={item.quantity === 1}
                         >
-                          <h3 className={styles.bucketpage__title}>
-                            {item.product_instance.product.name}
-                          </h3>
-                        </Link>
+                          -
+                        </button>
+                        <p className={styles.bucketpage__sizes}>
+                          {item.quantity}
+                        </p>
+                        <button
+                          className={styles.bucketpage__counterButton}
+                          onClick={() => handleCounter(item, true)}
+                          disabled={
+                            item.quantity ===
+                            bucket?.cart_items[index]?.product_instance.present
+                          }
+                        >
+                          +
+                        </button>
                       </div>
 
-                      <div className={styles.bucketpage__price}>
-                        ${item.product_instance.product.price}
+                      <div className={styles.bucketpage__icons}>
+                        <button
+                          className={styles.bucketpage__buttonBottom}
+                          onClick={() => handleDeleteItem(item.id)}
+                        >
+                          <img
+                            className={styles.bucketpage__icon}
+                            src={del}
+                            alt="del"
+                          />
+                        </button>
                       </div>
-                    </div>
-
-                    <h4 className={styles.bucketpage__gender}>
-                      {item.product_instance.product.gender.name}
-                    </h4>
-
-                    <div className={styles.bucketpage__sizes}>
-                      <span className={styles.bucketpage__sizeTitle}>
-                        Size:
-                      </span>
-                      <p>{item.product_instance.size.name}</p>
-                    </div>
-                  </div>
-
-                  <div className={styles.bucketpage__bottomItem}>
-                    <div className={styles.bucketpage__counter}>
-                      <button
-                        className={styles.bucketpage__counterButton}
-                        onClick={() => handleCounter(item, false)}
-                        disabled={item.quantity === 1}
-                      >
-                        -
-                      </button>
-                      <p className={styles.bucketpage__sizes}>
-                        {item.quantity}
-                      </p>
-                      <button
-                        className={styles.bucketpage__counterButton}
-                        onClick={() => handleCounter(item, true)}
-                        disabled={
-                          item.quantity ===
-                          bucket?.cart_items[item.id]?.product_instance.present
-                        }
-                      >
-                        +
-                      </button>
-                    </div>
-
-                    <div className={styles.bucketpage__icons}>
-                      <button
-                        className={styles.bucketpage__buttonBottom}
-                        onClick={() => handleDeleteItem(item.id)}
-                      >
-                        <img
-                          className={styles.bucketpage__icon}
-                          src={del}
-                          alt="del"
-                        />
-                      </button>
                     </div>
                   </div>
                 </div>
-              </div>
-            ))}
+              );
+            })}
           </div>
 
           <div className={styles.bucketpage__subtotal}>
@@ -207,6 +214,7 @@ export const BucketPage = () => {
                 <button
                   className={`button button_lg button_default button_full-size`}
                   type="submit"
+                  onClick={() => navigate("/checkout")}
                 >
                   Go to checkout
                   <img className="icon-arrow" src={arrowWhite} alt="" />

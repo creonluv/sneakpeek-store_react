@@ -276,3 +276,20 @@ h5,
   color: #777;
 }
 
+.checkbox {
+  display: flex;
+  align-items: center;
+  gap: 10px;
+}
+
+.checkbox__label {
+  display: flex;
+  align-items: center;
+  cursor: pointer;
+}
+
+.checkbox__index {
+  margin-right: 10px;
+  accent-color: $color-accent;
+  transform: scale(1.38);
+}
