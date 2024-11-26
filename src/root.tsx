@@ -17,6 +17,8 @@ import ProtectedRoute from "./components/protected-route/ProtectedRoute";
 import ProfilePage from "./pages/profile-page/ProfilePage";
 import NotFoundPage from "./pages/notfound-page/NotFoundPage";
 import { ModalProvider } from "./context/ModalContext";
+import { CheckoutPage } from "./pages/checkout-page";
+import { ThankYouPage } from "./pages/thankyou-page";
 
 export const Root = () => {
   return (
@@ -36,23 +38,22 @@ export const Root = () => {
                     <Route path="register" element={<RegisterPage />} />
                     <Route path="login" element={<LoginPage />} />
 
-                    <Route element={<ProtectedRoute />}>
-                      <Route path="bucket" element={<BucketPage />} />
-                      <Route path="favourite" element={<FavouritePage />} />
-                      <Route path="profile" element={<ProfilePage />} />
-                    </Route>
-
-                    <Route
-                      path="*"
-                      element={<NotFoundPage/>}
-                    />
+                  <Route element={<ProtectedRoute />}>
+                    <Route path="bucket" element={<BucketPage />} />
+                    <Route path="favourite" element={<FavouritePage />} />
+                    <Route path="profile" element={<ProfilePage />} />
+                    <Route path="checkout" element={<CheckoutPage />} />
+                    <Route path="thankyou" element={<ThankYouPage />} />
                   </Route>
-                </Routes>
-              </Router>
-            </StrictMode>
-          </Provider>
-        </AsideProvider>
-      </AuthProvider>
+
+                  <Route path="*" element={<NotFoundPage />} />
+                </Route>
+              </Routes>
+            </Router>
+          </StrictMode>
+        </Provider>
+      </AsideProvider>
+    </AuthProvider>
     </ModalProvider>
   );
 };

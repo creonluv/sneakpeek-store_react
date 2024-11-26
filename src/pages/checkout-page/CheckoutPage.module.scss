@@ -1,0 +1,326 @@
+@use "../../shared/globalStyles/global" as *;
+
+.checkoutpage {
+  display: flex;
+  flex-direction: column;
+  gap: 20px;
+
+  &__header {
+    grid-column: 1 / -1;
+
+    display: flex;
+    flex-direction: row;
+    gap: 6px;
+  }
+
+  &__title {
+    @include header-3;
+    font-weight: 600;
+  }
+
+  &__subtitle {
+    @include small-text;
+  }
+
+  &__container {
+    @include page-grid;
+    row-gap: 70px;
+  }
+
+  &__form {
+    grid-column: 1 / -1;
+
+    @include on-tablet {
+      grid-column: 1 / 8;
+    }
+
+    display: flex;
+    flex-direction: column;
+    gap: 16px;
+    height: auto;
+    min-height: 100px;
+  }
+
+  &__block {
+    display: flex;
+    flex-direction: column;
+    gap: 20px;
+    padding: 30px;
+    border-radius: 5px;
+    border: 1px solid $color-primary-grey;
+  }
+
+  &__blockTitle {
+    display: flex;
+    flex-direction: row;
+    justify-content: space-between;
+  }
+
+  &__ttl {
+    @include header-3;
+    font-weight: 600;
+  }
+
+  &__inputs {
+    display: flex;
+    flex-direction: column;
+    gap: 16px;
+  }
+
+  &__dropdown {
+    display: flex;
+    flex-direction: row;
+    gap: 2px;
+    align-items: center;
+
+    &_text {
+      @include body-text;
+      color: $color-text;
+    }
+  }
+
+  &__posts {
+    display: flex;
+    flex-direction: column;
+    gap: 16px;
+  }
+
+  &__post {
+    display: flex;
+    flex-direction: row;
+    align-items: center;
+    justify-content: space-between;
+    padding-inline: 16px;
+    padding-block: 32px;
+    border-radius: 8px;
+    border: 1px solid $color-primary-grey;
+    cursor: pointer;
+
+    &:hover {
+      background-color: $color-primary-grey;
+    }
+
+    &:active {
+      background-color: $color-primary-grey;
+    }
+
+    &_information_wrapper {
+      display: flex;
+      flex-direction: column;
+      gap: 2px;
+    }
+
+    &_information_title {
+      font-size: 16px;
+      color: $color-text;
+      text-transform: none;
+      font-weight: 500;
+    }
+
+    &_information_date {
+      @include body-text;
+    }
+
+    &_information_cost {
+      @include small-text;
+    }
+
+    &_img {
+      width: 140px;
+      height: 50px;
+
+      @media screen and (max-width: 1024px) {
+        width: 90px;
+        height: 28px;
+      }
+
+      @include on-mobile {
+        width: 140px;
+        height: 50px;
+      }
+    }
+
+    &_price {
+      font-size: 24px;
+      color: $color-text;
+      text-transform: none;
+      font-weight: 600;
+    }
+  }
+
+  &__line {
+    border: none;
+    height: 1px;
+    background-color: $color-primary-grey;
+  }
+
+  &__form_wrapper {
+    display: flex;
+    flex-direction: column;
+    gap: 24px;
+  }
+
+  &__form_wrapper_top {
+    display: flex;
+    flex-direction: column;
+    gap: 12px;
+  }
+
+  &__form_wrapper_inputs {
+    display: flex;
+    flex-direction: row;
+    gap: 12px;
+  }
+
+  &__form_wrapper_courier_forms {
+    display: flex;
+    flex-direction: column;
+    gap: 12px;
+  }
+
+  &__cartItems {
+    grid-column: 1 / -1;
+    height: auto;
+
+    flex-grow: 0;
+
+    @include on-tablet {
+      grid-column: 8 / -1;
+    }
+  }
+
+  &__item {
+    display: flex;
+    flex-direction: column;
+    gap: 20px;
+    border: 1px solid $color-primary-grey;
+    border-radius: 5px;
+    padding: 30px;
+
+    @include on-tablet {
+      flex-direction: row;
+    }
+  }
+
+  &__itemLeft {
+    max-width: 100%;
+
+    @include on-tablet {
+      max-width: 40%;
+    }
+  }
+
+  &__img {
+    width: 100%;
+    object-fit: cover;
+    border-radius: 5px;
+  }
+
+  &__itemRight {
+    display: flex;
+    flex-direction: column;
+    justify-content: space-between;
+    gap: 12px;
+  }
+
+  &__itemRightMain {
+    display: flex;
+    flex-direction: column;
+    gap: 12px;
+  }
+
+  &__itemTop {
+    display: flex;
+    flex-direction: column;
+    justify-content: space-between;
+    gap: 8px;
+  }
+
+  &__sizes {
+    display: flex;
+    flex-direction: row;
+    gap: 4px;
+    align-items: center;
+  }
+
+  &__price {
+    @include header-4;
+    font-weight: 600;
+  }
+
+  &__itemTitle {
+    @include header-4;
+    font-weight: 600;
+  }
+
+  &__bottom {
+    display: flex;
+    flex-direction: column;
+    gap: 4px;
+  }
+
+  &__sizeTitle {
+    @include small-text;
+  }
+
+  &__size {
+    @include small-text;
+    color: $color-text;
+  }
+
+  &__subtotal {
+    display: flex;
+    flex-direction: row;
+    width: 100%;
+    justify-content: space-between;
+  }
+
+  &__priceTotal {
+    @include header-3;
+    font-weight: 600;
+  }
+
+  &__information {
+    display: flex;
+    flex-direction: column;
+    gap: 10px;
+  }
+
+  &__info {
+    display: flex;
+    flex-direction: row;
+    justify-content: space-between;
+  }
+
+  &__infoKey {
+    @include body-text;
+  }
+
+  &__infoValue {
+    font-weight: 500;
+  }
+}
+
+.dropdown {
+  font-family: "TT Firs Neue";
+  color: $color-system-grey;
+  font-size: 16px;
+}
+
+.checkbox {
+  display: flex;
+  align-items: center;
+  gap: 10px;
+}
+
+.checkbox__label {
+  display: flex;
+  align-items: center;
+  cursor: pointer;
+}
+
+.checkbox__index {
+  margin-right: 10px;
+  accent-color: $color-accent;
+  transform: scale(1.38);
+}
