@@ -16,6 +16,9 @@ import { fetchBucket } from "../../features/bucket";
 import { createOrder } from "../../api/orders";
 import { Link, useNavigate } from "react-router-dom";
 import { CartItem } from "../../types/Bucket";
+import { getMyProfile } from "../../api/profile";
+import { useModalContext } from "../../context/ModalContext";
+import { Profile } from "../../types/Profile";
 
 type CheckoutFormData = {
   cart_id: string;
@@ -48,6 +51,8 @@ export const CheckoutPage = () => {
 
   const { bucket } = useAppSelector((state: RootState) => state.bucket);
 
+  const { showModal } = useModalContext();
+
   const cart_id = bucket?.id;
 
   useEffect(() => {
@@ -56,14 +61,58 @@ export const CheckoutPage = () => {
     }
   }, [dispatch, isAuth]);
 
+  const defaultValues = {
+    cart_id: "",
+    name: "",
+    surname: "",
+    phone_number: "",
+    delivery_type: false,
+    shipment_method: "",
+    city: "",
+    state: "",
+    street: "",
+    apartment: "",
+    branch_id: "",
+    branch_address: "",
+    terms: false,
+    cardNumber: "",
+    expirationDate: "",
+    securityCode: "",
+  };
+
   const {
     register,
     handleSubmit,
     formState: { errors },
     watch,
+    reset,
   } = useForm<CheckoutFormData>({
     resolver: zodResolver(checkoutSchema),
+    defaultValues,
   });
+
+  useEffect(() => {
+    const fetchProfile = async () => {
+      try {
+        const data = await getMyProfile();
+
+        reset({
+          ...defaultValues,
+          name: data?.name || "",
+          surname: data?.surname || "",
+          phone_number: data?.phone_number || "",
+          city: data?.city,
+          state: data?.state,
+          street: data?.street,
+          apartment: data?.apartment,
+        });
+      } catch (error) {
+        showModal("Error!", "Failed to load profile.", "error");
+      }
+    };
+
+    fetchProfile();
+  }, []);
 
   const shipment_method = watch("shipment_method");
   const deliveryType = watch("delivery_type");
