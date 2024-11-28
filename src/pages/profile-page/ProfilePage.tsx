@@ -51,12 +51,7 @@ const ProfilePage: React.FC = () => {
 
     if(isChanged) {
       try {
-        if (user.username !== initialProfile?.user.username || user.email !== initialProfile?.user.email) {
-          await editUser(user, user.id);
-        }
-    
         await editMyProfile(profile, id);
-
 
         showModal(ProfilePageMessages.PROFILE_UPDATE_SUCCESS);
     
@@ -137,7 +132,7 @@ const ProfilePage: React.FC = () => {
                 <div className={styles.profile__info}>
                   <UploadAvatar profile={profile} setIsImageChanged={(value: boolean) => { setIsImageChanged(value) }} src={src} preview={preview} setSrc={(value: string | undefined) => {setSrc(value)}} setPreview={(value: string | undefined) => {setPreview(value)}} imageUrl={imageUrl} />
                   <div className={styles.profile__block}>
-                    <div className={styles.profile__username}>{profile?.user?.username}</div>
+                    <div className={styles.profile__username}>{profile?.user?.username} {profile?.user?.role?.name}</div>
                     <div className={`${styles.profile__id} text-muted`}>ID: {profile?.id}</div>
                     <ChangePassword />
                   </div>
@@ -165,21 +160,6 @@ const ProfilePage: React.FC = () => {
                       onChange={handleChange}
                     />
                   </div>
-                  <div className={styles.profile__group}>
-                    <label htmlFor="username" className={styles.profile__label}>Username</label>
-                    <input
-                      type="text"
-                      id="username"
-                      name="username"
-                      className={styles.profile__input}
-                      value={profile.user.username ?? ""}
-                      onChange={handleChange}
-                    />
-                  </div>
-                  <div className={styles.profile__group}>
-                    <label className={styles.profile__label}>Role</label>
-                    <span className={styles.profile__input}>{profile?.user?.role?.name}</span>
-                  </div>
                 </div>
               </div>
             </div>
@@ -189,14 +169,7 @@ const ProfilePage: React.FC = () => {
                 <div className={styles.profile__inputs}>
                   <div className={styles.profile__group}>
                     <label htmlFor="email" className={styles.profile__label}>Email</label>
-                    <input
-                      type="text"
-                      id="email"
-                      name="email"
-                      className={styles.profile__input}
-                      value={profile.user.email ?? ""}
-                      onChange={handleChange}
-                    />
+                    <span className={styles.profile__input}>{profile.user.email ?? ""}</span>
                   </div>
                   <div className={styles.profile__group}>
                     <label htmlFor="phone_number" className={styles.profile__label}>Phone</label>
