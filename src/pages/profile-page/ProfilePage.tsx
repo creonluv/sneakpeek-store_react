@@ -6,6 +6,7 @@ import { getMyProfile, editMyProfile, editMyImage } from "../../api/profile";
 import { editUser } from "../../api/user";
 
 import { BASE_URL } from "../../shared/utils/fetchClient";
+import { ProfilePageMessages } from "../../shared/utils/modalMessages";
 
 import { Profile } from "../../types/Profile";
 
@@ -55,12 +56,14 @@ const ProfilePage: React.FC = () => {
         }
     
         await editMyProfile(profile, id);
-        showModal("Success!", "Profile was successfully updated.", "success");
+
+
+        showModal(ProfilePageMessages.PROFILE_UPDATE_SUCCESS);
     
         setInitialProfile(profile);
         setRefreshProfile(prev => !prev);
       } catch (error) {
-        showModal("Error!", "Failed to update profile.", "error");
+        showModal(ProfilePageMessages.PROFILE_UPDATE_ERROR);
         setProfile(initialProfile);
       } finally {
         setIsChanged(false);
@@ -73,7 +76,7 @@ const ProfilePage: React.FC = () => {
         setIsImageChanged(false);
         setRefreshProfile(prev => !prev);
       } catch (error) {
-        showModal("Error!", "Failed to update profile image.", "error");
+        showModal(ProfilePageMessages.PROFILE_IMAGE_ERROR);
       }
     }
   };
@@ -94,7 +97,7 @@ const ProfilePage: React.FC = () => {
         setProfile(data);
         setInitialProfile(data);
       } catch (error) {
-        showModal("Error!", "Failed to load profile.", "error");
+        showModal(ProfilePageMessages.PROFILE_LOAD_ERROR);
       }
     };
 

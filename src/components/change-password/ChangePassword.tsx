@@ -5,6 +5,8 @@ import { useModalContext } from '../../context/ModalContext';
 
 import { changePassword } from "../../api/user";
 
+import { ChangePasswordMessages } from '../../shared/utils/modalMessages';
+
 import close from "../../assets/img/icons/close.svg";
 
 import styles from "./ChangePassword.module.scss";
@@ -45,19 +47,19 @@ export const ChangePassword = () => {
 
     try {
       if (!old_password || !new_password || !confirm_new_password) {
-        showModal('Error!', 'All fields are required!', 'error');
+        showModal(ChangePasswordMessages.ALL_FIELDS_REQUIRED);
         return;
       }
   
       if (new_password !== confirm_new_password) {
-        showModal('Error!', 'New password and confirmation do not match!', 'error');
+        showModal(ChangePasswordMessages.INVALID_PASSWORD_CONFIRMATION);
         return;
       }
 
       await changePassword({ old_password, new_password });
-      showModal('Success!', 'Your password has been successfully changed.', 'success');
+      showModal(ChangePasswordMessages.CHANGE_PASSWORD_SUCCESS);
     } catch (error) {
-      showModal('Error!', 'There was an error changing your password.', 'error');
+      showModal(ChangePasswordMessages.CHANGE_PASSWORD_ERROR);
     } finally {
       closeModal();
     }

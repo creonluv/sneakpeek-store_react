@@ -6,6 +6,8 @@ import { login } from "../../api/auth";
 import { useAuthContext } from "../../context/AuthContext";
 import { useModalContext } from '../../context/ModalContext';
 
+import { LoginPageMessages } from "../../shared/utils/modalMessages";
+
 import { AuthData } from "../../types/Auth";
 
 import logo from "../../assets/img/logo.svg";
@@ -36,9 +38,9 @@ const LoginPage: React.FC = () => {
     try {
       await login(formData);
       signin();
-      showModal("Success!", "Login successful. Redirecting to the homepage...", "success");
+      showModal(LoginPageMessages.LOGIN_SUCCESS);
     } catch (error) {
-      showModal("Error!", "An error occurred during login.", "error");
+      showModal(LoginPageMessages.LOGIN_ERROR);
     }
   };
 

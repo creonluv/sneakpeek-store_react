@@ -8,14 +8,14 @@ import styles from "./GlobalModal.module.scss";
 
 interface GlobalModalProps {
   title: string;
-  text: string;
+  description: string;
   state: ModalState;
   hideModal: () => void;
 }
 
 Modal.setAppElement('#root');
 
-export const GlobalModal = ({ title, text, state, hideModal }: GlobalModalProps) => {
+export const GlobalModal = ({ title, description, state, hideModal }: GlobalModalProps) => {
   const getStateStyle = () => {
     switch (state) {
       case 'error':
@@ -45,7 +45,7 @@ export const GlobalModal = ({ title, text, state, hideModal }: GlobalModalProps)
         <h3 className={`${styles.modal__title} title-3`}>{ title }</h3>
         <img className={styles.modal__close} src={close} alt="Close" onClick={hideModal} />
       </div>
-      <p>{ text }</p>
+      <p>{ description }</p>
     </Modal>
   );
 };

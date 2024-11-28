@@ -6,6 +6,8 @@ import { register } from "../../api/auth";
 import { useAuthContext } from "../../context/AuthContext";
 import { useModalContext } from '../../context/ModalContext';
 
+import { RegisterPageMessages } from "../../shared/utils/modalMessages";
+
 import logo from "../../assets/img/logo.svg";
 
 import styles from "./RegisterPage.module.scss";
@@ -41,7 +43,7 @@ const RegisterPage: React.FC = () => {
     e.preventDefault();
   
     if (!ref.current?.checked) {
-      showModal("Warning!", "You must agree to the terms and conditions.", "warning");
+      showModal(RegisterPageMessages.REGISTER_WARNING);
       return;
     }
   
@@ -49,9 +51,9 @@ const RegisterPage: React.FC = () => {
       await register(formData);
       signin();
   
-      showModal("Success!", "Registration successful. Redirecting to the homepage...", "success");
+      showModal(RegisterPageMessages.REGISTER_SUCCESS);
     } catch {
-      showModal("Error!", "An error occurred during registration.", "error");
+      showModal(RegisterPageMessages.REGISTER_ERROR);
     }
   };
   
