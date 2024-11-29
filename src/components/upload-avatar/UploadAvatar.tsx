@@ -7,7 +7,7 @@ import { Profile } from "../../types/Profile";
 import noPhoto from "../../assets/img/no-photo.jpg";
 import close from "../../assets/img/icons/close.svg";
 
-import styles from "./UploadAvatar.module.scss";
+import "./UploadAvatar.scss";
 
 interface UploadAvatarProps {
   profile: Profile,
@@ -42,8 +42,8 @@ export const UploadAvatar: React.FC<UploadAvatarProps> = ({ profile, setIsImageC
   }, [profile]);
 
   return (
-    <div className={styles.avatar}>
-      <img className={styles.avatar__img} src={preview || noPhoto} alt="User" onClick={openModal} />
+    <div className="avatar">
+      <img className="avatar__img" src={preview || noPhoto} alt="User" onClick={openModal} />
       <Modal
         isOpen={isOpenModal}
         onRequestClose={closeModal}
@@ -51,10 +51,10 @@ export const UploadAvatar: React.FC<UploadAvatarProps> = ({ profile, setIsImageC
           overlay: { backgroundColor: "rgba(0, 0, 0, 0.5)" },
           content: { color: "black", margin: "auto", padding: "20px", width: "600px", height: "520px", overflow: "hidden", display: "flex", flexDirection: "column", justifyContent: "space-between" },
         }}
-        >
-        <div className={styles.avatar__control}>
-          <h3 className={`${styles.avatar__title} title-3`}>Update image</h3>
-          <img className={styles.avatar__close} src={close} alt="Close" onClick={closeModal} />
+      >
+        <div className="avatar__control">
+          <h3 className="avatar__title title-3">Update image</h3>
+          <img className="avatar__close" src={close} alt="Close" onClick={closeModal} />
         </div>
         <Avatar
           width={558}

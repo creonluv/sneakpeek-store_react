@@ -9,7 +9,7 @@ import { ChangePasswordMessages } from '../../shared/utils/modalMessages';
 
 import close from "../../assets/img/icons/close.svg";
 
-import styles from "./ChangePassword.module.scss";
+import "./ChangePassword.scss";
 
 interface PasswordData {
   old_password: string,
@@ -50,7 +50,7 @@ export const ChangePassword = () => {
         showModal(ChangePasswordMessages.ALL_FIELDS_REQUIRED);
         return;
       }
-  
+
       if (new_password !== confirm_new_password) {
         showModal(ChangePasswordMessages.INVALID_PASSWORD_CONFIRMATION);
         return;
@@ -67,7 +67,7 @@ export const ChangePassword = () => {
 
   return (
     <div>
-      <button className="button button_sm button_ghost" onClick={openModal}>
+      <button className="button button_sm button_default" onClick={openModal}>
         Change password
       </button>
       <Modal
@@ -75,25 +75,65 @@ export const ChangePassword = () => {
         onRequestClose={closeModal}
         style={{
           overlay: { backgroundColor: "rgba(0, 0, 0, 0.5)" },
-          content: { color: "black", margin: "auto", padding: "20px", width: "500px", height: "min-content" },
-        }}>
-        <div className={styles.changepassword__control}>
-          <h3 className={`${styles.changepassword__title} title-3`}>Change password</h3>
-          <img className={styles.changepassword__close} src={close} alt="Close" onClick={closeModal} />
+          content: {
+            color: "black",
+            margin: "auto",
+            padding: "20px",
+            width: "500px",
+            height: "min-content",
+          },
+        }}
+      >
+        <div className="changepassword__control">
+          <h3 className="changepassword__title title-3">Change password</h3>
+          <img
+            className="changepassword__close"
+            src={close}
+            alt="Close"
+            onClick={closeModal}
+          />
         </div>
         <form onSubmit={handleSubmit}>
           <div className="group">
-            <input id="old_password" className="input" placeholder="Old password" name="old_password" value={formData.old_password} type="password" onChange={handleChange} />
-            <input id="new_password" className="input" placeholder="New password" name="new_password" value={formData.new_password} type="password" onChange={handleChange} />
-            <input id="confirm_new_password" className="input" placeholder="Confirm new password" name="confirm_new_password" value={formData.confirm_new_password} type="password"onChange={handleChange} />
+            <input
+              id="old_password"
+              className="input"
+              placeholder="Old password"
+              name="old_password"
+              value={formData.old_password}
+              type="password"
+              onChange={handleChange}
+            />
+            <input
+              id="new_password"
+              className="input"
+              placeholder="New password"
+              name="new_password"
+              value={formData.new_password}
+              type="password"
+              onChange={handleChange}
+            />
+            <input
+              id="confirm_new_password"
+              className="input"
+              placeholder="Confirm new password"
+              name="confirm_new_password"
+              value={formData.confirm_new_password}
+              type="password"
+              onChange={handleChange}
+            />
           </div>
-          <div className={styles.changepassword__button}>
-            <button className="button button_lg button_default button_full-size" type="submit">
+          <div className="changepassword__button">
+            <button
+              className="button button_lg button_default button_full-size"
+              type="submit"
+            >
               Send
             </button>
           </div>
         </form>
       </Modal>
     </div>
+
   )
 }

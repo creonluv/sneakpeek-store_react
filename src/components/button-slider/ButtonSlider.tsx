@@ -1,5 +1,4 @@
-import styles from "../product-slider/ProductSlider.module.scss";
-import classNames from "classnames";
+import "../product-slider/ProductSlider.scss";
 
 import scrollingArrows from "../../assets/img/icons/scrollingArrows.svg";
 
@@ -18,25 +17,16 @@ export const ButtonSlider: React.FC<Props> = ({
     <>
       <button
         onClick={handlePrevClick}
-        className={classNames(styles.goods__slider, {
-          [styles.goods__slider_disabled]: scrollPosition === 0,
-        })}
+        className={`goods__slider ${scrollPosition === 0 ? "goods__slider_disabled" : ""}`}
       >
-        <img className={styles.goods__button} src={scrollingArrows} alt="" />
+        <img className="goods__button" src={scrollingArrows} alt="" />
       </button>
 
       <button
         onClick={handleNextClick}
-        className={classNames(styles.goods__slider)}
+        className="goods__slider"
       >
-        <img
-          className={classNames(
-            styles.goods__button,
-            styles.goods__button_right
-          )}
-          src={scrollingArrows}
-          alt=""
-        />
+        <img className={`goods__button goods__button_right`} src={scrollingArrows} alt="" />
       </button>
     </>
   );

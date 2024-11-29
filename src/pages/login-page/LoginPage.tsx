@@ -12,7 +12,7 @@ import { AuthData } from "../../types/Auth";
 
 import logo from "../../assets/img/logo.svg";
 
-import styles from "./LoginPage.module.scss";
+import "./LoginPage.scss";
 
 const LoginPage: React.FC = () => {
   const navigate = useNavigate();
@@ -32,7 +32,6 @@ const LoginPage: React.FC = () => {
     }));
   };
 
-  // TODO
   const handleSubmit = async (e: FormEvent<HTMLFormElement>) => {
     e.preventDefault();
 
@@ -52,27 +51,24 @@ const LoginPage: React.FC = () => {
   }, [isAuth]);
 
   return (
-    <section className={styles.authorization}>
-      <div className={styles.authorization__container}>
-        <div className={styles.authorization__body}>
-          <form
-            className={`${styles.authorization__form} ${styles.form}`}
-            onSubmit={handleSubmit}
-          >
-            <div className={styles.form__title}>
-              <img className={styles.form__logo} src={logo} alt="logo" />
-              <h1 className={`${styles.form__title} title-2`}>Login</h1>
+    <section className="authorization">
+      <div className="authorization__container">
+        <div className="authorization__body">
+          <form className="authorization__form form" onSubmit={handleSubmit}>
+            <div className="form__title">
+              <img className="form__logo" src={logo} alt="logo" />
+              <h1 className="form__title title-2">Login</h1>
               <p className="text-muted">
                 Don't have an account?{" "}
-                <Link to="/register" className={styles.form__link}>
+                <Link to="/register" className="form__link">
                   Register here
                 </Link>
               </p>
             </div>
-            <div className={`${styles.form__group} group`}>
+            <div className="form__group group">
               <input
                 type="text"
-                className={`${styles.form__input} input`}
+                className="form__input input"
                 placeholder="Username"
                 name="username"
                 value={formData.username}
@@ -81,7 +77,7 @@ const LoginPage: React.FC = () => {
               />
               <input
                 type="password"
-                className={`${styles.form__input} input`}
+                className="form__input input"
                 placeholder="Password"
                 name="password"
                 value={formData.password}
@@ -89,8 +85,8 @@ const LoginPage: React.FC = () => {
                 required
               />
             </div>
-            <div className={styles.form__button}>
-              <div className={`${styles.form__button} button-wrapper`}>
+            <div className="form__button">
+              <div className="form__button button-wrapper">
                 <button
                   className="button button_lg button_default button_full-size"
                   type="submit"
@@ -103,6 +99,7 @@ const LoginPage: React.FC = () => {
         </div>
       </div>
     </section>
+
   );
 };
 

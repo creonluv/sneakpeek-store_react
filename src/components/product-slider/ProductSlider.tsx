@@ -1,5 +1,5 @@
 import { useCallback, useEffect, useRef, useState } from "react";
-import styles from "./ProductSlider.module.scss";
+import "./ProductSlider.scss";
 import { ProductCard } from "../product-card";
 import { ButtonSlider } from "../button-slider";
 import { SliderIndicator } from "./slider-indicator";
@@ -137,16 +137,16 @@ export const ProductSlider: React.FC<Props> = ({
     type === "normal"
       ? "New Collection"
       : type === "sale"
-      ? "Best Seller"
-      : type === "category"
-      ? "Categories"
-      : "You May Also Like";
+        ? "Best Seller"
+        : type === "category"
+          ? "Categories"
+          : "You May Also Like";
 
   return (
-    <section className={styles.goods}>
-      <div className={styles.goods__header}>
-        <h2 className={styles.goods__title}>{titleOfBlock}</h2>
-        <div className={styles.goods__buttons}>
+    <section className="goods">
+      <div className="goods__header">
+        <h2 className="goods__title">{titleOfBlock}</h2>
+        <div className="goods__buttons">
           <ButtonSlider
             scrollPosition={scrollPosition}
             handlePrevClick={handlePrevClick}
@@ -154,19 +154,19 @@ export const ProductSlider: React.FC<Props> = ({
           />
         </div>
       </div>
-      <div className={styles.goods__cards_wrapper}>
-        <div className={styles.goods__cards} ref={productsRef}>
+      <div className="goods__cards-wrapper">
+        <div className="goods__cards" ref={productsRef}>
           {products
             ? products.map((product) => (
-                <div key={product.id} className={styles.goods__card}>
-                  <ProductCard product={product} type={type} id={product.id} />
-                </div>
-              ))
+              <div key={product.id} className="goods__card">
+                <ProductCard product={product} type={type} id={product.id} />
+              </div>
+            ))
             : categories?.map((product) => (
-                <div key={product.id} className={styles.goods__card}>
-                  <ProductCard category={product} type={type} id={product.id} />
-                </div>
-              ))}
+              <div key={product.id} className="goods__card">
+                <ProductCard category={product} type={type} id={product.id} />
+              </div>
+            ))}
         </div>
       </div>
 

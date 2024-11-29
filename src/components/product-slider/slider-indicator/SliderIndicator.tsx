@@ -1,4 +1,4 @@
-import styles from "./SliderIndicator.module.scss";
+import "./SliderIndicator.scss";
 
 type Props = {
   totalCards: number;
@@ -14,10 +14,10 @@ export const SliderIndicator: React.FC<Props> = ({
   const progress = ((startIndex + cardsInView) / totalCards) * 100;
 
   return (
-    <div className={styles.indicator}>
-      <div className={styles.indicator__progressBar}>
+    <div className="indicator">
+      <div className="indicator__progressBar">
         <div
-          className={styles.indicator__progress}
+          className="indicator__progress"
           style={{ width: `${progress}%` }}
         ></div>
       </div>

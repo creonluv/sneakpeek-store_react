@@ -1,4 +1,4 @@
-import styles from "./PromoTimer.module.scss";
+import "./PromoTimer.scss";
 import sale from "../../assets/img/sale/sale-1.jpg";
 import arrowWhite from "../../assets/img/icons/arrow-white.svg";
 
@@ -40,29 +40,29 @@ export const PromoTimer = () => {
   // });
 
   return (
-    <section className={styles.sale}>
-      <img className={styles.sale__img} src={sale} alt="sale-1.jpg" />
+    <section className="sale">
+      <img className="sale__img" src={sale} alt="sale-1.jpg" />
 
-      <div className={styles.sale__content}>
-        <div className={styles.sale__block}>
-          <h2 className={styles.sale__title}>
+      <div className="sale__content">
+        <div className="sale__block">
+          <h2 className="sale__title">
             Get 30% sale for summer collection
           </h2>
-          <p className={styles.sale__text}>
-            The most wanted styles is waiting for you right now. Find the best
+          <p className="sale__text">
+            The most wanted styles are waiting for you right now. Find the best
             styles of modern outfits for you at one place.
           </p>
         </div>
 
-        <hr className={styles.sale__hr} />
+        <hr className="sale__hr" />
 
-        <div className={styles.timer}>
-          <div className={styles.timer__items}>{}</div>
+        <div className="timer">
+          <div className="timer__items">{/* Timer content goes here */}</div>
         </div>
 
-        <div className={styles.sale__button}>
+        <div className="sale__button">
           <button
-            className={`button button_lg button_default button_full-size`}
+            className="button button_lg button_default button_full-size"
             type="submit"
           >
             Buy Now

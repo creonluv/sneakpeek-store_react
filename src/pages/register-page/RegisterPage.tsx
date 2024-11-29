@@ -10,7 +10,7 @@ import { RegisterPageMessages } from "../../shared/utils/modalMessages";
 
 import logo from "../../assets/img/logo.svg";
 
-import styles from "./RegisterPage.module.scss";
+import "./RegisterPage.scss";
 
 interface FormData {
   username: string;
@@ -64,27 +64,24 @@ const RegisterPage: React.FC = () => {
   }, [isAuth]);
 
   return (
-    <section className={styles.authorization}>
-      <div className={styles.authorization__container}>
-        <div className={styles.authorization__body}>
-          <form
-            className={`${styles.authorization__form} ${styles.form}`}
-            onSubmit={handleSubmit}
-          >
-            <div className={styles.form__title}>
-              <img className={styles.form__logo} src={logo} alt="logo" />
-              <h1 className={`${styles.form__title} title-2`}>Registration</h1>
+    <section className="authorization">
+      <div className="authorization__container">
+        <div className="authorization__body">
+          <form className="authorization__form form" onSubmit={handleSubmit}>
+            <div className="form__title">
+              <img className="form__logo" src={logo} alt="logo" />
+              <h1 className="form__title title-2">Registration</h1>
               <p className="text-muted">
                 Already have an account?{" "}
-                <Link to="/login" className={styles.form__link}>
+                <Link to="/login" className="form__link">
                   Log in
                 </Link>
               </p>
             </div>
-            <div className={`${styles.form__group} group`}>
+            <div className="form__group group">
               <input
                 type="text"
-                className={`${styles.form__input} input`}
+                className="form__input input"
                 placeholder="Username"
                 name="username"
                 value={formData.username}
@@ -93,7 +90,7 @@ const RegisterPage: React.FC = () => {
               />
               <input
                 type="email"
-                className={`${styles.form__input} input`}
+                className="form__input input"
                 placeholder="Email"
                 name="email"
                 value={formData.email}
@@ -102,7 +99,7 @@ const RegisterPage: React.FC = () => {
               />
               <input
                 type="password"
-                className={`${styles.form__input} input`}
+                className="form__input input"
                 placeholder="Password"
                 name="password"
                 value={formData.password}
@@ -110,7 +107,7 @@ const RegisterPage: React.FC = () => {
                 required
               />
             </div>
-            <div className={`${styles.form__checkbox} checkbox`}>
+            <div className="form__checkbox checkbox">
               <input
                 type="checkbox"
                 className="checkbox__index"
@@ -118,11 +115,10 @@ const RegisterPage: React.FC = () => {
                 ref={ref}
               />
               <label className="checkbox__label" htmlFor="agree">
-                I have read and agree to the terms & conditions and privacy
-                policy
+                I have read and agree to the terms & conditions and privacy policy
               </label>
             </div>
-            <div className={styles.form__button}>
+            <div className="form__button">
               <button
                 className="button button_lg button_default button_full-size"
                 type="submit"
@@ -134,6 +130,7 @@ const RegisterPage: React.FC = () => {
         </div>
       </div>
     </section>
+
   );
 };
 

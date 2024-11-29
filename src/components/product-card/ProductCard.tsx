@@ -1,5 +1,5 @@
 import { Link } from "react-router-dom";
-import styles from "./ProductCard.module.scss";
+import "./ProductCard.scss";
 import { RootState } from "../../app/store";
 import clockIcon from "../../assets/img/icons/clock.svg";
 import arrowIcon from "../../assets/img/icons/arrow.svg";
@@ -56,66 +56,64 @@ export const ProductCard: React.FC<Props> = ({
   );
 
   return (
-    <div className={styles.card}>
-      <Link className={styles.card__link} to={`/product/${id}`}>
+    <div className="card">
+      <Link className="card__link" to={`/product/${id}`}>
         <img
-          className={styles.card__img}
+          className="card__img"
           src={
             type !== "category"
               ? `https://localhost:9091/api/images/${product?.main_photo_id}`
               : category?.id
-              ? photosOfCategory[category.id - 1]
-              : photosOfCategory[0]
+                ? photosOfCategory[category.id - 1]
+                : photosOfCategory[0]
           }
           alt="img-of-item"
         />
       </Link>
 
-      <Link className={styles.card__linkInfo} to={`/product/${id}`}>
-        <div className={styles.card__information}>
-          <div className={styles.card__description}>
+      <Link className="card__linkInfo" to={`/product/${id}`}>
+        <div className="card__information">
+          <div className="card__description">
             {product && (
-              <p className={styles.card__producer}>
+              <p className="card__producer">
                 {product?.producer?.name || "Unknown Producer"}
               </p>
             )}
 
-            <p className={styles.card__title}>
+            <p className="card__title">
               {product && (product?.name || "Unnamed Product")}
               {category && category?.description}
             </p>
           </div>
-          {product && (
-            <p className={styles.card__price}>${product?.price || "N/A"}</p>
-          )}
+          {product && <p className="card__price">${product?.price || "N/A"}</p>}
         </div>
       </Link>
 
-      <div className={styles.card__infolabel}>
+      <div className="card__infolabel">
         {type !== "category" ? "new" : category?.infolabel || "N/A"}
 
         <img
-          className={styles.card__infolabel_icon}
+          className="card__infolabel_icon"
           src={type !== "category" ? clockIcon : arrowIcon}
           alt=""
         />
       </div>
 
       {isAuth && product && (
-        <div className={styles.card__button}>
+        <div className="card__button">
           <button
-            className={styles.card__buttonIcon}
+            className="card__buttonIcon"
             onClick={() => handleFavButton(id)}
           >
             {elemementInFavourite?.id ? (
               <img
-                className={styles.card__buttonIconImg}
+                className="card__buttonIconImg"
                 src={heartPressedIcon}
                 alt=""
               />
             ) : (
               <img
-                className={styles.card__buttonIconImg}
+                className="card__buttonIconImg"
                 src={heartIcon}
                 alt=""
               />
@@ -124,5 +122,6 @@ export const ProductCard: React.FC<Props> = ({
         </div>
       )}
     </div>
+
   );
 };
