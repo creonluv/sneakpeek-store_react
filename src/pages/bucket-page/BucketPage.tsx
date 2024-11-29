@@ -2,7 +2,7 @@ import { ProductSlider } from "../../components/product-slider";
 import styles from "./BucketPage.module.scss";
 import { useAppDispatch, useAppSelector } from "../../app/hooks";
 import { RootState } from "../../app/store";
-import { useCallback, useEffect } from "react";
+import { useCallback, useEffect, useState } from "react";
 import { fetchAllProducts } from "../../features/products";
 import {
   deleteItemInBucket,
@@ -16,20 +16,25 @@ import del from "../../assets/img/icons/del.svg";
 import { Link, useNavigate } from "react-router-dom";
 import { useAuthContext } from "../../context/AuthContext";
 import arrowWhite from "../../assets/img/icons/arrow-white.svg";
+import { useModalContext } from "../../context/ModalContext";
 
 export const BucketPage = () => {
   const dispatch = useAppDispatch();
   const navigate = useNavigate();
 
   const { products } = useAppSelector((state: RootState) => state.products);
-  const { bucket, loading } = useAppSelector(
+  const { bucket, loading, messages } = useAppSelector(
     (state: RootState) => state.bucket
   );
   const { isAuth } = useAuthContext();
-
+  const { showModal } = useModalContext();
+  const [, setMessageCounter] = useState(0);
+  const [wasModalShown, setWasModalShown] = useState(false);
   const debouncedUpdateItemInBucket = debounce((dispatch, payload) => {
     dispatch(updateItemInBucket(payload));
   }, 500);
+
+  console.log(messages);
 
   useEffect(() => {
     if (isAuth) {
@@ -38,7 +43,25 @@ export const BucketPage = () => {
     }
   }, [dispatch]);
 
-  console.log(bucket);
+  useEffect(() => {
+    if (!loading && messages && !wasModalShown) {
+      showModal(messages);
+      setWasModalShown(true);
+
+      const timer = setTimeout(() => {
+        setWasModalShown(false);
+      }, 3000);
+
+      return () => clearTimeout(timer);
+    }
+  }, [messages, loading, wasModalShown, showModal]);
+
+  useEffect(() => {
+    if (messages) {
+      setMessageCounter((prev) => prev + 1);
+      setWasModalShown(false);
+    }
+  }, [messages]);
 
   const handleCounter = useCallback(
     (product: CartItem, isIncrement: boolean) => {

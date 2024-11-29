@@ -19,12 +19,16 @@ import {
 } from "../../features/favourite";
 import arrowWhite from "../../assets/img/icons/arrow-white.svg";
 import { useAuthContext } from "../../context/AuthContext";
+import { useModalContext } from "../../context/ModalContext";
 
 export const ProductPage = () => {
   const dispatch = useAppDispatch();
   const { productId } = useParams();
   const [rndNum, setRndNum] = useState(0);
   const [activeTab, setActiveTab] = useState(0);
+  const { showModal } = useModalContext();
+  const [, setMessageCounter] = useState(0);
+  const [wasModalShown, setWasModalShown] = useState(false);
 
   const navigate = useNavigate();
 
@@ -34,7 +38,9 @@ export const ProductPage = () => {
 
   const { favourite } = useAppSelector((state: RootState) => state.favourite);
   console.log(favourite);
-  const { products } = useAppSelector((state: RootState) => state.products);
+  const { products, loading, messages } = useAppSelector(
+    (state: RootState) => state.products
+  );
   const { bucket } = useAppSelector((state: RootState) => state.bucket);
 
   const { isAuth } = useAuthContext();
@@ -44,6 +50,26 @@ export const ProductPage = () => {
   useEffect(() => {
     dispatch(fetchBucket() as any);
   }, [dispatch]);
+
+  useEffect(() => {
+    if (!loading && messages && !wasModalShown) {
+      showModal(messages);
+      setWasModalShown(true);
+
+      const timer = setTimeout(() => {
+        setWasModalShown(false);
+      }, 3000);
+
+      return () => clearTimeout(timer);
+    }
+  }, [messages, loading, wasModalShown, showModal]);
+
+  useEffect(() => {
+    if (messages) {
+      setMessageCounter((prev) => prev + 1);
+      setWasModalShown(false);
+    }
+  }, [messages]);
 
   const instanceOfItemInBucket = bucket?.cart_items.find(
     (item) => item.product_instance.product.id === Number(productId)

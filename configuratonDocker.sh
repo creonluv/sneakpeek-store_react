@@ -14,8 +14,10 @@ docker rm -f sneakpeek-app
 docker run --name sneakpeek-postgres --network sneakpeek-network -e POSTGRES_USER=postgres -e POSTGRES_PASSWORD=postgres -e POSTGRES_DB=dbprod -p 5433:5432 -d postgres:latest
 
 # Запускаємо контейнер sneakpeek-app
-# docker run -it --name sneakpeek-app --network sneakpeek-network -p 8443:8443 sneakpeek-image --spring.profiles.active=prod --myjwttoken.app.jwt.expiration-ms=120000 --myjwttoken.app.jwt.refresh-token.expiration-ms=240000
-docker run -it --name sneakpeek-app --network sneakpeek-network -p 8443:8443 sneakpeek-image --spring.profiles.active=prod
+docker run -it --name sneakpeek-app --network sneakpeek-network -p 9091:9091 sneakpeek-image --spring.profiles.active=prod
 
-# Очікуємо на введення від користувача, щоб не закривати термінал
-read -p "Press any key to exit..."
+# Очікуємо натискання клавіші (для зупинки контейнерів після запуску)
+read -p "Press any key to continue..."
+
+# Видаляємо контейнер sneakpeek-postgres після завершення
+docker rm -f sneakpeek-postgres

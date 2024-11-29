@@ -12,17 +12,18 @@ import {
   itemInBucket,
 } from "../types/Bucket";
 import { PayloadAction, createSlice, createAsyncThunk } from "@reduxjs/toolkit";
+import { BucketPageMessages } from "../shared/utils/modalMessages";
 
 export type BucketState = {
   bucket: Bucket | null;
   loading: boolean;
-  error: string;
+  messages: BucketPageMessages | null;
 };
 
 const initialState: BucketState = {
   bucket: null,
   loading: false,
-  error: "",
+  messages: null,
 };
 
 export const fetchBucket = createAsyncThunk<Bucket, void>(
@@ -120,7 +121,6 @@ export const bucketSlice = createSlice({
     builder
       .addCase(fetchBucket.pending, (state) => {
         state.loading = true;
-        state.error = "";
       })
       .addCase(
         fetchBucket.fulfilled,
@@ -131,11 +131,10 @@ export const bucketSlice = createSlice({
       )
       .addCase(fetchBucket.rejected, (state) => {
         state.loading = false;
-        state.error = "Error!";
+        state.messages = BucketPageMessages.FETCH_BUCKET_ERROR;
       })
       .addCase(toggleItemInBucket.pending, (state) => {
         state.loading = true;
-        state.error = "";
       })
       .addCase(
         toggleItemInBucket.fulfilled,
@@ -143,12 +142,13 @@ export const bucketSlice = createSlice({
           state.loading = false;
 
           if (action.payload === "error") {
-            state.error = "Error!";
+            state.messages = BucketPageMessages.TOGGLE_BUCKET_ERROR;
           } else if (action.payload.action === "added") {
             const newItem = action.payload.item;
             if (state.bucket && state.bucket.cart_items) {
               state.bucket.cart_items.push(newItem);
             }
+            state.messages = BucketPageMessages.TOGGLE_BUCKET_SUCCESS;
           } else if (action.payload.action === "removed") {
             const itemId = action.payload.id;
             if (state.bucket && state.bucket.cart_items) {
@@ -161,11 +161,10 @@ export const bucketSlice = createSlice({
       )
       .addCase(toggleItemInBucket.rejected, (state) => {
         state.loading = false;
-        state.error = "Error!";
+        state.messages = BucketPageMessages.TOGGLE_BUCKET_ERROR;
       })
       .addCase(updateItemInBucket.pending, (state) => {
         state.loading = true;
-        state.error = "";
       })
       .addCase(
         updateItemInBucket.fulfilled,
@@ -173,7 +172,7 @@ export const bucketSlice = createSlice({
           state.loading = false;
 
           if (action.payload === "error") {
-            state.error = "Error!";
+            state.messages = BucketPageMessages.UPDATE_BUCKET_ERROR;
           } else if (action.payload.action === "updated") {
             const updatedItem = action.payload.item;
 
@@ -191,12 +190,11 @@ export const bucketSlice = createSlice({
       )
       .addCase(updateItemInBucket.rejected, (state) => {
         state.loading = false;
-        state.error = "Error!";
+        state.messages = BucketPageMessages.UPDATE_BUCKET_ERROR;
       })
 
       .addCase(deleteItemInBucket.pending, (state) => {
         state.loading = true;
-        state.error = "";
       })
       .addCase(
         deleteItemInBucket.fulfilled,
@@ -204,7 +202,7 @@ export const bucketSlice = createSlice({
           state.loading = false;
 
           if (action.payload === "error") {
-            state.error = "Error!";
+            state.messages = BucketPageMessages.DELETE_BUCKET_ERROR;
           } else if (action.payload.action === "removed") {
             const itemId = action.payload.id;
 
@@ -218,7 +216,7 @@ export const bucketSlice = createSlice({
       )
       .addCase(deleteItemInBucket.rejected, (state) => {
         state.loading = false;
-        state.error = "Error!";
+        state.messages = BucketPageMessages.DELETE_BUCKET_ERROR;
       });
   },
 });

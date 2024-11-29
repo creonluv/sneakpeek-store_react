@@ -4,7 +4,7 @@ import { Categories } from "../../components/catalog/categories";
 import styles from "./CatalogPage.module.scss";
 import { useAppSelector } from "../../app/hooks";
 import { RootState } from "../../app/store";
-import { useEffect } from "react";
+import { useEffect, useState } from "react";
 import { fetchProductsCatalog } from "../../features/catalogProducts";
 import { useLocation } from "react-router-dom";
 import { ProductCard } from "../../components/product-card";
@@ -13,12 +13,16 @@ import { AsideAdaptive } from "../../components/catalog/asideAdaptive";
 import { useAsideContext } from "../../context/AsideContext";
 import { fetchAllProducts } from "../../features/products";
 import { fetchFavourite } from "../../features/favourite";
+import { useModalContext } from "../../context/ModalContext";
 
 export const CatalogPage = () => {
   const dispatch = useDispatch();
   const location = useLocation();
+  const { showModal } = useModalContext();
+  const [, setMessageCounter] = useState(0);
+  const [wasModalShown, setWasModalShown] = useState(false);
 
-  const { products } = useAppSelector(
+  const { products, loading, messages } = useAppSelector(
     (state: RootState) => state.catalogProducts
   );
 
@@ -32,6 +36,26 @@ export const CatalogPage = () => {
     dispatch(fetchProductsCatalog(location.search) as any);
     dispatch(fetchFavourite() as any);
   }, [location.search, favourite.length]);
+
+  useEffect(() => {
+    if (!loading && messages && !wasModalShown) {
+      showModal(messages);
+      setWasModalShown(true);
+
+      const timer = setTimeout(() => {
+        setWasModalShown(false);
+      }, 3000);
+
+      return () => clearTimeout(timer);
+    }
+  }, [messages, loading, wasModalShown, showModal]);
+
+  useEffect(() => {
+    if (messages) {
+      setMessageCounter((prev) => prev + 1);
+      setWasModalShown(false);
+    }
+  }, [messages]);
 
   const { isAsideOpen, toggleAside } = useAsideContext();
 

@@ -1,17 +1,18 @@
 import { getProducts } from "../api/api-products";
+import { ProductPageMessages } from "../shared/utils/modalMessages";
 import { Product } from "../types/Products";
 import { createSlice, createAsyncThunk, PayloadAction } from "@reduxjs/toolkit";
 
 export type ProductsState = {
   products: Product[];
   loading: boolean;
-  error: string;
+  messages: ProductPageMessages | null;
 };
 
 const initialState: ProductsState = {
   products: [],
   loading: false,
-  error: "",
+  messages: null,
 };
 
 export const fetchAllProducts = createAsyncThunk<Product[], void>(
@@ -43,9 +44,9 @@ export const productsSlice = createSlice({
           state.loading = false;
         }
       )
-      .addCase(fetchAllProducts.rejected, (state: ProductsState, action) => {
+      .addCase(fetchAllProducts.rejected, (state: ProductsState) => {
         state.loading = false;
-        state.error = action.error.message || "Error!";
+        state.messages = ProductPageMessages.FETCH_PRODUCTS_ERROR;
       });
   },
 });

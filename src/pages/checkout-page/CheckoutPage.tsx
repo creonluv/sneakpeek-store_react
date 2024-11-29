@@ -18,7 +18,10 @@ import { Link, useNavigate } from "react-router-dom";
 import { CartItem } from "../../types/Bucket";
 import { getMyProfile } from "../../api/profile";
 import { useModalContext } from "../../context/ModalContext";
-import { Profile } from "../../types/Profile";
+import {
+  CheckoutPageMessages,
+  ProfilePageMessages,
+} from "../../shared/utils/modalMessages";
 
 type CheckoutFormData = {
   cart_id: string;
@@ -107,7 +110,7 @@ export const CheckoutPage = () => {
           apartment: data?.apartment,
         });
       } catch (error) {
-        showModal("Error!", "Failed to load profile.", "error");
+        showModal(ProfilePageMessages.PROFILE_LOAD_ERROR);
       }
     };
 
@@ -169,6 +172,7 @@ export const CheckoutPage = () => {
       .catch((error) => {
         if (error instanceof Error) {
           console.error("Failed to create order:", error.message);
+          showModal(CheckoutPageMessages.CREATE_ORDER_ERROR);
           setIsOrdered(false);
         } else {
           console.error("Unknown error occurred:", error);

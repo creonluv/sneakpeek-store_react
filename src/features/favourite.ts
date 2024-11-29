@@ -6,17 +6,18 @@ import {
 import { Product } from "../types/Bucket";
 import { PayloadAction, createSlice, createAsyncThunk } from "@reduxjs/toolkit";
 import { RootState } from "../app/store";
+import { FavouritePageMessages } from "../shared/utils/modalMessages";
 
 export type FavouriteState = {
   favourite: Product[];
   loading: boolean;
-  error: string;
+  messages: FavouritePageMessages | null;
 };
 
 const initialState: FavouriteState = {
   favourite: [],
   loading: false,
-  error: "",
+  messages: null,
 };
 
 export const fetchFavourite = createAsyncThunk<Product[], void>(
@@ -78,7 +79,6 @@ export const favouriteSlice = createSlice({
     builder
       .addCase(fetchFavourite.pending, (state) => {
         state.loading = true;
-        state.error = "";
       })
       .addCase(
         fetchFavourite.fulfilled,
@@ -89,11 +89,10 @@ export const favouriteSlice = createSlice({
       )
       .addCase(fetchFavourite.rejected, (state) => {
         state.loading = false;
-        state.error = "Error!";
+        state.messages = FavouritePageMessages.FETCH_FAVOURITE_ERROR;
       })
       .addCase(deleteItemInFavourite.pending, (state) => {
         state.loading = true;
-        state.error = "";
       })
       .addCase(
         deleteItemInFavourite.fulfilled,
@@ -102,17 +101,15 @@ export const favouriteSlice = createSlice({
             state.favourite?.filter(
               (product) => product.id !== action.payload.id
             ) || [];
-
           state.loading = false;
         }
       )
       .addCase(deleteItemInFavourite.rejected, (state) => {
         state.loading = false;
-        state.error = "Error!";
+        state.messages = FavouritePageMessages.DELETE_FAVOURITE_ERROR;
       })
       .addCase(toggleItemInFavourite.pending, (state) => {
         state.loading = true;
-        state.error = "";
       })
       .addCase(
         toggleItemInFavourite.fulfilled,
@@ -133,10 +130,9 @@ export const favouriteSlice = createSlice({
           }
         }
       )
-
       .addCase(toggleItemInFavourite.rejected, (state) => {
         state.loading = false;
-        state.error = "Error!";
+        state.messages = FavouritePageMessages.TOGGLE_FAVOURITE_ERROR;
       });
   },
 });

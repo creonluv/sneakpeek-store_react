@@ -1,25 +1,51 @@
 import { useAppDispatch, useAppSelector } from "../../app/hooks";
 import styles from "./FavouritePage.module.scss";
 import { RootState } from "../../app/store";
-import { useEffect } from "react";
+import { useEffect, useState } from "react";
 import { fetchAllProducts } from "../../features/products";
 import { ProductSlider } from "../../components/product-slider";
 import { fetchFavourite } from "../../features/favourite";
 import { ProductCard } from "../../components/product-card";
 import { useAuthContext } from "../../context/AuthContext";
+import { useModalContext } from "../../context/ModalContext";
 
 export const FavouritePage = () => {
   const dispatch = useAppDispatch();
   const { products } = useAppSelector((state: RootState) => state.products);
-  const { favourite } = useAppSelector((state: RootState) => state.favourite);
+  const { favourite, loading, messages } = useAppSelector(
+    (state: RootState) => state.favourite
+  );
   const { isAuth } = useAuthContext();
+  const { showModal } = useModalContext();
+  const [, setMessageCounter] = useState(0);
+  const [wasModalShown, setWasModalShown] = useState(false);
 
   useEffect(() => {
     if (isAuth) {
       dispatch(fetchAllProducts());
       dispatch(fetchFavourite());
     }
-  }, [dispatch, favourite]);
+  }, [dispatch]);
+
+  useEffect(() => {
+    if (!loading && messages && !wasModalShown) {
+      showModal(messages);
+      setWasModalShown(true);
+
+      const timer = setTimeout(() => {
+        setWasModalShown(false);
+      }, 3000);
+
+      return () => clearTimeout(timer);
+    }
+  }, [messages, loading, wasModalShown, showModal]);
+
+  useEffect(() => {
+    if (messages) {
+      setMessageCounter((prev) => prev + 1);
+      setWasModalShown(false);
+    }
+  }, [messages]);
 
   return (
     <section className={styles.favouritepage}>

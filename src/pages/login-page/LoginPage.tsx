@@ -4,7 +4,7 @@ import { Link, useNavigate } from "react-router-dom";
 import { login } from "../../api/auth";
 
 import { useAuthContext } from "../../context/AuthContext";
-import { useModalContext } from '../../context/ModalContext';
+import { useModalContext } from "../../context/ModalContext";
 
 import { LoginPageMessages } from "../../shared/utils/modalMessages";
 
@@ -32,6 +32,7 @@ const LoginPage: React.FC = () => {
     }));
   };
 
+  // TODO
   const handleSubmit = async (e: FormEvent<HTMLFormElement>) => {
     e.preventDefault();
 
@@ -54,7 +55,10 @@ const LoginPage: React.FC = () => {
     <section className={styles.authorization}>
       <div className={styles.authorization__container}>
         <div className={styles.authorization__body}>
-          <form className={`${styles.authorization__form} ${styles.form}`} onSubmit={handleSubmit}>
+          <form
+            className={`${styles.authorization__form} ${styles.form}`}
+            onSubmit={handleSubmit}
+          >
             <div className={styles.form__title}>
               <img className={styles.form__logo} src={logo} alt="logo" />
               <h1 className={`${styles.form__title} title-2`}>Login</h1>
@@ -87,7 +91,10 @@ const LoginPage: React.FC = () => {
             </div>
             <div className={styles.form__button}>
               <div className={`${styles.form__button} button-wrapper`}>
-                <button className="button button_lg button_default button_full-size" type="submit">
+                <button
+                  className="button button_lg button_default button_full-size"
+                  type="submit"
+                >
                   Login
                 </button>
               </div>

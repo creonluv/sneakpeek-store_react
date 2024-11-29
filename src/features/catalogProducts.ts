@@ -1,11 +1,12 @@
 import { createAsyncThunk, createSlice } from "@reduxjs/toolkit";
 import { ProductsFromServer } from "../types/ProductsToCatalog";
 import { getProductsByPage } from "../api/api-products";
+import { ProductPageMessages } from "../shared/utils/modalMessages";
 
 export type CatalogProductsState = {
   products: ProductsFromServer;
   loading: boolean;
-  error: string;
+  messages: ProductPageMessages | null;
 };
 
 const initialState: CatalogProductsState = {
@@ -38,7 +39,7 @@ const initialState: CatalogProductsState = {
     empty: true,
   },
   loading: false,
-  error: "",
+  messages: null,
 };
 
 export const fetchProductsCatalog = createAsyncThunk<
@@ -72,7 +73,7 @@ export const catalogProductsSlice = createSlice({
       })
       .addCase(fetchProductsCatalog.rejected, (state) => {
         state.loading = false;
-        state.error = "Error!";
+        state.messages = ProductPageMessages.FETCH_PRODUCTS_ERROR;
       });
   },
 });

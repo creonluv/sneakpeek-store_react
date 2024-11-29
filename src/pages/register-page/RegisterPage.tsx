@@ -4,7 +4,7 @@ import { Link, useNavigate } from "react-router-dom";
 import { register } from "../../api/auth";
 
 import { useAuthContext } from "../../context/AuthContext";
-import { useModalContext } from '../../context/ModalContext';
+import { useModalContext } from "../../context/ModalContext";
 
 import { RegisterPageMessages } from "../../shared/utils/modalMessages";
 
@@ -41,22 +41,21 @@ const RegisterPage: React.FC = () => {
 
   const handleSubmit = async (e: FormEvent<HTMLFormElement>) => {
     e.preventDefault();
-  
+
     if (!ref.current?.checked) {
       showModal(RegisterPageMessages.REGISTER_WARNING);
       return;
     }
-  
+
     try {
       await register(formData);
       signin();
-  
+
       showModal(RegisterPageMessages.REGISTER_SUCCESS);
     } catch {
       showModal(RegisterPageMessages.REGISTER_ERROR);
     }
   };
-  
 
   useEffect(() => {
     if (isAuth) {
@@ -68,17 +67,20 @@ const RegisterPage: React.FC = () => {
     <section className={styles.authorization}>
       <div className={styles.authorization__container}>
         <div className={styles.authorization__body}>
-          <form className={`${styles.authorization__form} ${styles.form}`} onSubmit={handleSubmit}>
-          <div className={styles.form__title}>
-            <img className={styles.form__logo} src={logo} alt="logo" />
-            <h1 className={`${styles.form__title} title-2`}>Registration</h1>
-            <p className="text-muted">
-              Already have an account?{" "}
-              <Link to="/login" className={styles.form__link}>
-                Log in
-              </Link>
-            </p>
-          </div>
+          <form
+            className={`${styles.authorization__form} ${styles.form}`}
+            onSubmit={handleSubmit}
+          >
+            <div className={styles.form__title}>
+              <img className={styles.form__logo} src={logo} alt="logo" />
+              <h1 className={`${styles.form__title} title-2`}>Registration</h1>
+              <p className="text-muted">
+                Already have an account?{" "}
+                <Link to="/login" className={styles.form__link}>
+                  Log in
+                </Link>
+              </p>
+            </div>
             <div className={`${styles.form__group} group`}>
               <input
                 type="text"
@@ -109,13 +111,22 @@ const RegisterPage: React.FC = () => {
               />
             </div>
             <div className={`${styles.form__checkbox} checkbox`}>
-              <input type="checkbox" className="checkbox__index" id="agree" ref={ref} />
+              <input
+                type="checkbox"
+                className="checkbox__index"
+                id="agree"
+                ref={ref}
+              />
               <label className="checkbox__label" htmlFor="agree">
-                I have read and agree to the terms & conditions and privacy policy
+                I have read and agree to the terms & conditions and privacy
+                policy
               </label>
             </div>
             <div className={styles.form__button}>
-              <button className="button button_lg button_default button_full-size" type="submit">
+              <button
+                className="button button_lg button_default button_full-size"
+                type="submit"
+              >
                 Register
               </button>
             </div>
