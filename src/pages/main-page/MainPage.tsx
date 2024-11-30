@@ -8,9 +8,26 @@ import { useDispatch } from "react-redux";
 import { RootState } from "../../app/store";
 import categories from "../../shared/utils/categories";
 import { PromoTimer } from "../../components/promo-timer";
+import { Blog } from "../../components/blog";
+import { Sale } from "../../components/sale";
 
 export const MainPage = () => {
   const dispatch = useDispatch();
+
+  useEffect(() => {
+    const setBackgroundImages = () => {
+      const ibgElements = document.querySelectorAll<HTMLElement>(".ibg");
+
+      ibgElements.forEach((element) => {
+        const img = element.querySelector<HTMLImageElement>("img");
+        if (img && img.src) {
+          element.style.backgroundImage = `url(${img.src})`;
+        }
+      });
+    };
+
+    setBackgroundImages();
+  }, []);
 
   useEffect(() => {
     dispatch(fetchAllProducts() as any);
@@ -26,7 +43,9 @@ export const MainPage = () => {
       <ProductSlider products={products} type={"normal"} />
       <PromoTimer />
       <ProductSlider categories={categories} type={"category"} />
+      <Blog />
       <ProductSlider products={reversedProducts} type={"another"} />
+      <Sale />
     </section>
   );
 };

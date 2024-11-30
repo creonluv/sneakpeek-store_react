@@ -107,6 +107,19 @@ h5,
   @include small-text;
 }
 
+.title-block {
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+  gap: 10px;
+  margin-bottom: 42px;
+}
+
+.text-light {
+  @include adaptiveValue("font-size", 16, 12);
+  color: var(--color-text-reverse);
+}
+
 .text-muted {
   @include body-text;
 }
@@ -292,4 +305,21 @@ h5,
   margin-right: 10px;
   accent-color: var(--color-accent);
   transform: scale(1.38);
+}
+
+.ibg {
+  position: relative;
+  background-size: cover;
+  background-position: center;
+  background-repeat: no-repeat;
+
+  & > img:first-child {
+    width: 0;
+    height: 0;
+    position: absolute;
+    top: 0;
+    left: 0;
+    opacity: 0;
+    visibility: hidden;
+  }
 }

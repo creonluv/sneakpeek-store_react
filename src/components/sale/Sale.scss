@@ -1,0 +1,86 @@
+@use "../../shared/globalStyles/global" as *;
+
+.sale {
+  &__body {
+    display: flex;
+    flex-direction: column;
+    @include adaptiveValue("gap", 22, 6);
+
+    @include on-tablet {
+      flex-direction: row;
+      justify-content: space-between;
+    }
+  }
+
+  &__img-wrapper {
+    flex: 0 0 percent(487, $containerWidth);
+  }
+
+  &__img {
+    width: 100%;
+    height: 100%;
+    aspect-ratio: 330 / 216;
+    border-radius: 5px;
+    object-fit: cover;
+    object-position: center;
+
+    @include on-mobile {
+      aspect-ratio: initial;
+    }
+  }
+
+  &__content {
+    @include adaptiveValue("padding", 50, 18);
+    border-radius: 5px;
+    background-color: var(--color-background-block);
+  }
+
+  &__block {
+    @include adaptiveValue("margin-bottom", 30, 15);
+    border-bottom: 1px solid var(--color-secondary-grey);
+  }
+
+  &__title {
+    @include adaptiveValue("margin-bottom", 30, 20);
+  }
+
+  &__text {
+    @include adaptiveValue("margin-bottom", 41, 33.5);
+  }
+
+  &__button {
+    width: 100%;
+
+    .button {
+      flex: 1 1 auto;
+    }
+  }
+}
+
+.form-sale {
+  &__item {
+    position: relative;
+  }
+
+  &__button {
+    position: absolute;
+    top: 50%;
+    transform: translateY(-50%);
+    right: percent(26, 500);
+  }
+
+  &__input {
+    width: 100%;
+    height: 50px;
+    padding: 10px 26px;
+    border: 1px solid var(--color-secondary-grey);
+    border-radius: 10px;
+  }
+
+  &__button {
+    padding: 8px 16px;
+    border-radius: 10px;
+    color: var(--color-text-reverse);
+    background-color: var(--color-text-accent);
+  }
+}
