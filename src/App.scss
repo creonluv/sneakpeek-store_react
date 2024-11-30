@@ -1,6 +1,7 @@
 @use "./shared/globalStyles/global" as *;
 @use "../src/shared/globalStyles/fonts";
 @use "../src/shared/globalStyles/null";
+@use "../src/shared//globalStyles/colors";
 
 button {
   background: transparent;
