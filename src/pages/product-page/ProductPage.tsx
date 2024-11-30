@@ -36,8 +36,6 @@ export const ProductPage = () => {
     (state: RootState) => state.product
   );
 
-  const { favourite } = useAppSelector((state: RootState) => state.favourite);
-  console.log(favourite);
   const { products, loading, messages } = useAppSelector(
     (state: RootState) => state.products
   );

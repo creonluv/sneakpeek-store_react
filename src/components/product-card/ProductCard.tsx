@@ -15,8 +15,11 @@ import { Category } from "../../types/Categories";
 import { ProductCatalog } from "../../types/ProductsToCatalog";
 import { Product as ProductFav } from "../../types/Bucket";
 import { useAppDispatch, useAppSelector } from "../../app/hooks";
-import { toggleItemInFavourite } from "../../features/favourite";
-import { useCallback } from "react";
+import {
+  fetchFavourite,
+  toggleItemInFavourite,
+} from "../../features/favourite";
+import { useCallback, useMemo } from "react";
 import { useAuthContext } from "../../context/AuthContext";
 
 type Props = {
@@ -46,11 +49,15 @@ export const ProductCard: React.FC<Props> = ({
 
   const { isAuth } = useAuthContext();
 
-  const elemementInFavourite = favourite.find((item) => item.id === id);
+  const elemementInFavourite = useMemo(() => {
+    return favourite.find((item) => item.id === id);
+  }, [favourite, id]);
 
   const handleFavButton = useCallback(
     (id: number) => {
-      dispatch(toggleItemInFavourite(id));
+      dispatch(toggleItemInFavourite(id)).then(() =>
+        dispatch(fetchFavourite())
+      );
     },
     [dispatch, favourite]
   );
