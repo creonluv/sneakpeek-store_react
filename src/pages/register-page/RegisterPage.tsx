@@ -1,5 +1,6 @@
 import { ChangeEvent, FormEvent, useRef, useState, useEffect } from "react";
 import { Link, useNavigate } from "react-router-dom";
+import { useTranslation } from "react-i18next";
 
 import { register } from "../../api/auth";
 
@@ -20,6 +21,8 @@ interface FormData {
 
 const RegisterPage: React.FC = () => {
   const navigate = useNavigate();
+  const { t } = useTranslation();
+
   const { isAuth, signin } = useAuthContext();
   const { showModal } = useModalContext();
 
@@ -70,11 +73,11 @@ const RegisterPage: React.FC = () => {
           <form className="authorization__form form" onSubmit={handleSubmit}>
             <div className="form__title">
               <img className="form__logo" src={logo} alt="logo" />
-              <h1 className="form__title title-2">Registration</h1>
+              <h1 className="form__title title-2">{t("pages.register.title")}</h1>
               <p className="text-muted">
-                Already have an account?{" "}
+                {t("pages.register.noAccount")}{" "}
                 <Link to="/login" className="form__link">
-                  Log in
+                  {t("pages.register.link")}
                 </Link>
               </p>
             </div>
@@ -82,7 +85,7 @@ const RegisterPage: React.FC = () => {
               <input
                 type="text"
                 className="form__input input"
-                placeholder="Username"
+                placeholder={t("pages.register.username")}
                 name="username"
                 value={formData.username}
                 onChange={handleChange}
@@ -91,7 +94,7 @@ const RegisterPage: React.FC = () => {
               <input
                 type="email"
                 className="form__input input"
-                placeholder="Email"
+                placeholder={t("pages.register.email")}
                 name="email"
                 value={formData.email}
                 onChange={handleChange}
@@ -100,7 +103,7 @@ const RegisterPage: React.FC = () => {
               <input
                 type="password"
                 className="form__input input"
-                placeholder="Password"
+                placeholder={t("pages.register.password")}
                 name="password"
                 value={formData.password}
                 onChange={handleChange}
@@ -115,7 +118,7 @@ const RegisterPage: React.FC = () => {
                 ref={ref}
               />
               <label className="checkbox__label" htmlFor="agree">
-                I have read and agree to the terms & conditions and privacy policy
+                {t("pages.register.agree")}
               </label>
             </div>
             <div className="form__button">
@@ -123,7 +126,7 @@ const RegisterPage: React.FC = () => {
                 className="button button_lg button_default button_full-size"
                 type="submit"
               >
-                Register
+                {t("pages.register.button")}
               </button>
             </div>
           </form>

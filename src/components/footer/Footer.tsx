@@ -1,8 +1,12 @@
+import { useTranslation } from "react-i18next";
+
 import logo from "../../assets/img/icons/logo.svg";
 
 import styles from "./Footer.module.scss";
 
 export const Footer = () => {
+  const { t } = useTranslation();
+
   return (
     <footer className={styles.footer}>
       <div className={styles.footer__container}>
@@ -76,22 +80,22 @@ export const Footer = () => {
           <ul className={styles.footer__items_main}>
             <li className={styles.footer__item}>
               <a href="#" className={styles.footer__link_bold}>
-                Catalog
+                {t("components.footer.catalog")}
               </a>
             </li>
             <li className={styles.footer__item}>
               <a href="#" className={styles.footer__link_bold}>
-                Discount
+                {t("components.footer.discount")}
               </a>
             </li>
             <li className={styles.footer__item}>
               <a href="#" className={styles.footer__link_bold}>
-                Brands
+                {t("components.footer.brands")}
               </a>
             </li>
             <li className={styles.footer__item}>
               <a href="#" className={styles.footer__link_bold}>
-                Office
+                {t("components.footer.office")}
               </a>
             </li>
           </ul>
@@ -99,27 +103,27 @@ export const Footer = () => {
           <ul className={styles.footer__items}>
             <li className={styles.footer__item}>
               <a href="#" className={styles.footer__link_bold}>
-                Service
+                {t("components.footer.service")}
               </a>
             </li>
             <li className={styles.footer__item}>
               <a href="#" className={styles.footer__link}>
-                Orders
+                {t("components.footer.orders")}
               </a>
             </li>
             <li className={styles.footer__item}>
               <a href="#" className={styles.footer__link}>
-                Returns
+                {t("components.footer.returns")}
               </a>
             </li>
             <li className={styles.footer__item}>
               <a href="#" className={styles.footer__link}>
-                FAQ
+                {t("components.footer.faq")}
               </a>
             </li>
             <li className={styles.footer__item}>
               <a href="#" className={styles.footer__link}>
-                Policy
+                {t("components.footer.policy")}
               </a>
             </li>
           </ul>
@@ -127,27 +131,27 @@ export const Footer = () => {
           <ul className={styles.footer__items}>
             <li className={styles.footer__item}>
               <a href="#" className={styles.footer__link_bold}>
-                About
+                {t("components.footer.about")}
               </a>
             </li>
             <li className={styles.footer__item}>
               <a href="#" className={styles.footer__link}>
-                Loyal
+                {t("components.footer.loyal")}
               </a>
             </li>
             <li className={styles.footer__item}>
               <a href="#" className={styles.footer__link}>
-                Blog
+                {t("components.footer.blog")}
               </a>
             </li>
             <li className={styles.footer__item}>
               <a href="#" className={styles.footer__link}>
-                Sustainability
+                {t("components.footer.sustainability")}
               </a>
             </li>
             <li className={styles.footer__item}>
               <a href="#" className={styles.footer__link}>
-                Governance
+                {t("components.footer.governance")}
               </a>
             </li>
           </ul>
@@ -155,7 +159,7 @@ export const Footer = () => {
           <ul className={styles.footer__items}>
             <li className={styles.footer__item}>
               <a href="#" className={styles.footer__link_bold}>
-                Contacts
+                {t("components.footer.contacts")}
               </a>
             </li>
             <li className={styles.footer__item}>
@@ -173,12 +177,12 @@ export const Footer = () => {
             </li>
             <li className={styles.footer__item}>
               <a href="#" className={styles.footer__link}>
-                Sustain
+                {t("components.footer.sustain")}
               </a>
             </li>
             <li className={styles.footer__item}>
               <a href="#" className={styles.footer__link}>
-                Corporate
+                {t("components.footer.corporate")}
               </a>
             </li>
           </ul>
@@ -186,7 +190,7 @@ export const Footer = () => {
       </div>
 
       <div className={styles.footer__copyright}>
-        © Copyright 2023 SNEAKPEEK. All rights reserved.
+        {t("components.footer.copyright")}
       </div>
     </footer>
   );

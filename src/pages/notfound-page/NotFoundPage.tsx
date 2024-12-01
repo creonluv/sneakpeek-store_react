@@ -1,5 +1,6 @@
 import { useEffect } from "react";
 import { useNavigate, Link } from "react-router-dom";
+import { useTranslation } from "react-i18next";
 
 import logo from "../../assets/img/logo.svg";
 
@@ -7,6 +8,7 @@ import styles from "./NotFoundPage.module.scss";
 
 const NotFoundPage = () => {
   const navigate = useNavigate();
+  const { t } = useTranslation();
 
   useEffect(() => {
     navigate("/404");
@@ -24,14 +26,14 @@ const NotFoundPage = () => {
                 alt="logo.svg"
               />
               <h1 className={`${styles.notfound__title} title-2`}>
-                404, page not found
+                {t("pages.notfound.title")}
               </h1>
             </div>
             <div className={styles.notfound__dropdownWrapper}>
               <p className={styles.notfound__text}>
-                Sorry, but we couldn't find the page you were looking for.{" "}
+                {t("pages.notfound.text")}{" "}
                 <Link to="/" style={{ color: "blue" }}>
-                  Main page
+                  {t("pages.notfound.link")}
                 </Link>
               </p>
             </div>

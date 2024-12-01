@@ -1,5 +1,6 @@
 import { useEffect, useState } from "react";
 import { Link, useNavigate } from "react-router-dom";
+import { useTranslation } from "react-i18next";
 
 import { AsideMenu } from "./asidemenu/AsideMenu";
 import { logout } from "../../api/auth";
@@ -36,12 +37,7 @@ export const Header = () => {
   const { bucket } = useAppSelector((state: RootState) => state.bucket);
   const { favourite } = useAppSelector((state: RootState) => state.favourite);
 
-  useEffect(() => {
-    if (isAuth) {
-      dispatch(fetchBucket());
-      dispatch(fetchFavourite());
-    }
-  }, [dispatch, isAuth]);
+  const { t, i18n } = useTranslation();
 
   // useEffect(() => {
   //   const handler = setTimeout(() => {
@@ -106,26 +102,38 @@ export const Header = () => {
     );
   };
 
+  const handleSelectLanguage = (e: React.ChangeEvent<HTMLSelectElement>): void => {
+    const selectedLanguage = e.target.value;
+    i18n.changeLanguage(selectedLanguage);
+  };
+
+  useEffect(() => {
+    if (isAuth) {
+      dispatch(fetchBucket());
+      dispatch(fetchFavourite());
+    }
+  }, [dispatch, isAuth]);
+
   return (
     <header className={styles.header}>
       <div className={styles.header__top}>
         <div className={styles.header__top_container}>
           <div className={`${styles.header__select} ${styles.select}`}>
-            <select className={styles.select__items} name="lang">
-              <option className={styles.select__item} value="Eng">
+            <select className={styles.select__items} name="lang" onChange={handleSelectLanguage}>
+              <option className={styles.select__item} value="en">
                 Eng
               </option>
-              <option className={styles.select__item} value="Ua">
+              <option className={styles.select__item} value="ua">
                 Ua
               </option>
-              <option className={styles.select__item} value="De">
-                de
+              <option className={styles.select__item} value="de">
+                De
               </option>
-              <option className={styles.select__item} value="Fr">
-                fr
+              <option className={styles.select__item} value="fr">
+                Fr
               </option>
-              <option className={styles.select__item} value="Es">
-                es
+              <option className={styles.select__item} value="es">
+                Es
               </option>
             </select>
           </div>
@@ -146,7 +154,7 @@ export const Header = () => {
                 className={styles.header__search}
                 type="text"
                 name="search"
-                placeholder="Search"
+                placeholder={t("components.header.search")}
                 value={searchTerm}
                 onChange={handleChangeInputSearch}
               />
@@ -187,13 +195,13 @@ export const Header = () => {
                       to="/profile"
                       onClick={toggleModal}
                     >
-                      User profile
+                      {t("components.header.profile")}
                     </Link>
                     <button
                       className={styles.list__item}
                       onClick={handleLogout}
                     >
-                      Logout
+                      {t("components.header.logout")}
                     </button>
                   </>
                 ) : (
@@ -203,14 +211,14 @@ export const Header = () => {
                       to="/login"
                       onClick={toggleModal}
                     >
-                      Login
+                      {t("components.header.login")}
                     </Link>
                     <Link
                       className={styles.list__item}
                       to="/register"
                       onClick={toggleModal}
                     >
-                      Register
+                      {t("components.header.register")}
                     </Link>
                   </>
                 )}
@@ -242,37 +250,37 @@ export const Header = () => {
             <ul className={`${styles.header__menu} ${styles.menu}`}>
               <li className={styles.menu__item}>
                 <a href="" className={styles.menu__link}>
-                  New arrives
+                  {t("components.header.nav.item1")}
                 </a>
               </li>
 
               <li className={styles.menu__item}>
                 <a href="" className={styles.menu__link}>
-                  Men
+                  {t("components.header.nav.item2")}
                 </a>
               </li>
 
               <li className={styles.menu__item}>
                 <a href="" className={styles.menu__link}>
-                  Woman
+                  {t("components.header.nav.item3")}
                 </a>
               </li>
 
               <li className={styles.menu__item}>
                 <a href="" className={styles.menu__link}>
-                  Kids
+                  {t("components.header.nav.item4")}
                 </a>
               </li>
 
               <li className={styles.menu__item}>
                 <a href="" className={styles.menu__link}>
-                  Brands
+                  {t("components.header.nav.item5")}
                 </a>
               </li>
 
               <li className={styles.menu__item}>
                 <a href="" className={styles.menu__link}>
-                  Sale
+                  {t("components.header.nav.item6")}
                 </a>
               </li>
             </ul>

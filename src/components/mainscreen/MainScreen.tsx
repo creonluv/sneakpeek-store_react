@@ -1,3 +1,5 @@
+import { useTranslation } from "react-i18next";
+
 import ButtonTitle from "../button-title/ButtonTitle";
 
 import bg from "../../assets/img/mainscreen/bg.jpg";
@@ -5,6 +7,8 @@ import bg from "../../assets/img/mainscreen/bg.jpg";
 import "./MainScreen.scss";
 
 export const MainScreen = () => {
+  const { t } = useTranslation();
+
   return (
     <section className="mainscreen">
       <div className="mainscreen__container">
@@ -18,9 +22,9 @@ export const MainScreen = () => {
           <img className="mainscreen__img" src={bg} alt="bg.jpg" />
           <div className="mainscreen__block">
             <p className="mainscreen__text">
-              In the whole summer show, this
+              {t("components.mainscreen.text1")}
               <br />
-              is the designer’s best look yet
+              {t("components.mainscreen.text2")}
             </p>
 
             <p className="mainscreen__text">
@@ -31,7 +35,7 @@ export const MainScreen = () => {
           </div>
 
           <div className="mainscreen__button">
-            <ButtonTitle onClick={() => {}} />
+            <ButtonTitle onClick={() => { }} />
           </div>
         </div>
       </div>

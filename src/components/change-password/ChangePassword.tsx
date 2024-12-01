@@ -1,5 +1,6 @@
 import { useState } from 'react';
 import Modal from 'react-modal';
+import { useTranslation } from 'react-i18next';
 
 import { useModalContext } from '../../context/ModalContext';
 
@@ -20,6 +21,8 @@ interface PasswordData {
 Modal.setAppElement('#root');
 
 export const ChangePassword = () => {
+  const { t } = useTranslation();
+
   const [isOpenModal, setIsOpenModal] = useState(false);
   const openModal = () => setIsOpenModal(true);
   const closeModal = () => setIsOpenModal(false);
@@ -68,7 +71,7 @@ export const ChangePassword = () => {
   return (
     <div>
       <button className="button button_sm button_default" onClick={openModal}>
-        Change password
+        {t("components.changePassword.title")}
       </button>
       <Modal
         isOpen={isOpenModal}
@@ -85,7 +88,7 @@ export const ChangePassword = () => {
         }}
       >
         <div className="changepassword__control">
-          <h3 className="changepassword__title title-3">Change password</h3>
+          <h3 className="changepassword__title title-3">{t("components.changePassword.title")}</h3>
           <img
             className="changepassword__close"
             src={close}
@@ -98,7 +101,7 @@ export const ChangePassword = () => {
             <input
               id="old_password"
               className="input"
-              placeholder="Old password"
+              placeholder={t("components.changePassword.oldPassword")}
               name="old_password"
               value={formData.old_password}
               type="password"
@@ -107,7 +110,7 @@ export const ChangePassword = () => {
             <input
               id="new_password"
               className="input"
-              placeholder="New password"
+              placeholder={t("components.changePassword.newPassword")}
               name="new_password"
               value={formData.new_password}
               type="password"
@@ -116,7 +119,7 @@ export const ChangePassword = () => {
             <input
               id="confirm_new_password"
               className="input"
-              placeholder="Confirm new password"
+              placeholder={t("components.changePassword.confirmNewPassword")}
               name="confirm_new_password"
               value={formData.confirm_new_password}
               type="password"
@@ -128,7 +131,7 @@ export const ChangePassword = () => {
               className="button button_lg button_default button_full-size"
               type="submit"
             >
-              Send
+              {t("components.changePassword.button")}
             </button>
           </div>
         </form>

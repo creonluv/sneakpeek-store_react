@@ -1,4 +1,5 @@
 import { useLocation, useNavigate } from "react-router-dom";
+import { useTranslation } from "react-i18next";
 
 import btnBack from "../../assets/img/icons/btn-back.svg";
 
@@ -7,6 +8,7 @@ import styles from "./BackBtn.module.scss";
 export const BackBtn = () => {
   const navigate = useNavigate();
   const { state } = useLocation();
+  const { t } = useTranslation();
 
   const handleBackClick = () => {
     if (state?.from) {
@@ -26,7 +28,7 @@ export const BackBtn = () => {
         <img src={btnBack} alt="btn-back" />
       </span>
 
-      <span className={styles.button__back_text}>Back</span>
+      <span className={styles.button__back_text}>{t("components.backButton")}</span>
     </button>
   );
 };

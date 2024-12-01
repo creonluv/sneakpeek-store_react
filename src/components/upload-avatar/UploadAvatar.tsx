@@ -1,6 +1,7 @@
 import React, { useEffect, useState } from "react";
 import Modal from 'react-modal';
 import Avatar from "react-avatar-edit";
+import { useTranslation } from "react-i18next";
 
 import { Profile } from "../../types/Profile";
 
@@ -22,6 +23,8 @@ interface UploadAvatarProps {
 Modal.setAppElement('#root');
 
 export const UploadAvatar: React.FC<UploadAvatarProps> = ({ profile, setIsImageChanged, src, preview, setSrc, setPreview, imageUrl }) => {
+  const { t } = useTranslation();
+
   const [isOpenModal, setIsOpenModal] = useState(false);
   const openModal = () => setIsOpenModal(true);
   const closeModal = () => setIsOpenModal(false);
@@ -53,7 +56,7 @@ export const UploadAvatar: React.FC<UploadAvatarProps> = ({ profile, setIsImageC
         }}
       >
         <div className="avatar__control">
-          <h3 className="avatar__title title-3">Update image</h3>
+          <h3 className="avatar__title title-3">{t("components.upload")}</h3>
           <img className="avatar__close" src={close} alt="Close" onClick={closeModal} />
         </div>
         <Avatar

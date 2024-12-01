@@ -1,5 +1,6 @@
 import React, { useEffect } from "react";
 import { useNavigate, useLocation } from "react-router-dom";
+import { useTranslation } from "react-i18next";
 
 import { useAppSelector, useAppDispatch } from "../../../app/hooks";
 import { RootState } from "../../../app/store";
@@ -14,6 +15,7 @@ export const Pagination: React.FC = () => {
   const dispatch = useAppDispatch();
   const navigate = useNavigate();
   const location = useLocation();
+  const { t } = useTranslation();
 
   const { products } = useAppSelector(
     (state: RootState) => state.catalogProducts
@@ -105,9 +107,8 @@ export const Pagination: React.FC = () => {
           key={page}
           onClick={() => handlePageChange(page as number)}
           disabled={currentPage === page}
-          className={`${styles.pageButton} ${
-            currentPage === page ? styles.currentPage : ""
-          }`}
+          className={`${styles.pageButton} ${currentPage === page ? styles.currentPage : ""
+            }`}
         >
           {page}
         </button>

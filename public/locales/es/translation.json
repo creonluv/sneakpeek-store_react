@@ -1,0 +1,199 @@
+{
+  "components": {
+    "header": {
+      "profile": "Perfil de usuario",
+      "logout": "Cerrar sesión",
+      "login": "Iniciar sesión",
+      "register": "Registrarse",
+      "search": "Buscar",
+      "nav": {
+        "item1": "Nuevas llegadas",
+        "item2": "Hombres",
+        "item3": "Mujeres",
+        "item4": "Niños",
+        "item5": "Marcas",
+        "item6": "Ofertas"
+      }
+    },
+    "buttonBack": "Atrás",
+    "blog": {
+      "title": "Nuestro Blog",
+      "mainButton": "Ver todo",
+      "button": "Lookbook 2023",
+      "subtitle": "Nuevo Lanzamiento",
+      "text": "Presentando las nuevas tendencias de 2023",
+      "buttonWatch": "Ver tendencias",
+      "buttonSubscribe": "Suscribirse",
+      "content": "Suscríbete al boletín y recibe nuevas ofertas de nuestra tienda con grandes promociones."
+    },
+    "catalog": {
+      "aside": {
+        "category": "Categoría",
+        "producer": "Productor",
+        "size": "Tamaño",
+        "gender": "Género",
+        "priceRange": "Rango de precios",
+        "showMore": "Mostrar más"
+      },
+      "categories": {
+        "reset": "Restablecer todos los ajustes",
+        "sort": "Ordenar por"
+      }
+    },
+    "changePassword": {
+      "title": "Cambiar contraseña",
+      "oldPassword": "Contraseña antigua",
+      "newPassword": "Nueva contraseña",
+      "confirmNewPassword": "Confirmar nueva contraseña",
+      "button": "Enviar"
+    }, 
+    "footer": {
+      "catalog": "Catálogo",
+      "discount": "Descuento",
+      "brands": "Marcas",
+      "office": "Oficina",
+      "service": "Servicio",
+      "orders": "Pedidos",
+      "returns": "Devoluciones",
+      "faq": "FAQ",
+      "policy": "Política",
+      "about": "Acerca de",
+      "loyal": "Lealtad",
+      "blog": "Blog",
+      "sustainability": "Sostenibilidad",
+      "governance": "Gobernanza",
+      "contacts": "Contactos",
+      "sustain": "Sostener",
+      "corporate": "Corporativo",
+      "copyright": "© Copyright 2023 SNEAKPEEK. Todos los derechos reservados."
+    },
+    "mainscreen": {
+      "text1": "En todo el espectáculo de verano, este",
+      "text2": "es el mejor look del diseñador hasta ahora"
+    },
+    "slider": {
+      "new": "Nueva Colección",
+      "best": "Más Vendido",
+      "categories": "Categorías",
+      "default": "También te puede interesar"
+    },
+    "timer": {
+      "title": "Rebajas de verano obtén",
+      "text": "Los estilos más deseados te están esperando ahora mismo. Encuentra los mejores estilos de atuendos modernos en un solo lugar.",
+      "button": "Comprar ahora",
+      "days": "Días",
+      "hours": "Horas",
+      "minutes": "Minutos",
+      "seconds": "Segundos"
+    },
+    "sale": {
+      "title": "descuento solo este viernes y recibe un regalo especial",
+      "text": "Suscríbete a nuestro boletín y obtén un código de bonificación para un descuento del 35% durante esta venta de viernes, ¡además de un regalo genial!",
+      "button": "Ir"
+    },
+    "upload": "Actualizar imagen"
+  },
+  "pages": {
+    "bucket": {
+      "title": "Cesta",
+      "summary": "Resumen de la cesta",
+      "items": "artículos:",
+      "total": "Total:",
+      "subtotal": "Subtotal:",
+      "button": "Ir a la caja"
+    },
+    "catalog": {
+      "title": "Catálogo",
+      "nothing": "¡Ups! ¡No se encontraron productos!"
+    },
+    "checkout": {
+      "title": "Caja",
+      "steps": "3 pasos",
+      "contact": "Información de contacto",
+      "name": "Ingrese nombre",
+      "select": "Seleccione oficina postal",
+      "courier": "Entrega por mensajero",
+      "state": "Estado",
+      "city": "Ciudad",
+      "branch": "Dirección de la sucursal",
+      "selectOffice": "Seleccione oficina postal",
+      "street": "Calle",
+      "apartment": "Apartamento",
+      "payment": "Método de pago",
+      "agree": "Estoy de acuerdo con los términos",
+      "button": "comprar ahora",
+      "order": "Tu pedido",
+      "size": "Tamaño:",
+      "items": "artículos:",
+      "delivery": "Entrega:",
+      "total": "Total:",
+      "lastname": "Ingrese apellido",
+      "card": "Tarjeta*",
+      "security": "Código de seguridad*"
+    },
+    "favourite": {
+      "title": "Favoritos"
+    },
+    "login": {
+      "title": "Iniciar sesión",
+      "noAccount": "¿No tienes una cuenta?",
+      "register": "Regístrate aquí",
+      "username": "Nombre de usuario",
+      "password": "Contraseña",
+      "button": "Iniciar sesión"
+    },
+    "notfound": {
+      "title": "404, página no encontrada",
+      "text": "Lo sentimos, no pudimos encontrar la página que estabas buscando.",
+      "link": "Página principal"
+    },
+    "product": {
+      "sizes": "Tamaños:",
+      "SP": "Envío y Pago",
+      "check": "Consultar disponibilidad en tienda",
+      "code": "Código del producto:",
+      "desc": "Descripción",
+      "material": "Material y Cuidado",
+      "reviews": "Reseñas"
+    },
+    "profile": {
+      "title": "Perfil",
+      "save": "Guardar",
+      "cancel": "Cancelar",
+      "info": "Información básica",
+      "address": "Dirección",
+      "phone": "Ingrese número de teléfono",
+      "email": "Ingrese correo electrónico",
+      "surname": "Ingrese apellido",
+      "name": "Ingrese nombre",
+      "street": "Ingrese calle",
+      "apartment": "Ingrese apartamento",
+      "city": "Ingrese ciudad",
+      "state": "Ingrese estado",
+      "contacts": "Contactos",
+      "namev": "Nombre",
+      "surnamev": "Apellido",
+      "emailv": "Correo electrónico",
+      "phonev": "Teléfono",
+      "apartmentv": "Apartamento",
+      "streetv": "Calle",
+      "cityv": "Ciudad",
+      "statev": "Estado"
+    },
+    "register": {
+      "title": "Registro",
+      "noAccount": "¿Ya tienes una cuenta?",
+      "link": "Inicia sesión",
+      "button": "Registrarse",
+      "agree": "He leído y acepto los términos y condiciones y la política de privacidad",
+      "username": "Nombre de usuario",
+      "password": "Contraseña",
+      "email": "Correo electrónico"
+    },
+    "thankyou": {
+      "orderSuccess": "¡Pedido exitoso!",
+      "order": "Tu pedido",
+      "wait": "Espera un mensaje SMS en tu teléfono con más detalles"
+    }
+  }
+}

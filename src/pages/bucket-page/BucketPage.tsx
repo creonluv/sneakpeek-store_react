@@ -1,5 +1,6 @@
 import { useCallback, useEffect, useState } from "react";
 import { Link, useNavigate } from "react-router-dom";
+import { useTranslation } from "react-i18next";
 
 import { debounce } from "lodash";
 
@@ -26,6 +27,7 @@ import del from "../../assets/img/icons/del.svg";
 import styles from "./BucketPage.module.scss";
 
 export const BucketPage = () => {
+  const { t } = useTranslation();
   const dispatch = useAppDispatch();
   const navigate = useNavigate();
 
@@ -104,7 +106,7 @@ export const BucketPage = () => {
   return (
     <div className={styles.bucketpage}>
       <div className={styles.bucketpage__header}>
-        <h3 className={styles.bucketpage__title}>Basket</h3>
+        <h3 className={styles.bucketpage__title}>{t("pages.bucket.title")}</h3>
         <span className={styles.bucketpage__subtitle}>
           {bucket?.cart_items.length}
         </span>
@@ -214,20 +216,20 @@ export const BucketPage = () => {
           </div>
 
           <div className={styles.bucketpage__subtotal}>
-            <h3 className={styles.bucketpage__title}>Subtotal:</h3>
+            <h3 className={styles.bucketpage__title}>{t("pages.bucket.subtotal")}</h3>
             <h3 className={styles.bucketpage__price}>${totalPrice}</h3>
           </div>
         </div>
 
         <div className={styles.bucketpage__right}>
           <div className={styles.bucketpage__card}>
-            <h3 className={styles.bucketpage__title}>Basket summary</h3>
+            <h3 className={styles.bucketpage__title}>{t("pages.bucket.summary")}</h3>
 
             <div className={styles.bucketpage__main}>
               <div className={styles.bucketpage__middle}>
                 <div className={styles.bucketpage__info}>
                   <p className={styles.bucketpage__infoKey}>
-                    {bucket?.cart_items.length} items:
+                    {bucket?.cart_items.length} {t("pages.bucket.items")}
                   </p>
                   <p className={styles.bucketpage__infoValue}>${totalPrice}</p>
                 </div>
@@ -237,7 +239,7 @@ export const BucketPage = () => {
 
               <div className={styles.bucketpage__bottom}>
                 <div className={styles.bucketpage__total}>
-                  <h3 className={styles.bucketpage__price}>Total:</h3>
+                  <h3 className={styles.bucketpage__price}>{t("pages.bucket.total")}</h3>
                   <h3 className={styles.bucketpage__price}>${totalPrice}</h3>
                 </div>
 
@@ -246,7 +248,7 @@ export const BucketPage = () => {
                   type="submit"
                   onClick={() => navigate("/checkout")}
                 >
-                  Go to checkout
+                  {t("pages.bucket.button")}
                   <img className="icon-arrow" src={arrowWhite} alt="" />
                 </button>
               </div>

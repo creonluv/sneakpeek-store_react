@@ -1,4 +1,5 @@
 import React, { useEffect, useState } from "react";
+import { useTranslation } from "react-i18next";
 
 import { useModalContext } from "../../context/ModalContext";
 
@@ -15,6 +16,8 @@ import { ChangePassword } from "../../components/change-password/ChangePassword"
 import "./ProfilePage.scss";
 
 const ProfilePage: React.FC = () => {
+  const { t } = useTranslation();
+
   const [profile, setProfile] = useState<Profile | null>(null);
   const [initialProfile, setInitialProfile] = useState<Profile | null>(null);
 
@@ -111,7 +114,7 @@ const ProfilePage: React.FC = () => {
       <div className="profile__container">
         <div className="profile__body">
           <div className="profile__top">
-            <h3 className="profile__title">Profile</h3>
+            <h3 className="profile__title">{t("pages.profile.title")}</h3>
             <div className="profile__buttons">
               <button
                 className={`profile__button button button_sm button_default ${!isChanged && !isImageChanged ? "_disabled" : ""
@@ -119,20 +122,20 @@ const ProfilePage: React.FC = () => {
                 onClick={handleSave}
                 disabled={!isChanged && !isImageChanged}
               >
-                Save
+                {t("pages.profile.save")}
               </button>
               <button
                 className={`profile__button button button_sm button_reverse ${!isChanged && !isImageChanged ? "_disabled" : ""
                   }`}
                 onClick={handleCancel}
               >
-                Cancel
+                {t("pages.profile.cancel")}
               </button>
             </div>
           </div>
           <div className="profile__items">
             <div className="profile__item">
-              <h2 className="profile__subtitle title-3">Basic Info</h2>
+              <h2 className="profile__subtitle title-3">{t("pages.profile.info")}</h2>
               <div className="profile__content">
                 <div className="profile__info">
                   <UploadAvatar
@@ -155,12 +158,13 @@ const ProfilePage: React.FC = () => {
                 <div className="profile__inputs">
                   <div className="profile__group">
                     <label htmlFor="name" className="profile__label">
-                      Name
+                      {t("pages.profile.namev")}
                     </label>
                     <input
                       type="text"
                       id="name"
                       name="name"
+                      placeholder={t("pages.profile.name")}
                       className="form__input input"
                       value={profile.name ?? ""}
                       onChange={handleChange}
@@ -168,12 +172,13 @@ const ProfilePage: React.FC = () => {
                   </div>
                   <div className="profile__group">
                     <label htmlFor="surname" className="profile__label">
-                      Surname
+                      {t("pages.profile.surnamev")}
                     </label>
                     <input
                       type="text"
                       id="surname"
                       name="surname"
+                      placeholder={t("pages.profile.surname")}
                       className="form__input input"
                       value={profile.surname ?? ""}
                       onChange={handleChange}
@@ -183,17 +188,18 @@ const ProfilePage: React.FC = () => {
               </div>
             </div>
             <div className="profile__item">
-              <h2 className="profile__subtitle title-3">Contacts</h2>
+              <h2 className="profile__subtitle title-3">{t("pages.profile.contacts")}</h2>
               <div className="profile__content">
                 <div className="profile__inputs">
                   <div className="profile__group">
                     <label htmlFor="email" className="profile__label">
-                      Email
+                      Email{t("pages.profile.emailv")}
                     </label>
                     <input
                       type="text"
                       id="email"
                       name="email"
+                      placeholder={t("pages.profile.email")}
                       className="form__input input"
                       value={profile.user.email ?? ""}
                       onChange={handleChange}
@@ -202,12 +208,13 @@ const ProfilePage: React.FC = () => {
                   </div>
                   <div className="profile__group">
                     <label htmlFor="phone_number" className="profile__label">
-                      Phone
+                      Phone{t("pages.profile.phonev")}
                     </label>
                     <input
                       type="text"
                       id="phone_number"
                       name="phone_number"
+                      placeholder={t("pages.profile.phone")}
                       className="form__input input"
                       value={profile.phone_number ?? ""}
                       onChange={handleChange}
@@ -217,17 +224,18 @@ const ProfilePage: React.FC = () => {
               </div>
             </div>
             <div className="profile__item">
-              <h2 className="profile__subtitle title-3">Address</h2>
+              <h2 className="profile__subtitle title-3">{t("pages.profile.address")}</h2>
               <div className="profile__content">
                 <div className="profile__inputs">
                   <div className="profile__group">
                     <label htmlFor="state" className="profile__label">
-                      State
+                      {t("pages.profile.statev")}
                     </label>
                     <input
                       type="text"
                       id="state"
                       name="state"
+                      placeholder={t("pages.profile.state")}
                       className="form__input input"
                       value={profile.state ?? ""}
                       onChange={handleChange}
@@ -235,12 +243,13 @@ const ProfilePage: React.FC = () => {
                   </div>
                   <div className="profile__group">
                     <label htmlFor="city" className="profile__label">
-                      City
+                      {t("pages.profile.cityv")}
                     </label>
                     <input
                       type="text"
                       id="city"
                       name="city"
+                      placeholder={t("pages.profile.city")}
                       className="form__input input"
                       value={profile.city ?? ""}
                       onChange={handleChange}
@@ -248,12 +257,13 @@ const ProfilePage: React.FC = () => {
                   </div>
                   <div className="profile__group">
                     <label htmlFor="street" className="profile__label">
-                      Street
+                      {t("pages.profile.streetv")}
                     </label>
                     <input
                       type="text"
                       id="street"
                       name="street"
+                      placeholder={t("pages.profile.street")}
                       className="form__input input"
                       value={profile.street ?? ""}
                       onChange={handleChange}
@@ -261,12 +271,13 @@ const ProfilePage: React.FC = () => {
                   </div>
                   <div className="profile__group">
                     <label htmlFor="apartment" className="profile__label">
-                      Apartment
+                      {t("pages.profile.apartmentv")}
                     </label>
                     <input
                       type="text"
                       id="apartment"
                       name="apartment"
+                      placeholder={t("pages.profile.apartment")}
                       className="form__input input"
                       value={profile.apartment ?? ""}
                       onChange={handleChange}

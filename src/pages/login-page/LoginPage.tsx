@@ -1,5 +1,6 @@
 import { ChangeEvent, FormEvent, useState, useEffect } from "react";
 import { Link, useNavigate } from "react-router-dom";
+import { useTranslation } from "react-i18next";
 
 import { login } from "../../api/auth";
 
@@ -16,6 +17,8 @@ import "./LoginPage.scss";
 
 const LoginPage: React.FC = () => {
   const navigate = useNavigate();
+  const { t } = useTranslation();
+
   const { isAuth, signin } = useAuthContext();
   const { showModal } = useModalContext();
 
@@ -57,11 +60,11 @@ const LoginPage: React.FC = () => {
           <form className="authorization__form form" onSubmit={handleSubmit}>
             <div className="form__title">
               <img className="form__logo" src={logo} alt="logo" />
-              <h1 className="form__title title-2">Login</h1>
+              <h1 className="form__title title-2">{t("pages.login.title")}</h1>
               <p className="text-muted">
-                Don't have an account?{" "}
+                {t("pages.login.noAccount")}{" "}
                 <Link to="/register" className="form__link">
-                  Register here
+                  {t("pages.login.register")}
                 </Link>
               </p>
             </div>
@@ -69,7 +72,7 @@ const LoginPage: React.FC = () => {
               <input
                 type="text"
                 className="form__input input"
-                placeholder="Username"
+                placeholder={t("pages.login.username")}
                 name="username"
                 value={formData.username}
                 onChange={handleChange}
@@ -78,7 +81,7 @@ const LoginPage: React.FC = () => {
               <input
                 type="password"
                 className="form__input input"
-                placeholder="Password"
+                placeholder={t("pages.login.password")}
                 name="password"
                 value={formData.password}
                 onChange={handleChange}
@@ -91,7 +94,7 @@ const LoginPage: React.FC = () => {
                   className="button button_lg button_default button_full-size"
                   type="submit"
                 >
-                  Login
+                  {t("pages.login.button")}
                 </button>
               </div>
             </div>

@@ -14,10 +14,12 @@ import { useAsideContext } from "../../context/AsideContext";
 import { fetchAllProducts } from "../../features/products";
 import { fetchFavourite } from "../../features/favourite";
 import { useModalContext } from "../../context/ModalContext";
+import { useTranslation } from "react-i18next";
 
 export const CatalogPage = () => {
   const dispatch = useDispatch();
   const location = useLocation();
+  const { t } = useTranslation();
   const { showModal } = useModalContext();
   const [, setMessageCounter] = useState(0);
   const [wasModalShown, setWasModalShown] = useState(false);
@@ -68,7 +70,7 @@ export const CatalogPage = () => {
 
         <div className={styles.catalogpage__main}>
           <div className={styles.catalogpage__chips}>
-            <h3 className={styles.catalogpage__title}>Catalog</h3>
+            <h3 className={styles.catalogpage__title}>{t("components.pages.catalog.title")}</h3>
             <Categories />
 
             {isAsideOpen && (
@@ -92,7 +94,7 @@ export const CatalogPage = () => {
 
           {products.content.length === 0 && (
             <p className={styles.catalogpage__errorSearch}>
-              Oooops! No products found!
+              {t("components.pages.catalog.nothing")}
             </p>
           )}
 

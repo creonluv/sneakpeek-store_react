@@ -1,5 +1,6 @@
 import React from "react";
 import { useNavigate } from "react-router-dom";
+import { useTranslation } from "react-i18next";
 
 import { RootState } from "../../../app/store";
 import { useAppSelector, useAppDispatch } from "../../../app/hooks";
@@ -27,6 +28,7 @@ import styles from "./Categories.module.scss";
 export const Categories: React.FC = () => {
   const dispatch = useAppDispatch();
   const navigate = useNavigate();
+  const { t } = useTranslation();
 
   const { categories, producers, sizes, genders } = useAppSelector(
     (state: RootState) => state.catalog
@@ -150,7 +152,7 @@ export const Categories: React.FC = () => {
 
         {selectedItems.length > 0 && (
           <button className={styles.resetButton} onClick={handleResetAll}>
-            Reset all settings
+            {t("components.catalog.categories.reset")}
           </button>
         )}
       </div>
@@ -166,7 +168,7 @@ export const Categories: React.FC = () => {
               key={index}
               value={`${item.sortField} ${item.sortOrder}`}
             >
-              Sort by {item.sortField} {item.sortOrder}
+              {t("components.catalog.categories.sort")} {item.sortField} {item.sortOrder}
             </option>
           ))}
         </select>

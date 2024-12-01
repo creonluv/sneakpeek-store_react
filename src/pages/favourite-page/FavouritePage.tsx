@@ -1,4 +1,5 @@
 import { useEffect, useState } from "react";
+import { useTranslation } from "react-i18next";
 
 import { useAppDispatch, useAppSelector } from "../../app/hooks";
 import { RootState } from "../../app/store";
@@ -15,6 +16,7 @@ import styles from "./FavouritePage.module.scss";
 
 export const FavouritePage = () => {
   const dispatch = useAppDispatch();
+  const { t } = useTranslation();
   const { products } = useAppSelector((state: RootState) => state.products);
   const { favourite, loading, messages } = useAppSelector(
     (state: RootState) => state.favourite
@@ -54,7 +56,7 @@ export const FavouritePage = () => {
   return (
     <section className={styles.favouritepage}>
       <div className={styles.favouritepage__header}>
-        <h3 className={styles.favouritepage__title}>Favourite</h3>
+        <h3 className={styles.favouritepage__title}>{t("pages.favourite.title")}</h3>
         <span className={styles.favouritepage__subtitle}>
           {favourite.length}
         </span>

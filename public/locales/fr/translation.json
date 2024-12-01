@@ -1,0 +1,199 @@
+{
+  "components": {
+    "header": {
+      "profile": "Profil utilisateur",
+      "logout": "Déconnexion",
+      "login": "Connexion",
+      "register": "S'inscrire",
+      "search": "Recherche",
+      "nav": {
+        "item1": "Nouveautés",
+        "item2": "Hommes",
+        "item3": "Femmes",
+        "item4": "Enfants",
+        "item5": "Marques",
+        "item6": "Soldes"
+      }
+    },
+    "buttonBack": "Retour",
+    "blog": {
+      "title": "Notre Blog",
+      "mainButton": "Tout voir",
+      "button": "Lookbook 2023",
+      "subtitle": "Nouvelle édition",
+      "text": "Découvrez les nouvelles tendances pour 2023",
+      "buttonWatch": "Voir les tendances",
+      "buttonSubscribe": "S'abonner",
+      "content": "Abonnez-vous à notre newsletter pour recevoir des offres exclusives et des réductions."
+    },
+    "catalog": {
+      "aside": {
+        "category": "Catégorie",
+        "producer": "Fabricant",
+        "size": "Taille",
+        "gender": "Genre",
+        "priceRange": "Gamme de prix",
+        "showMore": "Voir plus"
+      },
+      "categories": {
+        "reset": "Réinitialiser tous les filtres",
+        "sort": "Trier par"
+      }
+    },
+    "changePassword": {
+      "title": "Changer le mot de passe",
+      "oldPassword": "Ancien mot de passe",
+      "newPassword": "Nouveau mot de passe",
+      "confirmNewPassword": "Confirmer le nouveau mot de passe",
+      "button": "Envoyer"
+    },
+    "footer": {
+      "catalog": "Catalogue",
+      "discount": "Réductions",
+      "brands": "Marques",
+      "office": "Bureau",
+      "service": "Service",
+      "orders": "Commandes",
+      "returns": "Retours",
+      "faq": "FAQ",
+      "policy": "Politiques",
+      "about": "À propos",
+      "loyal": "Fidélité",
+      "blog": "Blog",
+      "sustainability": "Durabilité",
+      "governance": "Gouvernance",
+      "contacts": "Contacts",
+      "sustain": "Durabilité",
+      "corporate": "Entreprise",
+      "copyright": "© Droits d'auteur 2023 SNEAKPEEK. Tous droits réservés."
+    },
+    "mainscreen": {
+      "text1": "Dans tout le style d'été, c'est",
+      "text2": "le meilleur look de créateur"
+    },
+    "slider": {
+      "new": "Nouvelle collection",
+      "best": "Meilleures ventes",
+      "categories": "Catégories",
+      "default": "Vous aimerez peut-être"
+    },
+    "timer": {
+      "title": "Vente de la collection d'été - obtenez",
+      "text": "Les styles les plus convoités vous attendent. Découvrez les meilleurs looks modernes en un seul endroit.",
+      "button": "Acheter maintenant",
+      "days": "Jours",
+      "hours": "Heures",
+      "minutes": "Minutes",
+      "seconds": "Secondes"
+    },
+    "sale": {
+      "title": "Remise uniquement ce vendredi et recevez un cadeau spécial",
+      "text": "Abonnez-vous à notre newsletter pour recevoir un code bonus de 35% de réduction ce vendredi ainsi qu'un superbe cadeau !",
+      "button": "Aller à"
+    },
+    "upload": "Mettre à jour l'image"
+  },
+  "pages": {
+    "bucket": {
+      "title": "Panier",
+      "summary": "Résumé du panier",
+      "items": "Articles :",
+      "total": "Total :",
+      "subtotal": "Sous-total :",
+      "button": "Passer à la caisse"
+    },
+    "catalog": {
+      "title": "Catalogue",
+      "nothing": "Oh ! Aucun article trouvé !"
+    },
+    "checkout": {
+      "title": "Paiement",
+      "steps": "3 étapes",
+      "contact": "Informations de contact",
+      "name": "Entrez le nom",
+      "select": "Sélectionnez une succursale",
+      "courier": "Livraison par coursier",
+      "state": "Région",
+      "city": "Ville",
+      "branch": "Adresse de la succursale",
+      "selectOffice": "Sélectionnez une succursale",
+      "street": "Rue",
+      "apartment": "Appartement",
+      "payment": "Mode de paiement",
+      "agree": "J'accepte les termes et conditions",
+      "button": "Acheter maintenant",
+      "order": "Votre commande",
+      "size": "Taille :",
+      "items": "Articles :",
+      "delivery": "Livraison :",
+      "total": "Total :",
+      "lastname": "Entrez le nom de famille",
+      "card": "Carte*",
+      "security": "Code de sécurité*"
+    },
+    "favourite": {
+      "title": "Favoris"
+    },
+    "login": {
+      "title": "Connexion",
+      "noAccount": "Pas de compte ?",
+      "register": "Inscrivez-vous ici",
+      "username": "Nom d'utilisateur",
+      "password": "Mot de passe",
+      "button": "Connexion"
+    },
+    "notfound": {
+      "title": "404, page non trouvée",
+      "text": "Désolé, nous n'avons pas trouvé la page que vous cherchez.",
+      "link": "Page d'accueil"
+    },
+    "product": {
+      "sizes": "Tailles :",
+      "SP": "Livraison et Paiement",
+      "check": "Vérifiez la disponibilité en magasin",
+      "code": "Référence de l'article :",
+      "desc": "Description",
+      "material": "Matériaux et entretien",
+      "reviews": "Avis"
+    },
+    "profile": {
+      "title": "Profil",
+      "save": "Sauvegarder",
+      "cancel": "Annuler",
+      "info": "Informations de base",
+      "address": "Adresse",
+      "phone": "Entrez le numéro de téléphone",
+      "email": "Entrez l'email",
+      "surname": "Entrez le nom de famille",
+      "name": "Entrez le prénom",
+      "street": "Entrez la rue",
+      "apartment": "Entrez l'appartement",
+      "city": "Entrez la ville",
+      "state": "Entrez la région",
+      "contacts": "Contacts",
+      "namev": "Prénom",
+      "surnamev": "Nom",
+      "emailv": "E-mail",
+      "phonev": "Téléphone",
+      "apartmentv": "Appartement",
+      "streetv": "Rue",
+      "cityv": "Ville",
+      "statev": "Région"
+    },
+    "register": {
+      "title": "Inscription",
+      "noAccount": "Déjà un compte ?",
+      "link": "Connexion",
+      "button": "S'inscrire",
+      "agree": "J'ai lu et j'accepte les termes et conditions ainsi que la politique de confidentialité",
+      "username": "Nom d'utilisateur",
+      "password": "Mot de passe",
+      "email": "E-mail"
+    },
+    "thankyou": {
+      "orderSuccess": "Commande réussie !",
+      "order": "Votre commande",
+      "wait": "Attendez un message avec les détails"
+    }
+  }
+}

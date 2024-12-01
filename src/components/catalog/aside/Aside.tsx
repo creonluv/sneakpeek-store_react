@@ -1,5 +1,6 @@
 import React, { useState, useEffect, useMemo } from "react";
 import { useNavigate } from "react-router-dom";
+import { useTranslation } from "react-i18next";
 
 import classNames from "classnames";
 import Slider from "rc-slider";
@@ -25,16 +26,10 @@ import btnBack from "../../../assets/img/icons/btn-back.svg";
 import styles from "./Aside.module.scss";
 import "rc-slider/assets/index.css";
 
-const filterConfigs = [
-  { type: "categoryIds" as FilterType, label: "Category" },
-  { type: "producerIds" as FilterType, label: "Producer" },
-  { type: "sizeIds" as FilterType, label: "Size" },
-  { type: "genderIds" as FilterType, label: "Gender" },
-];
-
 export const Aside: React.FC = () => {
   const dispatch = useDispatch();
   const navigate = useNavigate();
+  const { t } = useTranslation();
 
   const [openSections, setOpenSections] = useState<Record<FilterType, boolean>>(
     {
@@ -51,6 +46,13 @@ export const Aside: React.FC = () => {
     sizeIds: false,
     genderIds: false,
   });
+
+  const filterConfigs = [
+    { type: "categoryIds" as FilterType, label: t("components.catalog.aside.category") },
+    { type: "producerIds" as FilterType, label: t("components.catalog.aside.producer") },
+    { type: "sizeIds" as FilterType, label: t("components.catalog.aside.size") },
+    { type: "genderIds" as FilterType, label: t("components.catalog.aside.gender") },
+  ];
 
   useEffect(() => {
     dispatch(fetchFilterData() as any);
@@ -148,7 +150,7 @@ export const Aside: React.FC = () => {
           className={classNames(styles.filter__spoiler)}
           onClick={() => toggleSection("priceRange" as FilterType)}
         >
-          <h3 className={styles.filter__title}>Price Range</h3>
+          <h3 className={styles.filter__title}>{t("components.catalog.aside.priceRange")}</h3>
           <img
             className={classNames(styles.filter__arrow, {
               [styles.open]: openSections["priceRange" as FilterType],
@@ -227,7 +229,7 @@ export const Aside: React.FC = () => {
                   onClick={() => handleShowMoreClick(type)}
                   className={styles.filter__showMoreButton}
                 >
-                  Show more
+                  {t("components.catalog.aside.showMore")}
                 </button>
               )}
             </ul>

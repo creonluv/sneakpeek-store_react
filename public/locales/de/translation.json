@@ -1,0 +1,199 @@
+{
+  "components": {
+    "header": {
+      "profile": "Benutzerprofil",
+      "logout": "Abmelden",
+      "login": "Anmelden",
+      "register": "Registrieren",
+      "search": "Suche",
+      "nav": {
+        "item1": "Neuheiten",
+        "item2": "Herren",
+        "item3": "Damen",
+        "item4": "Kinder",
+        "item5": "Marken",
+        "item6": "Sale"
+      }
+    },
+    "buttonBack": "Zurück",
+    "blog": {
+      "title": "Unser Blog",
+      "mainButton": "Alles ansehen",
+      "button": "Lookbook 2023",
+      "subtitle": "Neue Ausgabe",
+      "text": "Wir präsentieren die neuen Trends für 2023",
+      "buttonWatch": "Trends ansehen",
+      "buttonSubscribe": "Abonnieren",
+      "content": "Abonnieren Sie unseren Newsletter und erhalten Sie exklusive Angebote und Rabatte."
+    },
+    "catalog": {
+      "aside": {
+        "category": "Kategorie",
+        "producer": "Hersteller",
+        "size": "Größe",
+        "gender": "Geschlecht",
+        "priceRange": "Preisspanne",
+        "showMore": "Mehr anzeigen"
+      },
+      "categories": {
+        "reset": "Alle Filter zurücksetzen",
+        "sort": "Sortieren nach"
+      }
+    },
+    "changePassword": {
+      "title": "Passwort ändern",
+      "oldPassword": "Altes Passwort",
+      "newPassword": "Neues Passwort",
+      "confirmNewPassword": "Neues Passwort bestätigen",
+      "button": "Senden"
+    },
+    "footer": {
+      "catalog": "Katalog",
+      "discount": "Rabatte",
+      "brands": "Marken",
+      "office": "Büro",
+      "service": "Service",
+      "orders": "Bestellungen",
+      "returns": "Rücksendungen",
+      "faq": "Häufige Fragen",
+      "policy": "Richtlinien",
+      "about": "Über uns",
+      "loyal": "Treue",
+      "blog": "Blog",
+      "sustainability": "Nachhaltigkeit",
+      "governance": "Unternehmensführung",
+      "contacts": "Kontakte",
+      "sustain": "Nachhaltigkeit",
+      "corporate": "Unternehmen",
+      "copyright": "© Urheberrecht 2023 SNEAKPEEK. Alle Rechte vorbehalten."
+    },
+    "mainscreen": {
+      "text1": "Im gesamten Sommerstil ist dies",
+      "text2": "der beste Designer-Look"
+    },
+    "slider": {
+      "new": "Neue Kollektion",
+      "best": "Bestseller",
+      "categories": "Kategorien",
+      "default": "Vielleicht gefällt Ihnen"
+    },
+    "timer": {
+      "title": "Sommerkollektion Ausverkauf - erhalten Sie",
+      "text": "Die begehrtesten Styles warten jetzt auf Sie. Finden Sie die besten modernen Looks an einem Ort.",
+      "button": "Jetzt kaufen",
+      "days": "Tage",
+      "hours": "Stunden",
+      "minutes": "Minuten",
+      "seconds": "Sekunden"
+    },
+    "sale": {
+      "title": "Rabatt nur diesen Freitag und erhalten Sie ein spezielles Geschenk",
+      "text": "Abonnieren Sie unseren Newsletter und erhalten Sie einen Bonuscode für 35% Rabatt diesen Freitag sowie ein tolles Geschenk!",
+      "button": "Gehe zu"
+    },
+    "upload": "Bild aktualisieren"
+  },
+  "pages": {
+    "bucket": {
+      "title": "Warenkorb",
+      "summary": "Warenkorbübersicht",
+      "items": "Artikel:",
+      "total": "Gesamt:",
+      "subtotal": "Zwischensumme:",
+      "button": "Zur Kasse"
+    },
+    "catalog": {
+      "title": "Katalog",
+      "nothing": "Oh! Keine Artikel gefunden!"
+    },
+    "checkout": {
+      "title": "Zur Kasse",
+      "steps": "3 Schritte",
+      "contact": "Kontaktinformationen",
+      "name": "Name eingeben",
+      "select": "Filiale auswählen",
+      "courier": "Kurierlieferung",
+      "state": "Region",
+      "city": "Stadt",
+      "branch": "Filiale Adresse",
+      "selectOffice": "Filiale auswählen",
+      "street": "Straße",
+      "apartment": "Wohnung",
+      "payment": "Zahlungsmethode",
+      "agree": "Ich stimme den Bedingungen zu",
+      "button": "Jetzt kaufen",
+      "order": "Ihre Bestellung",
+      "size": "Größe:",
+      "items": "Artikel:",
+      "delivery": "Lieferung:",
+      "total": "Gesamt:",
+      "lastname": "Nachname eingeben",
+      "card": "Karte*",
+      "security": "Sicherheitscode*"
+    },
+    "favourite": {
+      "title": "Favoriten"
+    },
+    "login": {
+      "title": "Anmelden",
+      "noAccount": "Kein Konto?",
+      "register": "Hier registrieren",
+      "username": "Benutzername",
+      "password": "Passwort",
+      "button": "Anmelden"
+    },
+    "notfound": {
+      "title": "404, Seite nicht gefunden",
+      "text": "Entschuldigung, wir konnten die gesuchte Seite nicht finden.",
+      "link": "Startseite"
+    },
+    "product": {
+      "sizes": "Größen:",
+      "SP": "Versand und Zahlung",
+      "check": "Verfügbarkeit im Geschäft prüfen",
+      "code": "Artikelnummer:",
+      "desc": "Beschreibung",
+      "material": "Material und Pflege",
+      "reviews": "Bewertungen"
+    },
+    "profile": {
+      "title": "Profil",
+      "save": "Speichern",
+      "cancel": "Abbrechen",
+      "info": "Grundinformationen",
+      "address": "Adresse",
+      "phone": "Telefonnummer eingeben",
+      "email": "E-Mail eingeben",
+      "surname": "Nachname eingeben",
+      "name": "Name eingeben",
+      "street": "Straße eingeben",
+      "apartment": "Wohnung eingeben",
+      "city": "Stadt eingeben",
+      "state": "Region eingeben",
+      "contacts": "Kontakte",
+      "namev": "Name",
+      "surnamev": "Nachname",
+      "emailv": "E-Mail",
+      "phonev": "Telefon",
+      "apartmentv": "Wohnung",
+      "streetv": "Straße",
+      "cityv": "Stadt",
+      "statev": "Region"
+    },
+    "register": {
+      "title": "Registrieren",
+      "noAccount": "Bereits ein Konto?",
+      "link": "Anmelden",
+      "button": "Registrieren",
+      "agree": "Ich habe die Nutzungsbedingungen und die Datenschutzrichtlinie gelesen und stimme zu",
+      "username": "Benutzername",
+      "password": "Passwort",
+      "email": "E-Mail"
+    },
+    "thankyou": {
+      "orderSuccess": "Bestellung erfolgreich!",
+      "order": "Ihre Bestellung",
+      "wait": "Warten Sie auf eine Nachricht mit den Details"
+    }
+  }
+}

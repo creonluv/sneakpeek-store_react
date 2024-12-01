@@ -1,6 +1,7 @@
 import { useCallback, useEffect, useState } from "react";
 import { SubmitHandler, useForm } from "react-hook-form";
 import { Link, useNavigate } from "react-router-dom";
+import { useTranslation } from "react-i18next";
 
 import { zodResolver } from "@hookform/resolvers/zod";
 
@@ -52,6 +53,7 @@ type CheckoutFormData = {
 
 export const CheckoutPage = () => {
   const dispatch = useAppDispatch();
+  const { t } = useTranslation();
   const { isAuth } = useAuthContext();
   const navigate = useNavigate();
 
@@ -150,26 +152,24 @@ export const CheckoutPage = () => {
       delivery_details: {
         delivery_type:
           typeof data.delivery_type === "string" &&
-          data.delivery_type === "home"
+            data.delivery_type === "home"
             ? "home"
             : "branch",
         shipment_method: data.shipment_method,
         ...(typeof data.delivery_type === "string" &&
-        data.delivery_type === "home"
+          data.delivery_type === "home"
           ? {
-              state: data.state,
-              city: data.city,
-              street: data.street,
-              apartment: data.apartment,
-            }
+            state: data.state,
+            city: data.city,
+            street: data.street,
+            apartment: data.apartment,
+          }
           : {
-              branch_id: data.branch_id,
-              branch_address: data.branch_address,
-            }),
+            branch_id: data.branch_id,
+            branch_address: data.branch_address,
+          }),
       },
     };
-
-    console.log("Transformed Form Data:", formDataWithcart);
 
     createOrder(formDataWithcart)
       .then((data) => {
@@ -200,8 +200,8 @@ export const CheckoutPage = () => {
   return (
     <section className={styles.checkoutpage}>
       <div className={styles.checkoutpage__header}>
-        <h3 className={styles.checkoutpage__title}>Checkout</h3>
-        <span className={styles.checkoutpage__subtitle}>3 steps</span>
+        <h3 className={styles.checkoutpage__title}>{t("pages.checkout.title")}</h3>
+        <span className={styles.checkoutpage__subtitle}>{t("pages.checkout.steps")}</span>
       </div>
 
       <div className={styles.checkoutpage__container}>
@@ -211,13 +211,13 @@ export const CheckoutPage = () => {
         >
           <div className={styles.checkoutpage__block}>
             <div className={styles.checkoutpage__blockTitle}>
-              <h3 className={styles.checkoutpage__ttl}>Contact Information</h3>
+              <h3 className={styles.checkoutpage__ttl}>{t("pages.checkout.contact")}</h3>
             </div>
             <div className={styles.checkoutpage__inputs}>
               <input
                 type="text"
                 className={`${styles.form__input} input`}
-                placeholder="Enter name"
+                placeholder={t("pages.checkout.name")}
                 {...register("name")}
               />
               {errors.name && <span>{errors.name.message}</span>}
@@ -225,7 +225,7 @@ export const CheckoutPage = () => {
               <input
                 type="text"
                 className={`${styles.form__input} input`}
-                placeholder="Enter last name"
+                placeholder={t("pages.checkout.lastname")}
                 {...register("surname")}
               />
               {errors.surname && <span>{errors.surname.message}</span>}
@@ -288,7 +288,7 @@ export const CheckoutPage = () => {
                       <input
                         type="text"
                         className={`${styles.form__input} input`}
-                        placeholder="Adress of branch"
+                        placeholder={t("pages.checkout.branch")}
                         {...register("branch_address")}
                       />
 
@@ -297,7 +297,7 @@ export const CheckoutPage = () => {
                           className={`${styles.form__input} input`}
                           {...register("branch_id")}
                         >
-                          <option value="">Select Post Office</option>
+                          <option value="">{t("pages.checkout.select")}</option>
                           <option value="Post office #129">
                             Post office #129
                           </option>
@@ -322,7 +322,7 @@ export const CheckoutPage = () => {
                       className={styles.checkbox__index}
                       {...register("delivery_type")}
                     />
-                    Courier delivery
+                    {t("pages.checkout.courier")}
                   </label>
 
                   {isCourierSelected && (
@@ -339,7 +339,7 @@ export const CheckoutPage = () => {
                             className={`${styles.form__input} input`}
                             {...register("state")}
                           >
-                            <option value="">State</option>
+                            <option value="">{t("pages.checkout.state")}</option>
                             <option value="Kharkivska">Kharkivska</option>
                             <option value="Poltavska">Poltavska</option>
                             <option value="Khersonska">Khersonska</option>
@@ -349,7 +349,7 @@ export const CheckoutPage = () => {
                             className={`${styles.form__input} input`}
                             {...register("city")}
                           >
-                            <option value="">City</option>
+                            <option value="">{t("pages.checkout.city")}</option>
                             <option value="Kharkiv">Kharkiv</option>
                             <option value="Poltava">Poltava</option>
                             <option value="Kherson">Kherson</option>
@@ -361,13 +361,13 @@ export const CheckoutPage = () => {
                           <input
                             type="text"
                             className={`${styles.form__input} input`}
-                            placeholder="Street"
+                            placeholder={t("pages.checkout.street")}
                             {...register("street")}
                           />
                           <input
                             type="text"
                             className={`${styles.form__input} input`}
-                            placeholder="Apartment"
+                            placeholder={t("pages.checkout.apartment")}
                             {...register("apartment")}
                           />
                         </div>
@@ -417,7 +417,7 @@ export const CheckoutPage = () => {
                       <input
                         type="text"
                         className={`${styles.form__input} input`}
-                        placeholder="Adress of branch"
+                        placeholder={t("pages.checkout.branch")}
                         {...register("branch_address")}
                       />
 
@@ -426,7 +426,7 @@ export const CheckoutPage = () => {
                           className={`${styles.form__input} input`}
                           {...register("branch_id")}
                         >
-                          <option value="">Select Post Office</option>
+                          <option value="">{t("pages.checkout.selectOffice")}</option>
                           <option value="Post office #129">
                             Post office #129
                           </option>
@@ -451,7 +451,7 @@ export const CheckoutPage = () => {
                       className={styles.checkbox__index}
                       {...register("delivery_type")}
                     />
-                    Courier delivery
+                    {t("pages.checkout.courier")}
                   </label>
 
                   {isCourierSelected && (
@@ -468,7 +468,7 @@ export const CheckoutPage = () => {
                             className={`${styles.form__input} input`}
                             {...register("state")}
                           >
-                            <option value="">State</option>
+                            <option value="">{t("pages.checkout.state")}</option>
                             <option value="Kharkivska">Kharkivska</option>
                             <option value="Poltavska">Poltavska</option>
                             <option value="Khersonska">Khersonska</option>
@@ -478,7 +478,7 @@ export const CheckoutPage = () => {
                             className={`${styles.form__input} input`}
                             {...register("city")}
                           >
-                            <option value="">City</option>
+                            <option value="">{t("pages.checkout.city")}</option>
                             <option value="Kharkiv">Kharkiv</option>
                             <option value="Poltava">Poltava</option>
                             <option value="Kherson">Kherson</option>
@@ -490,13 +490,13 @@ export const CheckoutPage = () => {
                           <input
                             type="text"
                             className={`${styles.form__input} input`}
-                            placeholder="Street"
+                            placeholder={t("pages.checkout.street")}
                             {...register("street")}
                           />
                           <input
                             type="text"
                             className={`${styles.form__input} input`}
-                            placeholder="Apartment"
+                            placeholder={t("pages.checkout.apartment")}
                             {...register("apartment")}
                           />
                         </div>
@@ -546,7 +546,7 @@ export const CheckoutPage = () => {
                       <input
                         type="text"
                         className={`${styles.form__input} input`}
-                        placeholder="Adress of branch"
+                        placeholder={t("pages.checkout.branch")}
                         {...register("branch_address")}
                       />
 
@@ -555,7 +555,7 @@ export const CheckoutPage = () => {
                           className={`${styles.form__input} input`}
                           {...register("branch_id")}
                         >
-                          <option value="">Select Post Office</option>
+                          <option value="">{t("pages.checkout.selectOffice")}</option>
                           <option value="Post office #129">
                             Post office #129
                           </option>
@@ -580,7 +580,7 @@ export const CheckoutPage = () => {
                       className={styles.checkbox__index}
                       {...register("delivery_type")}
                     />
-                    Courier delivery
+                    {t("pages.checkout.courier")}
                   </label>
 
                   {isCourierSelected && (
@@ -597,7 +597,7 @@ export const CheckoutPage = () => {
                             className={`${styles.form__input} input`}
                             {...register("state")}
                           >
-                            <option value="">State</option>
+                            <option value="">{t("pages.checkout.state")}</option>
                             <option value="Kharkivska">Kharkivska</option>
                             <option value="Poltavska">Poltavska</option>
                             <option value="Khersonska">Khersonska</option>
@@ -607,7 +607,7 @@ export const CheckoutPage = () => {
                             className={`${styles.form__input} input`}
                             {...register("city")}
                           >
-                            <option value="">City</option>
+                            <option value="">{t("pages.checkout.city")}</option>
                             <option value="Kharkiv">Kharkiv</option>
                             <option value="Poltava">Poltava</option>
                             <option value="Kherson">Kherson</option>
@@ -619,13 +619,13 @@ export const CheckoutPage = () => {
                           <input
                             type="text"
                             className={`${styles.form__input} input`}
-                            placeholder="Street"
+                            placeholder={t("pages.checkout.street")}
                             {...register("street")}
                           />
                           <input
                             type="text"
                             className={`${styles.form__input} input`}
-                            placeholder="Apartment"
+                            placeholder={t("pages.checkout.apartment")}
                             {...register("apartment")}
                           />
                         </div>
@@ -645,13 +645,13 @@ export const CheckoutPage = () => {
 
           <div className={styles.checkoutpage__block}>
             <div className={styles.checkoutpage__blockTitle}>
-              <h3 className={styles.checkoutpage__ttl}>Payment Method</h3>
+              <h3 className={styles.checkoutpage__ttl}>{t("pages.checkout.payment")}</h3>
             </div>
             <div className={styles.checkoutpage__inputs}>
               <input
                 type="text"
                 className={`${styles.form__input} input`}
-                placeholder="Card number*"
+                placeholder={t("pages.checkout.card")}
                 {...register("cardNumber")}
               />
               {errors.cardNumber && <span>{errors.cardNumber.message}</span>}
@@ -668,7 +668,7 @@ export const CheckoutPage = () => {
               <input
                 type="text"
                 className={`${styles.form__input} input`}
-                placeholder="Security Code*"
+                placeholder={t("pages.checkout.security")}
                 {...register("securityCode")}
               />
               {errors.securityCode && (
@@ -683,7 +683,7 @@ export const CheckoutPage = () => {
                   className={styles.checkbox__index}
                   {...register("terms")}
                 />
-                I agree to the terms
+                {t("pages.checkout.agree")}
               </label>
               {errors.terms && <span>{errors.terms.message}</span>}
             </div>
@@ -691,12 +691,11 @@ export const CheckoutPage = () => {
 
           <button
             type="submit"
-            className={`button button_lg button_default button_full-size ${
-              isOrdered ? "active" : ""
-            }`}
+            className={`button button_lg button_default button_full-size ${isOrdered ? "active" : ""
+              }`}
             onClick={() => navigate("/thankyou")}
           >
-            buy now
+            {t("pages.checkout.button")}
             <img className="icon-arrow" src={arrowWhite} alt="" />
           </button>
         </form>
@@ -704,7 +703,7 @@ export const CheckoutPage = () => {
         <div className={styles.checkoutpage__cartItems}>
           <div className={styles.checkoutpage__block}>
             <div className={styles.checkoutpage__blockTitle}>
-              <h3 className={styles.checkoutpage__ttl}>Your order</h3>
+              <h3 className={styles.checkoutpage__ttl}>{t("pages.checkout.order")}</h3>
             </div>
 
             <hr className={styles.checkoutpage__line} />
@@ -743,7 +742,7 @@ export const CheckoutPage = () => {
                   <div className={styles.checkoutpage__bottom}>
                     <div className={styles.checkoutpage__sizes}>
                       <span className={styles.checkoutpage__sizeTitle}>
-                        Size:
+                        {t("pages.checkout.size")}
                       </span>
                       <p className={styles.checkoutpage__size}>
                         {item.product_instance.size.name}
@@ -761,13 +760,13 @@ export const CheckoutPage = () => {
             <div className={styles.checkoutpage__information}>
               <div className={styles.checkoutpage__info}>
                 <p className={styles.checkoutpage__infoKey}>
-                  {bucket?.cart_items.length} items:
+                  {bucket?.cart_items.length} {t("pages.checkout.items")}
                 </p>
                 <p className={styles.checkoutpage__infoValue}>${totalPrice}</p>
               </div>
 
               <div className={styles.checkoutpage__info}>
-                <p className={styles.checkoutpage__infoKey}>Delivery:</p>
+                <p className={styles.checkoutpage__infoKey}>{t("pages.checkout.delivery")}</p>
                 <p className={styles.checkoutpage__infoValue}>$100</p>
               </div>
             </div>
@@ -775,7 +774,7 @@ export const CheckoutPage = () => {
             <hr className={styles.checkoutpage__line} />
 
             <div className={styles.checkoutpage__subtotal}>
-              <h3 className={styles.checkoutpage__title}>Total:</h3>
+              <h3 className={styles.checkoutpage__title}>{t("pages.checkout.total")}</h3>
               <h3 className={styles.checkoutpage__priceTotal}>
                 ${totalPrice + 100}
               </h3>

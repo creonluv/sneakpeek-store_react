@@ -1,4 +1,5 @@
 import { useCallback, useEffect, useRef, useState } from "react";
+import { useTranslation } from "react-i18next";
 
 import { ProductCard } from "../product-card";
 import { ButtonSlider } from "../button-slider";
@@ -20,13 +21,13 @@ export const ProductSlider: React.FC<Props> = ({
   type,
   categories,
 }) => {
+  const { t } = useTranslation();
+
   const productsRef = useRef<HTMLDivElement>(null);
   const [scrollPosition, setScrollPosition] = useState(0);
 
   const productWidth = useRef<number>(0);
   const [cardsInView, setCardsInView] = useState(0);
-
-  console.log(scrollPosition);
 
   useEffect(() => {
     if (productsRef.current) {
@@ -66,12 +67,12 @@ export const ProductSlider: React.FC<Props> = ({
 
   const titleOfBlock =
     type === "normal"
-      ? "New Collection"
+      ? t("components.slider.new")
       : type === "sale"
-      ? "Best Seller"
-      : type === "category"
-      ? "Categories"
-      : "You May Also Like";
+        ? t("components.slider.best")
+        : type === "category"
+          ? t("components.slider.categories")
+          : t("components.slider.default");
 
   return (
     <section className="goods">
@@ -96,25 +97,25 @@ export const ProductSlider: React.FC<Props> = ({
         >
           {products
             ? products.map((product) => (
-                <div key={product.id} className="goods__card">
-                  <ProductCard
-                    key={product.id}
-                    product={product}
-                    type={type}
-                    id={product.id}
-                  />
-                </div>
-              ))
+              <div key={product.id} className="goods__card">
+                <ProductCard
+                  key={product.id}
+                  product={product}
+                  type={type}
+                  id={product.id}
+                />
+              </div>
+            ))
             : categories?.map((product) => (
-                <div key={product.id} className="goods__card">
-                  <ProductCard
-                    key={product.id}
-                    category={product}
-                    type={type}
-                    id={product.id}
-                  />
-                </div>
-              ))}
+              <div key={product.id} className="goods__card">
+                <ProductCard
+                  key={product.id}
+                  category={product}
+                  type={type}
+                  id={product.id}
+                />
+              </div>
+            ))}
         </div>
       </div>
 

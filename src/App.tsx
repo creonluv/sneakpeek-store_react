@@ -1,11 +1,17 @@
 import { useEffect } from "react";
 import { Outlet, useLocation } from "react-router-dom";
-import "./App.scss";
+
+import { checkAuth } from "./api/auth";
+
+import { useAuthContext } from "./context/AuthContext";
+
 import { Footer } from "./components/footer";
 import { Header } from "./components/header";
 import { BreadСrumbs } from "./components/breadcrumbs";
-import { checkAuth } from "./api/auth";
-import { useAuthContext } from "./context/AuthContext";
+
+import "./i18n";
+
+import "./App.scss";
 
 function App() {
   const location = useLocation();
