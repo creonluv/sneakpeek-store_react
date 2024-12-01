@@ -17,16 +17,19 @@ export const ButtonSlider: React.FC<Props> = ({
     <>
       <button
         onClick={handlePrevClick}
-        className={`goods__slider ${scrollPosition === 0 ? "goods__slider_disabled" : ""}`}
+        className={`goods__slider ${
+          scrollPosition === 0 ? "goods__slider_disabled" : ""
+        }`}
       >
         <img className="goods__button" src={scrollingArrows} alt="" />
       </button>
 
-      <button
-        onClick={handleNextClick}
-        className="goods__slider"
-      >
-        <img className={`goods__button goods__button_right`} src={scrollingArrows} alt="" />
+      <button onClick={handleNextClick} className="goods__slider">
+        <img
+          className={`goods__button goods__button_right`}
+          src={scrollingArrows}
+          alt=""
+        />
       </button>
     </>
   );

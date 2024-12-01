@@ -1,9 +1,10 @@
-import asideStyles from "../../header/asidemenu/AsideMenu.module.scss";
-import styles from "../../header/Header.module.scss";
+import { Aside } from "../aside";
 
 import close from "../../../assets/img/icons/close.svg";
 import logo from "../../../assets/img/icons/logo.svg";
-import { Aside } from "../aside";
+
+import asideStyles from "../../header/asidemenu/AsideMenu.module.scss";
+import styles from "../../header/Header.module.scss";
 
 type Props = {
   isAsideOpen: boolean;

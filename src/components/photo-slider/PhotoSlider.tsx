@@ -1,7 +1,9 @@
 import { useEffect, useState } from "react";
-import styles from "./PhotoSlider.module.scss";
+
 import arrowSlider from "../../assets/img/icons/scrollingArrows.svg";
 import clockIcon from "../../assets/img/icons/clock.svg";
+
+import styles from "./PhotoSlider.module.scss";
 
 type Props = {
   images: string[] | undefined;

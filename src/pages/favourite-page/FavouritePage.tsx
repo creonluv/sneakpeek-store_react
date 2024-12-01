@@ -1,13 +1,17 @@
-import { useAppDispatch, useAppSelector } from "../../app/hooks";
-import styles from "./FavouritePage.module.scss";
-import { RootState } from "../../app/store";
 import { useEffect, useState } from "react";
+
+import { useAppDispatch, useAppSelector } from "../../app/hooks";
+import { RootState } from "../../app/store";
 import { fetchAllProducts } from "../../features/products";
-import { ProductSlider } from "../../components/product-slider";
 import { fetchFavourite } from "../../features/favourite";
+
+import { ProductSlider } from "../../components/product-slider";
 import { ProductCard } from "../../components/product-card";
+
 import { useAuthContext } from "../../context/AuthContext";
 import { useModalContext } from "../../context/ModalContext";
+
+import styles from "./FavouritePage.module.scss";
 
 export const FavouritePage = () => {
   const dispatch = useAppDispatch();

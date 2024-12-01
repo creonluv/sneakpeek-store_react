@@ -1,6 +1,8 @@
-import "./MainScreen.scss";
-import bg from "../../assets/img/mainscreen/bg.jpg";
 import ButtonTitle from "../button-title/ButtonTitle";
+
+import bg from "../../assets/img/mainscreen/bg.jpg";
+
+import "./MainScreen.scss";
 
 export const MainScreen = () => {
   return (
@@ -29,7 +31,7 @@ export const MainScreen = () => {
           </div>
 
           <div className="mainscreen__button">
-            <ButtonTitle onClick={() => { }} />
+            <ButtonTitle onClick={() => {}} />
           </div>
         </div>
       </div>
@@ -46,6 +48,5 @@ export const MainScreen = () => {
         ))}
       </ul>
     </section>
-
   );
 };

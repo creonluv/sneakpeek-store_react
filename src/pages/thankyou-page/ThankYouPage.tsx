@@ -1,5 +1,7 @@
 import { useNavigate } from "react-router-dom";
+
 import ButtonTitle from "../../components/button-title/ButtonTitle";
+
 import styles from "./ThankYouPage.module.scss";
 
 export const ThankYouPage = () => {

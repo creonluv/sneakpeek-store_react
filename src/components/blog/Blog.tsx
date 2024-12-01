@@ -1,5 +1,6 @@
 import arrowBlack from "../../assets/img/icons/arrow-black.svg";
 import arrowWhite from "../../assets/img/icons/arrow-white.svg";
+
 import play from "../../assets/img/icons/play.svg";
 
 import icon1 from "../../assets/img/blog/icons/icons-1.png";
@@ -37,7 +38,9 @@ export const Blog = () => {
               </div>
               <div className="blog__content">
                 <h2 className="blog__title title-2--reverse">New Release</h2>
-                <p className="blog__text text-light">Presenting new trends of 2023</p>
+                <p className="blog__text text-light">
+                  Presenting new trends of 2023
+                </p>
               </div>
               <div className="blog__line"></div>
             </div>
@@ -51,7 +54,9 @@ export const Blog = () => {
               </div>
               <div className="blog__content">
                 <h2 className="blog__title title-2--reverse">New Release</h2>
-                <p className="blog__text text-light">Presenting new trends of 2023</p>
+                <p className="blog__text text-light">
+                  Presenting new trends of 2023
+                </p>
               </div>
               <div className="blog__line"></div>
             </div>
@@ -63,7 +68,10 @@ export const Blog = () => {
                 </a>
               </div>
               <div className="blog__content">
-                <p className="blog__text text-light">Subscribe to the newsletter and receive new offers from our store with hot offers.</p>
+                <p className="blog__text text-light">
+                  Subscribe to the newsletter and receive new offers from our
+                  store with hot offers.
+                </p>
               </div>
               <ul className="blog__icons icons">
                 <li className="icons__item">

@@ -1,5 +1,7 @@
 import { useLocation, useNavigate } from "react-router-dom";
+
 import btnBack from "../../assets/img/icons/btn-back.svg";
+
 import styles from "./BackBtn.module.scss";
 
 export const BackBtn = () => {

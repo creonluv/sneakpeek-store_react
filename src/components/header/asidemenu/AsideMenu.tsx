@@ -1,12 +1,13 @@
 import React from "react";
-import asideStyles from "./AsideMenu.module.scss";
-import styles from "../Header.module.scss";
 
 import close from "../../../assets/img/icons/close.svg";
 import logo from "../../../assets/img/icons/logo.svg";
 import cart from "../../../assets/img/icons/cart.svg";
 import account from "../../../assets/img/icons/account.svg";
 import likes from "../../../assets/img/icons/likes.svg";
+
+import asideStyles from "./AsideMenu.module.scss";
+import styles from "../Header.module.scss";
 
 interface AsideMenuProps {
   isMenuOpen: boolean;

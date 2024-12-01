@@ -1,10 +1,8 @@
 import React from "react";
-import { RootState } from "../../../app/store";
-import styles from "./Categories.module.scss";
-import { useAppSelector, useAppDispatch } from "../../../app/hooks";
-import { getNameById } from "../../../helpers/getNameOfFilter";
-import { updateUrlWithFiltersAndPrice } from "../../../helpers/updateUrlWithParams";
 import { useNavigate } from "react-router-dom";
+
+import { RootState } from "../../../app/store";
+import { useAppSelector, useAppDispatch } from "../../../app/hooks";
 import {
   setFiltersFromUrl,
   toggleCategory,
@@ -13,10 +11,18 @@ import {
   toggleSize,
   toggleSort,
 } from "../../../features/params";
-import { sortDiff } from "../../../helpers/sortDiff";
-import { FilterType } from "../../../types/Filters";
+
 import { useAsideContext } from "../../../context/AsideContext";
+
+import { getNameById } from "../../../helpers/getNameOfFilter";
+import { updateUrlWithFiltersAndPrice } from "../../../helpers/updateUrlWithParams";
+import { sortDiff } from "../../../helpers/sortDiff";
+
+import { FilterType } from "../../../types/Filters";
+
 import aside from "../../../assets/img/icons/aside.svg";
+
+import styles from "./Categories.module.scss";
 
 export const Categories: React.FC = () => {
   const dispatch = useAppDispatch();

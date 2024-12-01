@@ -1,6 +1,21 @@
+import { useCallback, useMemo } from "react";
 import { Link } from "react-router-dom";
-import "./ProductCard.scss";
+
 import { RootState } from "../../app/store";
+import { ProductCatalog } from "../../types/ProductsToCatalog";
+import {
+  fetchFavourite,
+  toggleItemInFavourite,
+} from "../../features/favourite";
+
+import { useAuthContext } from "../../context/AuthContext";
+
+import { useAppDispatch, useAppSelector } from "../../app/hooks";
+
+import { Product } from "../../types/Products";
+import { Category } from "../../types/Categories";
+import { Product as ProductFav } from "../../types/Bucket";
+
 import clockIcon from "../../assets/img/icons/clock.svg";
 import arrowIcon from "../../assets/img/icons/arrow.svg";
 import heartIcon from "../../assets/img/icons/heart.svg";
@@ -10,17 +25,8 @@ import tshirtsImg from "../../assets/img/categories/t-shirts.png";
 import hoodiesImg from "../../assets/img/categories/hoodies.png";
 import jeensImg from "../../assets/img/categories/jeans.png";
 import accesImg from "../../assets/img/categories/acces.png";
-import { Product } from "../../types/Products";
-import { Category } from "../../types/Categories";
-import { ProductCatalog } from "../../types/ProductsToCatalog";
-import { Product as ProductFav } from "../../types/Bucket";
-import { useAppDispatch, useAppSelector } from "../../app/hooks";
-import {
-  fetchFavourite,
-  toggleItemInFavourite,
-} from "../../features/favourite";
-import { useCallback, useMemo } from "react";
-import { useAuthContext } from "../../context/AuthContext";
+
+import "./ProductCard.scss";
 
 type Props = {
   product?: Product | ProductCatalog | ProductFav;
@@ -71,8 +77,8 @@ export const ProductCard: React.FC<Props> = ({
             type !== "category"
               ? `https://localhost:9091/api/images/${product?.main_photo_id}`
               : category?.id
-                ? photosOfCategory[category.id - 1]
-                : photosOfCategory[0]
+              ? photosOfCategory[category.id - 1]
+              : photosOfCategory[0]
           }
           alt="img-of-item"
         />
@@ -119,16 +125,11 @@ export const ProductCard: React.FC<Props> = ({
                 alt=""
               />
             ) : (
-              <img
-                className="card__buttonIconImg"
-                src={heartIcon}
-                alt=""
-              />
+              <img className="card__buttonIconImg" src={heartIcon} alt="" />
             )}
           </button>
         </div>
       )}
     </div>
-
   );
 };

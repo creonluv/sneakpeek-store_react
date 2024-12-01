@@ -1,10 +1,13 @@
 import { useCallback, useEffect, useRef, useState } from "react";
-import "./ProductSlider.scss";
+
 import { ProductCard } from "../product-card";
 import { ButtonSlider } from "../button-slider";
 import { SliderIndicator } from "./slider-indicator";
+
 import { Product } from "../../types/Products";
 import { Category } from "../../types/Categories";
+
+import "./ProductSlider.scss";
 
 type Props = {
   products?: Product[];

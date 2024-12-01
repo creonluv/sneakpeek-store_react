@@ -1,4 +1,17 @@
-import styles from "./Header.module.scss";
+import { useEffect, useState } from "react";
+import { Link, useNavigate } from "react-router-dom";
+
+import { AsideMenu } from "./asidemenu/AsideMenu";
+import { logout } from "../../api/auth";
+
+import { useAppDispatch, useAppSelector } from "../../app/hooks";
+import { RootState } from "../../app/store";
+import { fetchBucket } from "../../features/bucket";
+import { fetchFavourite } from "../../features/favourite";
+
+import { useAuthContext } from "../../context/AuthContext";
+import { useModalContext } from "../../context/ModalContext";
+
 import logo from "../../assets/img/icons/logo.svg";
 import iconSearch from "../../assets/img/icons/search.svg";
 import cart from "../../assets/img/icons/cart.svg";
@@ -6,18 +19,7 @@ import account from "../../assets/img/icons/account.svg";
 import likes from "../../assets/img/icons/likes.svg";
 import burger from "../../assets/img/icons/burger.svg";
 
-import { useEffect, useState } from "react";
-import { AsideMenu } from "./asidemenu/AsideMenu";
-import { Link, useNavigate } from "react-router-dom";
-
-import { logout } from "../../api/auth";
-
-import { useAuthContext } from "../../context/AuthContext";
-import { useModalContext } from '../../context/ModalContext';
-import { useAppDispatch, useAppSelector } from "../../app/hooks";
-import { RootState } from "../../app/store";
-import { fetchBucket } from "../../features/bucket";
-import { fetchFavourite } from "../../features/favourite";
+import styles from "./Header.module.scss";
 
 export const Header = () => {
   const [isMenuOpen, setIsMenuOpen] = useState(false);

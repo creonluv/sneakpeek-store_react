@@ -1,22 +1,29 @@
-import { ProductSlider } from "../../components/product-slider";
-import styles from "./BucketPage.module.scss";
+import { useCallback, useEffect, useState } from "react";
+import { Link, useNavigate } from "react-router-dom";
+
+import { debounce } from "lodash";
+
 import { useAppDispatch, useAppSelector } from "../../app/hooks";
 import { RootState } from "../../app/store";
-import { useCallback, useEffect, useState } from "react";
 import { fetchAllProducts } from "../../features/products";
 import {
   deleteItemInBucket,
   fetchBucket,
   updateItemInBucket,
 } from "../../features/bucket";
-import { CartItem, UpdateItemInBucketPayload } from "../../types/Bucket";
-import { debounce } from "lodash";
-import { Loader } from "../../components/loader";
-import del from "../../assets/img/icons/del.svg";
-import { Link, useNavigate } from "react-router-dom";
+
 import { useAuthContext } from "../../context/AuthContext";
-import arrowWhite from "../../assets/img/icons/arrow-white.svg";
 import { useModalContext } from "../../context/ModalContext";
+
+import { ProductSlider } from "../../components/product-slider";
+import { Loader } from "../../components/loader";
+
+import { CartItem, UpdateItemInBucketPayload } from "../../types/Bucket";
+
+import arrowWhite from "../../assets/img/icons/arrow-white.svg";
+import del from "../../assets/img/icons/del.svg";
+
+import styles from "./BucketPage.module.scss";
 
 export const BucketPage = () => {
   const dispatch = useAppDispatch();

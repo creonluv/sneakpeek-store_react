@@ -1,25 +1,32 @@
-import styles from "./ProductPage.module.scss";
+import { useEffect, useState } from "react";
+import { useNavigate, useParams } from "react-router-dom";
+
 import { useAppDispatch, useAppSelector } from "../../app/hooks";
 import { RootState } from "../../app/store";
-import { useEffect, useState } from "react";
 import { fetchProductData } from "../../features/product";
-import { ProductSlider } from "../../components/product-slider";
-import { fetchAllProducts } from "../../features/products";
-import { PhotoSlider } from "../../components/photo-slider";
-import { useNavigate, useParams } from "react-router-dom";
-import { generateRandomNumber } from "../../helpers/generateRandom";
-import buttonFav from "../../assets/img/icons/button.svg";
-import { TabsContent } from "../../components/tabscontent";
-import { BackBtn } from "../../components/back-button";
 import { fetchBucket, toggleItemInBucket } from "../../features/bucket";
-import { itemInBucket } from "../../types/Bucket";
 import {
   fetchFavourite,
   toggleItemInFavourite,
 } from "../../features/favourite";
-import arrowWhite from "../../assets/img/icons/arrow-white.svg";
+import { fetchAllProducts } from "../../features/products";
+
 import { useAuthContext } from "../../context/AuthContext";
 import { useModalContext } from "../../context/ModalContext";
+
+import { generateRandomNumber } from "../../helpers/generateRandom";
+
+import { ProductSlider } from "../../components/product-slider";
+import { PhotoSlider } from "../../components/photo-slider";
+import { TabsContent } from "../../components/tabscontent";
+import { BackBtn } from "../../components/back-button";
+
+import { itemInBucket } from "../../types/Bucket";
+
+import arrowWhite from "../../assets/img/icons/arrow-white.svg";
+import buttonFav from "../../assets/img/icons/button.svg";
+
+import styles from "./ProductPage.module.scss";
 
 export const ProductPage = () => {
   const dispatch = useAppDispatch();

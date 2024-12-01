@@ -1,10 +1,14 @@
 import React, { useEffect } from "react";
+import { useNavigate, useLocation } from "react-router-dom";
+
 import { useAppSelector, useAppDispatch } from "../../../app/hooks";
 import { RootState } from "../../../app/store";
-import styles from "./Pagination.module.scss";
+
 import { setCurrentPage } from "../../../features/params";
+
 import { updateUrlWithFiltersAndPrice } from "../../../helpers/updateUrlWithParams";
-import { useNavigate, useLocation } from "react-router-dom";
+
+import styles from "./Pagination.module.scss";
 
 export const Pagination: React.FC = () => {
   const dispatch = useAppDispatch();

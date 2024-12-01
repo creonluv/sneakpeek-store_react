@@ -1,8 +1,9 @@
-import styles from "./BreadCrumbs.module.scss";
-
 import React from "react";
 import { useLocation, Link } from "react-router-dom";
+
 import btnBred from "../../assets/img/icons/btn-bread.svg";
+
+import styles from "./BreadCrumbs.module.scss";
 
 export const BreadСrumbs = () => {
   const location = useLocation();

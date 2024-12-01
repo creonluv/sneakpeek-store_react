@@ -1,16 +1,13 @@
 import React, { useState, useEffect, useMemo } from "react";
+import { useNavigate } from "react-router-dom";
+
+import classNames from "classnames";
+import Slider from "rc-slider";
+
 import { useDispatch } from "react-redux";
 import { useAppSelector } from "../../../app/hooks";
 import { RootState } from "../../../app/store";
-import btnBack from "../../../assets/img/icons/btn-back.svg";
-import styles from "./Aside.module.scss";
 import { fetchFilterData } from "../../../features/catalog";
-import { FilterType } from "../../../types/Filters";
-import classNames from "classnames";
-import Slider from "rc-slider";
-import "rc-slider/assets/index.css";
-import { updateUrlWithFiltersAndPrice } from "../../../helpers/updateUrlWithParams";
-import { useNavigate } from "react-router-dom";
 import {
   setPriceRange,
   toggleCategory,
@@ -18,6 +15,15 @@ import {
   toggleProducer,
   toggleSize,
 } from "../../../features/params";
+
+import { updateUrlWithFiltersAndPrice } from "../../../helpers/updateUrlWithParams";
+
+import { FilterType } from "../../../types/Filters";
+
+import btnBack from "../../../assets/img/icons/btn-back.svg";
+
+import styles from "./Aside.module.scss";
+import "rc-slider/assets/index.css";
 
 const filterConfigs = [
   { type: "categoryIds" as FilterType, label: "Category" },

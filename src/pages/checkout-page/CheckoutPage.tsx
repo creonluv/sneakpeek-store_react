@@ -1,27 +1,34 @@
+import { useCallback, useEffect, useState } from "react";
 import { SubmitHandler, useForm } from "react-hook-form";
+import { Link, useNavigate } from "react-router-dom";
+
 import { zodResolver } from "@hookform/resolvers/zod";
-import styles from "./CheckoutPage.module.scss";
+
+import { createOrder } from "../../api/orders";
+import { getMyProfile } from "../../api/profile";
+
+import { useAppDispatch, useAppSelector } from "../../app/hooks";
+import { RootState } from "../../app/store";
+import { fetchBucket } from "../../features/bucket";
+
+import { useAuthContext } from "../../context/AuthContext";
+import { useModalContext } from "../../context/ModalContext";
+
+import { checkoutSchema } from "../../helpers/checkoutSchema";
+
+import {
+  CheckoutPageMessages,
+  ProfilePageMessages,
+} from "../../shared/utils/modalMessages";
+
+import { CartItem } from "../../types/Bucket";
 
 import novaIcon from "../../assets/img/checkout/nova.svg";
 import ukrIcon from "../../assets/img/checkout/ukr.svg";
 import meestIcon from "../../assets/img/checkout/meest.svg";
 import arrowWhite from "../../assets/img/icons/arrow-white.svg";
 
-import { checkoutSchema } from "../../helpers/checkoutSchema";
-import { useAppDispatch, useAppSelector } from "../../app/hooks";
-import { RootState } from "../../app/store";
-import { useCallback, useEffect, useState } from "react";
-import { useAuthContext } from "../../context/AuthContext";
-import { fetchBucket } from "../../features/bucket";
-import { createOrder } from "../../api/orders";
-import { Link, useNavigate } from "react-router-dom";
-import { CartItem } from "../../types/Bucket";
-import { getMyProfile } from "../../api/profile";
-import { useModalContext } from "../../context/ModalContext";
-import {
-  CheckoutPageMessages,
-  ProfilePageMessages,
-} from "../../shared/utils/modalMessages";
+import styles from "./CheckoutPage.module.scss";
 
 type CheckoutFormData = {
   cart_id: string;
@@ -687,7 +694,7 @@ export const CheckoutPage = () => {
             className={`button button_lg button_default button_full-size ${
               isOrdered ? "active" : ""
             }`}
-            // onClick={() => navigate("/thankyou")}
+            onClick={() => navigate("/thankyou")}
           >
             buy now
             <img className="icon-arrow" src={arrowWhite} alt="" />

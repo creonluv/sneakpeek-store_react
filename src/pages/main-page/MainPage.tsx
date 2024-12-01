@@ -1,15 +1,19 @@
 import { useEffect } from "react";
-import { useAppSelector } from "../../app/hooks";
-import { MainScreen } from "../../components/mainscreen";
-import { ProductSlider } from "../../components/product-slider";
-import { fetchAllProducts } from "../../features/products";
-import "./MainPage.scss";
+
 import { useDispatch } from "react-redux";
 import { RootState } from "../../app/store";
+import { useAppSelector } from "../../app/hooks";
+import { fetchAllProducts } from "../../features/products";
+
 import categories from "../../shared/utils/categories";
+
+import { MainScreen } from "../../components/mainscreen";
+import { ProductSlider } from "../../components/product-slider";
 import { PromoTimer } from "../../components/promo-timer";
 import { Blog } from "../../components/blog";
 import { Sale } from "../../components/sale";
+
+import "./MainPage.scss";
 
 export const MainPage = () => {
   const dispatch = useDispatch();

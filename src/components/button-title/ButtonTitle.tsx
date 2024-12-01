@@ -1,5 +1,6 @@
-import styles from "./ButtonTitle.module.scss";
 import banner from "../../assets/img/mainscreen/banner.png";
+
+import styles from "./ButtonTitle.module.scss";
 
 interface ButtonTitleProps {
   onClick: () => void;
