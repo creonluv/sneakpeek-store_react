@@ -12,6 +12,8 @@ import { fetchFavourite } from "../../features/favourite";
 import { useAuthContext } from "../../context/AuthContext";
 import { useModalContext } from "../../context/ModalContext";
 
+import { AuthMessages } from "../../shared/utils/modalMessages";
+
 import logo from "../../assets/img/icons/logo.svg";
 import iconSearch from "../../assets/img/icons/search.svg";
 import cart from "../../assets/img/icons/cart.svg";
@@ -86,10 +88,14 @@ export const Header = () => {
   };
 
   async function handleLogout() {
-    await logout();
-    signout();
-    toggleModal();
-    showModal("Success!", "Logout successfully.", "success");
+    try {
+      await logout();
+      signout();
+      toggleModal();
+      showModal(AuthMessages.LOGOUT_SUCCESS);
+    } catch {
+      showModal(AuthMessages.LOGOUT_ERROR);
+    }
   }
 
   const handleSearchSubmit = (event: React.FormEvent<HTMLFormElement>) => {

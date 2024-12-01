@@ -2,6 +2,7 @@ export type messages =
   | LoginPageMessages
   | RegisterPageMessages
   | ProfilePageMessages
+  | AuthMessages
   | ChangePasswordMessages
   | FavouritePageMessages
   | BucketPageMessages
@@ -19,6 +20,11 @@ export enum RegisterPageMessages {
   REGISTER_ERROR = "REGISTER_ERROR",
   REGISTER_SUCCESS = "REGISTER_SUCCESS",
   REGISTER_WARNING = "REGISTER_WARNING",
+}
+
+export enum AuthMessages {
+  LOGOUT_SUCCESS = "LOGOUT_SUCCESS",
+  LOGOUT_ERROR = "LOGOUT_ERROR"
 }
 
 export enum ProfilePageMessages {
@@ -113,6 +119,18 @@ const ModalMessages: Record<messages, { title: string; description: string; stat
   [ProfilePageMessages.PROFILE_UPDATE_SUCCESS]: {
     title: "Profile Update Success",
     description: "Your profile has been successfully updated.",
+    state: 'success',
+  },
+
+  // Auth modal messages
+  [AuthMessages.LOGOUT_ERROR]: {
+    title: "Logout error",
+    description: "Failed to logout. Please try again.",
+    state: 'error',
+  },
+  [AuthMessages.LOGOUT_SUCCESS]: {
+    title: "Logout success",
+    description: "Logout successfully.",
     state: 'success',
   },
   
