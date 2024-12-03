@@ -4,7 +4,6 @@ import { useTranslation } from "react-i18next";
 import { ProductCard } from "../product-card";
 import { ButtonSlider } from "../button-slider";
 import { SliderIndicator } from "./slider-indicator";
-
 import { Product } from "../../types/Products";
 import { Category } from "../../types/Categories";
 
@@ -25,54 +24,72 @@ export const ProductSlider: React.FC<Props> = ({
 
   const productsRef = useRef<HTMLDivElement>(null);
   const [scrollPosition, setScrollPosition] = useState(0);
-
-  const productWidth = useRef<number>(0);
   const [cardsInView, setCardsInView] = useState(0);
+  const [productWidth, setProductWidth] = useState(0);
 
-  useEffect(() => {
+  const updateCardsInView = () => {
     if (productsRef.current) {
       const card = productsRef.current.querySelector(".goods__card");
 
       if (card) {
-        productWidth.current = card.getBoundingClientRect().width;
+        const width = card.getBoundingClientRect().width;
+        const containerWidth = productsRef.current.offsetWidth;
+
+        setProductWidth(width);
+
+        const maxVisibleCards = Math.floor(containerWidth / width);
+
+        setCardsInView(maxVisibleCards);
+
+        productsRef.current.style.width = `${
+          maxVisibleCards * width + (maxVisibleCards - 1) * 20
+        }px`;
+
+        console.log("Container Width:", containerWidth);
+        console.log("Card Width:", width);
+        console.log("Max Visible Cards:", maxVisibleCards);
       }
-      setCardsInView(
-        Math.floor(productsRef.current.offsetWidth / productWidth.current)
-      );
     }
-  }, [products]);
+  };
 
   const handlePrevClick = useCallback(() => {
     if (productsRef.current) {
-      setScrollPosition((prev) =>
-        Math.max(prev - productWidth.current - 20, 0)
-      );
+      setScrollPosition((prev) => Math.max(prev - productWidth - 20, 0));
     }
-  }, []);
+  }, [productWidth]);
 
   const handleNextClick = useCallback(() => {
     if (productsRef.current && products) {
       const maxScrollPosition =
-        products.length * (productWidth.current + 20) -
-        productsRef.current.offsetWidth;
+        products.length * (productWidth + 20) - productsRef.current.offsetWidth;
 
       setScrollPosition((prev) => {
-        if (prev + productWidth.current + 20 >= maxScrollPosition) {
+        if (prev + productWidth + 20 >= maxScrollPosition) {
           return 0;
         }
-        return Math.min(prev + productWidth.current + 20, maxScrollPosition);
+        return Math.min(prev + productWidth + 20, maxScrollPosition);
       });
     }
-  }, [products?.length]);
+  }, [productWidth, products?.length]);
 
   const titleOfBlock =
     type === "normal"
       ? t("components.slider.new")
       : type === "sale"
-        ? t("components.slider.best")
-        : type === "category"
-          ? t("components.slider.categories")
-          : t("components.slider.default");
+      ? t("components.slider.best")
+      : type === "category"
+      ? t("components.slider.categories")
+      : t("components.slider.default");
+
+  useEffect(() => {
+    updateCardsInView();
+
+    window.addEventListener("resize", updateCardsInView);
+
+    return () => {
+      window.removeEventListener("resize", updateCardsInView);
+    };
+  }, [products]);
 
   return (
     <section className="goods">
@@ -97,31 +114,31 @@ export const ProductSlider: React.FC<Props> = ({
         >
           {products
             ? products.map((product) => (
-              <div key={product.id} className="goods__card">
-                <ProductCard
-                  key={product.id}
-                  product={product}
-                  type={type}
-                  id={product.id}
-                />
-              </div>
-            ))
-            : categories?.map((product) => (
-              <div key={product.id} className="goods__card">
-                <ProductCard
-                  key={product.id}
-                  category={product}
-                  type={type}
-                  id={product.id}
-                />
-              </div>
-            ))}
+                <div key={product.id} className="goods__card">
+                  <ProductCard
+                    key={product.id}
+                    product={product}
+                    type={type}
+                    id={product.id}
+                  />
+                </div>
+              ))
+            : categories?.map((category) => (
+                <div key={category.id} className="goods__card">
+                  <ProductCard
+                    key={category.id}
+                    category={category}
+                    type={type}
+                    id={category.id}
+                  />
+                </div>
+              ))}
         </div>
       </div>
 
       <SliderIndicator
         totalCards={products?.length || categories?.length || 0}
-        startIndex={Math.floor(scrollPosition / productWidth.current)}
+        startIndex={Math.floor(scrollPosition / productWidth)}
         cardsInView={cardsInView}
       />
     </section>
