@@ -1,8 +1,7 @@
 @use "../../shared/globalStyles/global" as *;
-
 @use "../../shared/globalStyles/mixins" as *;
 
-.catalogpage {
+.catalog {
   &__body {
     @include page-grid;
   }

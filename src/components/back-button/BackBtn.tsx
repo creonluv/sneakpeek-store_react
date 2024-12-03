@@ -3,7 +3,7 @@ import { useTranslation } from "react-i18next";
 
 import btnBack from "../../assets/img/icons/btn-back.svg";
 
-import styles from "./BackBtn.module.scss";
+import "./BackBtn.scss";
 
 export const BackBtn = () => {
   const navigate = useNavigate();
@@ -21,14 +21,14 @@ export const BackBtn = () => {
   return (
     <button
       type="button"
-      className={styles.button__back}
+      className="button__back"
       onClick={handleBackClick}
     >
-      <span className={styles.button__back_icon}>
+      <span className="button__back_icon">
         <img src={btnBack} alt="btn-back" />
       </span>
 
-      <span className={styles.button__back_text}>{t("components.backButton")}</span>
+      <span className="button__back_text">{t("components.backButton")}</span>
     </button>
   );
 };

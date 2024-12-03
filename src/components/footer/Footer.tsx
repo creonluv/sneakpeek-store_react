@@ -2,24 +2,24 @@ import { useTranslation } from "react-i18next";
 
 import logo from "../../assets/img/icons/logo.svg";
 
-import styles from "./Footer.module.scss";
+import "./Footer.scss";
 
 export const Footer = () => {
   const { t } = useTranslation();
 
   return (
-    <footer className={styles.footer}>
-      <div className={styles.footer__container}>
-        <div className={styles.footer__left}>
-          <a href="/" className={styles.footer__logo}>
-            <img className={styles.footer__logoimage} src={logo} alt="LOGO" />
+    <footer className="footer">
+      <div className="footer__container">
+        <div className="footer__left">
+          <a href="/" className="footer__logo">
+            <img className="footer__logoimage" src={logo} alt="LOGO" />
           </a>
 
-          <ul className={styles.footer__social}>
-            <li className={styles.footer__social_item}>
-              <a className={styles.footer__social_link} href="#">
+          <ul className="footer__social">
+            <li className="footer__social_item">
+              <a className="footer__social_link" href="#">
                 <svg
-                  className={styles.footer__social_icon}
+                  className="footer__social_icon"
                   width="12"
                   height="12"
                   viewBox="0 0 12 12"
@@ -35,10 +35,10 @@ export const Footer = () => {
                 </svg>
               </a>
             </li>
-            <li className={styles.footer__social_item}>
-              <a className={styles.footer__social_link} href="#">
+            <li className="footer__social_item">
+              <a className="footer__social_link" href="#">
                 <svg
-                  className={styles.footer__social_icon}
+                  className="footer__social_icon"
                   width="12"
                   height="12"
                   viewBox="0 0 12 12"
@@ -54,10 +54,10 @@ export const Footer = () => {
                 </svg>
               </a>
             </li>
-            <li className={styles.footer__social_item}>
-              <a className={styles.footer__social_link} href="#">
+            <li className="footer__social_item">
+              <a className="footer__social_link" href="#">
                 <svg
-                  className={styles.footer__social_icon}
+                  className="footer__social_icon"
                   width="10"
                   height="12"
                   viewBox="0 0 10 12"
@@ -76,112 +76,112 @@ export const Footer = () => {
           </ul>
         </div>
 
-        <nav className={styles.footer__nav}>
-          <ul className={styles.footer__items_main}>
-            <li className={styles.footer__item}>
-              <a href="#" className={styles.footer__link_bold}>
+        <nav className="footer__nav">
+          <ul className="footer__items_main">
+            <li className="footer__item">
+              <a href="#" className="footer__link_bold">
                 {t("components.footer.catalog")}
               </a>
             </li>
-            <li className={styles.footer__item}>
-              <a href="#" className={styles.footer__link_bold}>
+            <li className="footer__item">
+              <a href="#" className="footer__link_bold">
                 {t("components.footer.discount")}
               </a>
             </li>
-            <li className={styles.footer__item}>
-              <a href="#" className={styles.footer__link_bold}>
+            <li className="footer__item">
+              <a href="#" className="footer__link_bold">
                 {t("components.footer.brands")}
               </a>
             </li>
-            <li className={styles.footer__item}>
-              <a href="#" className={styles.footer__link_bold}>
+            <li className="footer__item">
+              <a href="#" className="footer__link_bold">
                 {t("components.footer.office")}
               </a>
             </li>
           </ul>
 
-          <ul className={styles.footer__items}>
-            <li className={styles.footer__item}>
-              <a href="#" className={styles.footer__link_bold}>
+          <ul className="footer__items">
+            <li className="footer__item">
+              <a href="#" className="footer__link_bold">
                 {t("components.footer.service")}
               </a>
             </li>
-            <li className={styles.footer__item}>
-              <a href="#" className={styles.footer__link}>
+            <li className="footer__item">
+              <a href="#" className="footer__link">
                 {t("components.footer.orders")}
               </a>
             </li>
-            <li className={styles.footer__item}>
-              <a href="#" className={styles.footer__link}>
+            <li className="footer__item">
+              <a href="#" className="footer__link">
                 {t("components.footer.returns")}
               </a>
             </li>
-            <li className={styles.footer__item}>
-              <a href="#" className={styles.footer__link}>
+            <li className="footer__item">
+              <a href="#" className="footer__link">
                 {t("components.footer.faq")}
               </a>
             </li>
-            <li className={styles.footer__item}>
-              <a href="#" className={styles.footer__link}>
+            <li className="footer__item">
+              <a href="#" className="footer__link">
                 {t("components.footer.policy")}
               </a>
             </li>
           </ul>
 
-          <ul className={styles.footer__items}>
-            <li className={styles.footer__item}>
-              <a href="#" className={styles.footer__link_bold}>
+          <ul className="footer__items">
+            <li className="footer__item">
+              <a href="#" className="footer__link_bold">
                 {t("components.footer.about")}
               </a>
             </li>
-            <li className={styles.footer__item}>
-              <a href="#" className={styles.footer__link}>
+            <li className="footer__item">
+              <a href="#" className="footer__link">
                 {t("components.footer.loyal")}
               </a>
             </li>
-            <li className={styles.footer__item}>
-              <a href="#" className={styles.footer__link}>
+            <li className="footer__item">
+              <a href="#" className="footer__link">
                 {t("components.footer.blog")}
               </a>
             </li>
-            <li className={styles.footer__item}>
-              <a href="#" className={styles.footer__link}>
+            <li className="footer__item">
+              <a href="#" className="footer__link">
                 {t("components.footer.sustainability")}
               </a>
             </li>
-            <li className={styles.footer__item}>
-              <a href="#" className={styles.footer__link}>
+            <li className="footer__item">
+              <a href="#" className="footer__link">
                 {t("components.footer.governance")}
               </a>
             </li>
           </ul>
 
-          <ul className={styles.footer__items}>
-            <li className={styles.footer__item}>
-              <a href="#" className={styles.footer__link_bold}>
+          <ul className="footer__items">
+            <li className="footer__item">
+              <a href="#" className="footer__link_bold">
                 {t("components.footer.contacts")}
               </a>
             </li>
-            <li className={styles.footer__item}>
-              <a href="tel:+380977756827" className={styles.footer__link}>
+            <li className="footer__item">
+              <a href="tel:+380977756827" className="footer__link">
                 +380 (97) 77-56-827
               </a>
             </li>
-            <li className={styles.footer__item}>
+            <li className="footer__item">
               <a
                 href="mailto:sneakpeek@gmail.com"
-                className={styles.footer__link}
+                className="footer__link"
               >
                 sneakpeek@gmail.com
               </a>
             </li>
-            <li className={styles.footer__item}>
-              <a href="#" className={styles.footer__link}>
+            <li className="footer__item">
+              <a href="#" className="footer__link">
                 {t("components.footer.sustain")}
               </a>
             </li>
-            <li className={styles.footer__item}>
-              <a href="#" className={styles.footer__link}>
+            <li className="footer__item">
+              <a href="#" className="footer__link">
                 {t("components.footer.corporate")}
               </a>
             </li>
@@ -189,7 +189,7 @@ export const Footer = () => {
         </nav>
       </div>
 
-      <div className={styles.footer__copyright}>
+      <div className="footer__copyright">
         {t("components.footer.copyright")}
       </div>
     </footer>

@@ -3,7 +3,7 @@ import { useLocation, Link } from "react-router-dom";
 
 import btnBred from "../../assets/img/icons/btn-bread.svg";
 
-import styles from "./BreadCrumbs.module.scss";
+import "./BreadCrumbs.scss";
 
 export const BreadСrumbs = () => {
   const location = useLocation();
@@ -22,14 +22,14 @@ export const BreadСrumbs = () => {
       return (
         <React.Fragment key={crumb}>
           {index === 0 && (
-            <div className={styles.crumbFirst}>
+            <div className="crumbFirst">
               <Link to="/">Home</Link>
 
               <img src={btnBred} alt="" />
             </div>
           )}
 
-          <div className={styles.crumb}>
+          <div className="crumb">
             <Link to={currentLink}>{crumbText}</Link>
           </div>
 
@@ -38,5 +38,5 @@ export const BreadСrumbs = () => {
       );
     });
 
-  return <div className={styles.breadcrumbs}>{crumbs}</div>;
+  return <div className="breadcrumbs">{crumbs}</div>;
 };

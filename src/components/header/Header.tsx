@@ -22,7 +22,7 @@ import account from "../../assets/img/icons/account.svg";
 import likes from "../../assets/img/icons/likes.svg";
 import burger from "../../assets/img/icons/burger.svg";
 
-import styles from "./Header.module.scss";
+import "./Header.scss";
 
 export const Header = () => {
   const [isMenuOpen, setIsMenuOpen] = useState(false);
@@ -82,28 +82,28 @@ export const Header = () => {
   }, [dispatch, isAuth]);
 
   return (
-    <header className={styles.header}>
-      <div className={styles.header__top}>
-        <div className={styles.header__top_container}>
-          <div className={`${styles.header__select} ${styles.select}`}>
+    <header className="header">
+      <div className="header__top">
+        <div className="header__top_container">
+          <div className="header__select select">
             <select
-              className={styles.select__items}
+              className="select__items"
               name="lang"
               onChange={handleSelectLanguage}
             >
-              <option className={styles.select__item} value="en">
+              <option className="select__item" value="en">
                 Eng
               </option>
-              <option className={styles.select__item} value="ua">
+              <option className="select__item" value="ua">
                 Ua
               </option>
-              <option className={styles.select__item} value="de">
+              <option className="select__item" value="de">
                 De
               </option>
-              <option className={styles.select__item} value="fr">
+              <option className="select__item" value="fr">
                 Fr
               </option>
-              <option className={styles.select__item} value="es">
+              <option className="select__item" value="es">
                 Es
               </option>
             </select>
@@ -111,65 +111,65 @@ export const Header = () => {
         </div>
       </div>
 
-      <div className={styles.header__middle}>
-        <div className={styles.header__middle_container}>
-          <div className={styles.header__middle_left}>
-            <Link className={styles.header__logo} to="/">
-              <img className={styles.header__logoimage} src={logo} alt="LOGO" />
+      <div className="header__middle">
+        <div className="header__middle_container">
+          <div className="header__middle_left">
+            <Link className="header__logo" to="/">
+              <img className="header__logoimage" src={logo} alt="LOGO" />
             </Link>
           </div>
 
-          <div className={styles.header__middle_right}>
-            <form className={styles.header__form} onSubmit={handleSearchSubmit}>
+          <div className="header__middle_right">
+            <form className="header__form" onSubmit={handleSearchSubmit}>
               <input
-                className={styles.header__search}
+                className="header__search"
                 type="text"
                 name="search"
                 placeholder={t("components.header.search")}
                 value={searchTerm}
                 onChange={handleChangeInputSearch}
               />
-              <button className={styles.header__search_button} type="submit">
+              <button className="header__search_button" type="submit">
                 <img
-                  className={styles.header__search_icon}
+                  className="header__search_icon"
                   src={iconSearch}
                   alt="search"
                 />
               </button>
             </form>
 
-            <div className={styles.header__middle_icons}>
-              <Link className={styles.header__icon} to="favourite">
+            <div className="header__middle_icons">
+              <Link className="header__icon" to="favourite">
                 <img src={likes} alt="likes" />
                 {favourite?.length > 0 && (
-                  <div className={styles.header__counter}>
+                  <div className="header__counter">
                     {favourite?.length}
                   </div>
                 )}
               </Link>
-              <Link className={styles.header__icon} to="bucket">
+              <Link className="header__icon" to="bucket">
                 <img src={cart} alt="cart" />
                 {(bucket?.cart_items?.length ?? 0) > 0 && (
-                  <div className={styles.header__counter}>
+                  <div className="header__counter">
                     {bucket?.cart_items.length}
                   </div>
                 )}
               </Link>
-              <button className={styles.header__icon} onClick={toggleModal}>
+              <button className="header__icon" onClick={toggleModal}>
                 <img src={account} alt="account" />
               </button>
-              <div className={`${styles.list} ${isModalOpen ? "" : "_hidden"}`}>
+              <div className={`list ${isModalOpen ? "" : "_hidden"}`}>
                 {isAuth ? (
                   <>
                     <Link
-                      className={styles.list__item}
+                      className="list__item"
                       to="/profile"
                       onClick={toggleModal}
                     >
                       {t("components.header.profile")}
                     </Link>
                     <button
-                      className={styles.list__item}
+                      className="list__item"
                       onClick={handleLogout}
                     >
                       {t("components.header.logout")}
@@ -178,14 +178,14 @@ export const Header = () => {
                 ) : (
                   <>
                     <Link
-                      className={styles.list__item}
+                      className="list__item"
                       to="/login"
                       onClick={toggleModal}
                     >
                       {t("components.header.login")}
                     </Link>
                     <Link
-                      className={styles.list__item}
+                      className="list__item"
                       to="/register"
                       onClick={toggleModal}
                     >
@@ -198,14 +198,14 @@ export const Header = () => {
 
             <div
               onClick={() => setIsMenuOpen(true)}
-              className={styles.header__middle_burger}
+              className="header__middle_burger"
             >
               <button
                 onClick={() => setIsMenuOpen(true)}
-                className={styles.header__icon}
+                className="header__icon"
               >
                 <img
-                  className={styles.header__button_image}
+                  className="header__button_image"
                   src={burger}
                   alt="menu"
                 />
@@ -215,42 +215,42 @@ export const Header = () => {
         </div>
       </div>
 
-      <div className={styles.header__bottom}>
-        <div className={styles.header__bottom_container}>
-          <nav className={styles.header__nav}>
-            <ul className={`${styles.header__menu} ${styles.menu}`}>
-              <li className={styles.menu__item}>
-                <a href="" className={styles.menu__link}>
+      <div className="header__bottom">
+        <div className="header__bottom_container">
+          <nav className="header__nav">
+            <ul className="header__menu menu-header">
+              <li className="menu-header__item">
+                <a href="" className="menu-header__link">
                   {t("components.header.nav.item1")}
                 </a>
               </li>
 
-              <li className={styles.menu__item}>
-                <a href="" className={styles.menu__link}>
+              <li className="menu-header__item">
+                <a href="" className="menu-header__link">
                   {t("components.header.nav.item2")}
                 </a>
               </li>
 
-              <li className={styles.menu__item}>
-                <a href="" className={styles.menu__link}>
+              <li className="menu-header__item">
+                <a href="" className="menu-header__link">
                   {t("components.header.nav.item3")}
                 </a>
               </li>
 
-              <li className={styles.menu__item}>
-                <a href="" className={styles.menu__link}>
+              <li className="menu-header__item">
+                <a href="" className="menu-header__link">
                   {t("components.header.nav.item4")}
                 </a>
               </li>
 
-              <li className={styles.menu__item}>
-                <a href="" className={styles.menu__link}>
+              <li className="menu-header__item">
+                <a href="" className="menu-header__link">
                   {t("components.header.nav.item5")}
                 </a>
               </li>
 
-              <li className={styles.menu__item}>
-                <a href="" className={styles.menu__link}>
+              <li className="menu-header__item">
+                <a href="" className="menu-header__link">
                   {t("components.header.nav.item6")}
                 </a>
               </li>

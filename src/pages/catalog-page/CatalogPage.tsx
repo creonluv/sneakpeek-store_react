@@ -20,7 +20,7 @@ import { useModalContext } from "../../context/ModalContext";
 
 import { useTranslation } from "react-i18next";
 
-import styles from "./CatalogPage.module.scss";
+import "./CatalogPage.scss";
 
 export const CatalogPage = () => {
   const { t } = useTranslation();
@@ -68,15 +68,15 @@ export const CatalogPage = () => {
   }, [messages]);
 
   return (
-    <section className={styles.catalogpage}>
-      <div className={styles.catalogpage__body}>
-        <div className={styles.catalogpage__aside}>
+    <section className="catalog">
+      <div className="catalog__body">
+        <div className="catalog__aside">
           <Aside />
         </div>
 
-        <div className={styles.catalogpage__main}>
-          <div className={styles.catalogpage__chips}>
-            <h3 className={styles.catalogpage__title}>
+        <div className="catalog__main">
+          <div className="catalog__chips">
+            <h3 className="catalog__title">
               {t("components.pages.catalog.title")}
             </h3>
             <Categories />
@@ -89,7 +89,7 @@ export const CatalogPage = () => {
             )}
           </div>
 
-          <div className={styles.catalogpage__products}>
+          <div className="catalog__products">
             {products.content.map((product) => (
               <ProductCard
                 product={product}
@@ -101,7 +101,7 @@ export const CatalogPage = () => {
           </div>
 
           {products.content.length === 0 && (
-            <p className={styles.catalogpage__errorSearch}>
+            <p className="catalog__errorSearch">
               {t("components.pages.catalog.nothing")}
             </p>
           )}

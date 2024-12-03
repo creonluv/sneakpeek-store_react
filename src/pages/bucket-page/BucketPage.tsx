@@ -24,7 +24,7 @@ import { CartItem, UpdateItemInBucketPayload } from "../../types/Bucket";
 import arrowWhite from "../../assets/img/icons/arrow-white.svg";
 import del from "../../assets/img/icons/del.svg";
 
-import styles from "./BucketPage.module.scss";
+import "./BucketPage.scss";
 
 export const BucketPage = () => {
   const { t } = useTranslation();
@@ -104,88 +104,88 @@ export const BucketPage = () => {
   const totalPrice = calculateTotalPrice(bucket?.cart_items || []);
 
   return (
-    <div className={styles.bucketpage}>
-      <div className={styles.bucketpage__header}>
-        <h3 className={styles.bucketpage__title}>{t("pages.bucket.title")}</h3>
-        <span className={styles.bucketpage__subtitle}>
+    <div className="bucketpage">
+      <div className="bucketpage__header">
+        <h3 className="bucketpage__title">{t("pages.bucket.title")}</h3>
+        <span className="bucketpage__subtitle">
           {bucket?.cart_items.length}
         </span>
       </div>
 
-      <div className={styles.bucketpage__container}>
-        <div className={styles.bucketpage__left}>
-          <div className={styles.bucketpage__items}>
+      <div className="bucketpage__container">
+        <div className="bucketpage__left">
+          <div className="bucketpage__items">
             {bucket?.cart_items.map((item, index) => {
               console.log(bucket?.cart_items[index]?.product_instance.present);
 
               return (
-                <div key={item.id} className={styles.bucketpage__item}>
-                  <div className={styles.bucketpage__loader}>
+                <div key={item.id} className="bucketpage__item">
+                  <div className="bucketpage__loader">
                     {loading && <Loader />}
                   </div>
 
                   <Link
                     key={item.id}
-                    className={styles.bucketpage__itemLeft}
+                    className="bucketpage__itemLeft"
                     to={`/product/${item.product_instance.product.id}`}
                   >
                     <img
-                      className={styles.bucketpage__img}
+                      className="bucketpage__img"
                       src={`https://localhost:9091/api/images/${item.product_instance.product.main_photo_id}`}
                       alt=""
                     />
                   </Link>
 
-                  <div className={styles.bucketpage__itemRight}>
-                    <div className={styles.bucketpage__itemRightMain}>
-                      <div className={styles.bucketpage__itemTop}>
-                        <div className={styles.bucketpage__titles}>
-                          <span className={styles.bucketpage__subtitle}>
+                  <div className="bucketpage__itemRight">
+                    <div className="bucketpage__itemRightMain">
+                      <div className="bucketpage__itemTop">
+                        <div className="bucketpage__titles">
+                          <span className="bucketpage__subtitle">
                             {item.product_instance.product.producer.name}
                           </span>
 
                           <Link
                             key={item.id}
-                            className={styles.bucketpage__link}
+                            className="bucketpage__link"
                             to={`/product/${item.product_instance.product.id}`}
                           >
-                            <h3 className={styles.bucketpage__title}>
+                            <h3 className="bucketpage__title">
                               {item.product_instance.product.name}
                             </h3>
                           </Link>
                         </div>
 
-                        <div className={styles.bucketpage__price}>
+                        <div className="bucketpage__price">
                           ${item.product_instance.product.price}
                         </div>
                       </div>
 
-                      <h4 className={styles.bucketpage__gender}>
+                      <h4 className="bucketpage__gender">
                         {item.product_instance.product.gender.name}
                       </h4>
 
-                      <div className={styles.bucketpage__sizes}>
-                        <span className={styles.bucketpage__sizeTitle}>
+                      <div className="bucketpage__sizes">
+                        <span className="bucketpage__sizeTitle">
                           Size:
                         </span>
                         <p>{item.product_instance.size.name}</p>
                       </div>
                     </div>
 
-                    <div className={styles.bucketpage__bottomItem}>
-                      <div className={styles.bucketpage__counter}>
+                    <div className="bucketpage__bottomItem">
+                      <div className="bucketpage__counter">
                         <button
-                          className={styles.bucketpage__counterButton}
+                          className="bucketpage__counterButton"
                           onClick={() => handleCounter(item, false)}
                           disabled={item.quantity === 1}
                         >
                           -
                         </button>
-                        <p className={styles.bucketpage__sizes}>
+                        <p className="bucketpage__sizes">
                           {item.quantity}
                         </p>
                         <button
-                          className={styles.bucketpage__counterButton}
+                          className="bucketpage__counterButton"
                           onClick={() => handleCounter(item, true)}
                           disabled={
                             item.quantity ===
@@ -196,13 +196,13 @@ export const BucketPage = () => {
                         </button>
                       </div>
 
-                      <div className={styles.bucketpage__icons}>
+                      <div className="bucketpage__icons">
                         <button
-                          className={styles.bucketpage__buttonBottom}
+                          className="bucketpage__buttonBottom"
                           onClick={() => handleDeleteItem(item.id)}
                         >
                           <img
-                            className={styles.bucketpage__icon}
+                            className="bucketpage__icon"
                             src={del}
                             alt="del"
                           />
@@ -215,42 +215,42 @@ export const BucketPage = () => {
             })}
           </div>
 
-          <div className={styles.bucketpage__subtotal}>
-            <h3 className={styles.bucketpage__title}>
+          <div className="bucketpage__subtotal">
+            <h3 className="bucketpage__title">
               {t("pages.bucket.subtotal")}
             </h3>
-            <h3 className={styles.bucketpage__price}>${totalPrice}</h3>
+            <h3 className="bucketpage__price">${totalPrice}</h3>
           </div>
         </div>
 
-        <div className={styles.bucketpage__right}>
-          <div className={styles.bucketpage__card}>
-            <h3 className={styles.bucketpage__title}>
+        <div className="bucketpage__right">
+          <div className="bucketpage__card">
+            <h3 className="bucketpage__title">
               {t("pages.bucket.summary")}
             </h3>
 
-            <div className={styles.bucketpage__main}>
-              <div className={styles.bucketpage__middle}>
-                <div className={styles.bucketpage__info}>
-                  <p className={styles.bucketpage__infoKey}>
+            <div className="bucketpage__main">
+              <div className="bucketpage__middle">
+                <div className="bucketpage__info">
+                  <p className="bucketpage__infoKey">
                     {bucket?.cart_items.length} {t("pages.bucket.items")}
                   </p>
-                  <p className={styles.bucketpage__infoValue}>${totalPrice}</p>
+                  <p className="bucketpage__infoValue">${totalPrice}</p>
                 </div>
               </div>
 
-              <hr className={styles.bucketpage__line} />
+              <hr className="bucketpage__line" />
 
-              <div className={styles.bucketpage__bottom}>
-                <div className={styles.bucketpage__total}>
-                  <h3 className={styles.bucketpage__price}>
+              <div className="bucketpage__bottom">
+                <div className="bucketpage__total">
+                  <h3 className="bucketpage__price">
                     {t("pages.bucket.total")}
                   </h3>
-                  <h3 className={styles.bucketpage__price}>${totalPrice}</h3>
+                  <h3 className="bucketpage__price">${totalPrice}</h3>
                 </div>
 
                 <button
-                  className={`button button_lg button_default button_full-size`}
+                  className="button button_lg button_default button_full-size"
                   type="submit"
                   onClick={() => navigate("/checkout")}
                 >
@@ -262,7 +262,7 @@ export const BucketPage = () => {
           </div>
         </div>
 
-        <div className={styles.bucketpage__slider}>
+        <div className="bucketpage__slider">
           <ProductSlider products={products} type={"another"} />
         </div>
       </div>

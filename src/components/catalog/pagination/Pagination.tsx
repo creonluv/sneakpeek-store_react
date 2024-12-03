@@ -1,6 +1,5 @@
 import React, { useEffect } from "react";
 import { useNavigate, useLocation } from "react-router-dom";
-import { useTranslation } from "react-i18next";
 
 import { useAppSelector, useAppDispatch } from "../../../app/hooks";
 import { RootState } from "../../../app/store";
@@ -9,13 +8,12 @@ import { setCurrentPage } from "../../../features/params";
 
 import { updateUrlWithFiltersAndPrice } from "../../../helpers/updateUrlWithParams";
 
-import styles from "./Pagination.module.scss";
+import "./Pagination.scss";
 
 export const Pagination: React.FC = () => {
   const dispatch = useAppDispatch();
   const navigate = useNavigate();
   const location = useLocation();
-  const { t } = useTranslation();
 
   const { products } = useAppSelector(
     (state: RootState) => state.catalogProducts
@@ -96,7 +94,7 @@ export const Pagination: React.FC = () => {
     return pageNumbers.map((page, index) => {
       if (page === "...") {
         return (
-          <span key={`ellipsis-${index}`} className={styles.ellipsis}>
+          <span key={`ellipsis-${index}`} className="ellipsis">
             ...
           </span>
         );
@@ -107,7 +105,7 @@ export const Pagination: React.FC = () => {
           key={page}
           onClick={() => handlePageChange(page as number)}
           disabled={currentPage === page}
-          className={`${styles.pageButton} ${currentPage === page ? styles.currentPage : ""
+          className={`pageButton ${currentPage === page ? "currentPage" : ""
             }`}
         >
           {page}
@@ -116,5 +114,5 @@ export const Pagination: React.FC = () => {
     });
   };
 
-  return <div className={styles.pagination}>{renderPageNumbers()}</div>;
+  return <div className="pagination">{renderPageNumbers()}</div>;
 };

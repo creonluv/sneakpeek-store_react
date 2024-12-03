@@ -27,7 +27,7 @@ import { itemInBucket } from "../../types/Bucket";
 import arrowWhite from "../../assets/img/icons/arrow-white.svg";
 import buttonFav from "../../assets/img/icons/button.svg";
 
-import styles from "./ProductPage.module.scss";
+import "./ProductPage.scss";
 
 export const ProductPage = () => {
   const navigate = useNavigate();
@@ -153,53 +153,51 @@ export const ProductPage = () => {
   }, [setRndNum]);
 
   return (
-    <section className={styles.productpage}>
+    <section className="productpage">
       <BackBtn />
-      <div className={styles.productpage__body}>
-        <div className={styles.productpage__topLeft}>
+      <div className="productpage__body">
+        <div className="productpage__topLeft">
           <PhotoSlider images={imagesArr} />
         </div>
 
-        <div className={styles.productpage__topRight}>
-          <div className={styles.productpage__info}>
-            <div className={styles.productpage__information}>
-              <div className={styles.productpage__description}>
-                <p className={styles.productpage__producer}>
+        <div className="productpage__topRight">
+          <div className="productpage__info">
+            <div className="productpage__information">
+              <div className="productpage__description">
+                <p className="productpage__producer">
                   {product?.producer.name}
                 </p>
 
-                <p className={styles.productpage__title}>{product?.name}</p>
+                <p className="productpage__title">{product?.name}</p>
 
-                <p className={styles.productpage__sex}>
+                <p className="productpage__sex">
                   {product?.gender.name}
                 </p>
               </div>
 
-              <div className={styles.productpage__price}>
-                <p className={styles.productpage__cost}>${product?.price}</p>
+              <div className="productpage__price">
+                <p className="productpage__cost">${product?.price}</p>
               </div>
             </div>
 
-            <div className={styles.productpage__interactive}>
-              <div className={styles.productpage__interactive_top}>
-                <div className={styles.productpage__block}>
-                  <p className={styles.productpage__name}>
+            <div className="productpage__interactive">
+              <div className="productpage__interactive_top">
+                <div className="productpage__block">
+                  <p className="productpage__name">
                     {t("pages.product.sizes")}
                   </p>
-                  <div className={styles.productpage__sizes}>
+                  <div className="productpage__sizes">
                     {productInstancesAndSizes.map((productInstanceInfo) => (
                       <div
                         key={productInstanceInfo.product_instance_id}
-                        className={`${styles.productpage__size} ${
-                          productInstanceInfo.product_instance_id ===
+                        className={`productpage__size ${productInstanceInfo.product_instance_id ===
                           productInstance
-                            ? styles.productpage__size_checked
+                          ? "productpage__size_checked"
+                          : ""
+                          } ${productInstanceInfo.present === 0
+                            ? "productpage__size_disabled"
                             : ""
-                        } ${
-                          productInstanceInfo.present === 0
-                            ? styles.productpage__size_disabled
-                            : ""
-                        }`}
+                          }`}
                         onClick={() =>
                           handleSizeButton(
                             productInstanceInfo.product_instance_id
@@ -212,11 +210,10 @@ export const ProductPage = () => {
                   </div>
                 </div>
 
-                <div className={styles.productpage__buttons}>
+                <div className="productpage__buttons">
                   <button
-                    className={`button button_lg button_default button_full-size ${
-                      isAddedToBucket ? "active" : ""
-                    }`}
+                    className={`button button_lg button_default button_full-size ${isAddedToBucket ? "active" : ""
+                      }`}
                     type="submit"
                     onClick={handleBuyButton}
                   >
@@ -226,7 +223,7 @@ export const ProductPage = () => {
 
                   {isAuth && (
                     <button
-                      className={styles.productpage__button}
+                      className="productpage__button"
                       onClick={() => {
                         if (productId !== undefined) {
                           handleFavButton(+productId);
@@ -240,17 +237,17 @@ export const ProductPage = () => {
                   )}
                 </div>
 
-                <div className={styles.productpage__dropdowns}>
-                  <select className={styles.productpage__dropdown} id="size">
+                <div className="productpage__dropdowns">
+                  <select className="productpage__dropdown" id="size">
                     <option
-                      className={styles.productpage__ship}
+                      className="productpage__ship"
                       value="Shipping & Payment"
                     >
                       {t("pages.product.SP")}
                     </option>
 
                     <option
-                      className={styles.productpage__ship}
+                      className="productpage__ship"
                       value="Check availability in store"
                     >
                       2
@@ -258,17 +255,17 @@ export const ProductPage = () => {
                   </select>
 
                   <select
-                    className={styles.productpage__dropdown}
+                    className="productpage__dropdown"
                     id="availability"
                   >
                     <option
-                      className={styles.productpage__ship}
+                      className="productpage__ship"
                       value="Shipping & Payment"
                     >
                       {t("pages.product.check")}
                     </option>
                     <option
-                      className={styles.productpage__ship}
+                      className="productpage__ship"
                       value="Check availability in store"
                     >
                       2
@@ -278,21 +275,20 @@ export const ProductPage = () => {
               </div>
             </div>
 
-            <p className={styles.productpage__serial}>
+            <p className="productpage__serial">
               {t("pages.product.code")} {rndNum}
             </p>
           </div>
         </div>
 
-        <div className={styles.productpage__tabs}>
-          <div className={styles.productpage__buttonsWrapper}>
-            <div className={styles.productpage__tabsButtons}>
+        <div className="productpage__tabs">
+          <div className="productpage__buttonsWrapper">
+            <div className="productpage__tabsButtons">
               {tabs.map((tab, index) => (
-                <div key={index} className={styles.productpage__tabsButton}>
+                <div key={index} className="productpage__tabsButton">
                   <div
-                    className={`${styles.productpage__tablink} ${
-                      index === activeTab ? styles.productpage__active : ""
-                    }`}
+                    className={`productpage__tablink ${index === activeTab ? "productpage__active" : ""
+                      }`}
                     onClick={() => setActiveTab(index)}
                   >
                     {tab.title}
@@ -301,13 +297,13 @@ export const ProductPage = () => {
               ))}
             </div>
 
-            <hr className={styles.productpage__line} />
+            <hr className="productpage__line" />
           </div>
 
-          <div className={styles.tabContent}>{tabs[activeTab].content}</div>
+          <div className="tabContent">{tabs[activeTab].content}</div>
         </div>
 
-        <div className={styles.productpage__slider}>
+        <div className="productpage__slider">
           <ProductSlider products={products} type={"another"} />
         </div>
       </div>

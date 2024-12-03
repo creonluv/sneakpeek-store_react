@@ -4,7 +4,7 @@ import { useTranslation } from "react-i18next";
 
 import logo from "../../assets/img/logo.svg";
 
-import styles from "./NotFoundPage.module.scss";
+import "./NotFoundPage.scss";
 
 const NotFoundPage = () => {
   const { t } = useTranslation();
@@ -15,22 +15,22 @@ const NotFoundPage = () => {
   }, [navigate]);
 
   return (
-    <section className={styles.page__notfound}>
-      <div className={styles.notfound__container}>
-        <div className={styles.notfound__body}>
-          <div className={styles.notfound__maincontent}>
-            <div className={styles.notfound__top}>
+    <section className="page__notfound">
+      <div className="notfound__container">
+        <div className="notfound__body">
+          <div className="notfound__maincontent">
+            <div className="notfound__top">
               <img
-                className={styles.notfound__logo}
+                className="notfound__logo"
                 src={logo}
                 alt="logo.svg"
               />
-              <h1 className={`${styles.notfound__title} title-2`}>
+              <h1 className={`$"notfound__title" title-2`}>
                 {t("pages.notfound.title")}
               </h1>
             </div>
-            <div className={styles.notfound__dropdownWrapper}>
-              <p className={styles.notfound__text}>
+            <div className="notfound__dropdownWrapper">
+              <p className="notfound__text">
                 {t("pages.notfound.text")}{" "}
                 <Link to="/" style={{ color: "blue" }}>
                   {t("pages.notfound.link")}

@@ -4,7 +4,7 @@ import { ModalState } from '../../types/modal';
 
 import close from "../../assets/img/icons/close.svg";
 
-import styles from "./GlobalModal.module.scss";
+import "./GlobalModal.scss";
 
 interface GlobalModalProps {
   title: string;
@@ -41,11 +41,11 @@ export const GlobalModal = ({ title, description, state, hideModal }: GlobalModa
         },
       }}
     >
-      <div className={styles.modal__control}>
-        <h3 className={`${styles.modal__title} title-3`}>{ title }</h3>
-        <img className={styles.modal__close} src={close} alt="Close" onClick={hideModal} />
+      <div className="modal__control">
+        <h3 className="modal__title title-3">{title}</h3>
+        <img className="modal__close" src={close} alt="Close" onClick={hideModal} />
       </div>
-      <p>{ description }</p>
+      <p>{description}</p>
     </Modal>
   );
 };

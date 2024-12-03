@@ -6,8 +6,7 @@ import cart from "../../../assets/img/icons/cart.svg";
 import account from "../../../assets/img/icons/account.svg";
 import likes from "../../../assets/img/icons/likes.svg";
 
-import asideStyles from "./AsideMenu.module.scss";
-import styles from "../Header.module.scss";
+import "./AsideMenu.scss";
 
 interface AsideMenuProps {
   isMenuOpen: boolean;
@@ -20,25 +19,25 @@ export const AsideMenu: React.FC<AsideMenuProps> = ({
 }) => {
   return (
     <aside
-      className={`${asideStyles.menu} ${isMenuOpen ? asideStyles.shown : ""}`}
+      className={`menu ${isMenuOpen ? "shown" : ""}`}
     >
-      <div className={asideStyles.menu__top}>
-        <div className={asideStyles.menu__top_container}>
-          <div className={`${asideStyles.menu__select} ${asideStyles.select}`}>
-            <select className={styles.select__items} name="lang">
-              <option className={styles.select__item} value="Eng">
+      <div className="menu__top">
+        <div className="menu__top_container">
+          <div className="menu__select select">
+            <select className="select__items" name="lang">
+              <option className="select__item" value="Eng">
                 Eng
               </option>
-              <option className={styles.select__item} value="Ua">
+              <option className="select__item" value="Ua">
                 Ua
               </option>
-              <option className={styles.select__item} value="De">
+              <option className="select__item" value="De">
                 de
               </option>
-              <option className={styles.select__item} value="Fr">
+              <option className="select__item" value="Fr">
                 fr
               </option>
-              <option className={styles.select__item} value="Es">
+              <option className="select__item" value="Es">
                 es
               </option>
             </select>
@@ -46,12 +45,12 @@ export const AsideMenu: React.FC<AsideMenuProps> = ({
         </div>
       </div>
 
-      <div className={asideStyles.menu__header}>
-        <div className={asideStyles.menu__header_container}>
-          <div className={asideStyles.menu__header_content}>
-            <a className={asideStyles.menu__logo} href="/">
+      <div className="menu__header">
+        <div className="menu__header_container">
+          <div className="menu__header_content">
+            <a className="menu__logo" href="/">
               <img
-                className={asideStyles.menu__logoimage}
+                className="menu__logoimage"
                 src={logo}
                 alt="LOGO"
               />
@@ -59,10 +58,10 @@ export const AsideMenu: React.FC<AsideMenuProps> = ({
 
             <button
               onClick={() => setIsMenuOpen(false)}
-              className={asideStyles.menu__header_icon}
+              className="menu__header_icon"
             >
               <img
-                className={asideStyles.menu__header_image}
+                className="menu__header_image"
                 src={close}
                 alt="menu"
               />
@@ -71,36 +70,36 @@ export const AsideMenu: React.FC<AsideMenuProps> = ({
         </div>
       </div>
 
-      <div className={asideStyles.menu__middle}>
-        <div className={asideStyles.menu__middle_container}>
-          <nav className={asideStyles.menu__nav}>
-            <ul className={`${asideStyles.menu__menu} ${styles.menu}`}>
-              <li className={styles.menu__item}>
-                <a href="" className={styles.menu__link}>
+      <div className="menu__middle">
+        <div className="menu__middle_container">
+          <nav className="menu__nav">
+            <ul className="menu__menu menu">
+              <li className="menu__item">
+                <a href="" className="menu__link">
                   New
                 </a>
               </li>
 
-              <li className={styles.menu__item}>
-                <a href="" className={styles.menu__link}>
+              <li className="menu__item">
+                <a href="" className="menu__link">
                   Men
                 </a>
               </li>
 
-              <li className={styles.menu__item}>
-                <a href="" className={styles.menu__link}>
+              <li className="menu__item">
+                <a href="" className="menu__link">
                   Woman
                 </a>
               </li>
 
-              <li className={styles.menu__item}>
-                <a href="" className={styles.menu__link}>
+              <li className="menu__item">
+                <a href="" className="menu__link">
                   Kids
                 </a>
               </li>
 
-              <li className={styles.menu__item}>
-                <a href="" className={styles.menu__link}>
+              <li className="menu__item">
+                <a href="" className="menu__link">
                   Sale
                 </a>
               </li>
@@ -109,18 +108,18 @@ export const AsideMenu: React.FC<AsideMenuProps> = ({
         </div>
       </div>
 
-      <div className={asideStyles.menu__bottom}>
-        <div className={asideStyles.menu__bottom_container}>
-          <div className={asideStyles.menu__bottom_icons}>
-            <a className={asideStyles.menu__bottom_icon} href="">
+      <div className="menu__bottom">
+        <div className="menu__bottom_container">
+          <div className="menu__bottom_icons">
+            <a className="menu__bottom_icon" href="">
               <img src={cart} alt="cart" />
             </a>
 
-            <a className={asideStyles.menu__bottom_icon} href="">
+            <a className="menu__bottom_icon" href="">
               <img src={account} alt="account" />
             </a>
 
-            <a className={asideStyles.menu__bottom_icon} href="">
+            <a className="menu__bottom_icon" href="">
               <img src={likes} alt="likes" />
             </a>
           </div>

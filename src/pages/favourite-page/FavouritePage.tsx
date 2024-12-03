@@ -12,7 +12,7 @@ import { ProductCard } from "../../components/product-card";
 import { useAuthContext } from "../../context/AuthContext";
 import { useModalContext } from "../../context/ModalContext";
 
-import styles from "./FavouritePage.module.scss";
+import "./FavouritePage.scss";
 
 export const FavouritePage = () => {
   const dispatch = useAppDispatch();
@@ -57,19 +57,19 @@ export const FavouritePage = () => {
   }, [messages]);
 
   return (
-    <section className={styles.favouritepage}>
-      <div className={styles.favouritepage__header}>
-        <h3 className={styles.favouritepage__title}>
+    <section className="favouritepage">
+      <div className="favouritepage__header">
+        <h3 className="favouritepage__title">
           {t("pages.favourite.title")}
         </h3>
-        <span className={styles.favouritepage__subtitle}>
+        <span className="favouritepage__subtitle">
           {favourite.length}
         </span>
       </div>
 
-      <div className={styles.favouritepage__container}>
-        <div className={styles.favouritepage__productsBody}>
-          <div className={styles.favouritepage__products}>
+      <div className="favouritepage__container">
+        <div className="favouritepage__productsBody">
+          <div className="favouritepage__products">
             {favourite.map((product) => (
               <ProductCard
                 product={product}
@@ -81,7 +81,7 @@ export const FavouritePage = () => {
           </div>
         </div>
 
-        <div className={styles.favouritepage__slider}>
+        <div className="favouritepage__slider">
           <ProductSlider products={products} type={"another"} />
         </div>
       </div>

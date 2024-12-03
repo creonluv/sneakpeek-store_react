@@ -1,6 +1,6 @@
 import banner from "../../assets/img/mainscreen/banner.png";
 
-import styles from "./ButtonTitle.module.scss";
+import "./ButtonTitle.scss";
 
 interface ButtonTitleProps {
   onClick: () => void;
@@ -8,8 +8,8 @@ interface ButtonTitleProps {
 
 const ButtonTitle: React.FC<ButtonTitleProps> = ({ onClick }) => {
   return (
-    <button className={styles.button} onClick={onClick}>
-      <img src={banner} alt="Title Button" className={styles.image} />
+    <button className="button-title" onClick={onClick}>
+      <img src={banner} alt="Title Button" className="image" />
     </button>
   );
 };

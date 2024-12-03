@@ -32,7 +32,7 @@ import ukrIcon from "../../assets/img/checkout/ukr.svg";
 import meestIcon from "../../assets/img/checkout/meest.svg";
 import arrowWhite from "../../assets/img/icons/arrow-white.svg";
 
-import styles from "./CheckoutPage.module.scss";
+import "./CheckoutPage.scss";
 
 export const CheckoutPage = () => {
   const dispatch = useAppDispatch();
@@ -117,22 +117,22 @@ export const CheckoutPage = () => {
       delivery_details: {
         delivery_type:
           typeof data.delivery_type === "string" &&
-          data.delivery_type === "home"
+            data.delivery_type === "home"
             ? "home"
             : "branch",
         shipment_method: data.shipment_method,
         ...(typeof data.delivery_type === "string" &&
-        data.delivery_type === "home"
+          data.delivery_type === "home"
           ? {
-              state: data.state,
-              city: data.city,
-              street: data.street,
-              apartment: data.apartment,
-            }
+            state: data.state,
+            city: data.city,
+            street: data.street,
+            apartment: data.apartment,
+          }
           : {
-              branch_id: data.branch_id,
-              branch_address: data.branch_address,
-            }),
+            branch_id: data.branch_id,
+            branch_address: data.branch_address,
+          }),
       },
     };
 
@@ -163,31 +163,31 @@ export const CheckoutPage = () => {
   const totalPrice = calculateTotalPrice(bucket?.cart_items || []);
 
   return (
-    <section className={styles.checkoutpage}>
-      <div className={styles.checkoutpage__header}>
-        <h3 className={styles.checkoutpage__title}>
+    <section className="checkout">
+      <div className="checkout__header">
+        <h3 className="checkout__title">
           {t("pages.checkout.title")}
         </h3>
-        <span className={styles.checkoutpage__subtitle}>
+        <span className="checkout__subtitle">
           {t("pages.checkout.steps")}
         </span>
       </div>
 
-      <div className={styles.checkoutpage__container}>
+      <div className="checkout__container">
         <form
-          className={styles.checkoutpage__form}
+          className="checkout__form"
           onSubmit={handleSubmit(onSubmit)}
         >
-          <div className={styles.checkoutpage__block}>
-            <div className={styles.checkoutpage__blockTitle}>
-              <h3 className={styles.checkoutpage__ttl}>
+          <div className="checkout__block">
+            <div className="checkout__blockTitle">
+              <h3 className="checkout__ttl">
                 {t("pages.checkout.contact")}
               </h3>
             </div>
-            <div className={styles.checkoutpage__inputs}>
+            <div className="checkout__inputs">
               <input
                 type="text"
-                className={`${styles.form__input} input`}
+                className="form__input input"
                 placeholder={t("pages.checkout.name")}
                 {...register("name")}
               />
@@ -195,7 +195,7 @@ export const CheckoutPage = () => {
 
               <input
                 type="text"
-                className={`${styles.form__input} input`}
+                className="form__input input"
                 placeholder={t("pages.checkout.lastname")}
                 {...register("surname")}
               />
@@ -203,7 +203,7 @@ export const CheckoutPage = () => {
 
               <input
                 type="tel"
-                className={`${styles.form__input} input`}
+                className="form__input input"
                 placeholder="+380 (97) 123‒45‒67"
                 {...register("phone_number")}
               />
@@ -213,13 +213,13 @@ export const CheckoutPage = () => {
             </div>
           </div>
 
-          <div className={styles.checkoutpage__block}>
-            <div className={styles.checkoutpage__blockTitle}>
-              <h3 className={styles.checkoutpage__ttl}>Delivery</h3>
+          <div className="checkout__block">
+            <div className="checkout__blockTitle">
+              <h3 className="checkout__ttl">Delivery</h3>
             </div>
 
-            <div className={styles.checkoutpage__posts}>
-              <label htmlFor="ukr" className={styles.checkoutpage__post}>
+            <div className="checkout__posts">
+              <label htmlFor="ukr" className="checkout__post">
                 <input
                   id="ukr"
                   type="radio"
@@ -228,18 +228,18 @@ export const CheckoutPage = () => {
                   checked={selectedShipping === "UKRPOSHTA"}
                 />
                 <img
-                  className={styles.checkoutpage__post_img}
+                  className="checkout__post_img"
                   src={ukrIcon}
                   alt="Ukr Icon"
                 />
-                <div className={styles.checkoutpage__post_information_wrapper}>
-                  <h5 className={styles.checkoutpage__post_information_title}>
+                <div className="checkout__post_information_wrapper">
+                  <h5 className="checkout__post_information_title">
                     Ukrposhta
                   </h5>
-                  <p className={styles.checkoutpage__post_information_date}>
+                  <p className="checkout__post_information_date">
                     Expected delivery, Monday 19
                   </p>
-                  <p className={styles.checkoutpage__post_information_cost}>
+                  <p className="checkout__post_information_cost">
                     Free shipping on orders over $50
                   </p>
                 </div>
@@ -247,10 +247,10 @@ export const CheckoutPage = () => {
               </label>
 
               {selectedShipping === "UKRPOSHTA" && (
-                <div className={styles.checkoutpage__form_wrapper}>
+                <div className="checkout__form_wrapper">
                   {!isCourierSelected && (
                     <div
-                      className={styles.checkoutpage__form_wrapper_top}
+                      className="checkout__form_wrapper_top"
                       style={{
                         opacity: isCourierSelected ? 0.5 : 1,
                         pointerEvents: isCourierSelected ? "none" : "auto",
@@ -258,14 +258,14 @@ export const CheckoutPage = () => {
                     >
                       <input
                         type="text"
-                        className={`${styles.form__input} input`}
+                        className="form__input input"
                         placeholder={t("pages.checkout.branch")}
                         {...register("branch_address")}
                       />
 
-                      <div className={styles.checkoutpage__dropdown}>
+                      <div className="checkout__dropdown">
                         <select
-                          className={`${styles.form__input} input`}
+                          className="form__input input"
                           {...register("branch_id")}
                         >
                           <option value="">{t("pages.checkout.select")}</option>
@@ -285,29 +285,27 @@ export const CheckoutPage = () => {
                       </div>
                     </div>
                   )}
-                  <hr className={styles.checkoutpage__line} />
+                  <hr className="checkout__line" />
 
                   <label>
                     <input
                       type="checkbox"
-                      className={styles.checkbox__index}
+                      className="checkbox__index"
                       {...register("delivery_type")}
                     />
                     {t("pages.checkout.courier")}
                   </label>
 
                   {isCourierSelected && (
-                    <div className={styles.checkoutpage__form_wrapper_courier}>
+                    <div className="checkout__form_wrapper_courier">
                       <div
-                        className={
-                          styles.checkoutpage__form_wrapper_courier_forms
-                        }
+                        className="checkoutpage__form_wrapper_courier_forms"
                       >
                         <div
-                          className={styles.checkoutpage__form_wrapper_inputs}
+                          className="checkout__form_wrapper_inputs"
                         >
                           <select
-                            className={`${styles.form__input} input`}
+                            className="form__input input"
                             {...register("state")}
                           >
                             <option value="">
@@ -319,7 +317,7 @@ export const CheckoutPage = () => {
                           </select>
 
                           <select
-                            className={`${styles.form__input} input`}
+                            className="form__input input"
                             {...register("city")}
                           >
                             <option value="">{t("pages.checkout.city")}</option>
@@ -329,17 +327,17 @@ export const CheckoutPage = () => {
                           </select>
                         </div>
                         <div
-                          className={styles.checkoutpage__form_wrapper_inputs}
+                          className="checkout__form_wrapper_inputs"
                         >
                           <input
                             type="text"
-                            className={`${styles.form__input} input`}
+                            className="form__input input"
                             placeholder={t("pages.checkout.street")}
                             {...register("street")}
                           />
                           <input
                             type="text"
-                            className={`${styles.form__input} input`}
+                            className="form__input input"
                             placeholder={t("pages.checkout.apartment")}
                             {...register("apartment")}
                           />
@@ -350,7 +348,7 @@ export const CheckoutPage = () => {
                 </div>
               )}
 
-              <label htmlFor="nova" className={styles.checkoutpage__post}>
+              <label htmlFor="nova" className="checkout__post">
                 <input
                   id="nova"
                   type="radio"
@@ -359,18 +357,18 @@ export const CheckoutPage = () => {
                   checked={selectedShipping === "NOVA_POSHTA"}
                 />
                 <img
-                  className={styles.checkoutpage__post_img}
+                  className="checkout__post_img"
                   src={novaIcon}
                   alt="Nova Poshta Icon"
                 />
-                <div className={styles.checkoutpage__post_information_wrapper}>
-                  <h5 className={styles.checkoutpage__post_information_title}>
+                <div className="checkout__post_information_wrapper">
+                  <h5 className="checkout__post_information_title">
                     New Post
                   </h5>
-                  <p className={styles.checkoutpage__post_information_date}>
+                  <p className="checkout__post_information_date">
                     Expected delivery, Monday 17
                   </p>
-                  <p className={styles.checkoutpage__post_information_cost}>
+                  <p className="checkout__post_information_cost">
                     Free shipping on orders over $300
                   </p>
                 </div>
@@ -378,10 +376,10 @@ export const CheckoutPage = () => {
               </label>
 
               {selectedShipping === "NOVA_POSHTA" && (
-                <div className={styles.checkoutpage__form_wrapper}>
+                <div className="checkout__form_wrapper">
                   {!isCourierSelected && (
                     <div
-                      className={styles.checkoutpage__form_wrapper_top}
+                      className="checkout__form_wrapper_top"
                       style={{
                         opacity: isCourierSelected ? 0.5 : 1,
                         pointerEvents: isCourierSelected ? "none" : "auto",
@@ -389,14 +387,14 @@ export const CheckoutPage = () => {
                     >
                       <input
                         type="text"
-                        className={`${styles.form__input} input`}
+                        className="form__input input"
                         placeholder={t("pages.checkout.branch")}
                         {...register("branch_address")}
                       />
 
-                      <div className={styles.checkoutpage__dropdown}>
+                      <div className="checkout__dropdown">
                         <select
-                          className={`${styles.form__input} input`}
+                          className="form__input input"
                           {...register("branch_id")}
                         >
                           <option value="">
@@ -418,29 +416,27 @@ export const CheckoutPage = () => {
                       </div>
                     </div>
                   )}
-                  <hr className={styles.checkoutpage__line} />
+                  <hr className="checkout__line" />
 
                   <label>
                     <input
                       type="checkbox"
-                      className={styles.checkbox__index}
+                      className="checkbox__index"
                       {...register("delivery_type")}
                     />
                     {t("pages.checkout.courier")}
                   </label>
 
                   {isCourierSelected && (
-                    <div className={styles.checkoutpage__form_wrapper_courier}>
+                    <div className="checkout__form_wrapper_courier">
                       <div
-                        className={
-                          styles.checkoutpage__form_wrapper_courier_forms
-                        }
+                        className="checkoutpage__form_wrapper_courier_forms"
                       >
                         <div
-                          className={styles.checkoutpage__form_wrapper_inputs}
+                          className="checkout__form_wrapper_inputs"
                         >
                           <select
-                            className={`${styles.form__input} input`}
+                            className="form__input input"
                             {...register("state")}
                           >
                             <option value="">
@@ -452,7 +448,7 @@ export const CheckoutPage = () => {
                           </select>
 
                           <select
-                            className={`${styles.form__input} input`}
+                            className="form__input input"
                             {...register("city")}
                           >
                             <option value="">{t("pages.checkout.city")}</option>
@@ -462,17 +458,17 @@ export const CheckoutPage = () => {
                           </select>
                         </div>
                         <div
-                          className={styles.checkoutpage__form_wrapper_inputs}
+                          className="checkout__form_wrapper_inputs"
                         >
                           <input
                             type="text"
-                            className={`${styles.form__input} input`}
+                            className="form__input input"
                             placeholder={t("pages.checkout.street")}
                             {...register("street")}
                           />
                           <input
                             type="text"
-                            className={`${styles.form__input} input`}
+                            className="form__input input"
                             placeholder={t("pages.checkout.apartment")}
                             {...register("apartment")}
                           />
@@ -483,7 +479,7 @@ export const CheckoutPage = () => {
                 </div>
               )}
 
-              <label htmlFor="meest" className={styles.checkoutpage__post}>
+              <label htmlFor="meest" className="checkout__post">
                 <input
                   id="meest"
                   type="radio"
@@ -492,18 +488,18 @@ export const CheckoutPage = () => {
                   checked={selectedShipping === "MEEST_EXPRESS"}
                 />
                 <img
-                  className={styles.checkoutpage__post_img}
+                  className="checkout__post_img"
                   src={meestIcon}
                   alt="Meest Icon"
                 />
-                <div className={styles.checkoutpage__post_information_wrapper}>
-                  <h5 className={styles.checkoutpage__post_information_title}>
+                <div className="checkout__post_information_wrapper">
+                  <h5 className="checkout__post_information_title">
                     Meest
                   </h5>
-                  <p className={styles.checkoutpage__post_information_date}>
+                  <p className="checkout__post_information_date">
                     Expected delivery, Monday 18
                   </p>
-                  <p className={styles.checkoutpage__post_information_cost}>
+                  <p className="checkout__post_information_cost">
                     Free shipping on orders over $100
                   </p>
                 </div>
@@ -511,10 +507,10 @@ export const CheckoutPage = () => {
               </label>
 
               {selectedShipping === "MEEST_EXPRESS" && (
-                <div className={styles.checkoutpage__form_wrapper}>
+                <div className="checkout__form_wrapper">
                   {!isCourierSelected && (
                     <div
-                      className={styles.checkoutpage__form_wrapper_top}
+                      className="checkout__form_wrapper_top"
                       style={{
                         opacity: isCourierSelected ? 0.5 : 1,
                         pointerEvents: isCourierSelected ? "none" : "auto",
@@ -522,14 +518,14 @@ export const CheckoutPage = () => {
                     >
                       <input
                         type="text"
-                        className={`${styles.form__input} input`}
+                        className="form__input input"
                         placeholder={t("pages.checkout.branch")}
                         {...register("branch_address")}
                       />
 
-                      <div className={styles.checkoutpage__dropdown}>
+                      <div className="checkout__dropdown">
                         <select
-                          className={`${styles.form__input} input`}
+                          className="form__input input"
                           {...register("branch_id")}
                         >
                           <option value="">
@@ -551,29 +547,27 @@ export const CheckoutPage = () => {
                       </div>
                     </div>
                   )}
-                  <hr className={styles.checkoutpage__line} />
+                  <hr className="checkout__line" />
 
                   <label>
                     <input
                       type="checkbox"
-                      className={styles.checkbox__index}
+                      className="checkbox__index"
                       {...register("delivery_type")}
                     />
                     {t("pages.checkout.courier")}
                   </label>
 
                   {isCourierSelected && (
-                    <div className={styles.checkoutpage__form_wrapper_courier}>
+                    <div className="checkout__form_wrapper_courier">
                       <div
-                        className={
-                          styles.checkoutpage__form_wrapper_courier_forms
-                        }
+                        className="checkoutpage__form_wrapper_courier_forms"
                       >
                         <div
-                          className={styles.checkoutpage__form_wrapper_inputs}
+                          className="checkout__form_wrapper_inputs"
                         >
                           <select
-                            className={`${styles.form__input} input`}
+                            className="form__input input"
                             {...register("state")}
                           >
                             <option value="">
@@ -585,7 +579,7 @@ export const CheckoutPage = () => {
                           </select>
 
                           <select
-                            className={`${styles.form__input} input`}
+                            className="form__input input"
                             {...register("city")}
                           >
                             <option value="">{t("pages.checkout.city")}</option>
@@ -595,17 +589,17 @@ export const CheckoutPage = () => {
                           </select>
                         </div>
                         <div
-                          className={styles.checkoutpage__form_wrapper_inputs}
+                          className="checkout__form_wrapper_inputs"
                         >
                           <input
                             type="text"
-                            className={`${styles.form__input} input`}
+                            className="form__input input"
                             placeholder={t("pages.checkout.street")}
                             {...register("street")}
                           />
                           <input
                             type="text"
-                            className={`${styles.form__input} input`}
+                            className="form__input input"
                             placeholder={t("pages.checkout.apartment")}
                             {...register("apartment")}
                           />
@@ -617,23 +611,23 @@ export const CheckoutPage = () => {
               )}
 
               {errors.shipment_method && (
-                <span className={styles.error_message}>
+                <span className="error_message">
                   {errors.shipment_method.message}
                 </span>
               )}
             </div>
           </div>
 
-          <div className={styles.checkoutpage__block}>
-            <div className={styles.checkoutpage__blockTitle}>
-              <h3 className={styles.checkoutpage__ttl}>
+          <div className="checkout__block">
+            <div className="checkout__blockTitle">
+              <h3 className="checkout__ttl">
                 {t("pages.checkout.payment")}
               </h3>
             </div>
-            <div className={styles.checkoutpage__inputs}>
+            <div className="checkout__inputs">
               <input
                 type="text"
-                className={`${styles.form__input} input`}
+                className="form__input input"
                 placeholder={t("pages.checkout.card")}
                 {...register("cardNumber")}
               />
@@ -641,7 +635,7 @@ export const CheckoutPage = () => {
 
               <input
                 type="date"
-                className={`${styles.form__input} input`}
+                className="form__input input"
                 {...register("expirationDate")}
               />
               {errors.expirationDate && (
@@ -650,7 +644,7 @@ export const CheckoutPage = () => {
 
               <input
                 type="text"
-                className={`${styles.form__input} input`}
+                className="form__input input"
                 placeholder={t("pages.checkout.security")}
                 {...register("securityCode")}
               />
@@ -658,12 +652,12 @@ export const CheckoutPage = () => {
                 <span>{errors.securityCode.message}</span>
               )}
 
-              <hr className={styles.checkoutpage__line} />
+              <hr className="checkout__line" />
 
               <label>
                 <input
                   type="checkbox"
-                  className={styles.checkbox__index}
+                  className="checkbox__index"
                   {...register("terms")}
                 />
                 {t("pages.checkout.agree")}
@@ -674,9 +668,8 @@ export const CheckoutPage = () => {
 
           <button
             type="submit"
-            className={`button button_lg button_default button_full-size ${
-              isOrdered ? "active" : ""
-            }`}
+            className={`button button_lg button_default button_full-size ${isOrdered ? "active" : ""
+              }`}
             onClick={() => navigate("/thankyou")}
           >
             {t("pages.checkout.button")}
@@ -684,58 +677,58 @@ export const CheckoutPage = () => {
           </button>
         </form>
 
-        <div className={styles.checkoutpage__cartItems}>
-          <div className={styles.checkoutpage__block}>
-            <div className={styles.checkoutpage__blockTitle}>
-              <h3 className={styles.checkoutpage__ttl}>
+        <div className="checkout__cartItems">
+          <div className="checkout__block">
+            <div className="checkout__blockTitle">
+              <h3 className="checkout__ttl">
                 {t("pages.checkout.order")}
               </h3>
             </div>
 
-            <hr className={styles.checkoutpage__line} />
+            <hr className="checkout__line" />
 
             {bucket?.cart_items.map((item) => (
-              <div key={item.id} className={styles.checkoutpage__item}>
+              <div key={item.id} className="checkout__item">
                 <Link
                   key={item.id}
-                  className={styles.checkoutpage__itemLeft}
+                  className="checkout__itemLeft"
                   to={`/product/${item.product_instance.product.id}`}
                 >
                   <img
-                    className={styles.checkoutpage__img}
+                    className="checkout__img"
                     src={`https://localhost:9091/api/images/${item.product_instance.product.main_photo_id}`}
                     alt=""
                   />
                 </Link>
 
-                <div className={styles.checkoutpage__itemTop}>
-                  <div className={styles.checkoutpage__titles}>
-                    <span className={styles.checkoutpage__subtitle}>
+                <div className="checkout__itemTop">
+                  <div className="checkout__titles">
+                    <span className="checkout__subtitle">
                       {item.product_instance.product.producer.name}
                     </span>
 
                     <Link
                       key={item.id}
-                      className={styles.checkoutpage__link}
+                      className="checkout__link"
                       to={`/product/${item.product_instance.product.id}`}
                     >
-                      <h3 className={styles.checkoutpage__itemTitle}>
+                      <h3 className="checkout__itemTitle">
                         {item.product_instance.product.name}
                       </h3>
                     </Link>
                   </div>
 
-                  <div className={styles.checkoutpage__bottom}>
-                    <div className={styles.checkoutpage__sizes}>
-                      <span className={styles.checkoutpage__sizeTitle}>
+                  <div className="checkout__bottom">
+                    <div className="checkout__sizes">
+                      <span className="checkout__sizeTitle">
                         {t("pages.checkout.size")}
                       </span>
-                      <p className={styles.checkoutpage__size}>
+                      <p className="checkout__size">
                         {item.product_instance.size.name}
                       </p>
                     </div>
 
-                    <div className={styles.checkoutpage__price}>
+                    <div className="checkout__price">
                       ${item.product_instance.product.price}
                     </div>
                   </div>
@@ -743,29 +736,29 @@ export const CheckoutPage = () => {
               </div>
             ))}
 
-            <div className={styles.checkoutpage__information}>
-              <div className={styles.checkoutpage__info}>
-                <p className={styles.checkoutpage__infoKey}>
+            <div className="checkout__information">
+              <div className="checkout__info">
+                <p className="checkout__infoKey">
                   {bucket?.cart_items.length} {t("pages.checkout.items")}
                 </p>
-                <p className={styles.checkoutpage__infoValue}>${totalPrice}</p>
+                <p className="checkout__infoValue">${totalPrice}</p>
               </div>
 
-              <div className={styles.checkoutpage__info}>
-                <p className={styles.checkoutpage__infoKey}>
+              <div className="checkout__info">
+                <p className="checkout__infoKey">
                   {t("pages.checkout.delivery")}
                 </p>
-                <p className={styles.checkoutpage__infoValue}>$100</p>
+                <p className="checkout__infoValue">$100</p>
               </div>
             </div>
 
-            <hr className={styles.checkoutpage__line} />
+            <hr className="checkout__line" />
 
-            <div className={styles.checkoutpage__subtotal}>
-              <h3 className={styles.checkoutpage__title}>
+            <div className="checkout__subtotal">
+              <h3 className="checkout__title">
                 {t("pages.checkout.total")}
               </h3>
-              <h3 className={styles.checkoutpage__priceTotal}>
+              <h3 className="checkout__priceTotal">
                 ${totalPrice + 100}
               </h3>
             </div>

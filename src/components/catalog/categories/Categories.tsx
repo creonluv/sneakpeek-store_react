@@ -23,7 +23,7 @@ import { FilterType } from "../../../types/Filters";
 
 import aside from "../../../assets/img/icons/aside.svg";
 
-import styles from "./Categories.module.scss";
+import "./Categories.scss";
 
 export const Categories: React.FC = () => {
   const dispatch = useAppDispatch();
@@ -139,11 +139,11 @@ export const Categories: React.FC = () => {
   };
 
   return (
-    <div className={styles.categories}>
-      <div className={styles.categories__left}>
-        <ul className={styles.categories__chips}>
+    <div className="categories">
+      <div className="categories__left">
+        <ul className="categories__chips">
           {selectedItems.map(({ id, name, type }) => (
-            <li className={styles.categories__chip} key={`${type}-${id}`}>
+            <li className="categories__chip" key={`${type}-${id}`}>
               {name}
               <button onClick={() => handleRemoveItem(id, type)}>x</button>
             </li>
@@ -151,20 +151,20 @@ export const Categories: React.FC = () => {
         </ul>
 
         {selectedItems.length > 0 && (
-          <button className={styles.resetButton} onClick={handleResetAll}>
+          <button className="resetButton" onClick={handleResetAll}>
             {t("components.catalog.categories.reset")}
           </button>
         )}
       </div>
-      <div className={styles.categories__right}>
+      <div className="categories__right">
         <select
-          className={styles.products__options}
+          className="products__options"
           onChange={handleSortChange}
           value={`${selectedSort.sortField} ${selectedSort.sortOrder}`}
         >
           {sortDiff.map((item, index) => (
             <option
-              className={styles.products__option}
+              className="products__option"
               key={index}
               value={`${item.sortField} ${item.sortOrder}`}
             >
@@ -175,7 +175,7 @@ export const Categories: React.FC = () => {
 
         <button
           onClick={toggleAside}
-          className={styles.categories__toggleAsideButton}
+          className="categories__toggleAsideButton"
         >
           <img src={aside} alt="Toggle Aside" />{" "}
         </button>
