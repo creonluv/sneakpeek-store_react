@@ -1,39 +1,38 @@
-import { useState } from 'react';
-import Modal from 'react-modal';
-import { useTranslation } from 'react-i18next';
+import { useState } from "react";
+import Modal from "react-modal";
+import { useTranslation } from "react-i18next";
 
-import { useModalContext } from '../../context/ModalContext';
+import { useModalContext } from "../../context/ModalContext";
 
 import { changePassword } from "../../api/user";
 
-import { ChangePasswordMessages } from '../../shared/utils/modalMessages';
+import { ChangePasswordMessages } from "../../shared/utils/modalMessages";
 
 import close from "../../assets/img/icons/close.svg";
 
 import "./ChangePassword.scss";
 
 interface PasswordData {
-  old_password: string,
-  new_password: string,
-  confirm_new_password: string,
+  old_password: string;
+  new_password: string;
+  confirm_new_password: string;
 }
 
-Modal.setAppElement('#root');
+Modal.setAppElement("#root");
 
 export const ChangePassword = () => {
   const { t } = useTranslation();
+  const { showModal } = useModalContext();
 
   const [isOpenModal, setIsOpenModal] = useState(false);
-  const openModal = () => setIsOpenModal(true);
-  const closeModal = () => setIsOpenModal(false);
-
   const [formData, setFormData] = useState<PasswordData>({
-    old_password: '',
-    new_password: '',
-    confirm_new_password: '',
+    old_password: "",
+    new_password: "",
+    confirm_new_password: "",
   });
 
-  const { showModal } = useModalContext();
+  const openModal = () => setIsOpenModal(true);
+  const closeModal = () => setIsOpenModal(false);
 
   const handleChange = (e: React.ChangeEvent<HTMLInputElement>) => {
     const { name, value } = e.target;
@@ -88,7 +87,9 @@ export const ChangePassword = () => {
         }}
       >
         <div className="changepassword__control">
-          <h3 className="changepassword__title title-3">{t("components.changePassword.title")}</h3>
+          <h3 className="changepassword__title title-3">
+            {t("components.changePassword.title")}
+          </h3>
           <img
             className="changepassword__close"
             src={close}
@@ -137,6 +138,5 @@ export const ChangePassword = () => {
         </form>
       </Modal>
     </div>
-
-  )
-}
+  );
+};

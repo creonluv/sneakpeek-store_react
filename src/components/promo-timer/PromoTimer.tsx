@@ -65,14 +65,21 @@ export const PromoTimer = () => {
           </div>
           <div className="sale__content">
             <div className="sale__block">
-              <h2 className="sale__title title-2">{t("components.timer.title")} 30% </h2>
-              <p className="sale__text text-muted">{t("components.timer.text")}</p>
+              <h2 className="sale__title title-2">
+                {t("components.timer.title")} 30%{" "}
+              </h2>
+              <p className="sale__text text-muted">
+                {t("components.timer.text")}
+              </p>
             </div>
             <div className="sale__timer timer">
               <div className="timer__items">{timerComponents}</div>
             </div>
             <div className="sale__button button-wrapper">
-              <Link className="button button_lg button_default" to="/catalog/1/sale">
+              <Link
+                className="button button_lg button_default"
+                to="/catalog/1/sale"
+              >
                 <p>{t("components.timer.button")}</p>
                 <img className="button__icon" src={arrowWhite} alt="arrow" />
               </Link>

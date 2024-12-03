@@ -41,6 +41,12 @@ export const ProductCard: React.FC<Props> = ({
   category,
   id,
 }) => {
+  const dispatch = useAppDispatch();
+
+  const { favourite } = useAppSelector((state: RootState) => state.favourite);
+
+  const { isAuth } = useAuthContext();
+
   const photosOfCategory = [
     shoesImg,
     tshirtsImg,
@@ -48,12 +54,6 @@ export const ProductCard: React.FC<Props> = ({
     jeensImg,
     accesImg,
   ];
-
-  const dispatch = useAppDispatch();
-
-  const { favourite } = useAppSelector((state: RootState) => state.favourite);
-
-  const { isAuth } = useAuthContext();
 
   const elemementInFavourite = useMemo(() => {
     return favourite.find((item) => item.id === id);

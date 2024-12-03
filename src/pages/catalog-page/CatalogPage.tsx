@@ -1,34 +1,42 @@
-import { useDispatch } from "react-redux";
+import { useEffect, useState } from "react";
+import { useLocation } from "react-router-dom";
+
+import { useAppSelector } from "../../app/hooks";
+
 import { Aside } from "../../components/catalog/aside";
 import { Categories } from "../../components/catalog/categories";
-import styles from "./CatalogPage.module.scss";
-import { useAppSelector } from "../../app/hooks";
-import { RootState } from "../../app/store";
-import { useEffect, useState } from "react";
-import { fetchProductsCatalog } from "../../features/catalogProducts";
-import { useLocation } from "react-router-dom";
 import { ProductCard } from "../../components/product-card";
 import { Pagination } from "../../components/catalog/pagination";
 import { AsideAdaptive } from "../../components/catalog/asideAdaptive";
-import { useAsideContext } from "../../context/AsideContext";
+
+import { useDispatch } from "react-redux";
+import { RootState } from "../../app/store";
 import { fetchAllProducts } from "../../features/products";
 import { fetchFavourite } from "../../features/favourite";
+import { fetchProductsCatalog } from "../../features/catalogProducts";
+
+import { useAsideContext } from "../../context/AsideContext";
 import { useModalContext } from "../../context/ModalContext";
+
 import { useTranslation } from "react-i18next";
 
+import styles from "./CatalogPage.module.scss";
+
 export const CatalogPage = () => {
+  const { t } = useTranslation();
   const dispatch = useDispatch();
   const location = useLocation();
-  const { t } = useTranslation();
-  const { showModal } = useModalContext();
+
   const [, setMessageCounter] = useState(0);
   const [wasModalShown, setWasModalShown] = useState(false);
 
   const { products, loading, messages } = useAppSelector(
     (state: RootState) => state.catalogProducts
   );
-
   const { favourite } = useAppSelector((state: RootState) => state.favourite);
+
+  const { showModal } = useModalContext();
+  const { isAsideOpen, toggleAside } = useAsideContext();
 
   useEffect(() => {
     dispatch(fetchAllProducts() as any);
@@ -59,8 +67,6 @@ export const CatalogPage = () => {
     }
   }, [messages]);
 
-  const { isAsideOpen, toggleAside } = useAsideContext();
-
   return (
     <section className={styles.catalogpage}>
       <div className={styles.catalogpage__body}>
@@ -70,7 +76,9 @@ export const CatalogPage = () => {
 
         <div className={styles.catalogpage__main}>
           <div className={styles.catalogpage__chips}>
-            <h3 className={styles.catalogpage__title}>{t("components.pages.catalog.title")}</h3>
+            <h3 className={styles.catalogpage__title}>
+              {t("components.pages.catalog.title")}
+            </h3>
             <Categories />
 
             {isAsideOpen && (

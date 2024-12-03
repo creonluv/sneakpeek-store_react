@@ -15,7 +15,10 @@ import { fetchBucket } from "../../features/bucket";
 import { useAuthContext } from "../../context/AuthContext";
 import { useModalContext } from "../../context/ModalContext";
 
+import { CheckoutFormData } from "../../types/CheckoutFormData";
+
 import { checkoutSchema } from "../../helpers/checkoutSchema";
+import { defaultValues } from "../../helpers/defaultValuesForCheckoutForm";
 
 import {
   CheckoutPageMessages,
@@ -31,31 +34,12 @@ import arrowWhite from "../../assets/img/icons/arrow-white.svg";
 
 import styles from "./CheckoutPage.module.scss";
 
-type CheckoutFormData = {
-  cart_id: string;
-  name: string;
-  surname: string;
-  phone_number: string;
-  delivery_type: boolean;
-  shipment_method: string;
-  city?: string;
-  state?: string;
-  street?: string;
-  apartment?: string;
-  branch_id?: string;
-  branch_address?: string;
-
-  terms: boolean;
-  cardNumber: string;
-  expirationDate: string;
-  securityCode: string;
-};
-
 export const CheckoutPage = () => {
   const dispatch = useAppDispatch();
+  const navigate = useNavigate();
+
   const { t } = useTranslation();
   const { isAuth } = useAuthContext();
-  const navigate = useNavigate();
 
   const [selectedShipping, setSelectedShipping] = useState("");
   const [isCourierSelected, setIsCourierSelected] = useState(false);
@@ -64,33 +48,6 @@ export const CheckoutPage = () => {
   const { bucket } = useAppSelector((state: RootState) => state.bucket);
 
   const { showModal } = useModalContext();
-
-  const cart_id = bucket?.id;
-
-  useEffect(() => {
-    if (isAuth) {
-      dispatch(fetchBucket());
-    }
-  }, [dispatch, isAuth]);
-
-  const defaultValues = {
-    cart_id: "",
-    name: "",
-    surname: "",
-    phone_number: "",
-    delivery_type: false,
-    shipment_method: "",
-    city: "",
-    state: "",
-    street: "",
-    apartment: "",
-    branch_id: "",
-    branch_address: "",
-    terms: false,
-    cardNumber: "",
-    expirationDate: "",
-    securityCode: "",
-  };
 
   const {
     register,
@@ -102,6 +59,17 @@ export const CheckoutPage = () => {
     resolver: zodResolver(checkoutSchema),
     defaultValues,
   });
+
+  const cart_id = bucket?.id;
+
+  const shipment_method = watch("shipment_method");
+  const deliveryType = watch("delivery_type");
+
+  useEffect(() => {
+    if (isAuth) {
+      dispatch(fetchBucket());
+    }
+  }, [dispatch, isAuth]);
 
   useEffect(() => {
     const fetchProfile = async () => {
@@ -126,9 +94,6 @@ export const CheckoutPage = () => {
     fetchProfile();
   }, []);
 
-  const shipment_method = watch("shipment_method");
-  const deliveryType = watch("delivery_type");
-
   useEffect(() => {
     if (shipment_method) {
       setSelectedShipping(shipment_method);
@@ -152,22 +117,22 @@ export const CheckoutPage = () => {
       delivery_details: {
         delivery_type:
           typeof data.delivery_type === "string" &&
-            data.delivery_type === "home"
+          data.delivery_type === "home"
             ? "home"
             : "branch",
         shipment_method: data.shipment_method,
         ...(typeof data.delivery_type === "string" &&
-          data.delivery_type === "home"
+        data.delivery_type === "home"
           ? {
-            state: data.state,
-            city: data.city,
-            street: data.street,
-            apartment: data.apartment,
-          }
+              state: data.state,
+              city: data.city,
+              street: data.street,
+              apartment: data.apartment,
+            }
           : {
-            branch_id: data.branch_id,
-            branch_address: data.branch_address,
-          }),
+              branch_id: data.branch_id,
+              branch_address: data.branch_address,
+            }),
       },
     };
 
@@ -200,8 +165,12 @@ export const CheckoutPage = () => {
   return (
     <section className={styles.checkoutpage}>
       <div className={styles.checkoutpage__header}>
-        <h3 className={styles.checkoutpage__title}>{t("pages.checkout.title")}</h3>
-        <span className={styles.checkoutpage__subtitle}>{t("pages.checkout.steps")}</span>
+        <h3 className={styles.checkoutpage__title}>
+          {t("pages.checkout.title")}
+        </h3>
+        <span className={styles.checkoutpage__subtitle}>
+          {t("pages.checkout.steps")}
+        </span>
       </div>
 
       <div className={styles.checkoutpage__container}>
@@ -211,7 +180,9 @@ export const CheckoutPage = () => {
         >
           <div className={styles.checkoutpage__block}>
             <div className={styles.checkoutpage__blockTitle}>
-              <h3 className={styles.checkoutpage__ttl}>{t("pages.checkout.contact")}</h3>
+              <h3 className={styles.checkoutpage__ttl}>
+                {t("pages.checkout.contact")}
+              </h3>
             </div>
             <div className={styles.checkoutpage__inputs}>
               <input
@@ -339,7 +310,9 @@ export const CheckoutPage = () => {
                             className={`${styles.form__input} input`}
                             {...register("state")}
                           >
-                            <option value="">{t("pages.checkout.state")}</option>
+                            <option value="">
+                              {t("pages.checkout.state")}
+                            </option>
                             <option value="Kharkivska">Kharkivska</option>
                             <option value="Poltavska">Poltavska</option>
                             <option value="Khersonska">Khersonska</option>
@@ -426,7 +399,9 @@ export const CheckoutPage = () => {
                           className={`${styles.form__input} input`}
                           {...register("branch_id")}
                         >
-                          <option value="">{t("pages.checkout.selectOffice")}</option>
+                          <option value="">
+                            {t("pages.checkout.selectOffice")}
+                          </option>
                           <option value="Post office #129">
                             Post office #129
                           </option>
@@ -468,7 +443,9 @@ export const CheckoutPage = () => {
                             className={`${styles.form__input} input`}
                             {...register("state")}
                           >
-                            <option value="">{t("pages.checkout.state")}</option>
+                            <option value="">
+                              {t("pages.checkout.state")}
+                            </option>
                             <option value="Kharkivska">Kharkivska</option>
                             <option value="Poltavska">Poltavska</option>
                             <option value="Khersonska">Khersonska</option>
@@ -555,7 +532,9 @@ export const CheckoutPage = () => {
                           className={`${styles.form__input} input`}
                           {...register("branch_id")}
                         >
-                          <option value="">{t("pages.checkout.selectOffice")}</option>
+                          <option value="">
+                            {t("pages.checkout.selectOffice")}
+                          </option>
                           <option value="Post office #129">
                             Post office #129
                           </option>
@@ -597,7 +576,9 @@ export const CheckoutPage = () => {
                             className={`${styles.form__input} input`}
                             {...register("state")}
                           >
-                            <option value="">{t("pages.checkout.state")}</option>
+                            <option value="">
+                              {t("pages.checkout.state")}
+                            </option>
                             <option value="Kharkivska">Kharkivska</option>
                             <option value="Poltavska">Poltavska</option>
                             <option value="Khersonska">Khersonska</option>
@@ -645,7 +626,9 @@ export const CheckoutPage = () => {
 
           <div className={styles.checkoutpage__block}>
             <div className={styles.checkoutpage__blockTitle}>
-              <h3 className={styles.checkoutpage__ttl}>{t("pages.checkout.payment")}</h3>
+              <h3 className={styles.checkoutpage__ttl}>
+                {t("pages.checkout.payment")}
+              </h3>
             </div>
             <div className={styles.checkoutpage__inputs}>
               <input
@@ -691,8 +674,9 @@ export const CheckoutPage = () => {
 
           <button
             type="submit"
-            className={`button button_lg button_default button_full-size ${isOrdered ? "active" : ""
-              }`}
+            className={`button button_lg button_default button_full-size ${
+              isOrdered ? "active" : ""
+            }`}
             onClick={() => navigate("/thankyou")}
           >
             {t("pages.checkout.button")}
@@ -703,7 +687,9 @@ export const CheckoutPage = () => {
         <div className={styles.checkoutpage__cartItems}>
           <div className={styles.checkoutpage__block}>
             <div className={styles.checkoutpage__blockTitle}>
-              <h3 className={styles.checkoutpage__ttl}>{t("pages.checkout.order")}</h3>
+              <h3 className={styles.checkoutpage__ttl}>
+                {t("pages.checkout.order")}
+              </h3>
             </div>
 
             <hr className={styles.checkoutpage__line} />
@@ -766,7 +752,9 @@ export const CheckoutPage = () => {
               </div>
 
               <div className={styles.checkoutpage__info}>
-                <p className={styles.checkoutpage__infoKey}>{t("pages.checkout.delivery")}</p>
+                <p className={styles.checkoutpage__infoKey}>
+                  {t("pages.checkout.delivery")}
+                </p>
                 <p className={styles.checkoutpage__infoValue}>$100</p>
               </div>
             </div>
@@ -774,7 +762,9 @@ export const CheckoutPage = () => {
             <hr className={styles.checkoutpage__line} />
 
             <div className={styles.checkoutpage__subtotal}>
-              <h3 className={styles.checkoutpage__title}>{t("pages.checkout.total")}</h3>
+              <h3 className={styles.checkoutpage__title}>
+                {t("pages.checkout.total")}
+              </h3>
               <h3 className={styles.checkoutpage__priceTotal}>
                 ${totalPrice + 100}
               </h3>

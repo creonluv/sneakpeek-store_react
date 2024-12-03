@@ -15,6 +15,13 @@ export const PhotoSlider: React.FC<Props> = ({ images }) => {
   const [selectedImg, setSelectedImg] = useState(initialImage);
   const [currentIndex, setCurrentIndex] = useState(0);
 
+  useEffect(() => {
+    if (images && images.length > 0) {
+      setSelectedImg(images[0]);
+      setCurrentIndex(0);
+    }
+  }, [images]);
+
   const handleImageClick = (index: number) => {
     setSelectedImg(images![index]);
     setCurrentIndex(index);
@@ -37,13 +44,6 @@ export const PhotoSlider: React.FC<Props> = ({ images }) => {
       setCurrentIndex(prevIndex);
     }
   };
-
-  useEffect(() => {
-    if (images && images.length > 0) {
-      setSelectedImg(images[0]);
-      setCurrentIndex(0);
-    }
-  }, [images]);
 
   return (
     <div className={styles.slider}>

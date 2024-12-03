@@ -31,6 +31,31 @@ export const Aside: React.FC = () => {
   const navigate = useNavigate();
   const { t } = useTranslation();
 
+  const {
+    selectedCategories,
+    selectedProducers,
+    selectedSizes,
+    selectedGenders,
+    priceRange,
+    selectedSort,
+    currentPage,
+    name,
+  } = useAppSelector((state: RootState) => state.params);
+
+  const { categories, producers, sizes, genders } = useAppSelector(
+    (state: RootState) => state.catalog
+  );
+
+  const selectedFilters = useMemo(
+    () => ({
+      categoryIds: [...selectedCategories],
+      producerIds: [...selectedProducers],
+      sizeIds: [...selectedSizes],
+      genderIds: [...selectedGenders],
+    }),
+    [selectedCategories, selectedProducers, selectedSizes, selectedGenders]
+  );
+
   const [openSections, setOpenSections] = useState<Record<FilterType, boolean>>(
     {
       categoryIds: true,
@@ -48,52 +73,23 @@ export const Aside: React.FC = () => {
   });
 
   const filterConfigs = [
-    { type: "categoryIds" as FilterType, label: t("components.catalog.aside.category") },
-    { type: "producerIds" as FilterType, label: t("components.catalog.aside.producer") },
-    { type: "sizeIds" as FilterType, label: t("components.catalog.aside.size") },
-    { type: "genderIds" as FilterType, label: t("components.catalog.aside.gender") },
+    {
+      type: "categoryIds" as FilterType,
+      label: t("components.catalog.aside.category"),
+    },
+    {
+      type: "producerIds" as FilterType,
+      label: t("components.catalog.aside.producer"),
+    },
+    {
+      type: "sizeIds" as FilterType,
+      label: t("components.catalog.aside.size"),
+    },
+    {
+      type: "genderIds" as FilterType,
+      label: t("components.catalog.aside.gender"),
+    },
   ];
-
-  useEffect(() => {
-    dispatch(fetchFilterData() as any);
-  }, [dispatch]);
-
-  const { categories, producers, sizes, genders } = useAppSelector(
-    (state: RootState) => state.catalog
-  );
-
-  const {
-    selectedCategories,
-    selectedProducers,
-    selectedSizes,
-    selectedGenders,
-    priceRange,
-    selectedSort,
-    currentPage,
-    name,
-  } = useAppSelector((state: RootState) => state.params);
-
-  const selectedFilters = useMemo(
-    () => ({
-      categoryIds: [...selectedCategories],
-      producerIds: [...selectedProducers],
-      sizeIds: [...selectedSizes],
-      genderIds: [...selectedGenders],
-    }),
-    [selectedCategories, selectedProducers, selectedSizes, selectedGenders]
-  );
-
-  useEffect(() => {
-    updateUrlWithFiltersAndPrice(
-      navigate,
-      selectedFilters,
-      priceRange,
-      selectedSort,
-      currentPage,
-      true,
-      name
-    );
-  }, [selectedFilters, priceRange, navigate, selectedSort]);
 
   const handleCheckboxChange = (type: FilterType, id: number) => {
     switch (type) {
@@ -143,6 +139,22 @@ export const Aside: React.FC = () => {
     dispatch(setPriceRange(value));
   };
 
+  useEffect(() => {
+    dispatch(fetchFilterData() as any);
+  }, [dispatch]);
+
+  useEffect(() => {
+    updateUrlWithFiltersAndPrice(
+      navigate,
+      selectedFilters,
+      priceRange,
+      selectedSort,
+      currentPage,
+      true,
+      name
+    );
+  }, [selectedFilters, priceRange, navigate, selectedSort]);
+
   return (
     <aside className={styles.aside}>
       <div className={classNames(styles.aside__filter, styles.filter)}>
@@ -150,7 +162,9 @@ export const Aside: React.FC = () => {
           className={classNames(styles.filter__spoiler)}
           onClick={() => toggleSection("priceRange" as FilterType)}
         >
-          <h3 className={styles.filter__title}>{t("components.catalog.aside.priceRange")}</h3>
+          <h3 className={styles.filter__title}>
+            {t("components.catalog.aside.priceRange")}
+          </h3>
           <img
             className={classNames(styles.filter__arrow, {
               [styles.open]: openSections["priceRange" as FilterType],

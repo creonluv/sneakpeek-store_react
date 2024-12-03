@@ -17,14 +17,17 @@ import styles from "./FavouritePage.module.scss";
 export const FavouritePage = () => {
   const dispatch = useAppDispatch();
   const { t } = useTranslation();
+
+  const [, setMessageCounter] = useState(0);
+  const [wasModalShown, setWasModalShown] = useState(false);
+
   const { products } = useAppSelector((state: RootState) => state.products);
   const { favourite, loading, messages } = useAppSelector(
     (state: RootState) => state.favourite
   );
+
   const { isAuth } = useAuthContext();
   const { showModal } = useModalContext();
-  const [, setMessageCounter] = useState(0);
-  const [wasModalShown, setWasModalShown] = useState(false);
 
   useEffect(() => {
     if (isAuth) {
@@ -56,7 +59,9 @@ export const FavouritePage = () => {
   return (
     <section className={styles.favouritepage}>
       <div className={styles.favouritepage__header}>
-        <h3 className={styles.favouritepage__title}>{t("pages.favourite.title")}</h3>
+        <h3 className={styles.favouritepage__title}>
+          {t("pages.favourite.title")}
+        </h3>
         <span className={styles.favouritepage__subtitle}>
           {favourite.length}
         </span>

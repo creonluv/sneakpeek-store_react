@@ -7,8 +7,8 @@ import logo from "../../assets/img/logo.svg";
 import styles from "./NotFoundPage.module.scss";
 
 const NotFoundPage = () => {
-  const navigate = useNavigate();
   const { t } = useTranslation();
+  const navigate = useNavigate();
 
   useEffect(() => {
     navigate("/404");

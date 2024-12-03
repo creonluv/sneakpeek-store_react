@@ -14,11 +14,15 @@ export const ThankYouPage = () => {
       <div className={styles.thankyoupage__container}>
         <div className={styles.thankyoupage__block}>
           <div className={styles.thankyoupage__blockTitle}>
-            <h3 className={styles.thankyoupage__ttl}>{t("pages.thankyou.orderSuccess")}</h3>
+            <h3 className={styles.thankyoupage__ttl}>
+              {t("pages.thankyou.orderSuccess")}
+            </h3>
           </div>
 
           <div className={styles.thankyoupage__information}>
-            <p className={styles.thankyoupage__order}>{t("pages.thankyou.order")} #17150810</p>
+            <p className={styles.thankyoupage__order}>
+              {t("pages.thankyou.order")} #17150810
+            </p>
             <p className={styles.thankyoupage__desc}>
               {t("pages.thankyou.wait")}
             </p>

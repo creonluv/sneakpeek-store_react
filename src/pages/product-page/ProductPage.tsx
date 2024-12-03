@@ -30,53 +30,32 @@ import buttonFav from "../../assets/img/icons/button.svg";
 import styles from "./ProductPage.module.scss";
 
 export const ProductPage = () => {
+  const navigate = useNavigate();
   const dispatch = useAppDispatch();
+
   const { t } = useTranslation();
   const { productId } = useParams();
+
   const [rndNum, setRndNum] = useState(0);
   const [activeTab, setActiveTab] = useState(0);
-  const { showModal } = useModalContext();
   const [, setMessageCounter] = useState(0);
   const [wasModalShown, setWasModalShown] = useState(false);
-
-  const navigate = useNavigate();
+  const [productInstance, setProductInstance] = useState<number | undefined>(
+    undefined
+  );
 
   const { product, productInstancesAndSizes, materialAndCare } = useAppSelector(
     (state: RootState) => state.product
   );
-
   const { products, loading, messages } = useAppSelector(
     (state: RootState) => state.products
   );
   const { bucket } = useAppSelector((state: RootState) => state.bucket);
 
   const { isAuth } = useAuthContext();
+  const { showModal } = useModalContext();
 
   const imagesArr = Array.isArray(product?.images) ? product?.images : [];
-
-  useEffect(() => {
-    dispatch(fetchBucket() as any);
-  }, [dispatch]);
-
-  useEffect(() => {
-    if (!loading && messages && !wasModalShown) {
-      showModal(messages);
-      setWasModalShown(true);
-
-      const timer = setTimeout(() => {
-        setWasModalShown(false);
-      }, 3000);
-
-      return () => clearTimeout(timer);
-    }
-  }, [messages, loading, wasModalShown, showModal]);
-
-  useEffect(() => {
-    if (messages) {
-      setMessageCounter((prev) => prev + 1);
-      setWasModalShown(false);
-    }
-  }, [messages]);
 
   const instanceOfItemInBucket = bucket?.cart_items.find(
     (item) => item.product_instance.product.id === Number(productId)
@@ -86,40 +65,6 @@ export const ProductPage = () => {
     (item) =>
       productId !== undefined && item.product_instance.product.id === +productId
   );
-
-  console.log(bucket?.cart_items);
-  console.log(productId);
-
-  const everyInstanceOfItemInBucket = bucket?.cart_items.filter(
-    (item) => item.product_instance.product.id === Number(productId)
-  );
-
-  console.log(everyInstanceOfItemInBucket);
-
-  const [productInstance, setProductInstance] = useState<number | undefined>(
-    undefined
-  );
-
-  useEffect(() => {
-    if (instanceOfItemInBucket) {
-      setProductInstance(instanceOfItemInBucket);
-    }
-  }, [instanceOfItemInBucket]);
-
-  useEffect(() => {
-    if (productId) {
-      dispatch(fetchProductData(productId));
-    }
-  }, [dispatch, productId]);
-
-  useEffect(() => {
-    dispatch(fetchAllProducts());
-  }, [dispatch]);
-
-  useEffect(() => {
-    const randomNumber = generateRandomNumber(1000000, 9999999);
-    setRndNum(randomNumber);
-  }, [setRndNum]);
 
   const handleSizeButton = (instance: number) => {
     setProductInstance((prevInstance) =>
@@ -162,6 +107,51 @@ export const ProductPage = () => {
     },
   ];
 
+  useEffect(() => {
+    dispatch(fetchBucket() as any);
+  }, [dispatch]);
+
+  useEffect(() => {
+    if (!loading && messages && !wasModalShown) {
+      showModal(messages);
+      setWasModalShown(true);
+
+      const timer = setTimeout(() => {
+        setWasModalShown(false);
+      }, 3000);
+
+      return () => clearTimeout(timer);
+    }
+  }, [messages, loading, wasModalShown, showModal]);
+
+  useEffect(() => {
+    if (messages) {
+      setMessageCounter((prev) => prev + 1);
+      setWasModalShown(false);
+    }
+  }, [messages]);
+
+  useEffect(() => {
+    if (instanceOfItemInBucket) {
+      setProductInstance(instanceOfItemInBucket);
+    }
+  }, [instanceOfItemInBucket]);
+
+  useEffect(() => {
+    if (productId) {
+      dispatch(fetchProductData(productId));
+    }
+  }, [dispatch, productId]);
+
+  useEffect(() => {
+    dispatch(fetchAllProducts());
+  }, [dispatch]);
+
+  useEffect(() => {
+    const randomNumber = generateRandomNumber(1000000, 9999999);
+    setRndNum(randomNumber);
+  }, [setRndNum]);
+
   return (
     <section className={styles.productpage}>
       <BackBtn />
@@ -193,19 +183,23 @@ export const ProductPage = () => {
             <div className={styles.productpage__interactive}>
               <div className={styles.productpage__interactive_top}>
                 <div className={styles.productpage__block}>
-                  <p className={styles.productpage__name}>{t("pages.product.sizes")}</p>
+                  <p className={styles.productpage__name}>
+                    {t("pages.product.sizes")}
+                  </p>
                   <div className={styles.productpage__sizes}>
                     {productInstancesAndSizes.map((productInstanceInfo) => (
                       <div
                         key={productInstanceInfo.product_instance_id}
-                        className={`${styles.productpage__size} ${productInstanceInfo.product_instance_id ===
-                            productInstance
+                        className={`${styles.productpage__size} ${
+                          productInstanceInfo.product_instance_id ===
+                          productInstance
                             ? styles.productpage__size_checked
                             : ""
-                          } ${productInstanceInfo.present === 0
+                        } ${
+                          productInstanceInfo.present === 0
                             ? styles.productpage__size_disabled
                             : ""
-                          }`}
+                        }`}
                         onClick={() =>
                           handleSizeButton(
                             productInstanceInfo.product_instance_id
@@ -220,8 +214,9 @@ export const ProductPage = () => {
 
                 <div className={styles.productpage__buttons}>
                   <button
-                    className={`button button_lg button_default button_full-size ${isAddedToBucket ? "active" : ""
-                      }`}
+                    className={`button button_lg button_default button_full-size ${
+                      isAddedToBucket ? "active" : ""
+                    }`}
                     type="submit"
                     onClick={handleBuyButton}
                   >
@@ -283,7 +278,9 @@ export const ProductPage = () => {
               </div>
             </div>
 
-            <p className={styles.productpage__serial}>{t("pages.product.code")} {rndNum}</p>
+            <p className={styles.productpage__serial}>
+              {t("pages.product.code")} {rndNum}
+            </p>
           </div>
         </div>
 
@@ -293,8 +290,9 @@ export const ProductPage = () => {
               {tabs.map((tab, index) => (
                 <div key={index} className={styles.productpage__tabsButton}>
                   <div
-                    className={`${styles.productpage__tablink} ${index === activeTab ? styles.productpage__active : ""
-                      }`}
+                    className={`${styles.productpage__tablink} ${
+                      index === activeTab ? styles.productpage__active : ""
+                    }`}
                     onClick={() => setActiveTab(index)}
                   >
                     {tab.title}

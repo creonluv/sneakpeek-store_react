@@ -31,19 +31,19 @@ export const BucketPage = () => {
   const dispatch = useAppDispatch();
   const navigate = useNavigate();
 
+  const [, setMessageCounter] = useState(0);
+  const [wasModalShown, setWasModalShown] = useState(false);
+
   const { products } = useAppSelector((state: RootState) => state.products);
   const { bucket, loading, messages } = useAppSelector(
     (state: RootState) => state.bucket
   );
   const { isAuth } = useAuthContext();
   const { showModal } = useModalContext();
-  const [, setMessageCounter] = useState(0);
-  const [wasModalShown, setWasModalShown] = useState(false);
+
   const debouncedUpdateItemInBucket = debounce((dispatch, payload) => {
     dispatch(updateItemInBucket(payload));
   }, 500);
-
-  console.log(messages);
 
   useEffect(() => {
     if (isAuth) {
@@ -216,14 +216,18 @@ export const BucketPage = () => {
           </div>
 
           <div className={styles.bucketpage__subtotal}>
-            <h3 className={styles.bucketpage__title}>{t("pages.bucket.subtotal")}</h3>
+            <h3 className={styles.bucketpage__title}>
+              {t("pages.bucket.subtotal")}
+            </h3>
             <h3 className={styles.bucketpage__price}>${totalPrice}</h3>
           </div>
         </div>
 
         <div className={styles.bucketpage__right}>
           <div className={styles.bucketpage__card}>
-            <h3 className={styles.bucketpage__title}>{t("pages.bucket.summary")}</h3>
+            <h3 className={styles.bucketpage__title}>
+              {t("pages.bucket.summary")}
+            </h3>
 
             <div className={styles.bucketpage__main}>
               <div className={styles.bucketpage__middle}>
@@ -239,7 +243,9 @@ export const BucketPage = () => {
 
               <div className={styles.bucketpage__bottom}>
                 <div className={styles.bucketpage__total}>
-                  <h3 className={styles.bucketpage__price}>{t("pages.bucket.total")}</h3>
+                  <h3 className={styles.bucketpage__price}>
+                    {t("pages.bucket.total")}
+                  </h3>
                   <h3 className={styles.bucketpage__price}>${totalPrice}</h3>
                 </div>
 

@@ -18,6 +18,10 @@ import "./MainPage.scss";
 export const MainPage = () => {
   const dispatch = useDispatch();
 
+  const { products } = useAppSelector((state: RootState) => state.products);
+
+  const reversedProducts = [...products].reverse();
+
   useEffect(() => {
     const setBackgroundImages = () => {
       const ibgElements = document.querySelectorAll<HTMLElement>(".ibg");
@@ -36,10 +40,6 @@ export const MainPage = () => {
   useEffect(() => {
     dispatch(fetchAllProducts() as any);
   }, [dispatch]);
-
-  const { products } = useAppSelector((state: RootState) => state.products);
-
-  const reversedProducts = [...products].reverse();
 
   return (
     <section className="homepage">

@@ -1,0 +1,18 @@
+export const defaultValues = {
+  cart_id: "",
+  name: "",
+  surname: "",
+  phone_number: "",
+  delivery_type: false,
+  shipment_method: "",
+  city: "",
+  state: "",
+  street: "",
+  apartment: "",
+  branch_id: "",
+  branch_address: "",
+  terms: false,
+  cardNumber: "",
+  expirationDate: "",
+  securityCode: "",
+};

@@ -28,6 +28,7 @@ export const Header = () => {
   const [isMenuOpen, setIsMenuOpen] = useState(false);
   const [isModalOpen, setIsModalOpen] = useState(false);
   const [searchTerm, setSearchTerm] = useState("");
+
   const { isAuth, signout } = useAuthContext();
   const { showModal } = useModalContext();
 
@@ -38,42 +39,6 @@ export const Header = () => {
   const { favourite } = useAppSelector((state: RootState) => state.favourite);
 
   const { t, i18n } = useTranslation();
-
-  // useEffect(() => {
-  //   const handler = setTimeout(() => {
-  //     dispatch(setInputSearch(searchTerm));
-
-  //     updateUrlWithFiltersAndPrice(
-  //       navigate,
-  //       {
-  //         categoryIds: selectedCategories,
-  //         producerIds: selectedProducers,
-  //         sizeIds: selectedSizes,
-  //         genderIds: selectedGenders,
-  //       },
-  //       priceRange,
-  //       selectedSort,
-  //       currentPage,
-  //       true,
-  //       searchTerm
-  //     );
-  //   }, 500);
-
-  //   return () => {
-  //     clearTimeout(handler);
-  //   };
-  // }, [
-  //   searchTerm,
-  //   dispatch,
-  //   navigate,
-  //   selectedCategories,
-  //   selectedProducers,
-  //   selectedSizes,
-  //   selectedGenders,
-  //   priceRange,
-  //   selectedSort,
-  //   currentPage,
-  // ]);
 
   const toggleModal = () => setIsModalOpen(!isModalOpen);
 
@@ -102,7 +67,9 @@ export const Header = () => {
     );
   };
 
-  const handleSelectLanguage = (e: React.ChangeEvent<HTMLSelectElement>): void => {
+  const handleSelectLanguage = (
+    e: React.ChangeEvent<HTMLSelectElement>
+  ): void => {
     const selectedLanguage = e.target.value;
     i18n.changeLanguage(selectedLanguage);
   };
@@ -119,7 +86,11 @@ export const Header = () => {
       <div className={styles.header__top}>
         <div className={styles.header__top_container}>
           <div className={`${styles.header__select} ${styles.select}`}>
-            <select className={styles.select__items} name="lang" onChange={handleSelectLanguage}>
+            <select
+              className={styles.select__items}
+              name="lang"
+              onChange={handleSelectLanguage}
+            >
               <option className={styles.select__item} value="en">
                 Eng
               </option>
