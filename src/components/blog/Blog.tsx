@@ -41,7 +41,7 @@ export const Blog = () => {
                 </a>
               </div>
               <div className="blog__content">
-                <h2 className="blog__title title-2--reverse">{t("components.blog.subtitle")}</h2>
+                <h2 className="blog__title title-2">{t("components.blog.subtitle")}</h2>
                 <p className="blog__text text-light">
                   {t("components.blog.text")}
                 </p>
@@ -57,7 +57,7 @@ export const Blog = () => {
                 </a>
               </div>
               <div className="blog__content">
-                <h2 className="blog__title title-2--reverse">{t("components.blog.subtitle")}</h2>
+                <h2 className="blog__title title-2">{t("components.blog.subtitle")}</h2>
                 <p className="blog__text text-light">
                   {t("components.blog.text")}
                 </p>

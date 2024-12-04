@@ -1,8 +1,26 @@
 @use "./vars" as *;
 @use "sass:math";
 
+@mixin on-mobile {
+  @media (min-width: $mobile-min-width) {
+    @content;
+  }
+}
+
+@mixin on-mobile-landscape {
+  @media (min-width: $mobile-landscape-min-width) {
+    @content;
+  }
+}
+
 @mixin on-tablet {
   @media (min-width: $tablet-min-width) {
+    @content;
+  }
+}
+
+@mixin on-tablet-landscape {
+  @media (min-width: $tablet-landscape-mind-width) {
     @content;
   }
 }
@@ -13,37 +31,26 @@
   }
 }
 
-@mixin on-big-desktop {
+@mixin on-large-screen {
   @media (min-width: $large-screen-min-width) {
     @content;
   }
 }
 
-@mixin on-mobile {
-  @media (min-width: $mobile-min-width) {
+@mixin on-full-width {
+  @media (min-width: $full-width-min-width) {
     @content;
   }
 }
 
-@mixin content-padding-inline {
-  padding-inline: 24px;
-
-  @include on-tablet {
-    padding-inline: 32px;
-  }
-
-  @include on-desktop {
-    max-width: 1200px;
-    padding-inline: 0;
-  }
-}
-
 @mixin container {
-  @include content-padding-inline;
+  padding-inline: 16px;
 
   @include on-desktop {
     width: 100%;
     margin: 0 auto;
+    max-width: 1200px;
+    padding-inline: 0;
   }
 }
 
@@ -96,21 +103,17 @@
 }
 
 @mixin header-1 {
-  font-size: 88px;
-
-  @include on-tablet {
-    font-size: 168px;
-  }
-
-  @include on-desktop {
-    font-size: 192px;
-  }
-
+  @include adaptiveValue("font-size", 70, 40, 480, 320, 1);
   font-weight: 600;
   line-height: 1;
   letter-spacing: em(0.396, 198);
   text-transform: uppercase;
   color: var(--color-text);
+  text-align: center;
+
+  @include on-mobile-landscape {
+    @include adaptiveValue("font-size", 190, 70, $containerWidth, 480, 1);
+  }
 }
 
 @mixin header-2 {

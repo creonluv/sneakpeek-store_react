@@ -24,7 +24,8 @@ button {
     display: flex;
     flex-direction: column;
     gap: 48px;
-    padding: 4rem 0;
+    @include adaptiveValue("padding-top", 40, 10);
+    @include adaptiveValue("padding-bottom", 40, 10);
 
     @include container;
   }
@@ -90,7 +91,11 @@ h1,
 
 h2,
 .title-2 {
-  @include header-2;
+  @include adaptiveValue("font-size", 64, 32);
+  font-weight: 500;
+  line-height: 87%;
+  letter-spacing: em(0.128, 64);
+  color: var(--color-text);
 }
 
 h3,
@@ -123,6 +128,12 @@ h5,
 
 .text-muted {
   @include body-text;
+}
+
+.text-reverse {
+  @include adaptiveValue("font-size", 24, 12);
+  font-weight: 500;
+  color: var(--color-text-reverse);
 }
 
 ._hidden {
