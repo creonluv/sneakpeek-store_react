@@ -1,19 +1,21 @@
 @use "../../shared/globalStyles/global" as *;
 
 .breadcrumbs {
-  display: flex;
-  flex-direction: row;
-  align-items: center;
-}
+  &__body {
+    display: flex;
+    flex-direction: row;
+    align-items: center;
 
-.breadcrumbs > * {
-  display: inline-block;
-  margin-right: 8px;
-}
+    & > * {
+      display: inline-block;
+      margin-right: 8px;
+    }
+  }
 
-.crumbFirst {
-  display: flex;
-  flex-direction: row;
-  align-items: center;
-  gap: 8px;
+  &__first {
+    display: flex;
+    flex-direction: row;
+    align-items: center;
+    gap: 8px;
+  }
 }

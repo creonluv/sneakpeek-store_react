@@ -1,12 +1,14 @@
 @use "../../shared/globalStyles/global" as *;
 @use "../../shared/globalStyles/mixins" as *;
 
-.bucketpage {
-  display: flex;
-  flex-direction: column;
-  gap: 20px;
+.bucket {
+  &__body {
+    display: flex;
+    flex-direction: column;
+    gap: 20px;
+  }
 
-  &__container {
+  &__box {
     @include page-grid;
     row-gap: 70px;
 

@@ -1,19 +1,13 @@
 @use "../../shared/globalStyles/global" as *;
 
 .goods {
-  display: flex;
-  flex-direction: column;
-  gap: 24px;
-
-  @include on-tablet {
-    gap: 40px;
-  }
-
-  &__title {
-    @include header-3;
+  &__body {
+    display: flex;
+    flex-direction: column;
+    gap: 24px;
 
     @include on-tablet {
-      @include header-2;
+      gap: 40px;
     }
   }
 

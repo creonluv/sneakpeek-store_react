@@ -104,164 +104,168 @@ export const BucketPage = () => {
   const totalPrice = calculateTotalPrice(bucket?.cart_items || []);
 
   return (
-    <div className="bucketpage">
-      <div className="bucketpage__header">
-        <h3 className="bucketpage__title">{t("pages.bucket.title")}</h3>
-        <span className="bucketpage__subtitle">
-          {bucket?.cart_items.length}
-        </span>
-      </div>
-
-      <div className="bucketpage__container">
-        <div className="bucketpage__left">
-          <div className="bucketpage__items">
-            {bucket?.cart_items.map((item, index) => {
-              console.log(bucket?.cart_items[index]?.product_instance.present);
-
-              return (
-                <div key={item.id} className="bucketpage__item">
-                  <div className="bucketpage__loader">
-                    {loading && <Loader />}
-                  </div>
-
-                  <Link
-                    key={item.id}
-                    className="bucketpage__itemLeft"
-                    to={`/product/${item.product_instance.product.id}`}
-                  >
-                    <img
-                      className="bucketpage__img"
-                      src={`https://localhost:9091/api/images/${item.product_instance.product.main_photo_id}`}
-                      alt=""
-                    />
-                  </Link>
-
-                  <div className="bucketpage__itemRight">
-                    <div className="bucketpage__itemRightMain">
-                      <div className="bucketpage__itemTop">
-                        <div className="bucketpage__titles">
-                          <span className="bucketpage__subtitle">
-                            {item.product_instance.product.producer.name}
-                          </span>
-
-                          <Link
-                            key={item.id}
-                            className="bucketpage__link"
-                            to={`/product/${item.product_instance.product.id}`}
-                          >
-                            <h3 className="bucketpage__title">
-                              {item.product_instance.product.name}
-                            </h3>
-                          </Link>
-                        </div>
-
-                        <div className="bucketpage__price">
-                          ${item.product_instance.product.price}
-                        </div>
-                      </div>
-
-                      <h4 className="bucketpage__gender">
-                        {item.product_instance.product.gender.name}
-                      </h4>
-
-                      <div className="bucketpage__sizes">
-                        <span className="bucketpage__sizeTitle">Size:</span>
-                        <p>{item.product_instance.size.name}</p>
-                      </div>
-                    </div>
-
-                    <div className="bucketpage__bottomItem">
-                      <div className="bucketpage__counter">
-                        <button
-                          className="bucketpage__counterButton"
-                          onClick={() => handleCounter(item, false)}
-                          disabled={item.quantity === 1}
-                        >
-                          -
-                        </button>
-                        <p className="bucketpage__sizes">{item.quantity}</p>
-                        <button
-                          className="bucketpage__counterButton"
-                          onClick={() => handleCounter(item, true)}
-                          disabled={
-                            item.quantity ===
-                            bucket?.cart_items[index]?.product_instance.present
-                          }
-                        >
-                          +
-                        </button>
-                      </div>
-
-                      <div className="bucketpage__icons">
-                        <button
-                          className="bucketpage__buttonBottom"
-                          onClick={() => handleDeleteItem(item.id)}
-                        >
-                          <img
-                            className="bucketpage__icon"
-                            src={del}
-                            alt="del"
-                          />
-                        </button>
-                      </div>
-                    </div>
-                  </div>
-                </div>
-              );
-            })}
+    <section className="bucket">
+      <div className="bucket__container">
+        <div className="bucket__body">
+          <div className="bucket__header">
+            <h3 className="bucket__title">{t("pages.bucket.title")}</h3>
+            <span className="bucket__subtitle">
+              {bucket?.cart_items.length}
+            </span>
           </div>
 
-          <div className="bucketpage__subtotal">
-            <h3 className="bucketpage__title">{t("pages.bucket.subtotal")}</h3>
-            <h3 className="bucketpage__price">${totalPrice}</h3>
-          </div>
-        </div>
+          <div className="bucket__box">
+            <div className="bucket__left">
+              <div className="bucket__items">
+                {bucket?.cart_items.map((item, index) => {
+                  console.log(bucket?.cart_items[index]?.product_instance.present);
 
-        <div className="bucketpage__right">
-          <div className="bucketpage__card">
-            <h3 className="bucketpage__title">{t("pages.bucket.summary")}</h3>
+                  return (
+                    <div key={item.id} className="bucket__item">
+                      <div className="bucket__loader">
+                        {loading && <Loader />}
+                      </div>
 
-            <div className="bucketpage__main">
-              <div className="bucketpage__middle">
-                <div className="bucketpage__info">
-                  <p className="bucketpage__infoKey">
-                    {bucket?.cart_items.length} {t("pages.bucket.items")}
-                  </p>
-                  <p className="bucketpage__infoValue">${totalPrice}</p>
-                </div>
+                      <Link
+                        key={item.id}
+                        className="bucket__itemLeft"
+                        to={`/product/${item.product_instance.product.id}`}
+                      >
+                        <img
+                          className="bucket__img"
+                          src={`https://localhost:9091/api/images/${item.product_instance.product.main_photo_id}`}
+                          alt=""
+                        />
+                      </Link>
+
+                      <div className="bucket__itemRight">
+                        <div className="bucket__itemRightMain">
+                          <div className="bucket__itemTop">
+                            <div className="bucket__titles">
+                              <span className="bucket__subtitle">
+                                {item.product_instance.product.producer.name}
+                              </span>
+
+                              <Link
+                                key={item.id}
+                                className="bucket__link"
+                                to={`/product/${item.product_instance.product.id}`}
+                              >
+                                <h3 className="bucket__title">
+                                  {item.product_instance.product.name}
+                                </h3>
+                              </Link>
+                            </div>
+
+                            <div className="bucket__price">
+                              ${item.product_instance.product.price}
+                            </div>
+                          </div>
+
+                          <h4 className="bucket__gender">
+                            {item.product_instance.product.gender.name}
+                          </h4>
+
+                          <div className="bucket__sizes">
+                            <span className="bucket__sizeTitle">Size:</span>
+                            <p>{item.product_instance.size.name}</p>
+                          </div>
+                        </div>
+
+                        <div className="bucket__bottomItem">
+                          <div className="bucket__counter">
+                            <button
+                              className="bucket__counterButton"
+                              onClick={() => handleCounter(item, false)}
+                              disabled={item.quantity === 1}
+                            >
+                              -
+                            </button>
+                            <p className="bucket__sizes">{item.quantity}</p>
+                            <button
+                              className="bucket__counterButton"
+                              onClick={() => handleCounter(item, true)}
+                              disabled={
+                                item.quantity ===
+                                bucket?.cart_items[index]?.product_instance.present
+                              }
+                            >
+                              +
+                            </button>
+                          </div>
+
+                          <div className="bucket__icons">
+                            <button
+                              className="bucket__buttonBottom"
+                              onClick={() => handleDeleteItem(item.id)}
+                            >
+                              <img
+                                className="bucket__icon"
+                                src={del}
+                                alt="del"
+                              />
+                            </button>
+                          </div>
+                        </div>
+                      </div>
+                    </div>
+                  );
+                })}
               </div>
 
-              <hr className="bucketpage__line" />
-
-              <div className="bucketpage__bottom">
-                <div className="bucketpage__total">
-                  <h3 className="bucketpage__price">
-                    {t("pages.bucket.total")}
-                  </h3>
-                  <h3 className="bucketpage__price">${totalPrice}</h3>
-                </div>
-
-                <button
-                  className="button button_lg button_default button_full-size"
-                  type="submit"
-                  onClick={() => navigate("/checkout")}
-                >
-                  {t("pages.bucket.button")}
-                  <img className="icon-arrow" src={arrowWhite} alt="" />
-                </button>
+              <div className="bucket__subtotal">
+                <h3 className="bucket__title">{t("pages.bucket.subtotal")}</h3>
+                <h3 className="bucket__price">${totalPrice}</h3>
               </div>
+            </div>
+
+            <div className="bucket__right">
+              <div className="bucket__card">
+                <h3 className="bucket__title">{t("pages.bucket.summary")}</h3>
+
+                <div className="bucket__main">
+                  <div className="bucket__middle">
+                    <div className="bucket__info">
+                      <p className="bucket__infoKey">
+                        {bucket?.cart_items.length} {t("pages.bucket.items")}
+                      </p>
+                      <p className="bucket__infoValue">${totalPrice}</p>
+                    </div>
+                  </div>
+
+                  <hr className="bucket__line" />
+
+                  <div className="bucket__bottom">
+                    <div className="bucket__total">
+                      <h3 className="bucket__price">
+                        {t("pages.bucket.total")}
+                      </h3>
+                      <h3 className="bucket__price">${totalPrice}</h3>
+                    </div>
+
+                    <button
+                      className="button button_lg button_default button_full-size"
+                      type="submit"
+                      onClick={() => navigate("/checkout")}
+                    >
+                      {t("pages.bucket.button")}
+                      <img className="icon-arrow" src={arrowWhite} alt="" />
+                    </button>
+                  </div>
+                </div>
+              </div>
+            </div>
+
+            <div className="bucket__slider">
+              <ProductSlider
+                products={products}
+                type={"another"}
+                loading={loading}
+              />
             </div>
           </div>
         </div>
-
-        <div className="bucketpage__slider">
-          <ProductSlider
-            products={products}
-            type={"another"}
-            loading={loading}
-          />
-        </div>
       </div>
-    </div>
+    </section>
   );
 };

@@ -1,11 +1,13 @@
 @use "../../shared/globalStyles/global" as *;
 
-.favouritepage {
-  display: flex;
-  flex-direction: column;
-  gap: 20px;
+.favourite {
+  &__body {
+    display: flex;
+    flex-direction: column;
+    gap: 20px;
+  }
 
-  &__container {
+  &__box {
     @include page-grid;
     row-gap: 70px;
 

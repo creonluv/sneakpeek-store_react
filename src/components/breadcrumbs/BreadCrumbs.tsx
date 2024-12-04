@@ -22,14 +22,14 @@ export const BreadСrumbs = () => {
       return (
         <React.Fragment key={crumb}>
           {index === 0 && (
-            <div className="crumbFirst">
+            <div className="breadcrumbs__first">
               <Link to="/">Home</Link>
 
               <img src={btnBred} alt="" />
             </div>
           )}
 
-          <div className="crumb">
+          <div className="breadcrumbs__item">
             <Link to={currentLink}>{crumbText}</Link>
           </div>
 
@@ -38,5 +38,9 @@ export const BreadСrumbs = () => {
       );
     });
 
-  return <div className="breadcrumbs">{crumbs}</div>;
+  return <section className="breadcrumbs">
+    <div className="breadcrumbs__container">
+      <div className="breadcrumbs__body">{crumbs}</div>
+    </div>
+  </section>;
 };

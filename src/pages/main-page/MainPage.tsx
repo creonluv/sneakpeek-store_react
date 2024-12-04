@@ -44,7 +44,7 @@ export const MainPage = () => {
   }, [dispatch]);
 
   return (
-    <section className="homepage">
+    <>
       <MainScreen />
       <ProductSlider products={products} type={"normal"} loading={loading} />
       <PromoTimer />
@@ -60,6 +60,6 @@ export const MainPage = () => {
         loading={loading}
       />
       <Sale />
-    </section>
+    </>
   );
 };

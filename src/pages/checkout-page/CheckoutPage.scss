@@ -1,9 +1,11 @@
 @use "../../shared/globalStyles/global" as *;
 
 .checkout {
-  display: flex;
-  flex-direction: column;
-  gap: 20px;
+  &__body {
+    display: flex;
+    flex-direction: column;
+    gap: 20px;
+  }
 
   &__header {
     grid-column: 1 / -1;
@@ -22,7 +24,7 @@
     @include small-text;
   }
 
-  &__container {
+  &__box {
     @include page-grid;
     row-gap: 70px;
   }

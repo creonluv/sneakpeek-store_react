@@ -34,10 +34,10 @@ function App() {
   }, []);
 
   return (
-    <div className="page">
+    <div className="wrapper">
       <Header />
 
-      <main className="page__container">
+      <main className="page">
         {isBreadCrumbsVisible && <BreadСrumbs />}
 
         <Outlet />

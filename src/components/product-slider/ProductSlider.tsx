@@ -30,6 +30,15 @@ export const ProductSlider: React.FC<Props> = ({
   const [cardsInView, setCardsInView] = useState(0);
   const [productWidth, setProductWidth] = useState(0);
 
+  const titleOfBlock =
+    type === "normal"
+      ? t("components.slider.new")
+      : type === "sale"
+        ? t("components.slider.best")
+        : type === "category"
+          ? t("components.slider.categories")
+          : t("components.slider.default");
+
   const updateCardsInView = () => {
     if (productsRef.current) {
       const card = productsRef.current.querySelector(".goods__card");
@@ -44,9 +53,8 @@ export const ProductSlider: React.FC<Props> = ({
 
         setCardsInView(maxVisibleCards);
 
-        productsRef.current.style.width = `${
-          maxVisibleCards * width + (maxVisibleCards - 1) * 20
-        }px`;
+        productsRef.current.style.width = `${maxVisibleCards * width + (maxVisibleCards - 1) * 20
+          }px`;
       }
     }
   };
@@ -71,15 +79,6 @@ export const ProductSlider: React.FC<Props> = ({
     }
   }, [productWidth, products?.length]);
 
-  const titleOfBlock =
-    type === "normal"
-      ? t("components.slider.new")
-      : type === "sale"
-      ? t("components.slider.best")
-      : type === "category"
-      ? t("components.slider.categories")
-      : t("components.slider.default");
-
   useEffect(() => {
     updateCardsInView();
 
@@ -92,57 +91,60 @@ export const ProductSlider: React.FC<Props> = ({
 
   return (
     <section className="goods">
-      <div className="goods__header">
-        <h2 className="goods__title">{titleOfBlock}</h2>
-        <div className="goods__buttons">
-          <ButtonSlider
-            scrollPosition={scrollPosition}
-            handlePrevClick={handlePrevClick}
-            handleNextClick={handleNextClick}
+      <div className="goods__container">
+        <div className="goods__body">
+          <div className="goods__header">
+            <h2 className="goods__title title-2">{titleOfBlock}</h2>
+            <div className="goods__buttons">
+              <ButtonSlider
+                scrollPosition={scrollPosition}
+                handlePrevClick={handlePrevClick}
+                handleNextClick={handleNextClick}
+              />
+            </div>
+          </div>
+          <div className="goods__cards_wrapper">
+            {loading ? (
+              <ProductCardSkeleton count={cardsInView || 4} gridClass="slider" />
+            ) : (
+              <div
+                className="goods__cards"
+                ref={productsRef}
+                style={{
+                  transform: `translateX(-${scrollPosition}px)`,
+                  transition: "transform 0.3s ease",
+                }}
+              >
+                {products
+                  ? products.map((product) => (
+                    <div key={product.id} className="goods__card">
+                      <ProductCard
+                        product={product}
+                        type={type}
+                        id={product.id}
+                      />
+                    </div>
+                  ))
+                  : categories?.map((category) => (
+                    <div key={category.id} className="goods__card">
+                      <ProductCard
+                        category={category}
+                        type={type}
+                        id={category.id}
+                      />
+                    </div>
+                  ))}
+              </div>
+            )}
+          </div>
+
+          <SliderIndicator
+            totalCards={products?.length || categories?.length || 0}
+            startIndex={Math.floor(scrollPosition / productWidth)}
+            cardsInView={cardsInView}
           />
         </div>
       </div>
-
-      <div className="goods__cards_wrapper">
-        {loading ? (
-          <ProductCardSkeleton count={cardsInView || 4} gridClass="slider" />
-        ) : (
-          <div
-            className="goods__cards"
-            ref={productsRef}
-            style={{
-              transform: `translateX(-${scrollPosition}px)`,
-              transition: "transform 0.3s ease",
-            }}
-          >
-            {products
-              ? products.map((product) => (
-                  <div key={product.id} className="goods__card">
-                    <ProductCard
-                      product={product}
-                      type={type}
-                      id={product.id}
-                    />
-                  </div>
-                ))
-              : categories?.map((category) => (
-                  <div key={category.id} className="goods__card">
-                    <ProductCard
-                      category={category}
-                      type={type}
-                      id={category.id}
-                    />
-                  </div>
-                ))}
-          </div>
-        )}
-      </div>
-
-      <SliderIndicator
-        totalCards={products?.length || categories?.length || 0}
-        startIndex={Math.floor(scrollPosition / productWidth)}
-        cardsInView={cardsInView}
-      />
     </section>
   );
 };

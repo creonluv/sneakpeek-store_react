@@ -102,28 +102,6 @@
   }
 }
 
-@mixin header-1 {
-  @include adaptiveValue("font-size", 70, 40, 480, 320, 1);
-  font-weight: 600;
-  line-height: 1;
-  letter-spacing: em(0.396, 198);
-  text-transform: uppercase;
-  color: var(--color-text);
-  text-align: center;
-
-  @include on-mobile-landscape {
-    @include adaptiveValue("font-size", 190, 70, $containerWidth, 480, 1);
-  }
-}
-
-@mixin header-2 {
-  font-size: clamp(72px, 2vw + 1rem, 96px);
-  font-weight: 500;
-  line-height: 87%;
-  letter-spacing: em(0.128, 64);
-  color: var(--color-text);
-}
-
 @mixin header-3 {
   font-size: 24px;
   font-weight: 500;

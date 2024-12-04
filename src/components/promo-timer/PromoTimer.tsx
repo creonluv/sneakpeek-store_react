@@ -57,7 +57,7 @@ export const PromoTimer = () => {
   });
 
   return (
-    <section className="page__sale sale">
+    <section className="sale">
       <div className="sale__container">
         <div className="sale__body">
           <div className="sale__img-wrapper">

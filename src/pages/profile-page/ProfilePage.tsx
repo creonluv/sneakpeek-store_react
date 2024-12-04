@@ -193,7 +193,7 @@ const ProfilePage: React.FC = () => {
                 <div className="profile__inputs">
                   <div className="profile__group">
                     <label htmlFor="email" className="profile__label">
-                      Email{t("pages.profile.emailv")}
+                      {t("pages.profile.emailv")}
                     </label>
                     <input
                       type="text"
@@ -208,7 +208,7 @@ const ProfilePage: React.FC = () => {
                   </div>
                   <div className="profile__group">
                     <label htmlFor="phone_number" className="profile__label">
-                      Phone{t("pages.profile.phonev")}
+                      {t("pages.profile.phonev")}
                     </label>
                     <input
                       type="text"

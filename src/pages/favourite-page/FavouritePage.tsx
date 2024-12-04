@@ -57,32 +57,35 @@ export const FavouritePage = () => {
   }, [messages]);
 
   return (
-    <section className="favouritepage">
-      <div className="favouritepage__header">
-        <h3 className="favouritepage__title">{t("pages.favourite.title")}</h3>
-        <span className="favouritepage__subtitle">{favourite.length}</span>
-      </div>
-
-      <div className="favouritepage__container">
-        <div className="favouritepage__productsBody">
-          <div className="favouritepage__products">
-            {favourite.map((product) => (
-              <ProductCard
-                product={product}
-                type={"normal"}
-                key={product.id}
-                id={product.id}
-              />
-            ))}
+    <section className="favourite">
+      <div className="favourite__container">
+        <div className="favourite__body">
+          <div className="favourite__header">
+            <h3 className="favourite__title">{t("pages.favourite.title")}</h3>
+            <span className="favourite__subtitle">{favourite.length}</span>
           </div>
-        </div>
+          <div className="favourite__box">
+            <div className="favourite__productsBody">
+              <div className="favourite__products">
+                {favourite.map((product) => (
+                  <ProductCard
+                    product={product}
+                    type={"normal"}
+                    key={product.id}
+                    id={product.id}
+                  />
+                ))}
+              </div>
+            </div>
 
-        <div className="favouritepage__slider">
-          <ProductSlider
-            products={products}
-            type={"another"}
-            loading={loading}
-          />
+            <div className="favourite__slider">
+              <ProductSlider
+                products={products}
+                type={"another"}
+                loading={loading}
+              />
+            </div>
+          </div>
         </div>
       </div>
     </section>

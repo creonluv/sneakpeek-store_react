@@ -8,6 +8,7 @@ import { Categories } from "../../components/catalog/categories";
 import { ProductCard } from "../../components/product-card";
 import { Pagination } from "../../components/catalog/pagination";
 import { AsideAdaptive } from "../../components/catalog/asideAdaptive";
+import { ProductCardSkeleton } from "../../components/product-card-skeleton/ProductCardSkeleton";
 
 import { useDispatch } from "react-redux";
 import { RootState } from "../../app/store";
@@ -21,7 +22,6 @@ import { useModalContext } from "../../context/ModalContext";
 import { useTranslation } from "react-i18next";
 
 import "./CatalogPage.scss";
-import { ProductCardSkeleton } from "../../components/product-card-skeleton/ProductCardSkeleton";
 
 export const CatalogPage = () => {
   const { t } = useTranslation();
@@ -70,48 +70,50 @@ export const CatalogPage = () => {
 
   return (
     <section className="catalog">
-      <div className="catalog__body">
-        <div className="catalog__aside">
-          <Aside />
-        </div>
-
-        <div className="catalog__main">
-          <div className="catalog__chips">
-            <h3 className="catalog__title">
-              {t("components.pages.catalog.title")}
-            </h3>
-            <Categories />
-
-            {isAsideOpen && (
-              <AsideAdaptive
-                isAsideOpen={isAsideOpen}
-                setIsAsideOpen={toggleAside}
-              />
-            )}
+      <div className="catalog__container">
+        <div className="catalog__body">
+          <div className="catalog__aside">
+            <Aside />
           </div>
 
-          {loading ? (
-            <ProductCardSkeleton count={12} />
-          ) : (
-            <div className="catalogpage__products">
-              {products.content.map((product) => (
-                <ProductCard
-                  product={product}
-                  type="normal"
-                  key={product.id}
-                  id={product.id}
+          <div className="catalog__main">
+            <div className="catalog__chips">
+              <h3 className="catalog__title">
+                {t("pages.catalog.title")}
+              </h3>
+              <Categories />
+
+              {isAsideOpen && (
+                <AsideAdaptive
+                  isAsideOpen={isAsideOpen}
+                  setIsAsideOpen={toggleAside}
                 />
-              ))}
+              )}
             </div>
-          )}
 
-          {!loading && products.content.length === 0 && (
-            <p className="catalogpage__errorSearch">
-              {t("components.pages.catalog.nothing")}
-            </p>
-          )}
+            {loading ? (
+              <ProductCardSkeleton count={12} />
+            ) : (
+              <div className="catalog__products">
+                {products.content.map((product) => (
+                  <ProductCard
+                    product={product}
+                    type="normal"
+                    key={product.id}
+                    id={product.id}
+                  />
+                ))}
+              </div>
+            )}
 
-          {!loading && <Pagination />}
+            {!loading && products.content.length === 0 && (
+              <p className="catalog__error">
+                {t("components.pages.catalog.nothing")}
+              </p>
+            )}
+
+            {!loading && <Pagination />}
+          </div>
         </div>
       </div>
     </section>

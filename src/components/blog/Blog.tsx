@@ -19,7 +19,7 @@ export const Blog = () => {
   const { t } = useTranslation();
 
   return (
-    <section className="page__blog blog">
+    <section className="blog">
       <div className="blog__container">
         <div className="blog__body">
           <div className="blog__title-block title-block">

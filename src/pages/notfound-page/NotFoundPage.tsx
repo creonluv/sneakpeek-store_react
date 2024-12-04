@@ -15,7 +15,7 @@ const NotFoundPage = () => {
   }, [navigate]);
 
   return (
-    <section className="page__notfound">
+    <section className="notfound">
       <div className="notfound__container">
         <div className="notfound__body">
           <div className="notfound__maincontent">

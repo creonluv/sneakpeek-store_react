@@ -10,7 +10,7 @@ export const MainScreen = () => {
   const { t } = useTranslation();
 
   return (
-    <section className="page__mainscreen mainscreen">
+    <section className="mainscreen">
       <div className="mainscreen__container">
         <div className="mainscreen__body">
           <h1 className="mainscreen__title title-1">
