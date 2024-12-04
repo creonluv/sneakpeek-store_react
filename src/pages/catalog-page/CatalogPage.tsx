@@ -21,6 +21,7 @@ import { useModalContext } from "../../context/ModalContext";
 import { useTranslation } from "react-i18next";
 
 import "./CatalogPage.scss";
+import { ProductCardSkeleton } from "../../components/product-card-skeleton/ProductCardSkeleton";
 
 export const CatalogPage = () => {
   const { t } = useTranslation();
@@ -89,24 +90,28 @@ export const CatalogPage = () => {
             )}
           </div>
 
-          <div className="catalog__products">
-            {products.content.map((product) => (
-              <ProductCard
-                product={product}
-                type={"normal"}
-                key={product.id}
-                id={product.id}
-              />
-            ))}
-          </div>
+          {loading ? (
+            <ProductCardSkeleton count={12} />
+          ) : (
+            <div className="catalogpage__products">
+              {products.content.map((product) => (
+                <ProductCard
+                  product={product}
+                  type="normal"
+                  key={product.id}
+                  id={product.id}
+                />
+              ))}
+            </div>
+          )}
 
-          {products.content.length === 0 && (
-            <p className="catalog__errorSearch">
+          {!loading && products.content.length === 0 && (
+            <p className="catalogpage__errorSearch">
               {t("components.pages.catalog.nothing")}
             </p>
           )}
 
-          <Pagination />
+          {!loading && <Pagination />}
         </div>
       </div>
     </section>

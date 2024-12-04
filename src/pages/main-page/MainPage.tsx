@@ -18,7 +18,9 @@ import "./MainPage.scss";
 export const MainPage = () => {
   const dispatch = useDispatch();
 
-  const { products } = useAppSelector((state: RootState) => state.products);
+  const { products, loading } = useAppSelector(
+    (state: RootState) => state.products
+  );
 
   const reversedProducts = [...products].reverse();
 
@@ -44,11 +46,19 @@ export const MainPage = () => {
   return (
     <section className="homepage">
       <MainScreen />
-      <ProductSlider products={products} type={"normal"} />
+      <ProductSlider products={products} type={"normal"} loading={loading} />
       <PromoTimer />
-      <ProductSlider categories={categories} type={"category"} />
+      <ProductSlider
+        categories={categories}
+        type={"normal"}
+        loading={loading}
+      />
       <Blog />
-      <ProductSlider products={reversedProducts} type={"another"} />
+      <ProductSlider
+        categories={categories}
+        type={"another"}
+        loading={loading}
+      />
       <Sale />
     </section>
   );

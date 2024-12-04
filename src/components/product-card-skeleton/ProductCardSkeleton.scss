@@ -1,0 +1,30 @@
+@use "../../shared/globalStyles/global" as *;
+
+@use "../../shared/globalStyles/mixins" as *;
+
+.cards {
+  display: grid;
+  grid-template-columns: repeat(1, 1fr);
+  row-gap: 30px;
+  column-gap: 20px;
+
+  @include on-tablet {
+    grid-template-columns: repeat(2, 1fr);
+  }
+
+  @include on-big-desktop {
+    grid-template-columns: repeat(3, 1fr);
+  }
+}
+
+.slider {
+  display: flex;
+  gap: 20px;
+  flex-wrap: nowrap;
+  justify-content: flex-start;
+  overflow: hidden;
+
+  & .card {
+    width: 285px;
+  }
+}
