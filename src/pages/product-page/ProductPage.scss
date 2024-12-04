@@ -1,11 +1,13 @@
 @use "../../shared/globalStyles/global" as *;
 
-.productpage {
-  display: flex;
-  flex-direction: column;
-  gap: 16px;
-
+.product {
   &__body {
+    display: flex;
+    flex-direction: column;
+    gap: 16px;
+  }
+
+  &__content {
     @include page-grid;
     row-gap: 70px;
 

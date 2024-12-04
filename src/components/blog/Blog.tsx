@@ -27,7 +27,7 @@ export const Blog = () => {
             <div className="title-block__button button-wrapper">
               <a className="button button_md button_ghost" href="#">
                 <img className="button__icon" src={arrowBlack} alt="arrow" />
-                <p>{t("components.blog.mainButton")}</p>
+                <span>{t("components.blog.mainButton")}</span>
               </a>
             </div>
           </div>
@@ -36,12 +36,12 @@ export const Blog = () => {
               <img src={blog1} alt="blog-1" />
               <div className="blog__button button-wrapper">
                 <a className="button button_lg button_transparent" href="#">
-                  <p>{t("components.blog.button")}</p>
+                  <span>{t("components.blog.button")}</span>
                   <img className="button__icon" src={arrowWhite} alt="arrow" />
                 </a>
               </div>
               <div className="blog__content">
-                <h2 className="blog__title title-2">{t("components.blog.subtitle")}</h2>
+                <h3 className="blog__title title-2">{t("components.blog.subtitle")}</h3>
                 <p className="blog__text text-light">
                   {t("components.blog.text")}
                 </p>
@@ -53,11 +53,11 @@ export const Blog = () => {
               <div className="blog__button button-wrapper">
                 <a className="button button_lg button_transparent" href="#">
                   <img className="button__icon" src={play} alt="arrow" />
-                  {t("components.blog.buttonWatch")}
+                  <span>{t("components.blog.buttonWatch")}</span>
                 </a>
               </div>
               <div className="blog__content">
-                <h2 className="blog__title title-2">{t("components.blog.subtitle")}</h2>
+                <h3 className="blog__title title-2">{t("components.blog.subtitle")}</h3>
                 <p className="blog__text text-light">
                   {t("components.blog.text")}
                 </p>

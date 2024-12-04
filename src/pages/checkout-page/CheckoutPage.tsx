@@ -167,7 +167,7 @@ export const CheckoutPage = () => {
       <div className="checkout__container">
         <div className="checkout__body">
           <div className="checkout__header">
-            <h3 className="checkout__title">{t("pages.checkout.title")}</h3>
+            <h1 className="checkout__title title-3">{t("pages.checkout.title")}</h1>
             <span className="checkout__subtitle">{t("pages.checkout.steps")}</span>
           </div>
 
@@ -175,7 +175,7 @@ export const CheckoutPage = () => {
             <form className="checkout__form" onSubmit={handleSubmit(onSubmit)}>
               <div className="checkout__block">
                 <div className="checkout__blockTitle">
-                  <h3 className="checkout__ttl">{t("pages.checkout.contact")}</h3>
+                  <h2 className="checkout__ttl title-3">{t("pages.checkout.contact")}</h2>
                 </div>
                 <div className="checkout__inputs">
                   <input
@@ -208,7 +208,7 @@ export const CheckoutPage = () => {
 
               <div className="checkout__block">
                 <div className="checkout__blockTitle">
-                  <h3 className="checkout__ttl">Delivery</h3>
+                  <h2 className="checkout__ttl title-3">{t("pages.checkout.delivery")}</h2>
                 </div>
 
                 <div className="checkout__posts">
@@ -226,9 +226,9 @@ export const CheckoutPage = () => {
                       alt="Ukr Icon"
                     />
                     <div className="checkout__post_information_wrapper">
-                      <h5 className="checkout__post_information_title">
+                      <h3 className="checkout__post_information_title">
                         Ukrposhta
-                      </h5>
+                      </h3>
                       <p className="checkout__post_information_date">
                         Expected delivery, Monday 19
                       </p>
@@ -349,7 +349,7 @@ export const CheckoutPage = () => {
                       alt="Nova Poshta Icon"
                     />
                     <div className="checkout__post_information_wrapper">
-                      <h5 className="checkout__post_information_title">New Post</h5>
+                      <h3 className="checkout__post_information_title">New Post</h3>
                       <p className="checkout__post_information_date">
                         Expected delivery, Monday 17
                       </p>
@@ -472,7 +472,7 @@ export const CheckoutPage = () => {
                       alt="Meest Icon"
                     />
                     <div className="checkout__post_information_wrapper">
-                      <h5 className="checkout__post_information_title">Meest</h5>
+                      <h3 className="checkout__post_information_title">Meest</h3>
                       <p className="checkout__post_information_date">
                         Expected delivery, Monday 18
                       </p>
@@ -591,7 +591,7 @@ export const CheckoutPage = () => {
 
               <div className="checkout__block">
                 <div className="checkout__blockTitle">
-                  <h3 className="checkout__ttl">{t("pages.checkout.payment")}</h3>
+                  <h2 className="checkout__ttl">{t("pages.checkout.payment")}</h2>
                 </div>
                 <div className="checkout__inputs">
                   <input
@@ -635,20 +635,22 @@ export const CheckoutPage = () => {
                 </div>
               </div>
 
-              <button
-                type="submit"
-                className={`button button_lg button_default button_full-size ${isOrdered ? "active" : ""
-                  }`}
-              >
-                {t("pages.checkout.button")}
-                <img className="icon-arrow" src={arrowWhite} alt="" />
-              </button>
+              <div className="button-wrapper">
+                <button
+                  type="submit"
+                  className={`button button_lg button_default button_full-size ${isOrdered ? "active" : ""
+                    }`}
+                >
+                  <span>{t("pages.checkout.button")}</span>
+                  <img className="icon-arrow" src={arrowWhite} alt="" />
+                </button>
+              </div>
             </form>
 
             <div className="checkout__cartItems">
               <div className="checkout__block">
                 <div className="checkout__blockTitle">
-                  <h3 className="checkout__ttl">{t("pages.checkout.order")}</h3>
+                  <h2 className="checkout__ttl">{t("pages.checkout.order")}</h2>
                 </div>
 
                 <hr className="checkout__line" />
@@ -712,7 +714,7 @@ export const CheckoutPage = () => {
 
                   <div className="checkout__info">
                     <p className="checkout__infoKey">
-                      {t("pages.checkout.delivery")}
+                      {t("pages.checkout.delivery")}:
                     </p>
                     <p className="checkout__infoValue">$100</p>
                   </div>
@@ -721,8 +723,8 @@ export const CheckoutPage = () => {
                 <hr className="checkout__line" />
 
                 <div className="checkout__subtotal">
-                  <h3 className="checkout__title">{t("pages.checkout.total")}</h3>
-                  <h3 className="checkout__priceTotal">${totalPrice + 100}</h3>
+                  <p className="checkout__title">{t("pages.checkout.total")}</p>
+                  <p className="checkout__priceTotal">${totalPrice + 100}</p>
                 </div>
               </div>
             </div>

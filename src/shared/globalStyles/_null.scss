@@ -23,10 +23,9 @@ body {
   scroll-behavior: smooth;
   background-color: var(--color-background-reverse);
 
-  font-family: "TT Firs Neue", sans-serif;
-  font-size: 16px;
+  font-family: $fontFamily;
+  font-size: $fontSize;
   color: var(--color-text);
-  overflow-x: hidden;
 }
 
 input,
@@ -37,8 +36,13 @@ textarea {
 }
 
 button {
-  cursor: pointer;
+  background: transparent;
+  border: none;
+  padding: 0;
+  margin: 0;
+  font: inherit;
   color: inherit;
+  cursor: pointer;
   background-color: inherit;
 }
 

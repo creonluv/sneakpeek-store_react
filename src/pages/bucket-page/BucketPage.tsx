@@ -108,7 +108,7 @@ export const BucketPage = () => {
       <div className="bucket__container">
         <div className="bucket__body">
           <div className="bucket__header">
-            <h3 className="bucket__title">{t("pages.bucket.title")}</h3>
+            <h1 className="bucket__title title-3">{t("pages.bucket.title")}</h1>
             <span className="bucket__subtitle">
               {bucket?.cart_items.length}
             </span>
@@ -151,9 +151,9 @@ export const BucketPage = () => {
                                 className="bucket__link"
                                 to={`/product/${item.product_instance.product.id}`}
                               >
-                                <h3 className="bucket__title">
+                                <h2 className="bucket__title title-3">
                                   {item.product_instance.product.name}
-                                </h3>
+                                </h2>
                               </Link>
                             </div>
 
@@ -162,9 +162,9 @@ export const BucketPage = () => {
                             </div>
                           </div>
 
-                          <h4 className="bucket__gender">
+                          <p className="bucket__gender">
                             {item.product_instance.product.gender.name}
-                          </h4>
+                          </p>
 
                           <div className="bucket__sizes">
                             <span className="bucket__sizeTitle">Size:</span>
@@ -214,14 +214,14 @@ export const BucketPage = () => {
               </div>
 
               <div className="bucket__subtotal">
-                <h3 className="bucket__title">{t("pages.bucket.subtotal")}</h3>
-                <h3 className="bucket__price">${totalPrice}</h3>
+                <p className="bucket__title">{t("pages.bucket.subtotal")}</p>
+                <p className="bucket__price">${totalPrice}</p>
               </div>
             </div>
 
             <div className="bucket__right">
               <div className="bucket__card">
-                <h3 className="bucket__title">{t("pages.bucket.summary")}</h3>
+                <h2 className="bucket__title title-3">{t("pages.bucket.summary")}</h2>
 
                 <div className="bucket__main">
                   <div className="bucket__middle">
@@ -237,20 +237,22 @@ export const BucketPage = () => {
 
                   <div className="bucket__bottom">
                     <div className="bucket__total">
-                      <h3 className="bucket__price">
+                      <p className="bucket__price">
                         {t("pages.bucket.total")}
-                      </h3>
-                      <h3 className="bucket__price">${totalPrice}</h3>
+                      </p>
+                      <p className="bucket__price">${totalPrice}</p>
                     </div>
 
-                    <button
-                      className="button button_lg button_default button_full-size"
-                      type="submit"
-                      onClick={() => navigate("/checkout")}
-                    >
-                      {t("pages.bucket.button")}
-                      <img className="icon-arrow" src={arrowWhite} alt="" />
-                    </button>
+                    <div className="button-wrapper">
+                      <button
+                        className="button button_lg button_default button_full-size"
+                        type="submit"
+                        onClick={() => navigate("/checkout")}
+                      >
+                        <span>{t("pages.bucket.button")}</span>
+                        <img className="icon-arrow" src={arrowWhite} alt="" />
+                      </button>
+                    </div>
                   </div>
                 </div>
               </div>

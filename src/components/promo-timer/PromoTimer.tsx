@@ -80,7 +80,7 @@ export const PromoTimer = () => {
                 className="button button_lg button_default"
                 to="/catalog/1/sale"
               >
-                <p>{t("components.timer.button")}</p>
+                <span>{t("components.timer.button")}</span>
                 <img className="button__icon" src={arrowWhite} alt="arrow" />
               </Link>
             </div>

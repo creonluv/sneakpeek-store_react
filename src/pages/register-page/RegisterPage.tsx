@@ -121,12 +121,12 @@ const RegisterPage: React.FC = () => {
                 {t("pages.register.agree")}
               </label>
             </div>
-            <div className="form__button">
+            <div className="form__button button-wrapper">
               <button
                 className="button button_lg button_default button_full-size"
                 type="submit"
               >
-                {t("pages.register.button")}
+                <span>{t("pages.register.button")}</span>
               </button>
             </div>
           </form>

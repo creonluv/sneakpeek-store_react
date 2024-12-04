@@ -68,10 +68,12 @@ export const ChangePassword = () => {
   };
 
   return (
-    <div>
-      <button className="button button_sm button_default" onClick={openModal}>
-        {t("components.changePassword.title")}
-      </button>
+    <>
+      <div className="button-wrapper">
+        <button className="button button_sm button_default" onClick={openModal}>
+          <span>{t("components.changePassword.title")}</span>
+        </button>
+      </div>
       <Modal
         isOpen={isOpenModal}
         onRequestClose={closeModal}
@@ -137,6 +139,6 @@ export const ChangePassword = () => {
           </div>
         </form>
       </Modal>
-    </div>
+    </>
   );
 };

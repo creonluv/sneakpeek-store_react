@@ -30,6 +30,7 @@
   &__title {
     @include header-3;
     font-weight: 600;
+    text-transform: initial;
   }
 
   &__chips {

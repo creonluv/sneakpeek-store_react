@@ -3,16 +3,6 @@
 @use "../src/shared/globalStyles/null";
 @use "../src/shared//globalStyles/colors";
 
-button {
-  background: transparent;
-  border: none;
-  padding: 0;
-  margin: 0;
-  font: inherit;
-  color: inherit;
-  cursor: pointer;
-}
-
 .wrapper {
   display: flex;
   flex-direction: column;

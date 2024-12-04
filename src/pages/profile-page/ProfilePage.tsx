@@ -114,23 +114,27 @@ const ProfilePage: React.FC = () => {
       <div className="profile__container">
         <div className="profile__body">
           <div className="profile__top">
-            <h3 className="profile__title">{t("pages.profile.title")}</h3>
+            <h1 className="profile__title title-3">{t("pages.profile.title")}</h1>
             <div className="profile__buttons">
-              <button
-                className={`profile__button button button_sm button_default ${!isChanged && !isImageChanged ? "_disabled" : ""
-                  }`}
-                onClick={handleSave}
-                disabled={!isChanged && !isImageChanged}
-              >
-                {t("pages.profile.save")}
-              </button>
-              <button
-                className={`profile__button button button_sm button_reverse ${!isChanged && !isImageChanged ? "_disabled" : ""
-                  }`}
-                onClick={handleCancel}
-              >
-                {t("pages.profile.cancel")}
-              </button>
+              <div className="button-wrapper">
+                <button
+                  className={`profile__button button button_sm button_default ${!isChanged && !isImageChanged ? "_disabled" : ""
+                    }`}
+                  onClick={handleSave}
+                  disabled={!isChanged && !isImageChanged}
+                >
+                  <span>{t("pages.profile.save")}</span>
+                </button>
+              </div>
+              <div className="button-wrapper">
+                <button
+                  className={`profile__button button button_sm button_reverse ${!isChanged && !isImageChanged ? "_disabled" : ""
+                    }`}
+                  onClick={handleCancel}
+                >
+                  <span>{t("pages.profile.cancel")}</span>
+                </button>
+              </div>
             </div>
           </div>
           <div className="profile__items">
@@ -148,10 +152,10 @@ const ProfilePage: React.FC = () => {
                     imageUrl={imageUrl}
                   />
                   <div className="profile__block">
-                    <div className="profile__username">
+                    <p className="profile__username">
                       {profile?.user?.username} {profile?.user?.role?.name}
-                    </div>
-                    <div className="profile__id text-muted">ID: {profile?.id}</div>
+                    </p>
+                    <p className="profile__id text-muted">ID: {profile?.id}</p>
                     <ChangePassword />
                   </div>
                 </div>

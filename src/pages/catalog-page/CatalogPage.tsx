@@ -78,9 +78,9 @@ export const CatalogPage = () => {
 
           <div className="catalog__main">
             <div className="catalog__chips">
-              <h3 className="catalog__title">
+              <h1 className="catalog__title title-3">
                 {t("pages.catalog.title")}
-              </h3>
+              </h1>
               <Categories />
 
               {isAsideOpen && (

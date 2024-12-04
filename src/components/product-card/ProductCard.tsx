@@ -77,8 +77,8 @@ export const ProductCard: React.FC<Props> = ({
             type !== "category"
               ? `https://localhost:9091/api/images/${product?.main_photo_id}`
               : category?.id
-              ? photosOfCategory[category.id - 1]
-              : photosOfCategory[0]
+                ? photosOfCategory[category.id - 1]
+                : photosOfCategory[0]
           }
           alt="img-of-item"
         />
@@ -103,7 +103,7 @@ export const ProductCard: React.FC<Props> = ({
       </Link>
 
       <div className="card__infolabel">
-        {type !== "category" ? "new" : category?.infolabel || "N/A"}
+        <span>{type !== "category" ? "new" : category?.infolabel || "N/A"}</span>
 
         <img
           className="card__infolabel_icon"

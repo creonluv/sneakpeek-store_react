@@ -14,9 +14,9 @@ export const ThankYouPage = () => {
       <div className="thankyoupage__container">
         <div className="thankyoupage__block">
           <div className="thankyoupage__blockTitle">
-            <h3 className="thankyoupage__ttl">
+            <h1 className="thankyoupage__ttl title-3">
               {t("pages.thankyou.orderSuccess")}
-            </h3>
+            </h1>
           </div>
 
           <div className="thankyoupage__information">

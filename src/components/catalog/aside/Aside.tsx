@@ -162,9 +162,9 @@ export const Aside: React.FC = () => {
           className={classNames(styles.filter__spoiler)}
           onClick={() => toggleSection("priceRange" as FilterType)}
         >
-          <h3 className={styles.filter__title}>
+          <p className={styles.filter__title}>
             {t("components.catalog.aside.priceRange")}
-          </h3>
+          </p>
           <img
             className={classNames(styles.filter__arrow, {
               [styles.open]: openSections["priceRange" as FilterType],
@@ -209,7 +209,7 @@ export const Aside: React.FC = () => {
               className={classNames(styles.filter__spoiler)}
               onClick={() => toggleSection(type)}
             >
-              <h3 className={styles.filter__title}>{label}</h3>
+              <p className={styles.filter__title}>{label}</p>
               <img
                 className={classNames(styles.filter__arrow, {
                   [styles.open]: isOpen,

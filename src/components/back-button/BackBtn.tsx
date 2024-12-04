@@ -28,7 +28,7 @@ export const BackBtn = () => {
         <img src={btnBack} alt="btn-back" />
       </span>
 
-      <span className="button__back_text">{t("components.backButton")}</span>
+      <span className="button__back_text">{t("components.buttonBack")}</span>
     </button>
   );
 };

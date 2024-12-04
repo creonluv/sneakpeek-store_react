@@ -94,7 +94,7 @@ const LoginPage: React.FC = () => {
                   className="button button_lg button_default button_full-size"
                   type="submit"
                 >
-                  {t("pages.login.button")}
+                  <span>{t("pages.login.button")}</span>
                 </button>
               </div>
             </div>
