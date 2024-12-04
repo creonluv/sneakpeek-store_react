@@ -1,6 +1,6 @@
 import { useCallback, useEffect, useState } from "react";
 import { SubmitHandler, useForm } from "react-hook-form";
-import { Link, useNavigate } from "react-router-dom";
+import { Link } from "react-router-dom";
 import { useTranslation } from "react-i18next";
 
 import { zodResolver } from "@hookform/resolvers/zod";
@@ -36,7 +36,7 @@ import "./CheckoutPage.scss";
 
 export const CheckoutPage = () => {
   const dispatch = useAppDispatch();
-  const navigate = useNavigate();
+  // const navigate = useNavigate();
 
   const { t } = useTranslation();
   const { isAuth } = useAuthContext();
@@ -117,22 +117,22 @@ export const CheckoutPage = () => {
       delivery_details: {
         delivery_type:
           typeof data.delivery_type === "string" &&
-            data.delivery_type === "home"
+          data.delivery_type === "home"
             ? "home"
             : "branch",
         shipment_method: data.shipment_method,
         ...(typeof data.delivery_type === "string" &&
-          data.delivery_type === "home"
+        data.delivery_type === "home"
           ? {
-            state: data.state,
-            city: data.city,
-            street: data.street,
-            apartment: data.apartment,
-          }
+              state: data.state,
+              city: data.city,
+              street: data.street,
+              apartment: data.apartment,
+            }
           : {
-            branch_id: data.branch_id,
-            branch_address: data.branch_address,
-          }),
+              branch_id: data.branch_id,
+              branch_address: data.branch_address,
+            }),
       },
     };
 
@@ -165,24 +165,15 @@ export const CheckoutPage = () => {
   return (
     <section className="checkout">
       <div className="checkout__header">
-        <h3 className="checkout__title">
-          {t("pages.checkout.title")}
-        </h3>
-        <span className="checkout__subtitle">
-          {t("pages.checkout.steps")}
-        </span>
+        <h3 className="checkout__title">{t("pages.checkout.title")}</h3>
+        <span className="checkout__subtitle">{t("pages.checkout.steps")}</span>
       </div>
 
       <div className="checkout__container">
-        <form
-          className="checkout__form"
-          onSubmit={handleSubmit(onSubmit)}
-        >
+        <form className="checkout__form" onSubmit={handleSubmit(onSubmit)}>
           <div className="checkout__block">
             <div className="checkout__blockTitle">
-              <h3 className="checkout__ttl">
-                {t("pages.checkout.contact")}
-              </h3>
+              <h3 className="checkout__ttl">{t("pages.checkout.contact")}</h3>
             </div>
             <div className="checkout__inputs">
               <input
@@ -298,12 +289,8 @@ export const CheckoutPage = () => {
 
                   {isCourierSelected && (
                     <div className="checkout__form_wrapper_courier">
-                      <div
-                        className="checkoutpage__form_wrapper_courier_forms"
-                      >
-                        <div
-                          className="checkout__form_wrapper_inputs"
-                        >
+                      <div className="checkoutpage__form_wrapper_courier_forms">
+                        <div className="checkout__form_wrapper_inputs">
                           <select
                             className="form__input input"
                             {...register("state")}
@@ -326,9 +313,7 @@ export const CheckoutPage = () => {
                             <option value="Kherson">Kherson</option>
                           </select>
                         </div>
-                        <div
-                          className="checkout__form_wrapper_inputs"
-                        >
+                        <div className="checkout__form_wrapper_inputs">
                           <input
                             type="text"
                             className="form__input input"
@@ -362,9 +347,7 @@ export const CheckoutPage = () => {
                   alt="Nova Poshta Icon"
                 />
                 <div className="checkout__post_information_wrapper">
-                  <h5 className="checkout__post_information_title">
-                    New Post
-                  </h5>
+                  <h5 className="checkout__post_information_title">New Post</h5>
                   <p className="checkout__post_information_date">
                     Expected delivery, Monday 17
                   </p>
@@ -429,12 +412,8 @@ export const CheckoutPage = () => {
 
                   {isCourierSelected && (
                     <div className="checkout__form_wrapper_courier">
-                      <div
-                        className="checkoutpage__form_wrapper_courier_forms"
-                      >
-                        <div
-                          className="checkout__form_wrapper_inputs"
-                        >
+                      <div className="checkoutpage__form_wrapper_courier_forms">
+                        <div className="checkout__form_wrapper_inputs">
                           <select
                             className="form__input input"
                             {...register("state")}
@@ -457,9 +436,7 @@ export const CheckoutPage = () => {
                             <option value="Kherson">Kherson</option>
                           </select>
                         </div>
-                        <div
-                          className="checkout__form_wrapper_inputs"
-                        >
+                        <div className="checkout__form_wrapper_inputs">
                           <input
                             type="text"
                             className="form__input input"
@@ -493,9 +470,7 @@ export const CheckoutPage = () => {
                   alt="Meest Icon"
                 />
                 <div className="checkout__post_information_wrapper">
-                  <h5 className="checkout__post_information_title">
-                    Meest
-                  </h5>
+                  <h5 className="checkout__post_information_title">Meest</h5>
                   <p className="checkout__post_information_date">
                     Expected delivery, Monday 18
                   </p>
@@ -560,12 +535,8 @@ export const CheckoutPage = () => {
 
                   {isCourierSelected && (
                     <div className="checkout__form_wrapper_courier">
-                      <div
-                        className="checkoutpage__form_wrapper_courier_forms"
-                      >
-                        <div
-                          className="checkout__form_wrapper_inputs"
-                        >
+                      <div className="checkoutpage__form_wrapper_courier_forms">
+                        <div className="checkout__form_wrapper_inputs">
                           <select
                             className="form__input input"
                             {...register("state")}
@@ -588,9 +559,7 @@ export const CheckoutPage = () => {
                             <option value="Kherson">Kherson</option>
                           </select>
                         </div>
-                        <div
-                          className="checkout__form_wrapper_inputs"
-                        >
+                        <div className="checkout__form_wrapper_inputs">
                           <input
                             type="text"
                             className="form__input input"
@@ -620,9 +589,7 @@ export const CheckoutPage = () => {
 
           <div className="checkout__block">
             <div className="checkout__blockTitle">
-              <h3 className="checkout__ttl">
-                {t("pages.checkout.payment")}
-              </h3>
+              <h3 className="checkout__ttl">{t("pages.checkout.payment")}</h3>
             </div>
             <div className="checkout__inputs">
               <input
@@ -668,9 +635,9 @@ export const CheckoutPage = () => {
 
           <button
             type="submit"
-            className={`button button_lg button_default button_full-size ${isOrdered ? "active" : ""
-              }`}
-            onClick={() => navigate("/thankyou")}
+            className={`button button_lg button_default button_full-size ${
+              isOrdered ? "active" : ""
+            }`}
           >
             {t("pages.checkout.button")}
             <img className="icon-arrow" src={arrowWhite} alt="" />
@@ -680,9 +647,7 @@ export const CheckoutPage = () => {
         <div className="checkout__cartItems">
           <div className="checkout__block">
             <div className="checkout__blockTitle">
-              <h3 className="checkout__ttl">
-                {t("pages.checkout.order")}
-              </h3>
+              <h3 className="checkout__ttl">{t("pages.checkout.order")}</h3>
             </div>
 
             <hr className="checkout__line" />
@@ -755,12 +720,8 @@ export const CheckoutPage = () => {
             <hr className="checkout__line" />
 
             <div className="checkout__subtotal">
-              <h3 className="checkout__title">
-                {t("pages.checkout.total")}
-              </h3>
-              <h3 className="checkout__priceTotal">
-                ${totalPrice + 100}
-              </h3>
+              <h3 className="checkout__title">{t("pages.checkout.total")}</h3>
+              <h3 className="checkout__priceTotal">${totalPrice + 100}</h3>
             </div>
           </div>
         </div>

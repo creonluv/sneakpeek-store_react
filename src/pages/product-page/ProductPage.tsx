@@ -28,6 +28,8 @@ import arrowWhite from "../../assets/img/icons/arrow-white.svg";
 import buttonFav from "../../assets/img/icons/button.svg";
 
 import "./ProductPage.scss";
+import { PhotoSliderSkeleton } from "../../components/photo-slider-skeleton";
+import "react-loading-skeleton/dist/skeleton.css";
 
 export const ProductPage = () => {
   const navigate = useNavigate();
@@ -44,10 +46,10 @@ export const ProductPage = () => {
     undefined
   );
 
-  const { product, productInstancesAndSizes, materialAndCare } = useAppSelector(
-    (state: RootState) => state.product
-  );
-  const { products, loading, messages } = useAppSelector(
+  const { product, productInstancesAndSizes, materialAndCare, loading } =
+    useAppSelector((state: RootState) => state.product);
+
+  const { products, messages } = useAppSelector(
     (state: RootState) => state.products
   );
   const { bucket } = useAppSelector((state: RootState) => state.bucket);
@@ -157,7 +159,11 @@ export const ProductPage = () => {
       <BackBtn />
       <div className="productpage__body">
         <div className="productpage__topLeft">
-          <PhotoSlider images={imagesArr} />
+          {loading ? (
+            <PhotoSliderSkeleton imagesCount={5} />
+          ) : (
+            <PhotoSlider images={imagesArr} />
+          )}
         </div>
 
         <div className="productpage__topRight">
@@ -170,9 +176,7 @@ export const ProductPage = () => {
 
                 <p className="productpage__title">{product?.name}</p>
 
-                <p className="productpage__sex">
-                  {product?.gender.name}
-                </p>
+                <p className="productpage__sex">{product?.gender.name}</p>
               </div>
 
               <div className="productpage__price">
@@ -190,14 +194,16 @@ export const ProductPage = () => {
                     {productInstancesAndSizes.map((productInstanceInfo) => (
                       <div
                         key={productInstanceInfo.product_instance_id}
-                        className={`productpage__size ${productInstanceInfo.product_instance_id ===
+                        className={`productpage__size ${
+                          productInstanceInfo.product_instance_id ===
                           productInstance
-                          ? "productpage__size_checked"
-                          : ""
-                          } ${productInstanceInfo.present === 0
+                            ? "productpage__size_checked"
+                            : ""
+                        } ${
+                          productInstanceInfo.present === 0
                             ? "productpage__size_disabled"
                             : ""
-                          }`}
+                        }`}
                         onClick={() =>
                           handleSizeButton(
                             productInstanceInfo.product_instance_id
@@ -212,8 +218,9 @@ export const ProductPage = () => {
 
                 <div className="productpage__buttons">
                   <button
-                    className={`button button_lg button_default button_full-size ${isAddedToBucket ? "active" : ""
-                      }`}
+                    className={`button button_lg button_default button_full-size ${
+                      isAddedToBucket ? "active" : ""
+                    }`}
                     type="submit"
                     onClick={handleBuyButton}
                   >
@@ -254,10 +261,7 @@ export const ProductPage = () => {
                     </option>
                   </select>
 
-                  <select
-                    className="productpage__dropdown"
-                    id="availability"
-                  >
+                  <select className="productpage__dropdown" id="availability">
                     <option
                       className="productpage__ship"
                       value="Shipping & Payment"
@@ -287,8 +291,9 @@ export const ProductPage = () => {
               {tabs.map((tab, index) => (
                 <div key={index} className="productpage__tabsButton">
                   <div
-                    className={`productpage__tablink ${index === activeTab ? "productpage__active" : ""
-                      }`}
+                    className={`productpage__tablink ${
+                      index === activeTab ? "productpage__active" : ""
+                    }`}
                     onClick={() => setActiveTab(index)}
                   >
                     {tab.title}
@@ -304,7 +309,11 @@ export const ProductPage = () => {
         </div>
 
         <div className="productpage__slider">
-          <ProductSlider products={products} type={"another"} />
+          <ProductSlider
+            products={products}
+            type={"another"}
+            loading={loading}
+          />
         </div>
       </div>
     </section>

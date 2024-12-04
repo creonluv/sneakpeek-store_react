@@ -59,12 +59,8 @@ export const FavouritePage = () => {
   return (
     <section className="favouritepage">
       <div className="favouritepage__header">
-        <h3 className="favouritepage__title">
-          {t("pages.favourite.title")}
-        </h3>
-        <span className="favouritepage__subtitle">
-          {favourite.length}
-        </span>
+        <h3 className="favouritepage__title">{t("pages.favourite.title")}</h3>
+        <span className="favouritepage__subtitle">{favourite.length}</span>
       </div>
 
       <div className="favouritepage__container">
@@ -82,7 +78,11 @@ export const FavouritePage = () => {
         </div>
 
         <div className="favouritepage__slider">
-          <ProductSlider products={products} type={"another"} />
+          <ProductSlider
+            products={products}
+            type={"another"}
+            loading={loading}
+          />
         </div>
       </div>
     </section>

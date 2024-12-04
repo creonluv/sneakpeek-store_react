@@ -59,4 +59,9 @@
     margin-top: 24px;
     grid-column: 1 / -1;
   }
+
+  &__skeleton {
+    display: flex;
+    flex-direction: column;
+  }
 }

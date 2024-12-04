@@ -2,6 +2,7 @@ import { useCallback, useEffect, useRef, useState } from "react";
 import { useTranslation } from "react-i18next";
 
 import { ProductCard } from "../product-card";
+import { ProductCardSkeleton } from "../product-card-skeleton/ProductCardSkeleton";
 import { ButtonSlider } from "../button-slider";
 import { SliderIndicator } from "./slider-indicator";
 import { Product } from "../../types/Products";
@@ -13,12 +14,14 @@ type Props = {
   products?: Product[];
   type: string;
   categories?: Category[];
+  loading: boolean;
 };
 
 export const ProductSlider: React.FC<Props> = ({
   products,
   type,
   categories,
+  loading,
 }) => {
   const { t } = useTranslation();
 
@@ -44,10 +47,6 @@ export const ProductSlider: React.FC<Props> = ({
         productsRef.current.style.width = `${
           maxVisibleCards * width + (maxVisibleCards - 1) * 20
         }px`;
-
-        console.log("Container Width:", containerWidth);
-        console.log("Card Width:", width);
-        console.log("Max Visible Cards:", maxVisibleCards);
       }
     }
   };
@@ -103,37 +102,40 @@ export const ProductSlider: React.FC<Props> = ({
           />
         </div>
       </div>
+
       <div className="goods__cards_wrapper">
-        <div
-          className="goods__cards"
-          ref={productsRef}
-          style={{
-            transform: `translateX(-${scrollPosition}px)`,
-            transition: "transform 0.3s ease",
-          }}
-        >
-          {products
-            ? products.map((product) => (
-                <div key={product.id} className="goods__card">
-                  <ProductCard
-                    key={product.id}
-                    product={product}
-                    type={type}
-                    id={product.id}
-                  />
-                </div>
-              ))
-            : categories?.map((category) => (
-                <div key={category.id} className="goods__card">
-                  <ProductCard
-                    key={category.id}
-                    category={category}
-                    type={type}
-                    id={category.id}
-                  />
-                </div>
-              ))}
-        </div>
+        {loading ? (
+          <ProductCardSkeleton count={cardsInView || 4} gridClass="slider" />
+        ) : (
+          <div
+            className="goods__cards"
+            ref={productsRef}
+            style={{
+              transform: `translateX(-${scrollPosition}px)`,
+              transition: "transform 0.3s ease",
+            }}
+          >
+            {products
+              ? products.map((product) => (
+                  <div key={product.id} className="goods__card">
+                    <ProductCard
+                      product={product}
+                      type={type}
+                      id={product.id}
+                    />
+                  </div>
+                ))
+              : categories?.map((category) => (
+                  <div key={category.id} className="goods__card">
+                    <ProductCard
+                      category={category}
+                      type={type}
+                      id={category.id}
+                    />
+                  </div>
+                ))}
+          </div>
+        )}
       </div>
 
       <SliderIndicator

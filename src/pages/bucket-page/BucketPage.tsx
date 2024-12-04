@@ -165,9 +165,7 @@ export const BucketPage = () => {
                       </h4>
 
                       <div className="bucketpage__sizes">
-                        <span className="bucketpage__sizeTitle">
-                          Size:
-                        </span>
+                        <span className="bucketpage__sizeTitle">Size:</span>
                         <p>{item.product_instance.size.name}</p>
                       </div>
                     </div>
@@ -181,9 +179,7 @@ export const BucketPage = () => {
                         >
                           -
                         </button>
-                        <p className="bucketpage__sizes">
-                          {item.quantity}
-                        </p>
+                        <p className="bucketpage__sizes">{item.quantity}</p>
                         <button
                           className="bucketpage__counterButton"
                           onClick={() => handleCounter(item, true)}
@@ -216,18 +212,14 @@ export const BucketPage = () => {
           </div>
 
           <div className="bucketpage__subtotal">
-            <h3 className="bucketpage__title">
-              {t("pages.bucket.subtotal")}
-            </h3>
+            <h3 className="bucketpage__title">{t("pages.bucket.subtotal")}</h3>
             <h3 className="bucketpage__price">${totalPrice}</h3>
           </div>
         </div>
 
         <div className="bucketpage__right">
           <div className="bucketpage__card">
-            <h3 className="bucketpage__title">
-              {t("pages.bucket.summary")}
-            </h3>
+            <h3 className="bucketpage__title">{t("pages.bucket.summary")}</h3>
 
             <div className="bucketpage__main">
               <div className="bucketpage__middle">
@@ -263,7 +255,11 @@ export const BucketPage = () => {
         </div>
 
         <div className="bucketpage__slider">
-          <ProductSlider products={products} type={"another"} />
+          <ProductSlider
+            products={products}
+            type={"another"}
+            loading={loading}
+          />
         </div>
       </div>
     </div>
