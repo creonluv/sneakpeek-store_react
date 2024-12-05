@@ -17,9 +17,10 @@
   }
 }
 
-.slider {
+.productSlider {
   display: flex;
   gap: 20px;
+  flex-direction: row;
   flex-wrap: nowrap;
   justify-content: flex-start;
   overflow: hidden;

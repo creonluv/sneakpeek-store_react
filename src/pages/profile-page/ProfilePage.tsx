@@ -14,12 +14,14 @@ import { UploadAvatar } from "../../components/upload-avatar";
 import { ChangePassword } from "../../components/change-password/ChangePassword";
 
 import "./ProfilePage.scss";
+import { ProfileSkeleton } from "../../components/profile-skeleton";
 
 const ProfilePage: React.FC = () => {
   const { t } = useTranslation();
 
   const [profile, setProfile] = useState<Profile | null>(null);
   const [initialProfile, setInitialProfile] = useState<Profile | null>(null);
+  const [loading, setLoading] = useState(false);
 
   const [src, setSrc] = useState<string | undefined>(undefined);
   const [preview, setPreview] = useState<string | undefined>(undefined);
@@ -51,7 +53,7 @@ const ProfilePage: React.FC = () => {
   const handleSave = async () => {
     if (!profile) return;
 
-    const { user, id } = profile;
+    const { id } = profile;
 
     if (isChanged) {
       try {
@@ -90,8 +92,11 @@ const ProfilePage: React.FC = () => {
 
   useEffect(() => {
     const fetchProfile = async () => {
+      setLoading(true);
+
       try {
         const data = await getMyProfile();
+
         setImageUrl(
           data?.image?.id ? `${BASE_URL}/images/${data?.image?.id}` : null
         );
@@ -99,6 +104,8 @@ const ProfilePage: React.FC = () => {
         setInitialProfile(data);
       } catch (error) {
         showModal(ProfilePageMessages.PROFILE_LOAD_ERROR);
+      } finally {
+        setLoading(false);
       }
     };
 
@@ -106,20 +113,25 @@ const ProfilePage: React.FC = () => {
   }, [refreshProfile]);
 
   if (!profile) {
-    return <div>Loading...</div>;
+    return <ProfileSkeleton />;
   }
+
+  console.log(loading);
 
   return (
     <section className="profile">
       <div className="profile__container">
         <div className="profile__body">
           <div className="profile__top">
-            <h1 className="profile__title title-3">{t("pages.profile.title")}</h1>
+            <h1 className="profile__title title-3">
+              {t("pages.profile.title")}
+            </h1>
             <div className="profile__buttons">
               <div className="button-wrapper">
                 <button
-                  className={`profile__button button button_sm button_default ${!isChanged && !isImageChanged ? "_disabled" : ""
-                    }`}
+                  className={`profile__button button button_sm button_default ${
+                    !isChanged && !isImageChanged ? "_disabled" : ""
+                  }`}
                   onClick={handleSave}
                   disabled={!isChanged && !isImageChanged}
                 >
@@ -128,8 +140,9 @@ const ProfilePage: React.FC = () => {
               </div>
               <div className="button-wrapper">
                 <button
-                  className={`profile__button button button_sm button_reverse ${!isChanged && !isImageChanged ? "_disabled" : ""
-                    }`}
+                  className={`profile__button button button_sm button_reverse ${
+                    !isChanged && !isImageChanged ? "_disabled" : ""
+                  }`}
                   onClick={handleCancel}
                 >
                   <span>{t("pages.profile.cancel")}</span>
@@ -139,16 +152,22 @@ const ProfilePage: React.FC = () => {
           </div>
           <div className="profile__items">
             <div className="profile__item">
-              <h2 className="profile__subtitle title-3">{t("pages.profile.info")}</h2>
+              <h2 className="profile__subtitle title-3">
+                {t("pages.profile.info")}
+              </h2>
               <div className="profile__content">
                 <div className="profile__info">
                   <UploadAvatar
                     profile={profile}
-                    setIsImageChanged={(value: boolean) => setIsImageChanged(value)}
+                    setIsImageChanged={(value: boolean) =>
+                      setIsImageChanged(value)
+                    }
                     src={src}
                     preview={preview}
                     setSrc={(value: string | undefined) => setSrc(value)}
-                    setPreview={(value: string | undefined) => setPreview(value)}
+                    setPreview={(value: string | undefined) =>
+                      setPreview(value)
+                    }
                     imageUrl={imageUrl}
                   />
                   <div className="profile__block">
@@ -192,7 +211,9 @@ const ProfilePage: React.FC = () => {
               </div>
             </div>
             <div className="profile__item">
-              <h2 className="profile__subtitle title-3">{t("pages.profile.contacts")}</h2>
+              <h2 className="profile__subtitle title-3">
+                {t("pages.profile.contacts")}
+              </h2>
               <div className="profile__content">
                 <div className="profile__inputs">
                   <div className="profile__group">
@@ -228,7 +249,9 @@ const ProfilePage: React.FC = () => {
               </div>
             </div>
             <div className="profile__item">
-              <h2 className="profile__subtitle title-3">{t("pages.profile.address")}</h2>
+              <h2 className="profile__subtitle title-3">
+                {t("pages.profile.address")}
+              </h2>
               <div className="profile__content">
                 <div className="profile__inputs">
                   <div className="profile__group">

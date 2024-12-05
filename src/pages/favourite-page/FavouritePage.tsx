@@ -21,8 +21,10 @@ export const FavouritePage = () => {
   const [, setMessageCounter] = useState(0);
   const [wasModalShown, setWasModalShown] = useState(false);
 
-  const { products } = useAppSelector((state: RootState) => state.products);
-  const { favourite, loading, messages } = useAppSelector(
+  const { products, loading } = useAppSelector(
+    (state: RootState) => state.products
+  );
+  const { favourite, messages } = useAppSelector(
     (state: RootState) => state.favourite
   );
 

@@ -34,10 +34,10 @@ export const ProductSlider: React.FC<Props> = ({
     type === "normal"
       ? t("components.slider.new")
       : type === "sale"
-        ? t("components.slider.best")
-        : type === "category"
-          ? t("components.slider.categories")
-          : t("components.slider.default");
+      ? t("components.slider.best")
+      : type === "category"
+      ? t("components.slider.categories")
+      : t("components.slider.default");
 
   const updateCardsInView = () => {
     if (productsRef.current) {
@@ -53,8 +53,9 @@ export const ProductSlider: React.FC<Props> = ({
 
         setCardsInView(maxVisibleCards);
 
-        productsRef.current.style.width = `${maxVisibleCards * width + (maxVisibleCards - 1) * 20
-          }px`;
+        productsRef.current.style.width = `${
+          maxVisibleCards * width + (maxVisibleCards - 1) * 20
+        }px`;
       }
     }
   };
@@ -103,9 +104,13 @@ export const ProductSlider: React.FC<Props> = ({
               />
             </div>
           </div>
+
           <div className="goods__cards_wrapper">
             {loading ? (
-              <ProductCardSkeleton count={cardsInView || 4} gridClass="slider" />
+              <ProductCardSkeleton
+                count={cardsInView || 4}
+                gridClass="productSlider"
+              />
             ) : (
               <div
                 className="goods__cards"
@@ -117,27 +122,26 @@ export const ProductSlider: React.FC<Props> = ({
               >
                 {products
                   ? products.map((product) => (
-                    <div key={product.id} className="goods__card">
-                      <ProductCard
-                        product={product}
-                        type={type}
-                        id={product.id}
-                      />
-                    </div>
-                  ))
+                      <div key={product.id} className="goods__card">
+                        <ProductCard
+                          product={product}
+                          type={type}
+                          id={product.id}
+                        />
+                      </div>
+                    ))
                   : categories?.map((category) => (
-                    <div key={category.id} className="goods__card">
-                      <ProductCard
-                        category={category}
-                        type={type}
-                        id={category.id}
-                      />
-                    </div>
-                  ))}
+                      <div key={category.id} className="goods__card">
+                        <ProductCard
+                          category={category}
+                          type={type}
+                          id={category.id}
+                        />
+                      </div>
+                    ))}
               </div>
             )}
           </div>
-
           <SliderIndicator
             totalCards={products?.length || categories?.length || 0}
             startIndex={Math.floor(scrollPosition / productWidth)}

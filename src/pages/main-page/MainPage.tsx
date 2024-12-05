@@ -50,12 +50,12 @@ export const MainPage = () => {
       <PromoTimer />
       <ProductSlider
         categories={categories}
-        type={"normal"}
+        type={"category"}
         loading={loading}
       />
       <Blog />
       <ProductSlider
-        categories={categories}
+        products={reversedProducts}
         type={"another"}
         loading={loading}
       />
