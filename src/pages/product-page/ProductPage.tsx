@@ -170,7 +170,7 @@ export const ProductPage = () => {
             </div>
 
             <div className="product__topRight">
-              {1 ? (
+              {loading ? (
                 <ProductPageSkeleton />
               ) : (
                 <div className="product__info">

@@ -1,6 +1,6 @@
 import { useCallback, useEffect, useState } from "react";
 import { SubmitHandler, useForm } from "react-hook-form";
-import { Link } from "react-router-dom";
+import { Link, useNavigate } from "react-router-dom";
 import { useTranslation } from "react-i18next";
 
 import { zodResolver } from "@hookform/resolvers/zod";
@@ -33,10 +33,11 @@ import meestIcon from "../../assets/img/checkout/meest.svg";
 import arrowWhite from "../../assets/img/icons/arrow-white.svg";
 
 import "./CheckoutPage.scss";
+import { CheckoutBlockSkeleton } from "../../components/checkout-skeleton";
 
 export const CheckoutPage = () => {
   const dispatch = useAppDispatch();
-  // const navigate = useNavigate();
+  const navigate = useNavigate();
 
   const { t } = useTranslation();
   const { isAuth } = useAuthContext();
@@ -45,7 +46,9 @@ export const CheckoutPage = () => {
   const [isCourierSelected, setIsCourierSelected] = useState(false);
   const [isOrdered, setIsOrdered] = useState(false);
 
-  const { bucket } = useAppSelector((state: RootState) => state.bucket);
+  const { bucket, loading } = useAppSelector(
+    (state: RootState) => state.bucket
+  );
 
   const { showModal } = useModalContext();
 
@@ -117,22 +120,22 @@ export const CheckoutPage = () => {
       delivery_details: {
         delivery_type:
           typeof data.delivery_type === "string" &&
-            data.delivery_type === "home"
+          data.delivery_type === "home"
             ? "home"
             : "branch",
         shipment_method: data.shipment_method,
         ...(typeof data.delivery_type === "string" &&
-          data.delivery_type === "home"
+        data.delivery_type === "home"
           ? {
-            state: data.state,
-            city: data.city,
-            street: data.street,
-            apartment: data.apartment,
-          }
+              state: data.state,
+              city: data.city,
+              street: data.street,
+              apartment: data.apartment,
+            }
           : {
-            branch_id: data.branch_id,
-            branch_address: data.branch_address,
-          }),
+              branch_id: data.branch_id,
+              branch_address: data.branch_address,
+            }),
       },
     };
 
@@ -141,6 +144,7 @@ export const CheckoutPage = () => {
         setIsOrdered(true);
         console.log("Order created:", data);
       })
+      .then(() => navigate("/thankyou"))
       .catch((error) => {
         if (error instanceof Error) {
           console.error("Failed to create order:", error.message);
@@ -167,15 +171,21 @@ export const CheckoutPage = () => {
       <div className="checkout__container">
         <div className="checkout__body">
           <div className="checkout__header">
-            <h1 className="checkout__title title-3">{t("pages.checkout.title")}</h1>
-            <span className="checkout__subtitle">{t("pages.checkout.steps")}</span>
+            <h1 className="checkout__title title-3">
+              {t("pages.checkout.title")}
+            </h1>
+            <span className="checkout__subtitle">
+              {t("pages.checkout.steps")}
+            </span>
           </div>
 
           <div className="checkout__box">
             <form className="checkout__form" onSubmit={handleSubmit(onSubmit)}>
               <div className="checkout__block">
                 <div className="checkout__blockTitle">
-                  <h2 className="checkout__ttl title-3">{t("pages.checkout.contact")}</h2>
+                  <h2 className="checkout__ttl title-3">
+                    {t("pages.checkout.contact")}
+                  </h2>
                 </div>
                 <div className="checkout__inputs">
                   <input
@@ -208,7 +218,9 @@ export const CheckoutPage = () => {
 
               <div className="checkout__block">
                 <div className="checkout__blockTitle">
-                  <h2 className="checkout__ttl title-3">{t("pages.checkout.delivery")}</h2>
+                  <h2 className="checkout__ttl title-3">
+                    {t("pages.checkout.delivery")}
+                  </h2>
                 </div>
 
                 <div className="checkout__posts">
@@ -261,7 +273,9 @@ export const CheckoutPage = () => {
                               className="form__input input"
                               {...register("branch_id")}
                             >
-                              <option value="">{t("pages.checkout.select")}</option>
+                              <option value="">
+                                {t("pages.checkout.select")}
+                              </option>
                               <option value="Post office #129">
                                 Post office #129
                               </option>
@@ -309,7 +323,9 @@ export const CheckoutPage = () => {
                                 className="form__input input"
                                 {...register("city")}
                               >
-                                <option value="">{t("pages.checkout.city")}</option>
+                                <option value="">
+                                  {t("pages.checkout.city")}
+                                </option>
                                 <option value="Kharkiv">Kharkiv</option>
                                 <option value="Poltava">Poltava</option>
                                 <option value="Kherson">Kherson</option>
@@ -349,7 +365,9 @@ export const CheckoutPage = () => {
                       alt="Nova Poshta Icon"
                     />
                     <div className="checkout__post_information_wrapper">
-                      <h3 className="checkout__post_information_title">New Post</h3>
+                      <h3 className="checkout__post_information_title">
+                        New Post
+                      </h3>
                       <p className="checkout__post_information_date">
                         Expected delivery, Monday 17
                       </p>
@@ -432,7 +450,9 @@ export const CheckoutPage = () => {
                                 className="form__input input"
                                 {...register("city")}
                               >
-                                <option value="">{t("pages.checkout.city")}</option>
+                                <option value="">
+                                  {t("pages.checkout.city")}
+                                </option>
                                 <option value="Kharkiv">Kharkiv</option>
                                 <option value="Poltava">Poltava</option>
                                 <option value="Kherson">Kherson</option>
@@ -472,7 +492,9 @@ export const CheckoutPage = () => {
                       alt="Meest Icon"
                     />
                     <div className="checkout__post_information_wrapper">
-                      <h3 className="checkout__post_information_title">Meest</h3>
+                      <h3 className="checkout__post_information_title">
+                        Meest
+                      </h3>
                       <p className="checkout__post_information_date">
                         Expected delivery, Monday 18
                       </p>
@@ -555,7 +577,9 @@ export const CheckoutPage = () => {
                                 className="form__input input"
                                 {...register("city")}
                               >
-                                <option value="">{t("pages.checkout.city")}</option>
+                                <option value="">
+                                  {t("pages.checkout.city")}
+                                </option>
                                 <option value="Kharkiv">Kharkiv</option>
                                 <option value="Poltava">Poltava</option>
                                 <option value="Kherson">Kherson</option>
@@ -591,7 +615,9 @@ export const CheckoutPage = () => {
 
               <div className="checkout__block">
                 <div className="checkout__blockTitle">
-                  <h2 className="checkout__ttl">{t("pages.checkout.payment")}</h2>
+                  <h2 className="checkout__ttl">
+                    {t("pages.checkout.payment")}
+                  </h2>
                 </div>
                 <div className="checkout__inputs">
                   <input
@@ -600,7 +626,9 @@ export const CheckoutPage = () => {
                     placeholder={t("pages.checkout.card")}
                     {...register("cardNumber")}
                   />
-                  {errors.cardNumber && <span>{errors.cardNumber.message}</span>}
+                  {errors.cardNumber && (
+                    <span>{errors.cardNumber.message}</span>
+                  )}
 
                   <input
                     type="date"
@@ -638,8 +666,9 @@ export const CheckoutPage = () => {
               <div className="button-wrapper">
                 <button
                   type="submit"
-                  className={`button button_lg button_default button_full-size ${isOrdered ? "active" : ""
-                    }`}
+                  className={`button button_lg button_default button_full-size ${
+                    isOrdered ? "active" : ""
+                  }`}
                 >
                   <span>{t("pages.checkout.button")}</span>
                   <img className="icon-arrow" src={arrowWhite} alt="" />
@@ -648,85 +677,93 @@ export const CheckoutPage = () => {
             </form>
 
             <div className="checkout__cartItems">
-              <div className="checkout__block">
-                <div className="checkout__blockTitle">
-                  <h2 className="checkout__ttl">{t("pages.checkout.order")}</h2>
-                </div>
+              {loading ? (
+                <CheckoutBlockSkeleton />
+              ) : (
+                <div className="checkout__block">
+                  <div className="checkout__blockTitle">
+                    <h2 className="checkout__ttl">
+                      {t("pages.checkout.order")}
+                    </h2>
+                  </div>
 
-                <hr className="checkout__line" />
+                  <hr className="checkout__line" />
 
-                {bucket?.cart_items.map((item) => (
-                  <div key={item.id} className="checkout__item">
-                    <Link
-                      key={item.id}
-                      className="checkout__itemLeft"
-                      to={`/product/${item.product_instance.product.id}`}
-                    >
-                      <img
-                        className="checkout__img"
-                        src={`https://localhost:9091/api/images/${item.product_instance.product.main_photo_id}`}
-                        alt=""
-                      />
-                    </Link>
+                  {bucket?.cart_items.map((item) => (
+                    <div key={item.id} className="checkout__item">
+                      <Link
+                        key={item.id}
+                        className="checkout__itemLeft"
+                        to={`/product/${item.product_instance.product.id}`}
+                      >
+                        <img
+                          className="checkout__img"
+                          src={`https://localhost:9091/api/images/${item.product_instance.product.main_photo_id}`}
+                          alt=""
+                        />
+                      </Link>
 
-                    <div className="checkout__itemTop">
-                      <div className="checkout__titles">
-                        <span className="checkout__subtitle">
-                          {item.product_instance.product.producer.name}
-                        </span>
-
-                        <Link
-                          key={item.id}
-                          className="checkout__link"
-                          to={`/product/${item.product_instance.product.id}`}
-                        >
-                          <h3 className="checkout__itemTitle">
-                            {item.product_instance.product.name}
-                          </h3>
-                        </Link>
-                      </div>
-
-                      <div className="checkout__bottom">
-                        <div className="checkout__sizes">
-                          <span className="checkout__sizeTitle">
-                            {t("pages.checkout.size")}
+                      <div className="checkout__itemTop">
+                        <div className="checkout__titles">
+                          <span className="checkout__subtitle">
+                            {item.product_instance.product.producer.name}
                           </span>
-                          <p className="checkout__size">
-                            {item.product_instance.size.name}
-                          </p>
+
+                          <Link
+                            key={item.id}
+                            className="checkout__link"
+                            to={`/product/${item.product_instance.product.id}`}
+                          >
+                            <h3 className="checkout__itemTitle">
+                              {item.product_instance.product.name}
+                            </h3>
+                          </Link>
                         </div>
 
-                        <div className="checkout__price">
-                          ${item.product_instance.product.price}
+                        <div className="checkout__bottom">
+                          <div className="checkout__sizes">
+                            <span className="checkout__sizeTitle">
+                              {t("pages.checkout.size")}
+                            </span>
+                            <p className="checkout__size">
+                              {item.product_instance.size.name}
+                            </p>
+                          </div>
+
+                          <div className="checkout__price">
+                            ${item.product_instance.product.price}
+                          </div>
                         </div>
                       </div>
                     </div>
-                  </div>
-                ))}
+                  ))}
 
-                <div className="checkout__information">
-                  <div className="checkout__info">
-                    <p className="checkout__infoKey">
-                      {bucket?.cart_items.length} {t("pages.checkout.items")}
-                    </p>
-                    <p className="checkout__infoValue">${totalPrice}</p>
+                  <div className="checkout__information">
+                    <div className="checkout__info">
+                      <p className="checkout__infoKey">
+                        {bucket?.cart_items.length} {t("pages.checkout.items")}
+                      </p>
+                      <p className="checkout__infoValue">${totalPrice}</p>
+                    </div>
+
+                    <div className="checkout__info">
+                      <p className="checkout__infoKey">
+                        {t("pages.checkout.delivery")}:
+                      </p>
+                      <p className="checkout__infoValue">$100</p>
+                    </div>
                   </div>
 
-                  <div className="checkout__info">
-                    <p className="checkout__infoKey">
-                      {t("pages.checkout.delivery")}:
+                  <hr className="checkout__line" />
+
+                  <div className="checkout__subtotal">
+                    <p className="checkout__title">
+                      {t("pages.checkout.total")}
                     </p>
-                    <p className="checkout__infoValue">$100</p>
+                    <p className="checkout__priceTotal">${totalPrice + 100}</p>
                   </div>
                 </div>
-
-                <hr className="checkout__line" />
-
-                <div className="checkout__subtotal">
-                  <p className="checkout__title">{t("pages.checkout.total")}</p>
-                  <p className="checkout__priceTotal">${totalPrice + 100}</p>
-                </div>
-              </div>
+              )}
             </div>
           </div>
         </div>
