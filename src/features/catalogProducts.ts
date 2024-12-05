@@ -73,7 +73,7 @@ export const catalogProductsSlice = createSlice({
       })
       .addCase(fetchProductsCatalog.rejected, (state) => {
         state.loading = false;
-        state.messages = ProductPageMessages.FETCH_PRODUCTS_ERROR;
+        // state.messages = ProductPageMessages.FETCH_PRODUCTS_ERROR;
       });
   },
 });

@@ -142,9 +142,7 @@ export const Header = () => {
               <Link className="header__icon" to="favourite">
                 <img src={likes} alt="likes" />
                 {favourite?.length > 0 && (
-                  <div className="header__counter">
-                    {favourite?.length}
-                  </div>
+                  <div className="header__counter">{favourite?.length}</div>
                 )}
               </Link>
               <Link className="header__icon" to="bucket">
@@ -168,10 +166,7 @@ export const Header = () => {
                     >
                       {t("components.header.profile")}
                     </Link>
-                    <button
-                      className="list__item"
-                      onClick={handleLogout}
-                    >
+                    <button className="list__item" onClick={handleLogout}>
                       {t("components.header.logout")}
                     </button>
                   </>
@@ -204,11 +199,7 @@ export const Header = () => {
                 onClick={() => setIsMenuOpen(true)}
                 className="header__icon"
               >
-                <img
-                  className="header__button_image"
-                  src={burger}
-                  alt="menu"
-                />
+                <img className="header__button_image" src={burger} alt="menu" />
               </button>
             </div>
           </div>
@@ -220,37 +211,55 @@ export const Header = () => {
           <nav className="header__nav">
             <ul className="header__menu menu-header">
               <li className="menu-header__item">
-                <a href="" className="menu-header__link">
+                <a
+                  href="http://localhost:5173/catalog/?minPrice=0&maxPrice=10000&sortField=name&sortOrder=asc&page=1"
+                  className="menu-header__link"
+                >
                   {t("components.header.nav.item1")}
                 </a>
               </li>
 
               <li className="menu-header__item">
-                <a href="" className="menu-header__link">
+                <a
+                  href="http://localhost:5173/catalog/?minPrice=0&maxPrice=10000&sortField=name&sortOrder=asc&page=1&genderIds=1"
+                  className="menu-header__link"
+                >
                   {t("components.header.nav.item2")}
                 </a>
               </li>
 
               <li className="menu-header__item">
-                <a href="" className="menu-header__link">
+                <a
+                  href="http://localhost:5173/catalog/?minPrice=0&maxPrice=10000&sortField=name&sortOrder=asc&page=1&genderIds=2"
+                  className="menu-header__link"
+                >
                   {t("components.header.nav.item3")}
                 </a>
               </li>
 
               <li className="menu-header__item">
-                <a href="" className="menu-header__link">
+                <a
+                  href="http://localhost:5173/catalog/?minPrice=0&maxPrice=10000&sortField=name&sortOrder=asc&page=1&genderIds=3"
+                  className="menu-header__link"
+                >
                   {t("components.header.nav.item4")}
                 </a>
               </li>
 
               <li className="menu-header__item">
-                <a href="" className="menu-header__link">
+                <a
+                  href="http://localhost:5173/catalog/?minPrice=0&maxPrice=10000&sortField=name&sortOrder=asc&page=1&genderIds=4"
+                  className="menu-header__link"
+                >
                   {t("components.header.nav.item5")}
                 </a>
               </li>
 
               <li className="menu-header__item">
-                <a href="" className="menu-header__link">
+                <a
+                  href="http://localhost:5173/catalog/?minPrice=0&maxPrice=10000&sortField=name&sortOrder=asc&page=1"
+                  className="menu-header__link"
+                >
                   {t("components.header.nav.item6")}
                 </a>
               </li>

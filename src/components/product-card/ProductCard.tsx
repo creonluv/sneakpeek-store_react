@@ -68,17 +68,25 @@ export const ProductCard: React.FC<Props> = ({
     [dispatch, favourite]
   );
 
+  const getLink = (id: number, category?: Category) => {
+    if (category) {
+      return `catalog?minPrice=0&maxPrice=10000&sortField=name&sortOrder=asc&page=1&categoryIds=${category.categoryIds}`;
+    }
+
+    return `/product/${id}`;
+  };
+
   return (
     <div className="card">
-      <Link className="card__link" to={`/product/${id}`}>
+      <Link className="card__link" to={getLink(id, category)}>
         <img
           className="card__img"
           src={
             type !== "category"
               ? `https://localhost:9091/api/images/${product?.main_photo_id}`
               : category?.id
-                ? photosOfCategory[category.id - 1]
-                : photosOfCategory[0]
+              ? photosOfCategory[category.id - 1]
+              : photosOfCategory[0]
           }
           alt="img-of-item"
         />
@@ -103,7 +111,9 @@ export const ProductCard: React.FC<Props> = ({
       </Link>
 
       <div className="card__infolabel">
-        <span>{type !== "category" ? "new" : category?.infolabel || "N/A"}</span>
+        <span>
+          {type !== "category" ? "new" : category?.infolabel || "N/A"}
+        </span>
 
         <img
           className="card__infolabel_icon"
