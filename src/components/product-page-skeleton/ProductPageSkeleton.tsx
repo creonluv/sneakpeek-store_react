@@ -4,38 +4,38 @@ import "react-loading-skeleton/dist/skeleton.css";
 
 export const ProductPageSkeleton: React.FC = () => {
   return (
-    <div className="productpage">
-      <div className="productpage__information">
-        <div className="productpage__description">
+    <div className="product">
+      <div className="product__information">
+        <div className="product__description">
           <Skeleton width={120} height={20} />
           <Skeleton width={200} height={28} />
           <Skeleton width={100} height={20} />
         </div>
-        <div className="productpage__price">
+        <div className="product_price">
           <Skeleton width={80} height={32} />
         </div>
       </div>
 
-      <div className="productpage__interactive">
-        <div className="productpage__interactive_top">
-          <div className="productpage__block">
+      <div className="product__interactive">
+        <div className="product__interactive_top">
+          <div className="product__block">
             <Skeleton width={120} height={20} />
-            <div className="productpage__sizes">
+            <div className="product__sizes">
               {Array.from({ length: 3 }).map((_, index) => (
                 <Skeleton
                   key={index}
-                  className="productpage__size"
+                  className="product__size"
                   width={60}
                   height={40}
                 />
               ))}
             </div>
           </div>
-          <div className="productpage__buttons">
+          <div className="product__buttons">
             <Skeleton width={200} height={50} />
             <Skeleton width={50} height={50} circle />
           </div>
-          <div className="productpage__dropdowns">
+          <div className="product__dropdowns">
             <Skeleton width="100%" height={40} />
             <Skeleton width="100%" height={40} />
           </div>

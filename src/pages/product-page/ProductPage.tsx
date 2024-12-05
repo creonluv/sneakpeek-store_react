@@ -156,7 +156,6 @@ export const ProductPage = () => {
   }, [setRndNum]);
 
   return (
-<<<<<<< HEAD
     <section className="product">
       <div className="product__container">
         <div className="product__body">
@@ -171,288 +170,149 @@ export const ProductPage = () => {
             </div>
 
             <div className="product__topRight">
-              <div className="product__info">
-                <div className="product__information">
-                  <div className="product__description">
-                    <p className="product__producer">
-                      {product?.producer.name}
-                    </p>
-
-                    <h2 className="product__title title-2">{product?.name}</h2>
-
-                    <p className="product__sex">{product?.gender.name}</p>
-                  </div>
-
-                  <div className="product__price">
-                    <p className="product__cost">${product?.price}</p>
-                  </div>
-                </div>
-
-                <div className="product__interactive">
-                  <div className="product__interactive_top">
-                    <div className="product__block">
-                      <p className="product__name">
-                        {t("pages.product.sizes")}
+              {1 ? (
+                <ProductPageSkeleton />
+              ) : (
+                <div className="product__info">
+                  <div className="product__information">
+                    <div className="product__description">
+                      <p className="product__producer">
+                        {product?.producer.name}
                       </p>
-                      <div className="product__sizes">
-                        {productInstancesAndSizes.map((productInstanceInfo) => (
-                          <div
-                            key={productInstanceInfo.product_instance_id}
-                            className={`product__size ${productInstanceInfo.product_instance_id ===
-                              productInstance
-                              ? "product__size_checked"
-                              : ""
-                              } ${productInstanceInfo.present === 0
-                                ? "product__size_disabled"
-                                : ""
-                              }`}
-                            onClick={() =>
-                              handleSizeButton(
-                                productInstanceInfo.product_instance_id
-                              )
-                            }
+
+                      <h2 className="product__title title-2">
+                        {product?.name}
+                      </h2>
+
+                      <p className="product__sex">{product?.gender.name}</p>
+                    </div>
+
+                    <div className="product__price">
+                      <p className="product__cost">${product?.price}</p>
+                    </div>
+                  </div>
+
+                  <div className="product__interactive">
+                    <div className="product__interactive_top">
+                      <div className="product__block">
+                        <p className="product__name">
+                          {t("pages.product.sizes")}
+                        </p>
+                        <div className="product__sizes">
+                          {productInstancesAndSizes.map(
+                            (productInstanceInfo) => (
+                              <div
+                                key={productInstanceInfo.product_instance_id}
+                                className={`product__size ${
+                                  productInstanceInfo.product_instance_id ===
+                                  productInstance
+                                    ? "product__size_checked"
+                                    : ""
+                                } ${
+                                  productInstanceInfo.present === 0
+                                    ? "product__size_disabled"
+                                    : ""
+                                }`}
+                                onClick={() =>
+                                  handleSizeButton(
+                                    productInstanceInfo.product_instance_id
+                                  )
+                                }
+                              >
+                                {productInstanceInfo.size_name}
+                              </div>
+                            )
+                          )}
+                        </div>
+                      </div>
+
+                      <div className="product__buttons">
+                        <button
+                          className={`button button_lg button_default button_full-size ${
+                            isAddedToBucket ? "active" : ""
+                          }`}
+                          type="submit"
+                          onClick={handleBuyButton}
+                        >
+                          {isAddedToBucket
+                            ? "Already in Bucket"
+                            : "Add to Bucket"}
+                          <img className="icon-arrow" src={arrowWhite} alt="" />
+                        </button>
+
+                        {isAuth && (
+                          <button
+                            className="product__button"
+                            onClick={() => {
+                              if (productId !== undefined) {
+                                handleFavButton(+productId);
+                              } else {
+                                console.error("productId is undefined");
+                              }
+                            }}
                           >
-                            {productInstanceInfo.size_name}
-                          </div>
-                        ))}
+                            <img src={buttonFav} alt="" />
+                          </button>
+                        )}
+                      </div>
+
+                      <div className="product__dropdowns">
+                        <select className="product__dropdown" id="size">
+                          <option
+                            className="product__ship"
+                            value="Shipping & Payment"
+                          >
+                            {t("pages.product.SP")}
+                          </option>
+
+                          <option
+                            className="product__ship"
+                            value="Check availability in store"
+                          >
+                            2
+                          </option>
+                        </select>
+
+                        <select className="product__dropdown" id="availability">
+                          <option
+                            className="product__ship"
+                            value="Shipping & Payment"
+                          >
+                            {t("pages.product.check")}
+                          </option>
+                          <option
+                            className="product__ship"
+                            value="Check availability in store"
+                          >
+                            2
+                          </option>
+                        </select>
                       </div>
                     </div>
-
-                    <div className="product__buttons">
-                      <button
-                        className={`button button_lg button_default button_full-size ${isAddedToBucket ? "active" : ""
-                          }`}
-                        type="submit"
-                        onClick={handleBuyButton}
-                      >
-                        {isAddedToBucket ? "Already in Bucket" : "Add to Bucket"}
-                        <img className="icon-arrow" src={arrowWhite} alt="" />
-                      </button>
-
-                      {isAuth && (
-                        <button
-                          className="product__button"
-                          onClick={() => {
-                            if (productId !== undefined) {
-                              handleFavButton(+productId);
-                            } else {
-                              console.error("productId is undefined");
-                            }
-                          }}
-                        >
-                          <img src={buttonFav} alt="" />
-                        </button>
-                      )}
-                    </div>
-
-                    <div className="product__dropdowns">
-                      <select className="product__dropdown" id="size">
-                        <option
-                          className="product__ship"
-                          value="Shipping & Payment"
-                        >
-                          {t("pages.product.SP")}
-                        </option>
-
-                        <option
-                          className="product__ship"
-                          value="Check availability in store"
-                        >
-                          2
-                        </option>
-                      </select>
-
-                      <select className="product__dropdown" id="availability">
-                        <option
-                          className="product__ship"
-                          value="Shipping & Payment"
-                        >
-                          {t("pages.product.check")}
-                        </option>
-                        <option
-                          className="product__ship"
-                          value="Check availability in store"
-                        >
-                          2
-                        </option>
-                      </select>
-                    </div>
                   </div>
-                </div>
 
-                <p className="product__serial">
-                  {t("pages.product.code")} {rndNum}
-                </p>
-=======
-    <section className="productpage">
-      <BackBtn />
-      <div className="productpage__body">
-        <div className="productpage__topLeft">
-          {loading ? (
-            <div className="productpage__skeletonSlider">
-              <PhotoSliderSkeleton imagesCount={5} />
-            </div>
-          ) : (
-            <PhotoSlider images={imagesArr} />
-          )}
-        </div>
-
-        <div className="productpage__topRight">
-          {loading ? (
-            <div className="productpage__skeletonInfo">
-              <ProductPageSkeleton />
-            </div>
-          ) : (
-            <div className="productpage__info">
-              <div className="productpage__information">
-                <div className="productpage__description">
-                  <p className="productpage__producer">
-                    {product?.producer.name}
+                  <p className="product__serial">
+                    {t("pages.product.code")} {rndNum}
                   </p>
-
-                  <p className="productpage__title">{product?.name}</p>
-
-                  <p className="productpage__sex">{product?.gender.name}</p>
                 </div>
+              )}
+            </div>
 
-                <div className="productpage__price">
-                  <p className="productpage__cost">${product?.price}</p>
-                </div>
-              </div>
-
-              <div className="productpage__interactive">
-                <div className="productpage__interactive_top">
-                  <div className="productpage__block">
-                    <p className="productpage__name">
-                      {t("pages.product.sizes")}
-                    </p>
-                    <div className="productpage__sizes">
-                      {productInstancesAndSizes.map((productInstanceInfo) => (
-                        <div
-                          key={productInstanceInfo.product_instance_id}
-                          className={`productpage__size ${
-                            productInstanceInfo.product_instance_id ===
-                            productInstance
-                              ? "productpage__size_checked"
-                              : ""
-                          } ${
-                            productInstanceInfo.present === 0
-                              ? "productpage__size_disabled"
-                              : ""
-                          }`}
-                          onClick={() =>
-                            handleSizeButton(
-                              productInstanceInfo.product_instance_id
-                            )
-                          }
-                        >
-                          {productInstanceInfo.size_name}
-                        </div>
-                      ))}
-                    </div>
-                  </div>
-
-                  <div className="productpage__buttons">
-                    <button
-                      className={`button button_lg button_default button_full-size ${
-                        isAddedToBucket ? "active" : ""
-                      }`}
-                      type="submit"
-                      onClick={handleBuyButton}
-                    >
-                      {isAddedToBucket ? "Already in Bucket" : "Add to Bucket"}
-                      <img className="icon-arrow" src={arrowWhite} alt="" />
-                    </button>
-
-                    {isAuth && (
-                      <button
-                        className="productpage__button"
-                        onClick={() => {
-                          if (productId !== undefined) {
-                            handleFavButton(+productId);
-                          } else {
-                            console.error("productId is undefined");
-                          }
-                        }}
-                      >
-                        <img src={buttonFav} alt="" />
-                      </button>
-                    )}
-                  </div>
-
-                  <div className="productpage__dropdowns">
-                    <select className="productpage__dropdown" id="size">
-                      <option
-                        className="productpage__ship"
-                        value="Shipping & Payment"
-                      >
-                        {t("pages.product.SP")}
-                      </option>
-
-                      <option
-                        className="productpage__ship"
-                        value="Check availability in store"
-                      >
-                        2
-                      </option>
-                    </select>
-
-                    <select className="productpage__dropdown" id="availability">
-                      <option
-                        className="productpage__ship"
-                        value="Shipping & Payment"
-                      >
-                        {t("pages.product.check")}
-                      </option>
-                      <option
-                        className="productpage__ship"
-                        value="Check availability in store"
-                      >
-                        2
-                      </option>
-                    </select>
-                  </div>
-                </div>
->>>>>>> 3b3f7f5 (feat: add skeleton to profile/product pages)
-              </div>
-
-<<<<<<< HEAD
             <div className="product__tabs">
               <div className="product__buttonsWrapper">
                 <div className="product__tabsButtons">
                   {tabs.map((tab, index) => (
                     <div key={index} className="product__tabsButton">
                       <p
-                        className={`product__tablink ${index === activeTab ? "product__active" : ""
-                          }`}
+                        className={`product__tablink ${
+                          index === activeTab ? "product__active" : ""
+                        }`}
                         onClick={() => setActiveTab(index)}
                       >
                         {tab.title}
                       </p>
                     </div>
                   ))}
-=======
-              <p className="productpage__serial">
-                {t("pages.product.code")} {rndNum}
-              </p>
-            </div>
-          )}
-        </div>
-
-        <div className="productpage__tabs">
-          <div className="productpage__buttonsWrapper">
-            <div className="productpage__tabsButtons">
-              {tabs.map((tab, index) => (
-                <div key={index} className="productpage__tabsButton">
-                  <div
-                    className={`productpage__tablink ${
-                      index === activeTab ? "productpage__active" : ""
-                    }`}
-                    onClick={() => setActiveTab(index)}
-                  >
-                    {tab.title}
-                  </div>
->>>>>>> 3b3f7f5 (feat: add skeleton to profile/product pages)
                 </div>
 
                 <hr className="product__line" />
