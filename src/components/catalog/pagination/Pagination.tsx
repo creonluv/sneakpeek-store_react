@@ -105,8 +105,7 @@ export const Pagination: React.FC = () => {
           key={page}
           onClick={() => handlePageChange(page as number)}
           disabled={currentPage === page}
-          className={`pageButton ${currentPage === page ? "currentPage" : ""
-            }`}
+          className={`pageButton ${currentPage === page ? "currentPage" : ""}`}
         >
           {page}
         </button>
@@ -114,5 +113,38 @@ export const Pagination: React.FC = () => {
     });
   };
 
-  return <div className="pagination">{renderPageNumbers()}</div>;
+  const handlePrevious = () => {
+    if (currentPage > 1) {
+      handlePageChange(currentPage - 1);
+    }
+  };
+
+  const handleNext = () => {
+    const totalPages = products.totalPages;
+    if (currentPage < totalPages) {
+      handlePageChange(currentPage + 1);
+    }
+  };
+
+  return (
+    <div className="pagination">
+      <button
+        onClick={handlePrevious}
+        disabled={currentPage === 1}
+        className={`pageButton`}
+      >
+        ←
+      </button>
+
+      {renderPageNumbers()}
+
+      <button
+        onClick={handleNext}
+        disabled={currentPage === products.totalPages}
+        className={`pageButton`}
+      >
+        →
+      </button>
+    </div>
+  );
 };
