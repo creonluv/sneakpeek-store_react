@@ -39,14 +39,17 @@ export const CatalogPage = () => {
   const { showModal } = useModalContext();
   const { isAsideOpen, toggleAside } = useAsideContext();
 
-  useEffect(() => {
-    dispatch(fetchAllProducts() as any);
-  }, [dispatch]);
+  // useEffect(() => {
+  //   dispatch(fetchAllProducts() as any);
+  // }, [dispatch]);
 
   useEffect(() => {
     dispatch(fetchProductsCatalog(location.search) as any);
+  }, [location.search]);
+
+  useEffect(() => {
     dispatch(fetchFavourite() as any);
-  }, [location.search, favourite.length]);
+  }, [favourite.length]);
 
   useEffect(() => {
     if (!loading && messages && !wasModalShown) {
