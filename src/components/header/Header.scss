@@ -1,7 +1,162 @@
 @use "../../shared/globalStyles/global" as *;
 
 .header {
-  width: 100%;
+  &__top {
+    padding-block: 8px;
+    color: var(--color-text-reverse);
+    background-color: var(--color-background-edge);
+
+    &-body {
+      display: flex;
+      justify-content: space-between;
+      align-items: center;
+    }
+  }
+
+  &__main {
+    position: relative;
+    display: flex;
+    align-items: center;
+    @include adaptiveValue("gap", 80, 20);
+    padding-block: 15px;
+
+    &::after {
+      content: "";
+      position: absolute;
+      width: 100vw;
+      margin-left: calc(-50vw + 50%);
+      left: 0;
+      right: 0;
+      bottom: 0;
+      border-top: 1px solid var(--color-secondary-grey);
+    }
+
+    @include on-tablet {
+      padding-block: 25px;
+    }
+  }
+
+  &__logo {
+    flex: 1 1 auto;
+  }
+
+  &__form {
+    position: relative;
+
+    @include on-tablet {
+      display: initial;
+    }
+  }
+
+  &__search {
+    width: 100%;
+    @include adaptiveValue("max-width", 256, 190);
+    padding: 4px;
+    border-bottom: 1px solid var(--color-secondary-grey);
+    outline: none;
+    color: var(--color-system-grey);
+    background: transparent;
+
+    &-button {
+      all: unset;
+      background: none;
+      border: none;
+      box-shadow: none;
+      cursor: pointer;
+
+      position: absolute;
+      top: 20%;
+      right: 2px;
+      max-width: 28px;
+      max-height: 28px;
+      transform: translateY(-50%);
+    }
+
+    &-icon {
+      width: 24px;
+      height: 24px;
+    }
+  }
+
+  &__icons {
+    position: fixed;
+    bottom: 0;
+    left: 0;
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+    width: 100%;
+    padding: 24px 15px;
+    border-top: 1px solid var(--color-secondary-grey);
+    background-color: var(--color-background-reverse);
+    z-index: 10;
+    
+    @include on-tablet {
+      position: relative;
+      display: flex;
+      align-items: center;
+      width: initial;
+      border-top: initial;
+      padding: initial;
+      gap: 16px;
+    }
+  }
+
+  &__nav {
+    display: flex;
+    flex-direction: column;
+    position: fixed;
+    top: 0;
+    left: -100%;
+    width: 100%;
+    height: calc(100% - 70px);
+    padding: 15px;
+    background-color: var(--color-background-reverse);
+    overflow: scroll;
+    opacity: 0;
+    visibility: hidden;
+    transition: all 0.3s ease;
+    z-index: 3;
+
+    &._menu-open {
+      opacity: 1;
+      visibility: visible;
+      left: 0;
+    }
+
+    @include on-tablet {
+      position: relative;
+      display: flex;
+      justify-content: center;
+      left: initial;
+      height: initial;
+      background-color: initial;
+      overflow: initial;
+      opacity: 1;
+      visibility: visible;
+      padding: initial;
+
+      &::after {
+        content: "";
+        position: absolute;
+        width: 100vw;
+        margin-left: calc(-50vw + 50%);
+        left: 0;
+        right: 0;
+        bottom: 0;
+        border-top: 1px solid var(--color-secondary-grey);
+      }
+    }  
+  }
+
+  &__icon {
+    cursor: pointer;
+    background: none;
+    border: none;
+    padding: 0;
+    margin: 0;
+    position: relative;
+  }
 
   &__counter {
     position: absolute;
@@ -18,152 +173,16 @@
     font-size: 12px;
   }
 
-  &__top {
-    background-color: var(--color-primary);
+  &__close {
+    align-self: flex-end;
 
-    &_container {
-      @include container;
+    img {
+      width: 120%;
     }
-  }
-
-  &__middle {
-    padding-block: 24px;
-
-    border-bottom: 1px solid var(--color-secondary-grey);
 
     @include on-tablet {
-      border: none;
-    }
-
-    &_container {
-      display: flex;
-      flex-direction: row;
-      justify-content: space-between;
-
-      @include container;
-    }
-
-    &_left {
       display: none;
-
-      @include on-tablet {
-        display: inline-block;
-      }
     }
-
-    &_right {
-      display: flex;
-      flex-direction: row;
-      justify-content: space-between;
-      width: 100%;
-
-      @include on-tablet {
-        gap: 80px;
-        width: auto;
-      }
-    }
-
-    &_icons {
-      display: none;
-      position: relative;
-
-      @include on-tablet {
-        display: flex;
-        align-items: center;
-        gap: 16px;
-      }
-    }
-
-    &_burger {
-      @include on-tablet {
-        display: none;
-      }
-    }
-  }
-
-  &__bottom {
-    display: none;
-
-    &_container {
-      @include container;
-    }
-
-    @include on-tablet {
-      display: block;
-      padding-block: 16px;
-      border-top: 1px solid var(--color-secondary-grey);
-      border-bottom: 1px solid var(--color-secondary-grey);
-    }
-  }
-
-  &__logo {
-    @include on-tablet {
-      width: 120px;
-    }
-
-    @include on-large-screen {
-      width: 160px;
-    }
-  }
-
-  &__logoimage {
-    width: 100%;
-  }
-
-  &__form {
-    position: relative;
-
-    @include on-tablet {
-      display: initial;
-    }
-  }
-
-  &__search {
-    border: none;
-    border-bottom: 1px solid var(--color-secondary-grey);
-    background: transparent;
-    outline: none;
-    padding: 4px;
-    color: var(--color-system-grey);
-    width: 190px;
-
-    @include on-tablet {
-      width: 256px;
-    }
-
-    &_button {
-      all: unset;
-      background: none;
-      border: none;
-      box-shadow: none;
-      cursor: pointer;
-
-      position: absolute;
-      top: 20%;
-      right: 2px;
-      max-width: 28px;
-      max-height: 28px;
-      transform: translateY(-50%);
-    }
-
-    &_icon {
-      width: 24px;
-      height: 24px;
-    }
-  }
-
-  &__nav {
-    display: flex;
-    justify-content: center;
-  }
-
-  &__icon {
-    cursor: pointer;
-    background: none;
-    border: none;
-    padding: 0;
-    margin: 0;
-    position: relative;
   }
 }
 
@@ -173,25 +192,63 @@
 
   &__items {
     display: inline-block;
-    background-color: transparent;
-    border: none;
     width: 100%;
     letter-spacing: 1px;
-    color: var(--color-reverse);
-    padding-block: 8px;
+    color: var(--color-text-reverse);
+    background-color: var(--color-background-edge);
     cursor: pointer;
+  }
+}
+
+.burger {
+  position: relative;
+  width: 40px;
+  height: 30px;
+  cursor: pointer;
+
+  &__line,
+  &__line::after,
+  &__line::before {
+    height: 4px;
+    border-radius: 2px;
+    background-color: var(--color-background-edge);
+  }
+
+  &__line {
+    width: 100%;
+
+    &::after,
+    &::before {
+      content: "";
+      position: absolute;
+      right: 0;
+      width: 85%;
+    }
+
+    &::after {
+      top: 50%;
+      transform: translateY(-50%);
+    }
+
+    &::before {
+      bottom: 0;
+    }
+  }
+
+  @include on-tablet {
+    display: none;
   }
 }
 
 .menu-header {
   display: flex;
   flex-direction: column;
-  gap: 40px;
   align-items: center;
-
-  @include on-tablet {
-    flex-direction: row;
-  }
+  height: 100%;
+  gap: 15px;
+  padding-block: 15px;
+  font-size: 30px;
+  font-weight: 500;
 
   &__link {
     display: inline-block;
@@ -199,6 +256,16 @@
     color: var(--color-text);
 
     @include hover(scale, 0.95);
+  }
+
+  @include on-tablet {
+    justify-content: center;
+    flex-direction: row;
+    padding-top: 0;
+    font-size: initial;
+    font-weight: initial;
+    padding-block: 16px;
+    gap: 50px;
   }
 }
 

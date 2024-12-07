@@ -3,6 +3,13 @@
 @use "../src/shared/globalStyles/null";
 @use "../src/shared//globalStyles/colors";
 
+body {
+  &._lock {
+    overflow: hidden;
+    touch-action: none;
+  }
+}
+
 .wrapper {
   display: flex;
   flex-direction: column;

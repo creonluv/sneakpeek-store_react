@@ -20,7 +20,7 @@
 }
 
 @mixin on-tablet-landscape {
-  @media (min-width: $tablet-landscape-mind-width) {
+  @media (min-width: $tablet-landscape-min-width) {
     @content;
   }
 }
