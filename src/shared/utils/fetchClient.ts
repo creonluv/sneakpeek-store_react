@@ -75,14 +75,14 @@ async function request<T>(
         response.status === 401 &&
         error?.error_type === ErrorType.USER_NOT_AUTHORIZED
       ) {
-        window.history.pushState({}, "", "/login");
+        // window.history.pushState({}, "", "/login");
       }
 
       if (
         response.status === 403 &&
         error?.error_type === ErrorType.REFRESH_TOKEN_EXPIRED
       ) {
-        window.history.pushState({}, "", "/login");
+        // window.history.pushState({}, "", "/login");
       }
 
       try {

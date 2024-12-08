@@ -38,22 +38,22 @@ export const Root = () => {
                     <Route path="register" element={<RegisterPage />} />
                     <Route path="login" element={<LoginPage />} />
 
-                  <Route element={<ProtectedRoute />}>
-                    <Route path="bucket" element={<BucketPage />} />
-                    <Route path="favourite" element={<FavouritePage />} />
-                    <Route path="profile" element={<ProfilePage />} />
-                    <Route path="checkout" element={<CheckoutPage />} />
-                    <Route path="thankyou" element={<ThankYouPage />} />
-                  </Route>
+                    <Route element={<ProtectedRoute />}>
+                      <Route path="bucket" element={<BucketPage />} />
+                      <Route path="favourite" element={<FavouritePage />} />
+                      <Route path="profile" element={<ProfilePage />} />
+                      <Route path="checkout" element={<CheckoutPage />} />
+                      <Route path="thankyou" element={<ThankYouPage />} />
+                    </Route>
 
-                  <Route path="*" element={<NotFoundPage />} />
-                </Route>
-              </Routes>
-            </Router>
-          </StrictMode>
-        </Provider>
-      </AsideProvider>
-    </AuthProvider>
+                    <Route path="*" element={<NotFoundPage />} />
+                  </Route>
+                </Routes>
+              </Router>
+            </StrictMode>
+          </Provider>
+        </AsideProvider>
+      </AuthProvider>
     </ModalProvider>
   );
 };
