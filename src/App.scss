@@ -47,11 +47,6 @@ section:not(:last-child) {
   @include adaptiveValue("margin-bottom", 110, 70);
 }
 
-.button-wrapper {
-  display: inline-flex;
-  position: relative;
-}
-
 .checkbox {
   position: relative;
   display: flex;
@@ -177,7 +172,7 @@ h5,
   align-items: center;
   text-align: center;
   gap: 5px;
-  @include adaptiveValue("font-size", 16, 12);
+  font-size: 16px;
   font-weight: 500;
   border-radius: 12px;
   text-transform: capitalize;
@@ -204,21 +199,14 @@ h5,
   }
 
   &_sm {
-    @include adaptiveValue("padding-top", 8, 4);
-    @include adaptiveValue("padding-bottom", 8, 4);
-    @include adaptiveValue("padding-right", 18, 9);
-    @include adaptiveValue("padding-left", 18, 9);
+    padding-inline: 18px;
+    padding-block: 8px;
   }
 
   &_default {
     color: var(--color-text-reverse);
     background-color: var(--color-background);
 
-    .icon-arrow {
-      @include adaptiveValue("width", 16, 8);
-    }
-
-    // TODO
     &.active {
       color: var(--color-text-accent);
       background-color: var(--color-background-reverse);
@@ -233,7 +221,6 @@ h5,
     color: var(--color-text-accent);
     background-color: var(--color-background-reverse);
 
-    // TODO
     &:active {
       color: var(--color-text-reverse);
       background-color: var(--color-background);
@@ -244,21 +231,11 @@ h5,
     border: 2px solid var(--color-border-reverse);
     color: var(--color-text-reverse);
     background-color: transparent;
-
-    .icon-arrow {
-      @include adaptiveValue("font-size", 16, 8);
-      @include adaptiveValue("margin-left", 10, 5);
-    }
   }
 
   &_ghost {
     outline: 2px solid var(--color-primary);
     background-color: transparent;
-
-    .icon-arrow {
-      font-size: 12px;
-      margin-right: 8px;
-    }
   }
 
   &_light {
@@ -298,32 +275,6 @@ h5,
   justify-content: center;
   gap: 15px;
   margin-bottom: 30px;
-}
-
-/* custom SweetAlert2 styles */
-.custom-popup {
-  border-radius: 15px;
-  background-color: #f0f0f0;
-}
-
-.custom-title {
-  font-size: 1.5rem;
-  font-weight: bold;
-}
-
-.custom-confirm-button {
-  background-color: var(--color-accent);
-  color: white;
-}
-
-.custom-deny-button {
-  background-color: #dc3545;
-  color: white;
-}
-
-.custom-footer {
-  font-size: 1rem;
-  color: #777;
 }
 
 .checkbox {

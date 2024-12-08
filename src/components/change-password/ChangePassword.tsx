@@ -70,7 +70,7 @@ export const ChangePassword = () => {
   return (
     <>
       <div className="button-wrapper">
-        <button className="button button_sm button_default" onClick={openModal}>
+        <button className="profile__button_cp button button_sm button_default" onClick={openModal}>
           <span>{t("components.changePassword.title")}</span>
         </button>
       </div>
