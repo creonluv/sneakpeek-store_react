@@ -1,6 +1,6 @@
 import Skeleton from "react-loading-skeleton";
 import "react-loading-skeleton/dist/skeleton.css";
-import "./PhotoSliderSkeleton.scss";
+import "../photo-slider/PhotoSlider.scss";
 
 type Props = {
   imagesCount: number;

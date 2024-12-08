@@ -1,4 +1,4 @@
-import { useEffect, useState } from "react";
+import { useEffect, useMemo, useState } from "react";
 import { useNavigate, useParams } from "react-router-dom";
 import { useTranslation } from "react-i18next";
 
@@ -26,6 +26,7 @@ import { itemInBucket } from "../../types/Bucket";
 
 import arrowWhite from "../../assets/img/icons/arrow-white.svg";
 import buttonFav from "../../assets/img/icons/button.svg";
+import buttonPressedFav from "../../assets/img/icons/fav-pressed.svg";
 
 import "./ProductPage.scss";
 import { PhotoSliderSkeleton } from "../../components/photo-slider-skeleton";
@@ -41,6 +42,7 @@ export const ProductPage = () => {
 
   const [rndNum, setRndNum] = useState(0);
   const [activeTab, setActiveTab] = useState(0);
+
   const [, setMessageCounter] = useState(0);
   const [wasModalShown, setWasModalShown] = useState(false);
   const [productInstance, setProductInstance] = useState<number | undefined>(
@@ -54,6 +56,8 @@ export const ProductPage = () => {
     (state: RootState) => state.products
   );
   const { bucket } = useAppSelector((state: RootState) => state.bucket);
+
+  const { favourite } = useAppSelector((state: RootState) => state.favourite);
 
   const { isAuth } = useAuthContext();
   const { showModal } = useModalContext();
@@ -91,9 +95,20 @@ export const ProductPage = () => {
   };
 
   const handleFavButton = (id: number) => {
-    dispatch(toggleItemInFavourite(id));
-    dispatch(fetchFavourite());
+    dispatch(toggleItemInFavourite(id)).then(() => dispatch(fetchFavourite()));
   };
+
+  const isAddedToFav = useMemo(() => {
+    return favourite.find(
+      (item) => productId !== undefined && item.id === +productId
+    );
+  }, [favourite, productId]);
+
+  const isItemInFavourites = useMemo(() => {
+    return !!isAddedToFav;
+  }, [isAddedToFav]);
+
+  console.log(isItemInFavourites);
 
   const tabs = [
     {
@@ -106,7 +121,9 @@ export const ProductPage = () => {
     },
     {
       title: `${t("pages.product.reviews")} ${17}`,
-      content: <TabsContent text={"Tabs 3"} />,
+      content: (
+        <TabsContent text={"This block is currently under development."} />
+      ),
     },
   ];
 
@@ -180,9 +197,9 @@ export const ProductPage = () => {
                         {product?.producer.name}
                       </p>
 
-                      <h2 className="product__title title-2">
+                      <h1 className="product__title title-2">
                         {product?.name}
-                      </h2>
+                      </h1>
 
                       <p className="product__sex">{product?.gender.name}</p>
                     </div>
@@ -251,7 +268,11 @@ export const ProductPage = () => {
                               }
                             }}
                           >
-                            <img src={buttonFav} alt="" />
+                            {isItemInFavourites ? (
+                              <img src={buttonPressedFav} alt="" />
+                            ) : (
+                              <img src={buttonFav} alt="" />
+                            )}
                           </button>
                         )}
                       </div>

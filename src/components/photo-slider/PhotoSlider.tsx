@@ -47,14 +47,15 @@ export const PhotoSlider: React.FC<Props> = ({ images }) => {
 
   return (
     <div className="slider">
-      <div className="slider__mini">
+      <div className="slider__miniPhoto">
         {images?.slice(0, 6).map((image, index) => (
           <img
             key={index}
             src={`https://localhost:9091/api/images/${image}`}
             alt={`mini-photo-${index}`}
-            className={`slider__photo ${index === currentIndex ? "slider__selected" : ""
-              }`}
+            className={`slider__photo ${
+              index === currentIndex ? "slider__selected" : ""
+            }`}
             onClick={() => handleImageClick(index)}
           />
         ))}
@@ -71,18 +72,11 @@ export const PhotoSlider: React.FC<Props> = ({ images }) => {
 
         <div className="slider__infolabel">
           new
-          <img
-            className="slider__infolabel_icon"
-            src={clockIcon}
-            alt=""
-          />
+          <img className="slider__infolabel_icon" src={clockIcon} alt="" />
         </div>
 
         <div className="slider__togles">
-          <button
-            className="slider__togles_button"
-            onClick={handlePrevClick}
-          >
+          <button className="slider__togles_button" onClick={handlePrevClick}>
             <img className="slider__togle" src={arrowSlider} alt="" />
           </button>
 

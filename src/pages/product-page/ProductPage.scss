@@ -20,7 +20,7 @@
     grid-column: 1 / -1;
     height: 100%;
 
-    @include on-desktop {
+    @include on-tablet {
       grid-column: 1 / 8;
     }
   }
@@ -33,7 +33,7 @@
     grid-column: 1 / -1;
     height: 100%;
 
-    @include on-desktop {
+    @include on-tablet {
       grid-column: 8 / -1;
     }
   }
@@ -99,7 +99,12 @@
   &__sizes {
     display: flex;
     flex-direction: row;
+    flex-wrap: wrap;
     gap: 8px;
+
+    div {
+      flex: 1 0 calc(25%);
+    }
   }
 
   &__size {
