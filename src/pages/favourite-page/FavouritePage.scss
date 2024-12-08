@@ -47,11 +47,11 @@
     row-gap: 30px;
     column-gap: 20px;
 
-    @include on-tablet {
+    @include on-mobile-landscape {
       grid-template-columns: repeat(2, 1fr);
     }
 
-    @include on-large-screen {
+    @include on-tablet-landscape {
       grid-template-columns: repeat(3, 1fr);
     }
   }
