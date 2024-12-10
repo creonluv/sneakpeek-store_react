@@ -44,7 +44,6 @@ export const Categories: React.FC = () => {
     selectedSort,
     priceRange,
     currentPage,
-    name,
   } = useAppSelector((state: RootState) => state.params);
 
   const selectedItems = [
@@ -168,15 +167,13 @@ export const Categories: React.FC = () => {
               key={index}
               value={`${item.sortField} ${item.sortOrder}`}
             >
-              {t("components.catalog.categories.sort")} {item.sortField} {item.sortOrder}
+              {t("components.catalog.categories.sort")} {item.sortField}{" "}
+              {item.sortOrder}
             </option>
           ))}
         </select>
 
-        <button
-          onClick={toggleAside}
-          className="categories__toggleAsideButton"
-        >
+        <button onClick={toggleAside} className="categories__toggleAsideButton">
           <img src={aside} alt="Toggle Aside" />{" "}
         </button>
       </div>

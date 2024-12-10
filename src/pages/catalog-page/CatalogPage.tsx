@@ -12,7 +12,6 @@ import { ProductCardSkeleton } from "../../components/product-card-skeleton/Prod
 
 import { useDispatch } from "react-redux";
 import { RootState } from "../../app/store";
-import { fetchAllProducts } from "../../features/products";
 import { fetchFavourite } from "../../features/favourite";
 import { fetchProductsCatalog } from "../../features/catalogProducts";
 
@@ -38,10 +37,6 @@ export const CatalogPage = () => {
 
   const { showModal } = useModalContext();
   const { isAsideOpen, toggleAside } = useAsideContext();
-
-  // useEffect(() => {
-  //   dispatch(fetchAllProducts() as any);
-  // }, [dispatch]);
 
   useEffect(() => {
     dispatch(fetchProductsCatalog(location.search) as any);
