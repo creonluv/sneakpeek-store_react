@@ -1,8 +1,20 @@
 import { z } from "zod";
 
 export const checkoutSchema = z.object({
-  name: z.string().min(1, { message: "Name is required" }),
-  surname: z.string().min(1, { message: "Surname is required" }),
+  name: z
+    .string()
+    .min(1, { message: "Name is required" })
+    .regex(/^[a-zA-Zа-яА-ЯёЁіІїЇєЄґҐ'’ʼ\s-]+$/, {
+      message:
+        "Name must contain only letters, spaces, hyphens, or apostrophes",
+    }),
+  surname: z
+    .string()
+    .min(1, { message: "Surname is required" })
+    .regex(/^[a-zA-Zа-яА-ЯёЁіІїЇєЄґҐ'’ʼ\s-]+$/, {
+      message:
+        "Surname must contain only letters, spaces, hyphens, or apostrophes",
+    }),
   phone_number: z
     .string()
     .min(1, { message: "Phone number is required" })

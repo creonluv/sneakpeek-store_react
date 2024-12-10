@@ -194,7 +194,11 @@ export const CheckoutPage = () => {
                     placeholder={t("pages.checkout.name")}
                     {...register("name")}
                   />
-                  {errors.name && <span>{errors.name.message}</span>}
+                  {errors.name && (
+                    <span className="checkout__error">
+                      {errors.name.message}
+                    </span>
+                  )}
 
                   <input
                     type="text"
@@ -202,7 +206,11 @@ export const CheckoutPage = () => {
                     placeholder={t("pages.checkout.lastname")}
                     {...register("surname")}
                   />
-                  {errors.surname && <span>{errors.surname.message}</span>}
+                  {errors.surname && (
+                    <span className="checkout__error">
+                      {errors.surname.message}
+                    </span>
+                  )}
 
                   <input
                     type="tel"
@@ -211,7 +219,9 @@ export const CheckoutPage = () => {
                     {...register("phone_number")}
                   />
                   {errors.phone_number && (
-                    <span>{errors.phone_number.message}</span>
+                    <span className="checkout__error">
+                      {errors.phone_number.message}
+                    </span>
                   )}
                 </div>
               </div>
@@ -287,7 +297,9 @@ export const CheckoutPage = () => {
                               </option>
                             </select>
                             {errors.shipment_method && (
-                              <span>{errors.shipment_method.message}</span>
+                              <span className="checkout__error">
+                                {errors.shipment_method.message}
+                              </span>
                             )}
                           </div>
                         </div>
@@ -414,7 +426,9 @@ export const CheckoutPage = () => {
                               </option>
                             </select>
                             {errors.shipment_method && (
-                              <span>{errors.shipment_method.message}</span>
+                              <span className="checkout__error">
+                                {errors.shipment_method.message}
+                              </span>
                             )}
                           </div>
                         </div>
@@ -541,7 +555,9 @@ export const CheckoutPage = () => {
                               </option>
                             </select>
                             {errors.shipment_method && (
-                              <span>{errors.shipment_method.message}</span>
+                              <span className="checkout__error">
+                                {errors.shipment_method.message}
+                              </span>
                             )}
                           </div>
                         </div>
@@ -606,7 +622,7 @@ export const CheckoutPage = () => {
                   )}
 
                   {errors.shipment_method && (
-                    <span className="error_message">
+                    <span className="checkout__error">
                       {errors.shipment_method.message}
                     </span>
                   )}
@@ -627,7 +643,9 @@ export const CheckoutPage = () => {
                     {...register("cardNumber")}
                   />
                   {errors.cardNumber && (
-                    <span>{errors.cardNumber.message}</span>
+                    <span className="checkout__error">
+                      {errors.cardNumber.message}
+                    </span>
                   )}
 
                   <input
@@ -636,7 +654,9 @@ export const CheckoutPage = () => {
                     {...register("expirationDate")}
                   />
                   {errors.expirationDate && (
-                    <span>{errors.expirationDate.message}</span>
+                    <span className="checkout__error">
+                      {errors.expirationDate.message}
+                    </span>
                   )}
 
                   <input
@@ -646,7 +666,9 @@ export const CheckoutPage = () => {
                     {...register("securityCode")}
                   />
                   {errors.securityCode && (
-                    <span>{errors.securityCode.message}</span>
+                    <span className="checkout__error">
+                      {errors.securityCode.message}
+                    </span>
                   )}
 
                   <hr className="checkout__line" />
@@ -659,7 +681,11 @@ export const CheckoutPage = () => {
                     />
                     {t("pages.checkout.agree")}
                   </label>
-                  {errors.terms && <span>{errors.terms.message}</span>}
+                  {errors.terms && (
+                    <span className="checkout__error">
+                      {errors.terms.message}
+                    </span>
+                  )}
                 </div>
               </div>
 
