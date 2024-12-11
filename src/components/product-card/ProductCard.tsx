@@ -24,7 +24,6 @@ import shoesImg from "../../assets/img/categories/shoes.png";
 import tshirtsImg from "../../assets/img/categories/t-shirts.png";
 import hoodiesImg from "../../assets/img/categories/hoodies.png";
 import jeensImg from "../../assets/img/categories/jeans.png";
-import accesImg from "../../assets/img/categories/acces.png";
 
 import "./ProductCard.scss";
 
@@ -47,13 +46,7 @@ export const ProductCard: React.FC<Props> = ({
 
   const { isAuth } = useAuthContext();
 
-  const photosOfCategory = [
-    shoesImg,
-    tshirtsImg,
-    hoodiesImg,
-    jeensImg,
-    accesImg,
-  ];
+  const photosOfCategory = [shoesImg, tshirtsImg, hoodiesImg, jeensImg];
 
   const elemementInFavourite = useMemo(() => {
     return favourite.find((item) => item.id === id);

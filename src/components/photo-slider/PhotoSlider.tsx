@@ -14,6 +14,10 @@ export const PhotoSlider: React.FC<Props> = ({ images }) => {
 
   const [selectedImg, setSelectedImg] = useState(initialImage);
   const [currentIndex, setCurrentIndex] = useState(0);
+  const [zoomStyle, setZoomStyle] = useState({
+    display: "none",
+    backgroundPosition: "0% 0%",
+  });
 
   useEffect(() => {
     if (images && images.length > 0) {
@@ -45,6 +49,22 @@ export const PhotoSlider: React.FC<Props> = ({ images }) => {
     }
   };
 
+  const handleMouseMove = (e: React.MouseEvent<HTMLDivElement, MouseEvent>) => {
+    const { left, top, width, height } =
+      e.currentTarget.getBoundingClientRect();
+    const x = ((e.pageX - left) / width) * 100;
+    const y = ((e.pageY - top) / height) * 100;
+
+    setZoomStyle({
+      display: "block",
+      backgroundPosition: `${x}% ${y}%`,
+    });
+  };
+
+  const handleMouseLeave = () => {
+    setZoomStyle({ display: "none", backgroundPosition: "0% 0%" });
+  };
+
   return (
     <div className="slider">
       <div className="slider__miniPhoto">
@@ -61,7 +81,11 @@ export const PhotoSlider: React.FC<Props> = ({ images }) => {
         ))}
       </div>
 
-      <div className="slider__main">
+      <div
+        className="slider__main"
+        onMouseMove={handleMouseMove}
+        onMouseLeave={handleMouseLeave}
+      >
         {selectedImg && (
           <img
             className="slider__main_photo"
@@ -69,7 +93,13 @@ export const PhotoSlider: React.FC<Props> = ({ images }) => {
             alt="main-photo"
           />
         )}
-
+        <div
+          className="slider__zoom"
+          style={{
+            ...zoomStyle,
+            backgroundImage: `url(https://localhost:9091/api/images/${selectedImg})`,
+          }}
+        ></div>
         <div className="slider__infolabel">
           new
           <img className="slider__infolabel_icon" src={clockIcon} alt="" />

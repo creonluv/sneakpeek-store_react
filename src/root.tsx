@@ -35,12 +35,14 @@ export const Root = () => {
             <Provider store={store}>
               <StrictMode>
                 <Router>
-                  <ScrollToTop />
                   <Routes>
                     <Route path="/" element={<App />}>
                       <Route index element={<MainPage />} />
                       <Route path="catalog" element={<CatalogPage />} />
-                      <Route path="product/:productId" element={<ProductPage />} />
+                      <Route
+                        path="product/:productId"
+                        element={<ProductPage />}
+                      />
 
                       <Route path="register" element={<RegisterPage />} />
                       <Route path="login" element={<LoginPage />} />

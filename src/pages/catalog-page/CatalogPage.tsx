@@ -12,7 +12,6 @@ import { ProductCardSkeleton } from "../../components/product-card-skeleton/Prod
 
 import { useDispatch } from "react-redux";
 import { RootState } from "../../app/store";
-import { fetchAllProducts } from "../../features/products";
 import { fetchFavourite } from "../../features/favourite";
 import { fetchProductsCatalog } from "../../features/catalogProducts";
 
@@ -22,6 +21,7 @@ import { useModalContext } from "../../context/ModalContext";
 import { useTranslation } from "react-i18next";
 
 import "./CatalogPage.scss";
+import ScrollToTop from "../../components/scrollToTop/scrollToTop";
 
 export const CatalogPage = () => {
   const { t } = useTranslation();
@@ -38,10 +38,6 @@ export const CatalogPage = () => {
 
   const { showModal } = useModalContext();
   const { isAsideOpen, toggleAside } = useAsideContext();
-
-  // useEffect(() => {
-  //   dispatch(fetchAllProducts() as any);
-  // }, [dispatch]);
 
   useEffect(() => {
     dispatch(fetchProductsCatalog(location.search) as any);
@@ -73,6 +69,8 @@ export const CatalogPage = () => {
 
   return (
     <section className="catalog">
+      <ScrollToTop />
+
       <div className="catalog__container">
         <div className="catalog__body">
           <div className="catalog__aside">
