@@ -8,7 +8,6 @@ import { StrictMode } from "react";
 import { AsideProvider } from "./context/AsideContext";
 import { AuthProvider } from "./context/AuthContext";
 import { ProductPage } from "./pages/product-page/ProductPage";
-import ScrollToTop from "./components/scrollToTop/scrollToTop";
 import RegisterPage from "./pages/register-page/RegisterPage";
 import LoginPage from "./pages/login-page/LoginPage";
 import { BucketPage } from "./pages/bucket-page";
@@ -28,12 +27,14 @@ export const Root = () => {
           <Provider store={store}>
             <StrictMode>
               <Router>
-                <ScrollToTop />
                 <Routes>
                   <Route path="/" element={<App />}>
                     <Route index element={<MainPage />} />
                     <Route path="catalog" element={<CatalogPage />} />
-                    <Route path="product/:productId" element={<ProductPage />} />
+                    <Route
+                      path="product/:productId"
+                      element={<ProductPage />}
+                    />
 
                     <Route path="register" element={<RegisterPage />} />
                     <Route path="login" element={<LoginPage />} />

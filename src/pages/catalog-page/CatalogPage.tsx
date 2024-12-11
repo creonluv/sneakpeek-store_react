@@ -21,6 +21,7 @@ import { useModalContext } from "../../context/ModalContext";
 import { useTranslation } from "react-i18next";
 
 import "./CatalogPage.scss";
+import ScrollToTop from "../../components/scrollToTop/scrollToTop";
 
 export const CatalogPage = () => {
   const { t } = useTranslation();
@@ -68,6 +69,8 @@ export const CatalogPage = () => {
 
   return (
     <section className="catalog">
+      <ScrollToTop />
+
       <div className="catalog__container">
         <div className="catalog__body">
           <div className="catalog__aside">
