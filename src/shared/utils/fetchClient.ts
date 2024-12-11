@@ -3,12 +3,6 @@ import { ErrorType } from "../../types/Auth";
 
 export const BASE_URL = "https://localhost:9091/api";
 
-export function wait(delay: number) {
-  return new Promise((resolve) => {
-    setTimeout(resolve, delay);
-  });
-}
-
 type RequestMethod = "GET" | "POST" | "PATCH" | "DELETE" | "PUT";
 
 async function handleRefresh() {
@@ -32,14 +26,13 @@ async function request<T>(
 
   if (data) {
     options.body = JSON.stringify(data);
-    
+
     options.headers = {
       "Content-Type": "application/json; charset=UTF-8",
     };
   }
 
   try {
-    await wait(500);
     const response = await fetch(BASE_URL + url, options);
     let error;
     const responseText = await response.text();
