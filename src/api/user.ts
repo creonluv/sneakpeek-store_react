@@ -6,5 +6,5 @@ export async function editUser(data: BaseUser, id: number) {
 }
 
 export async function changePassword(data: ChangePasswordRequest) {
-  return client.post<ChangePasswordRequest>(`/users/change-password`, data);
+  return client.post<ChangePasswordRequest>(`/users/password/change`, data);
 }

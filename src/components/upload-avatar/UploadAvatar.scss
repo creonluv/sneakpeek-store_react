@@ -2,6 +2,8 @@
   &__control {
     display: flex;
     justify-content: space-between;
+    align-self: flex-start;
+    width: 100%;
     margin-bottom: 20px;
   }
 
@@ -15,6 +17,8 @@
   }
 
   &__close {
+    max-width: 30px;
+    max-height: 30px;
     cursor: pointer;
   }
 }

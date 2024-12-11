@@ -3,6 +3,7 @@ import Modal from "react-modal";
 import { useTranslation } from "react-i18next";
 
 import { useModalContext } from "../../context/ModalContext";
+import { useWindowSizeContext } from "../../context/WindowSizeContext";
 
 import { changePassword } from "../../api/user";
 
@@ -20,9 +21,14 @@ interface PasswordData {
 
 Modal.setAppElement("#root");
 
+const DEFAULT_SIZE = 500;
+const OFFSET_INLINE = 32;
+const BOTTOM_NAV_HEIGHT = 70;
+
 export const ChangePassword = () => {
   const { t } = useTranslation();
   const { showModal } = useModalContext();
+  const { width, height } = useWindowSizeContext();
 
   const [isOpenModal, setIsOpenModal] = useState(false);
   const [formData, setFormData] = useState<PasswordData>({
@@ -31,8 +37,15 @@ export const ChangePassword = () => {
     confirm_new_password: "",
   });
 
-  const openModal = () => setIsOpenModal(true);
-  const closeModal = () => setIsOpenModal(false);
+  const openModal = () => {
+    setIsOpenModal(true);
+    document.body.classList.add("_lock");
+  };
+
+  const closeModal = () => {
+    setIsOpenModal(false);
+    document.body.classList.remove("_lock");
+  };
 
   const handleChange = (e: React.ChangeEvent<HTMLInputElement>) => {
     const { name, value } = e.target;
@@ -78,13 +91,15 @@ export const ChangePassword = () => {
         isOpen={isOpenModal}
         onRequestClose={closeModal}
         style={{
-          overlay: { backgroundColor: "rgba(0, 0, 0, 0.5)" },
+          overlay: { backgroundColor: "rgba(0, 0, 0, 0.5)", zIndex: 1000 },
           content: {
             color: "black",
             margin: "auto",
             padding: "20px",
-            width: "500px",
-            height: "min-content",
+            width: Math.min(width - OFFSET_INLINE, DEFAULT_SIZE),
+            height: Math.min(height - OFFSET_INLINE - (width < 768 ? BOTTOM_NAV_HEIGHT + 60 : 0)),
+            maxHeight: "380px",
+            inset: "16px"
           },
         }}
       >

@@ -1,5 +1,7 @@
 import Modal from 'react-modal';
 
+import { useWindowSizeContext } from '../../context/WindowSizeContext';
+
 import { ModalState } from '../../types/modal';
 
 import close from "../../assets/img/icons/close.svg";
@@ -16,6 +18,8 @@ interface GlobalModalProps {
 Modal.setAppElement('#root');
 
 export const GlobalModal = ({ title, description, state, hideModal }: GlobalModalProps) => {
+  const { width } = useWindowSizeContext();
+
   const getStateStyle = () => {
     switch (state) {
       case 'error':
@@ -34,9 +38,13 @@ export const GlobalModal = ({ title, description, state, hideModal }: GlobalModa
       isOpen={true}
       onRequestClose={hideModal}
       style={{
+        overlay: { zIndex: 1000 },
         content: {
-          width: '400px',
+          width: Math.min(width, 500) - 24,
+          overflowY: "auto",
           margin: 'auto',
+          inset: "12px",
+          zIndex: 1000,
           ...getStateStyle(),
         },
       }}
