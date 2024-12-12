@@ -244,6 +244,16 @@ export const Aside: React.FC = () => {
           </div>
         );
       })}
+      {isAside &&
+        <div className="aside__button button-wrapper">
+          <button
+            className="button button_lg button_default button_full-size"
+            onClick={closeAside}
+          >
+            <span>{t("components.catalog.aside.apply")}</span>
+          </button>
+        </div>
+      }
     </aside>
   );
 };

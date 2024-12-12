@@ -45,8 +45,10 @@ export const Header = () => {
   const toggleModal = () => setIsModalOpen(!isModalOpen);
 
   const handleBurger = () => {
-    setBurger(!burger);
-    if (width < 768) document.body.classList.toggle("_lock");
+    if (width < 768) {
+      setBurger(!burger);
+      document.body.classList.toggle("_lock");
+    }
   };
 
   const handleChangeInputSearch = (

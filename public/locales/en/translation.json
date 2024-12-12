@@ -34,7 +34,8 @@
         "gender": "Gender",
         "priceRange": "Price Range",
         "showMore": "Show more",
-        "filter": "Filter"
+        "filter": "Filter",
+        "apply": "Apply"
       },
       "categories": {
         "reset": "Reset all settings",
