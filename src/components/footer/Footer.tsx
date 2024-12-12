@@ -1,3 +1,4 @@
+import { Link } from "react-router-dom";
 import { useTranslation } from "react-i18next";
 
 import logo from "../../assets/img/icons/logo.svg";
@@ -11,13 +12,13 @@ export const Footer = () => {
     <footer className="footer">
       <div className="footer__container">
         <div className="footer__left">
-          <a href="/" className="footer__logo">
+          <Link to="/" className="footer__logo">
             <img className="footer__logoimage" src={logo} alt="LOGO" />
-          </a>
+          </Link>
 
           <ul className="footer__social">
             <li className="footer__social_item">
-              <a className="footer__social_link" href="#">
+              <Link className="footer__social_link" to="https://www.instagram.com/">
                 <svg
                   className="footer__social_icon"
                   width="12"
@@ -33,10 +34,10 @@ export const Footer = () => {
                     fill="#2A2A2A"
                   />
                 </svg>
-              </a>
+              </Link>
             </li>
             <li className="footer__social_item">
-              <a className="footer__social_link" href="#">
+              <Link className="footer__social_link" to="https://www.facebook.com/?locale=uk_UA">
                 <svg
                   className="footer__social_icon"
                   width="12"
@@ -52,10 +53,10 @@ export const Footer = () => {
                     fill="#2A2A2A"
                   />
                 </svg>
-              </a>
+              </Link>
             </li>
             <li className="footer__social_item">
-              <a className="footer__social_link" href="#">
+              <Link className="footer__social_link" to="https://www.tiktok.com/uk-UA/">
                 <svg
                   className="footer__social_icon"
                   width="10"
@@ -71,7 +72,7 @@ export const Footer = () => {
                     fill="#2A2A2A"
                   />
                 </svg>
-              </a>
+              </Link>
             </li>
           </ul>
         </div>
@@ -79,111 +80,111 @@ export const Footer = () => {
         <nav className="footer__nav">
           <ul className="footer__items_main">
             <li className="footer__item">
-              <a href="#" className="footer__link_bold">
+              <Link className="footer__link_bold" to="/catalog">
                 {t("components.footer.catalog")}
-              </a>
+              </Link>
             </li>
             <li className="footer__item">
-              <a href="#" className="footer__link_bold">
-                {t("components.footer.discount")}
-              </a>
+              <Link className="footer__link" to="/catalog/?minPrice=0&maxPrice=10000&sortField=name&sortOrder=asc&page=1">
+                {t("components.header.nav.item1")}
+              </Link>
             </li>
             <li className="footer__item">
-              <a href="#" className="footer__link_bold">
-                {t("components.footer.brands")}
-              </a>
+              <Link className="footer__link" to="/catalog/?minPrice=0&maxPrice=10000&sortField=name&sortOrder=asc&page=1&genderIds=4">
+                {t("components.header.nav.item5")}
+              </Link>
             </li>
             <li className="footer__item">
-              <a href="#" className="footer__link_bold">
-                {t("components.footer.office")}
-              </a>
+              <Link className="footer__link" to="/catalog/?minPrice=0&maxPrice=10000&sortField=name&sortOrder=asc&page=1">
+                {t("components.header.nav.item6")}
+              </Link>
             </li>
           </ul>
 
           <ul className="footer__items">
             <li className="footer__item">
-              <a href="#" className="footer__link_bold">
+              <Link className="footer__link_bold" to="/indevelopment">
                 {t("components.footer.service")}
-              </a>
+              </Link>
             </li>
             <li className="footer__item">
-              <a href="#" className="footer__link">
+              <Link className="footer__link" to="/indevelopment">
                 {t("components.footer.orders")}
-              </a>
+              </Link>
             </li>
             <li className="footer__item">
-              <a href="#" className="footer__link">
+              <Link className="footer__link" to="/indevelopment">
                 {t("components.footer.returns")}
-              </a>
+              </Link>
             </li>
             <li className="footer__item">
-              <a href="#" className="footer__link">
+              <Link className="footer__link" to="/indevelopment">
                 {t("components.footer.faq")}
-              </a>
+              </Link>
             </li>
             <li className="footer__item">
-              <a href="#" className="footer__link">
+              <Link className="footer__link" to="/indevelopment">
                 {t("components.footer.policy")}
-              </a>
+              </Link>
             </li>
           </ul>
 
           <ul className="footer__items">
             <li className="footer__item">
-              <a href="#" className="footer__link_bold">
+              <Link className="footer__link_bold" to="/indevelopment">
                 {t("components.footer.about")}
-              </a>
+              </Link>
             </li>
             <li className="footer__item">
-              <a href="#" className="footer__link">
+              <Link className="footer__link" to="/indevelopment">
                 {t("components.footer.loyal")}
-              </a>
+              </Link>
             </li>
             <li className="footer__item">
-              <a href="#" className="footer__link">
+              <Link className="footer__link" to="/indevelopment">
                 {t("components.footer.blog")}
-              </a>
+              </Link>
             </li>
             <li className="footer__item">
-              <a href="#" className="footer__link">
+              <Link className="footer__link" to="/indevelopment">
                 {t("components.footer.sustainability")}
-              </a>
+              </Link>
             </li>
             <li className="footer__item">
-              <a href="#" className="footer__link">
+              <Link className="footer__link" to="/indevelopment">
                 {t("components.footer.governance")}
-              </a>
+              </Link>
             </li>
           </ul>
 
           <ul className="footer__items">
             <li className="footer__item">
-              <a href="#" className="footer__link_bold">
+              <Link className="footer__link_bold" to="/indevelopment">
                 {t("components.footer.contacts")}
-              </a>
+              </Link>
             </li>
             <li className="footer__item">
-              <a href="tel:+380977756827" className="footer__link">
+              <Link className="footer__link" to="tel:+380977756827">
                 +380 (97) 77-56-827
-              </a>
+              </Link>
             </li>
             <li className="footer__item">
-              <a
-                href="mailto:sneakpeek@gmail.com"
+              <Link
                 className="footer__link"
+                to="mailto:sneakpeek@gmail.com"
               >
                 sneakpeek@gmail.com
-              </a>
+              </Link>
             </li>
             <li className="footer__item">
-              <a href="#" className="footer__link">
+              <Link className="footer__link" to="/indevelopment">
                 {t("components.footer.sustain")}
-              </a>
+              </Link>
             </li>
             <li className="footer__item">
-              <a href="#" className="footer__link">
+              <Link className="footer__link" to="/indevelopment">
                 {t("components.footer.corporate")}
-              </a>
+              </Link>
             </li>
           </ul>
         </nav>

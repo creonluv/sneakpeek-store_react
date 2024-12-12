@@ -1,3 +1,4 @@
+import { Link } from "react-router-dom";
 import { useTranslation } from "react-i18next";
 
 import arrowBlack from "../../assets/img/icons/arrow-black.svg";
@@ -25,20 +26,20 @@ export const Blog = () => {
           <div className="blog__title-block title-block">
             <h2 className="title-block__title title-2">{t("components.blog.title")}</h2>
             <div className="title-block__button button-wrapper">
-              <a className="button button_md button_ghost" href="#">
+              <Link className="button button_md button_ghost" to="/indevelopment">
                 <img className="button__icon" src={arrowBlack} alt="arrow" />
                 <span>{t("components.blog.mainButton")}</span>
-              </a>
+              </Link>
             </div>
           </div>
           <div className="blog__items">
             <div className="blog__item ibg">
               <img src={blog1} alt="blog-1" />
               <div className="blog__button button-wrapper">
-                <a className="button button_lg button_transparent" href="#">
+                <Link className="button button_lg button_transparent" to="/indevelopment">
                   <span>{t("components.blog.button")}</span>
                   <img className="button__icon" src={arrowWhite} alt="arrow" />
-                </a>
+                </Link>
               </div>
               <div className="blog__content">
                 <h3 className="blog__title title-2">{t("components.blog.subtitle")}</h3>
@@ -51,10 +52,10 @@ export const Blog = () => {
             <div className="blog__item ibg">
               <img src={blog2} alt="blog-2" />
               <div className="blog__button button-wrapper">
-                <a className="button button_lg button_transparent" href="#">
+                <Link className="button button_lg button_transparent" to="/indevelopment">
                   <img className="button__icon" src={play} alt="arrow" />
                   <span>{t("components.blog.buttonWatch")}</span>
-                </a>
+                </Link>
               </div>
               <div className="blog__content">
                 <h3 className="blog__title title-2">{t("components.blog.subtitle")}</h3>
@@ -67,9 +68,9 @@ export const Blog = () => {
             <div className="blog__item ibg">
               <img src={blog3} alt="blog-3" />
               <div className="blog__button button-wrapper">
-                <a className="button button_lg button_reverse" href="#">
+                <Link className="button button_lg button_reverse" to="/indevelopment">
                   <span>{t("components.blog.buttonSubscribe")}</span>
-                </a>
+                </Link>
               </div>
               <div className="blog__content">
                 <p className="blog__text text-light">

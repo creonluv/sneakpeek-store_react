@@ -2,7 +2,6 @@ import { useEffect, useState } from "react";
 import { Link, useNavigate } from "react-router-dom";
 import { useTranslation } from "react-i18next";
 
-import { AsideMenu } from "./asidemenu/AsideMenu";
 import { logout } from "../../api/auth";
 
 import { useAppDispatch, useAppSelector } from "../../app/hooks";
@@ -115,7 +114,7 @@ export const Header = () => {
                 </option>
               </select>
             </div>
-            <Link to="/help">{t("components.header.help")}</Link>
+            <Link to="/indevelopment">{t("components.header.help")}</Link>
           </div>
         </div>
       </div>
@@ -219,57 +218,57 @@ export const Header = () => {
             </button>
             <ul className="header__menu menu-header">
               <li className="menu-header__item">
-                <a
-                  href="http://localhost:5173/catalog/?minPrice=0&maxPrice=10000&sortField=name&sortOrder=asc&page=1"
+                <Link
+                  to="/catalog/?minPrice=0&maxPrice=10000&sortField=name&sortOrder=asc&page=1"
                   className="menu-header__link"
                 >
                   {t("components.header.nav.item1")}
-                </a>
+                </Link>
               </li>
 
               <li className="menu-header__item">
-                <a
-                  href="http://localhost:5173/catalog/?minPrice=0&maxPrice=10000&sortField=name&sortOrder=asc&page=1&genderIds=1"
+                <Link
+                  to="/catalog/?minPrice=0&maxPrice=10000&sortField=name&sortOrder=asc&page=1&genderIds=1"
                   className="menu-header__link"
                 >
                   {t("components.header.nav.item2")}
-                </a>
+                </Link>
               </li>
 
               <li className="menu-header__item">
-                <a
-                  href="http://localhost:5173/catalog/?minPrice=0&maxPrice=10000&sortField=name&sortOrder=asc&page=1&genderIds=2"
+                <Link
+                  to="/catalog/?minPrice=0&maxPrice=10000&sortField=name&sortOrder=asc&page=1&genderIds=2"
                   className="menu-header__link"
                 >
                   {t("components.header.nav.item3")}
-                </a>
+                </Link>
               </li>
 
               <li className="menu-header__item">
-                <a
-                  href="http://localhost:5173/catalog/?minPrice=0&maxPrice=10000&sortField=name&sortOrder=asc&page=1&genderIds=3"
+                <Link
+                  to="/catalog/?minPrice=0&maxPrice=10000&sortField=name&sortOrder=asc&page=1&genderIds=3"
                   className="menu-header__link"
                 >
                   {t("components.header.nav.item4")}
-                </a>
+                </Link>
               </li>
 
               <li className="menu-header__item">
-                <a
-                  href="http://localhost:5173/catalog/?minPrice=0&maxPrice=10000&sortField=name&sortOrder=asc&page=1&genderIds=4"
+                <Link
+                  to="/catalog/?minPrice=0&maxPrice=10000&sortField=name&sortOrder=asc&page=1&genderIds=4"
                   className="menu-header__link"
                 >
                   {t("components.header.nav.item5")}
-                </a>
+                </Link>
               </li>
 
               <li className="menu-header__item">
-                <a
-                  href="http://localhost:5173/catalog/?minPrice=0&maxPrice=10000&sortField=name&sortOrder=asc&page=1"
+                <Link
+                  to="/catalog/?minPrice=0&maxPrice=10000&sortField=name&sortOrder=asc&page=1"
                   className="menu-header__link"
                 >
                   {t("components.header.nav.item6")}
-                </a>
+                </Link>
               </li>
             </ul>
           </nav>

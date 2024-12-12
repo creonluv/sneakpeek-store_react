@@ -22,8 +22,8 @@ import ProfilePage from "./pages/profile-page/ProfilePage";
 import NotFoundPage from "./pages/notfound-page/NotFoundPage";
 import { CheckoutPage } from "./pages/checkout-page";
 import { ThankYouPage } from "./pages/thankyou-page";
+import InDevelopmentPage from "./pages/indevelopment-page/InDevelopmentPage";
 
-import ScrollToTop from "./components/scrollToTop/scrollToTop";
 import ProtectedRoute from "./components/protected-route/ProtectedRoute";
 
 export const Root = () => {
@@ -54,6 +54,8 @@ export const Root = () => {
                         <Route path="checkout" element={<CheckoutPage />} />
                         <Route path="thankyou" element={<ThankYouPage />} />
                       </Route>
+
+                      <Route path="indevelopment" element={<InDevelopmentPage />} />
 
                       <Route path="*" element={<NotFoundPage />} />
                     </Route>

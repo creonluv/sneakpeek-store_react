@@ -25,11 +25,11 @@ const NotFoundPage = () => {
                 src={logo}
                 alt="logo.svg"
               />
-              <h1 className={`$"notfound__title" title-2`}>
+              <h1 className="notfound__title title-2">
                 {t("pages.notfound.title")}
               </h1>
             </div>
-            <div className="notfound__dropdownWrapper">
+            <div className="notfound__block">
               <p className="notfound__text">
                 {t("pages.notfound.text")}{" "}
                 <Link to="/" style={{ color: "blue" }}>

@@ -1,3 +1,4 @@
+import { Link } from "react-router-dom";
 import { Aside } from "../aside";
 
 import close from "../../../assets/img/icons/close.svg";
@@ -46,13 +47,13 @@ export const AsideAdaptive: React.FC<Props> = ({
         <div className="menu__header">
           <div className="menu__header_container">
             <div className="menu__header_content">
-              <a className="menu__logo" href="/">
+              <Link className="menu__logo" to="/">
                 <img
                   className="menu__logoimage"
                   src={logo}
                   alt="LOGO"
                 />
-              </a>
+              </Link>
 
               <button
                 onClick={() => setIsAsideOpen(false)}
