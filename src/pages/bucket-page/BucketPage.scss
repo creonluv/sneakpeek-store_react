@@ -27,12 +27,7 @@
 
   &__title,
   &__price {
-    @include header-3;
     font-weight: 600;
-  }
-
-  &__subtitle {
-    @include small-text;
   }
 
   &__slider {
@@ -132,10 +127,6 @@
     }
   }
 
-  &__gender {
-    @include header-4;
-  }
-
   &__total {
     display: flex;
     flex-direction: row;
@@ -169,10 +160,6 @@
     justify-content: space-between;
   }
 
-  &__infoKey {
-    @include body-text;
-  }
-
   &__infoValue {
     font-weight: 500;
   }
@@ -187,10 +174,6 @@
     display: flex;
     flex-direction: column;
     gap: 8px;
-  }
-
-  &__sizeTitle {
-    @include body-text;
   }
 
   &__sizes {

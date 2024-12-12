@@ -20,10 +20,10 @@ export const ThankYouPage = () => {
           </div>
 
           <div className="thankyoupage__information">
-            <p className="thankyoupage__order">
+            <p className="thankyoupage__order title-4">
               {t("pages.thankyou.order")} #17150810
             </p>
-            <p className="thankyoupage__desc">
+            <p className="thankyoupage__desc title-4">
               {t("pages.thankyou.wait")}
             </p>
           </div>

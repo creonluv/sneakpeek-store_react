@@ -120,17 +120,27 @@ h2,
 
 h3,
 .title-3 {
-  @include header-3;
+  font-size: 24px;
+  font-weight: 500;
+  line-height: 1.29;
+  letter-spacing: 0%;
+  color: var(--color-text);
 }
 
 h4,
 .title-4 {
-  @include header-4;
+  font-size: 16px;
+  font-weight: 400;
+  line-height: normal;
+  color: var(--color-text);
 }
 
 h5,
 .title-5 {
-  @include small-text;
+  font-size: 12px;
+  font-weight: 400;
+  line-height: normal;
+  color: var(--color-secondary-grey);
 }
 
 .title-block {
@@ -147,7 +157,10 @@ h5,
 }
 
 .text-muted {
-  @include body-text;
+  font-size: 16px;
+  font-weight: 400;
+  line-height: 21px;
+  color: var(--color-system-grey);
 }
 
 .text-reverse {

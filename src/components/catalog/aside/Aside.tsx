@@ -162,7 +162,7 @@ export const Aside: React.FC = () => {
           className={classNames(styles.filter__spoiler)}
           onClick={() => toggleSection("priceRange" as FilterType)}
         >
-          <p className={styles.filter__title}>
+          <p className={`${styles.filter__title} title-3`}>
             {t("components.catalog.aside.priceRange")}
           </p>
           <img

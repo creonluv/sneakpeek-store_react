@@ -193,15 +193,15 @@ export const ProductPage = () => {
                 <div className="product__info">
                   <div className="product__information">
                     <div className="product__description">
-                      <p className="product__producer">
+                      <p className="product__producer title-5">
                         {product?.producer.name}
                       </p>
 
-                      <h1 className="product__title title-2">
+                      <h1 className="product__title title-3">
                         {product?.name}
                       </h1>
 
-                      <p className="product__sex">{product?.gender.name}</p>
+                      <p className="product__sex title-4">{product?.gender.name}</p>
                     </div>
 
                     <div className="product__price">
@@ -220,16 +220,14 @@ export const ProductPage = () => {
                             (productInstanceInfo) => (
                               <div
                                 key={productInstanceInfo.product_instance_id}
-                                className={`product__size ${
-                                  productInstanceInfo.product_instance_id ===
+                                className={`product__size ${productInstanceInfo.product_instance_id ===
                                   productInstance
-                                    ? "product__size_checked"
-                                    : ""
-                                } ${
-                                  productInstanceInfo.present === 0
+                                  ? "product__size_checked"
+                                  : ""
+                                  } ${productInstanceInfo.present === 0
                                     ? "product__size_disabled"
                                     : ""
-                                }`}
+                                  }`}
                                 onClick={() =>
                                   handleSizeButton(
                                     productInstanceInfo.product_instance_id
@@ -245,9 +243,8 @@ export const ProductPage = () => {
 
                       <div className="product__buttons">
                         <button
-                          className={`button button_lg button_default button_full-size ${
-                            isAddedToBucket ? "active" : ""
-                          }`}
+                          className={`button button_lg button_default button_full-size ${isAddedToBucket ? "active" : ""
+                            }`}
                           type="submit"
                           onClick={handleBuyButton}
                         >
@@ -312,7 +309,7 @@ export const ProductPage = () => {
                     </div>
                   </div>
 
-                  <p className="product__serial">
+                  <p className="product__serial title-5">
                     {t("pages.product.code")} {rndNum}
                   </p>
                 </div>
@@ -325,9 +322,8 @@ export const ProductPage = () => {
                   {tabs.map((tab, index) => (
                     <div key={index} className="product__tabsButton">
                       <p
-                        className={`product__tablink ${
-                          index === activeTab ? "product__active" : ""
-                        }`}
+                        className={`product__tablink ${index === activeTab ? "product__active" : ""
+                          }`}
                         onClick={() => setActiveTab(index)}
                       >
                         {tab.title}

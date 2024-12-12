@@ -9,11 +9,15 @@
     flex-direction: column;
     gap: 24px;
     padding-block: 64px;
-    @include container;
+    padding-inline: 16px;
 
     @include on-desktop {
       flex-direction: row;
       justify-content: space-between;
+      width: 100%;
+      margin: 0 auto;
+      max-width: 1200px;
+      padding-inline: 0;
     }
   }
 

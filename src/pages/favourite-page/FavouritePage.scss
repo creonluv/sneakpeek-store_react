@@ -25,12 +25,7 @@
   }
 
   &__title {
-    @include header-3;
     font-weight: 600;
-  }
-
-  &__subtitle {
-    @include small-text;
   }
 
   &__slider {

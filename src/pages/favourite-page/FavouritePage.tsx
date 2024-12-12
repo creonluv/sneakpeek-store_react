@@ -64,7 +64,7 @@ export const FavouritePage = () => {
         <div className="favourite__body">
           <div className="favourite__header">
             <h1 className="favourite__title title-3">{t("pages.favourite.title")}</h1>
-            <span className="favourite__subtitle">{favourite.length}</span>
+            <span className="favourite__subtitle title-5">{favourite.length}</span>
           </div>
           <div className="favourite__box">
             <div className="favourite__productsBody">

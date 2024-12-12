@@ -73,21 +73,16 @@
     gap: 4px;
   }
 
-  &__producer {
-    @include small-text;
-  }
-
   &__title {
-    @include header-3;
     font-weight: 600;
   }
 
-  &__sex {
-    @include header-4;
-  }
-
   &__cost {
-    @include price;
+    font-size: 24px;
+    font-weight: 600;
+    line-height: 1.29;
+    letter-spacing: 0%;
+    color: var(--color-text);
   }
 
   &__block {
@@ -155,7 +150,6 @@
 
   &__serial {
     color: var(--color-system-grey);
-    @include small-text;
   }
 
   &__tabs {
@@ -206,10 +200,5 @@
     border: none;
     height: 1px;
     background-color: var(--color-secondary-grey);
-  }
-
-  &__tabContent {
-    @include body-text;
-    color: var(--color-text);
   }
 }

@@ -120,22 +120,22 @@ export const CheckoutPage = () => {
       delivery_details: {
         delivery_type:
           typeof data.delivery_type === "string" &&
-          data.delivery_type === "home"
+            data.delivery_type === "home"
             ? "home"
             : "branch",
         shipment_method: data.shipment_method,
         ...(typeof data.delivery_type === "string" &&
-        data.delivery_type === "home"
+          data.delivery_type === "home"
           ? {
-              state: data.state,
-              city: data.city,
-              street: data.street,
-              apartment: data.apartment,
-            }
+            state: data.state,
+            city: data.city,
+            street: data.street,
+            apartment: data.apartment,
+          }
           : {
-              branch_id: data.branch_id,
-              branch_address: data.branch_address,
-            }),
+            branch_id: data.branch_id,
+            branch_address: data.branch_address,
+          }),
       },
     };
 
@@ -174,7 +174,7 @@ export const CheckoutPage = () => {
             <h1 className="checkout__title title-3">
               {t("pages.checkout.title")}
             </h1>
-            <span className="checkout__subtitle">
+            <span className="checkout__subtitle title-5">
               {t("pages.checkout.steps")}
             </span>
           </div>
@@ -251,10 +251,10 @@ export const CheckoutPage = () => {
                       <h3 className="checkout__post_information_title">
                         Ukrposhta
                       </h3>
-                      <p className="checkout__post_information_date">
+                      <p className="checkout__post_information_date text-muted">
                         Expected delivery, Monday 19
                       </p>
-                      <p className="checkout__post_information_cost">
+                      <p className="checkout__post_information_cost title-5">
                         Free shipping on orders over $50
                       </p>
                     </div>
@@ -380,10 +380,10 @@ export const CheckoutPage = () => {
                       <h3 className="checkout__post_information_title">
                         New Post
                       </h3>
-                      <p className="checkout__post_information_date">
+                      <p className="checkout__post_information_date text-muted">
                         Expected delivery, Monday 17
                       </p>
-                      <p className="checkout__post_information_cost">
+                      <p className="checkout__post_information_cost title-5">
                         Free shipping on orders over $300
                       </p>
                     </div>
@@ -509,10 +509,10 @@ export const CheckoutPage = () => {
                       <h3 className="checkout__post_information_title">
                         Meest
                       </h3>
-                      <p className="checkout__post_information_date">
+                      <p className="checkout__post_information_date text-muted">
                         Expected delivery, Monday 18
                       </p>
-                      <p className="checkout__post_information_cost">
+                      <p className="checkout__post_information_cost title-5">
                         Free shipping on orders over $100
                       </p>
                     </div>
@@ -631,7 +631,7 @@ export const CheckoutPage = () => {
 
               <div className="checkout__block">
                 <div className="checkout__blockTitle">
-                  <h2 className="checkout__ttl">
+                  <h2 className="checkout__ttl title-3">
                     {t("pages.checkout.payment")}
                   </h2>
                 </div>
@@ -692,9 +692,8 @@ export const CheckoutPage = () => {
               <div className="button-wrapper">
                 <button
                   type="submit"
-                  className={`button button_lg button_default button_full-size ${
-                    isOrdered ? "active" : ""
-                  }`}
+                  className={`button button_lg button_default button_full-size ${isOrdered ? "active" : ""
+                    }`}
                 >
                   <span>{t("pages.checkout.button")}</span>
                   <img className="icon-arrow" src={arrowWhite} alt="" />
@@ -708,7 +707,7 @@ export const CheckoutPage = () => {
               ) : (
                 <div className="checkout__block">
                   <div className="checkout__blockTitle">
-                    <h2 className="checkout__ttl">
+                    <h2 className="checkout__ttl title-3">
                       {t("pages.checkout.order")}
                     </h2>
                   </div>
@@ -731,7 +730,7 @@ export const CheckoutPage = () => {
 
                       <div className="checkout__itemTop">
                         <div className="checkout__titles">
-                          <span className="checkout__subtitle">
+                          <span className="checkout__subtitle title-5">
                             {item.product_instance.product.producer.name}
                           </span>
 
@@ -740,7 +739,7 @@ export const CheckoutPage = () => {
                             className="checkout__link"
                             to={`/product/${item.product_instance.product.id}`}
                           >
-                            <h3 className="checkout__itemTitle">
+                            <h3 className="checkout__itemTitle title-4">
                               {item.product_instance.product.name}
                             </h3>
                           </Link>
@@ -748,17 +747,17 @@ export const CheckoutPage = () => {
 
                         <div className="checkout__bottom">
                           <div className="checkout__sizes">
-                            <span className="checkout__sizeTitle">
+                            <span className="checkout__sizeTitle title-5">
                               {t("pages.checkout.size")}
                             </span>
-                            <p className="checkout__size">
+                            <p className="checkout__size title-5">
                               {item.product_instance.size.name}
                             </p>
                           </div>
 
-                          <div className="checkout__price">
+                          <p className="checkout__price title-4">
                             ${item.product_instance.product.price}
-                          </div>
+                          </p>
                         </div>
                       </div>
                     </div>
@@ -766,14 +765,14 @@ export const CheckoutPage = () => {
 
                   <div className="checkout__information">
                     <div className="checkout__info">
-                      <p className="checkout__infoKey">
+                      <p className="checkout__infoKey text-muted">
                         {bucket?.cart_items.length} {t("pages.checkout.items")}
                       </p>
                       <p className="checkout__infoValue">${totalPrice}</p>
                     </div>
 
                     <div className="checkout__info">
-                      <p className="checkout__infoKey">
+                      <p className="checkout__infoKey text-muted">
                         {t("pages.checkout.delivery")}:
                       </p>
                       <p className="checkout__infoValue">$100</p>
@@ -783,10 +782,10 @@ export const CheckoutPage = () => {
                   <hr className="checkout__line" />
 
                   <div className="checkout__subtotal">
-                    <p className="checkout__title">
+                    <p className="checkout__title title-3">
                       {t("pages.checkout.total")}
                     </p>
-                    <p className="checkout__priceTotal">${totalPrice + 100}</p>
+                    <p className="checkout__priceTotal title-3">${totalPrice + 100}</p>
                   </div>
                 </div>
               )}

@@ -28,7 +28,6 @@
   }
 
   &__title {
-    @include header-3;
     font-weight: 600;
     text-transform: initial;
   }
@@ -55,7 +54,6 @@
   }
 
   &__error {
-    @include header-3;
     text-align: center;
     margin-top: 24px;
     grid-column: 1 / -1;

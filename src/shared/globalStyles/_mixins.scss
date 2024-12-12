@@ -43,17 +43,6 @@
   }
 }
 
-@mixin container {
-  padding-inline: 16px;
-
-  @include on-desktop {
-    width: 100%;
-    margin: 0 auto;
-    max-width: 1200px;
-    padding-inline: 0;
-  }
-}
-
 @mixin page-grid {
   --columns: 4;
 
@@ -75,82 +64,6 @@
       #{$_property}: $_toValue;
     }
   }
-}
-
-@mixin navbar-item-after {
-  &::after {
-    content: "";
-    position: absolute;
-    bottom: -1px;
-    left: 0;
-    height: 3px;
-    background-color: $main-text-color;
-    width: 100%;
-    display: block;
-  }
-}
-
-@mixin aside-item-after {
-  &::after {
-    content: "";
-    position: absolute;
-    bottom: -1px;
-    height: 2px;
-    background-color: $main-text-color;
-    width: 100%;
-    display: block;
-  }
-}
-
-@mixin header-3 {
-  font-size: 24px;
-  font-weight: 500;
-  line-height: 1.29;
-  letter-spacing: 0%;
-  color: var(--color-text);
-}
-
-@mixin header-4 {
-  font-size: 16px;
-  font-weight: 400;
-  line-height: normal;
-  color: var(--color-text);
-}
-
-@mixin body-text {
-  font-size: 16px;
-  font-weight: 400;
-  line-height: 21px;
-  color: var(--color-system-grey);
-}
-
-@mixin small-text {
-  font-size: 12px;
-  font-weight: 400;
-  line-height: normal;
-  color: var(--color-secondary-grey);
-}
-
-@mixin buttons {
-  font-weight: 500;
-  font-size: 16px;
-  line-height: 21px;
-}
-
-@mixin price {
-  font-size: 24px;
-  font-weight: 600;
-  line-height: 1.29;
-  letter-spacing: 0%;
-  color: var(--color-text);
-}
-
-@mixin titlecards {
-  font-weight: 600;
-  font-size: 16px;
-  line-height: 21px;
-  text-transform: uppercase;
-  color: var(--color-text);
 }
 
 @mixin adaptiveValue(

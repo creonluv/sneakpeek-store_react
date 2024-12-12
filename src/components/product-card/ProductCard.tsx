@@ -78,8 +78,8 @@ export const ProductCard: React.FC<Props> = ({
             type !== "category"
               ? `https://localhost:9091/api/images/${product?.main_photo_id}`
               : category?.id
-              ? photosOfCategory[category.id - 1]
-              : photosOfCategory[0]
+                ? photosOfCategory[category.id - 1]
+                : photosOfCategory[0]
           }
           alt="img-of-item"
         />
@@ -89,7 +89,7 @@ export const ProductCard: React.FC<Props> = ({
         <div className="card__information">
           <div className="card__description">
             {product && (
-              <p className="card__producer">
+              <p className="card__producer title-5">
                 {product?.producer?.name || "Unknown Producer"}
               </p>
             )}

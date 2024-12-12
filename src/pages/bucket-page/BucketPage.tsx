@@ -109,7 +109,7 @@ export const BucketPage = () => {
         <div className="bucket__body">
           <div className="bucket__header">
             <h1 className="bucket__title title-3">{t("pages.bucket.title")}</h1>
-            <span className="bucket__subtitle">
+            <span className="bucket__subtitle title-5">
               {bucket?.cart_items.length}
             </span>
           </div>
@@ -142,7 +142,7 @@ export const BucketPage = () => {
                         <div className="bucket__itemRightMain">
                           <div className="bucket__itemTop">
                             <div className="bucket__titles">
-                              <span className="bucket__subtitle">
+                              <span className="bucket__subtitle title-5">
                                 {item.product_instance.product.producer.name}
                               </span>
 
@@ -157,17 +157,17 @@ export const BucketPage = () => {
                               </Link>
                             </div>
 
-                            <div className="bucket__price">
+                            <div className="bucket__price title-3">
                               ${item.product_instance.product.price}
                             </div>
                           </div>
 
-                          <p className="bucket__gender">
+                          <p className="bucket__gender title-4">
                             {item.product_instance.product.gender.name}
                           </p>
 
                           <div className="bucket__sizes">
-                            <span className="bucket__sizeTitle">Size:</span>
+                            <span className="bucket__sizeTitle text-muted">Size:</span>
                             <p>{item.product_instance.size.name}</p>
                           </div>
                         </div>
@@ -215,7 +215,7 @@ export const BucketPage = () => {
 
               <div className="bucket__subtotal">
                 <p className="bucket__title">{t("pages.bucket.subtotal")}</p>
-                <p className="bucket__price">${totalPrice}</p>
+                <p className="bucket__price title-3">${totalPrice}</p>
               </div>
             </div>
 
@@ -226,7 +226,7 @@ export const BucketPage = () => {
                 <div className="bucket__main">
                   <div className="bucket__middle">
                     <div className="bucket__info">
-                      <p className="bucket__infoKey">
+                      <p className="bucket__infoKey text-muted">
                         {bucket?.cart_items.length} {t("pages.bucket.items")}
                       </p>
                       <p className="bucket__infoValue">${totalPrice}</p>
@@ -237,10 +237,10 @@ export const BucketPage = () => {
 
                   <div className="bucket__bottom">
                     <div className="bucket__total">
-                      <p className="bucket__price">
+                      <p className="bucket__price title-3">
                         {t("pages.bucket.total")}
                       </p>
-                      <p className="bucket__price">${totalPrice}</p>
+                      <p className="bucket__price title-3">${totalPrice}</p>
                     </div>
 
                     <div className="button-wrapper">
