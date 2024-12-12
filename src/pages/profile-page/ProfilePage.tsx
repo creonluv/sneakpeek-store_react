@@ -16,7 +16,7 @@ import { ChangePassword } from "../../components/change-password/ChangePassword"
 import "./ProfilePage.scss";
 import { ProfileSkeleton } from "../../components/profile-skeleton";
 
-const ProfilePage: React.FC = () => {
+export const ProfilePage: React.FC = () => {
   const { t } = useTranslation();
 
   const [profile, setProfile] = useState<Profile | null>(null);
@@ -129,9 +129,8 @@ const ProfilePage: React.FC = () => {
             <div className="profile__buttons">
               <div className="button-wrapper">
                 <button
-                  className={`profile__button button button_sm button_default ${
-                    !isChanged && !isImageChanged ? "_disabled" : ""
-                  }`}
+                  className={`profile__button button button_sm button_default ${!isChanged && !isImageChanged ? "_disabled" : ""
+                    }`}
                   onClick={handleSave}
                   disabled={!isChanged && !isImageChanged}
                 >
@@ -140,9 +139,8 @@ const ProfilePage: React.FC = () => {
               </div>
               <div className="button-wrapper">
                 <button
-                  className={`profile__button button button_sm button_reverse ${
-                    !isChanged && !isImageChanged ? "_disabled" : ""
-                  }`}
+                  className={`profile__button button button_sm button_reverse ${!isChanged && !isImageChanged ? "_disabled" : ""
+                    }`}
                   onClick={handleCancel}
                 >
                   <span>{t("pages.profile.cancel")}</span>
@@ -319,5 +317,3 @@ const ProfilePage: React.FC = () => {
     </section>
   );
 };
-
-export default ProfilePage;

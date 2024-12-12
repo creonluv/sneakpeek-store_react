@@ -1,7 +1,7 @@
 import { useNavigate } from "react-router-dom";
 import { useTranslation } from "react-i18next";
 
-import ButtonTitle from "../../components/button-title/ButtonTitle";
+import { ButtonTitle } from "../../components/button-title/ButtonTitle";
 
 import "./ThankYouPage.scss";
 

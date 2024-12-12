@@ -19,7 +19,7 @@ interface FormData {
   password: string;
 }
 
-const RegisterPage: React.FC = () => {
+export const RegisterPage: React.FC = () => {
   const navigate = useNavigate();
   const { t } = useTranslation();
 
@@ -136,5 +136,3 @@ const RegisterPage: React.FC = () => {
 
   );
 };
-
-export default RegisterPage;

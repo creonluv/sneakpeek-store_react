@@ -15,7 +15,7 @@ import logo from "../../assets/img/logo.svg";
 
 import "./LoginPage.scss";
 
-const LoginPage: React.FC = () => {
+export const LoginPage: React.FC = () => {
   const navigate = useNavigate();
   const { t } = useTranslation();
 
@@ -105,5 +105,3 @@ const LoginPage: React.FC = () => {
 
   );
 };
-
-export default LoginPage;

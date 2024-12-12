@@ -6,7 +6,7 @@ import logo from "../../assets/img/logo.svg";
 
 import "./NotFoundPage.scss";
 
-const NotFoundPage = () => {
+export const NotFoundPage = () => {
   const { t } = useTranslation();
   const navigate = useNavigate();
 
@@ -43,5 +43,3 @@ const NotFoundPage = () => {
     </section>
   );
 };
-
-export default NotFoundPage;

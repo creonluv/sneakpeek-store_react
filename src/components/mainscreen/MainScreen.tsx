@@ -1,6 +1,6 @@
 import { useTranslation } from "react-i18next";
 
-import ButtonTitle from "../button-title/ButtonTitle";
+import { ButtonTitle } from "../button-title/ButtonTitle";
 
 import bg from "../../assets/img/mainscreen/bg.jpg";
 

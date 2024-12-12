@@ -8,7 +8,7 @@ import { Categories } from "../../components/catalog/categories";
 import { ProductCard } from "../../components/product-card";
 import { Pagination } from "../../components/catalog/pagination";
 import { ProductCardSkeleton } from "../../components/product-card-skeleton/ProductCardSkeleton";
-import ScrollToTop from "../../components/scrollToTop/scrollToTop";
+import { ScrollToTop } from "../../components/scrollToTop/scrollToTop";
 
 import { useDispatch } from "react-redux";
 import { RootState } from "../../app/store";

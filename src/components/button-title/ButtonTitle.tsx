@@ -6,12 +6,10 @@ interface ButtonTitleProps {
   onClick: () => void;
 }
 
-const ButtonTitle: React.FC<ButtonTitleProps> = ({ onClick }) => {
+export const ButtonTitle: React.FC<ButtonTitleProps> = ({ onClick }) => {
   return (
     <button className="button-title" onClick={onClick}>
       <img src={banner} alt="Title Button" className="image" />
     </button>
   );
 };
-
-export default ButtonTitle;

@@ -5,7 +5,7 @@ import { checkAuth } from "../../api/auth";
 
 import { useAuthContext } from "../../context/AuthContext";
 
-const ProtectedRoute = () => {
+export const ProtectedRoute = () => {
   const { isAuth, signin, signout } = useAuthContext();
   const outlet = useOutlet();
   const [isLoading, setIsLoading] = useState(true);
@@ -36,5 +36,3 @@ const ProtectedRoute = () => {
 
   return outlet;
 };
-
-export default ProtectedRoute;

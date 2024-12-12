@@ -14,17 +14,17 @@ import App from "./App";
 import { MainPage } from "./pages/main-page";
 import { CatalogPage } from "./pages/catalog-page";
 import { ProductPage } from "./pages/product-page/ProductPage";
-import RegisterPage from "./pages/register-page/RegisterPage";
-import LoginPage from "./pages/login-page/LoginPage";
+import { RegisterPage } from "./pages/register-page/RegisterPage";
+import { LoginPage } from "./pages/login-page/LoginPage";
 import { BucketPage } from "./pages/bucket-page";
 import { FavouritePage } from "./pages/favourite-page";
-import ProfilePage from "./pages/profile-page/ProfilePage";
-import NotFoundPage from "./pages/notfound-page/NotFoundPage";
+import { ProfilePage } from "./pages/profile-page/ProfilePage";
+import { NotFoundPage } from "./pages/notfound-page/NotFoundPage";
 import { CheckoutPage } from "./pages/checkout-page";
 import { ThankYouPage } from "./pages/thankyou-page";
-import InDevelopmentPage from "./pages/indevelopment-page/InDevelopmentPage";
+import { InDevelopmentPage } from "./pages/indevelopment-page";
 
-import ProtectedRoute from "./components/protected-route/ProtectedRoute";
+import { ProtectedRoute } from "./components/protected-route/ProtectedRoute";
 
 export const Root = () => {
   return (

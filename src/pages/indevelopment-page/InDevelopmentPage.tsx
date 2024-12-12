@@ -5,7 +5,7 @@ import logo from "../../assets/img/logo.svg";
 
 import "./InDevelopmentPage.scss";
 
-const NotFoundPage = () => {
+export const InDevelopmentPage = () => {
   const { t } = useTranslation();
 
   return (
@@ -37,5 +37,3 @@ const NotFoundPage = () => {
     </section>
   );
 };
-
-export default NotFoundPage;
