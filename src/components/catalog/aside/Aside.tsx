@@ -3,8 +3,6 @@ import { useNavigate } from "react-router-dom";
 import { useTranslation } from "react-i18next";
 import { useDispatch } from "react-redux";
 
-import Slider from "rc-slider";
-
 import { useAsideContext } from "../../../context/AsideContext";
 
 import { useAppSelector } from "../../../app/hooks";
@@ -20,13 +18,14 @@ import {
 
 import { updateUrlWithFiltersAndPrice } from "../../../helpers/updateUrlWithParams";
 
+import { PriceRange } from "../price-range";
+
 import { FilterType } from "../../../types/Filters";
 
 import btnBack from "../../../assets/img/icons/btn-back.svg";
 import close from "../../../assets/img/icons/close.svg";
 
 import "./Aside.scss";
-import "rc-slider/assets/index.css";
 
 export const Aside: React.FC = () => {
   const dispatch = useDispatch();
@@ -179,23 +178,11 @@ export const Aside: React.FC = () => {
             alt="btn-back"
           />
         </div>
-        <div
+        <ul
           className="spoiler__content"
         >
-          <Slider
-            range
-            min={0}
-            max={10000}
-            value={priceRange}
-            onChange={(value) =>
-              handlePriceRangeChange(value as [number, number])
-            }
-            className="filter__slider"
-          />
-          <div className="filter__priceLabels">
-            <span>${priceRange[0]}</span> - <span>${priceRange[1]}</span>
-          </div>
-        </div>
+          <PriceRange min={0} max={10000} handleChange={handlePriceRangeChange} />
+        </ul>
       </div>
       {filterConfigs.map(({ type, label }) => {
         const items = getItems(type);
