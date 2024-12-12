@@ -1,18 +1,10 @@
 @use "../../shared/globalStyles/global" as *;
-@use "../../shared/globalStyles/mixins" as *;
 
 .catalog {
   &__body {
-    @include page-grid;
-  }
-
-  &__aside {
-    display: none;
-
-    @include on-tablet {
-      display: block;
-      grid-column: 1 / 3;
-    }
+    display: flex;
+    justify-content: space-between;
+    @include adaptiveValue("gap", 102, -40);
   }
 
   &__main {

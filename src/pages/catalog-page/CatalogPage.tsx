@@ -7,21 +7,19 @@ import { Aside } from "../../components/catalog/aside";
 import { Categories } from "../../components/catalog/categories";
 import { ProductCard } from "../../components/product-card";
 import { Pagination } from "../../components/catalog/pagination";
-import { AsideAdaptive } from "../../components/catalog/asideAdaptive";
 import { ProductCardSkeleton } from "../../components/product-card-skeleton/ProductCardSkeleton";
+import ScrollToTop from "../../components/scrollToTop/scrollToTop";
 
 import { useDispatch } from "react-redux";
 import { RootState } from "../../app/store";
 import { fetchFavourite } from "../../features/favourite";
 import { fetchProductsCatalog } from "../../features/catalogProducts";
 
-import { useAsideContext } from "../../context/AsideContext";
 import { useModalContext } from "../../context/ModalContext";
 
 import { useTranslation } from "react-i18next";
 
 import "./CatalogPage.scss";
-import ScrollToTop from "../../components/scrollToTop/scrollToTop";
 
 export const CatalogPage = () => {
   const { t } = useTranslation();
@@ -37,7 +35,6 @@ export const CatalogPage = () => {
   const { favourite } = useAppSelector((state: RootState) => state.favourite);
 
   const { showModal } = useModalContext();
-  const { isAsideOpen, toggleAside } = useAsideContext();
 
   useEffect(() => {
     dispatch(fetchProductsCatalog(location.search) as any);
@@ -73,9 +70,7 @@ export const CatalogPage = () => {
 
       <div className="catalog__container">
         <div className="catalog__body">
-          <div className="catalog__aside">
-            <Aside />
-          </div>
+          <Aside />
 
           <div className="catalog__main">
             <div className="catalog__chips">
@@ -83,13 +78,6 @@ export const CatalogPage = () => {
                 {t("pages.catalog.title")}
               </h1>
               <Categories />
-
-              {isAsideOpen && (
-                <AsideAdaptive
-                  isAsideOpen={isAsideOpen}
-                  setIsAsideOpen={toggleAside}
-                />
-              )}
             </div>
 
             {loading ? (

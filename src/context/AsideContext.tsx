@@ -1,8 +1,9 @@
 import React, { createContext, useContext, useState, ReactNode } from "react";
 
 type AsideContextType = {
-  isAsideOpen: boolean;
-  toggleAside: () => void;
+  isAside: boolean;
+  openAside: () => void;
+  closeAside: () => void;
 };
 
 const AsideContext = createContext<AsideContextType | undefined>(undefined);
@@ -10,14 +11,18 @@ const AsideContext = createContext<AsideContextType | undefined>(undefined);
 export const AsideProvider: React.FC<{ children: ReactNode }> = ({
   children,
 }) => {
-  const [isAsideOpen, setIsAsideOpen] = useState(false);
-
-  const toggleAside = () => {
-    setIsAsideOpen((prev) => !prev);
+  const [isAside, setIsAside] = useState(false);
+  const openAside = () => {
+    setIsAside(true);
+    document.body.classList.add("_lock");
+  };
+  const closeAside = () => {
+    setIsAside(false);
+    document.body.classList.remove("_lock");
   };
 
   return (
-    <AsideContext.Provider value={{ isAsideOpen, toggleAside }}>
+    <AsideContext.Provider value={{ isAside, openAside, closeAside }}>
       {children}
     </AsideContext.Provider>
   );

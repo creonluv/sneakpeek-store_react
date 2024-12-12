@@ -23,6 +23,7 @@ import close from "../../assets/img/icons/close.svg";
 import favicon from "../../assets/img/icons/favicon.svg"
 
 import "./Header.scss";
+import { useWindowSizeContext } from "../../context/WindowSizeContext";
 
 export const Header = () => {
   const [burger, setBurger] = useState(false);
@@ -31,6 +32,7 @@ export const Header = () => {
 
   const { isAuth, signout } = useAuthContext();
   const { showModal } = useModalContext();
+  const { width } = useWindowSizeContext();
 
   const dispatch = useAppDispatch();
   const navigate = useNavigate();
@@ -44,7 +46,7 @@ export const Header = () => {
 
   const handleBurger = () => {
     setBurger(!burger);
-    document.body.classList.toggle("_lock");
+    if (width < 768) document.body.classList.toggle("_lock");
   };
 
   const handleChangeInputSearch = (
@@ -221,6 +223,7 @@ export const Header = () => {
                 <Link
                   to="/catalog/?minPrice=0&maxPrice=10000&sortField=name&sortOrder=asc&page=1"
                   className="menu-header__link"
+                  onClick={handleBurger}
                 >
                   {t("components.header.nav.item1")}
                 </Link>
@@ -230,6 +233,7 @@ export const Header = () => {
                 <Link
                   to="/catalog/?minPrice=0&maxPrice=10000&sortField=name&sortOrder=asc&page=1&genderIds=1"
                   className="menu-header__link"
+                  onClick={handleBurger}
                 >
                   {t("components.header.nav.item2")}
                 </Link>
@@ -239,6 +243,7 @@ export const Header = () => {
                 <Link
                   to="/catalog/?minPrice=0&maxPrice=10000&sortField=name&sortOrder=asc&page=1&genderIds=2"
                   className="menu-header__link"
+                  onClick={handleBurger}
                 >
                   {t("components.header.nav.item3")}
                 </Link>
@@ -248,6 +253,7 @@ export const Header = () => {
                 <Link
                   to="/catalog/?minPrice=0&maxPrice=10000&sortField=name&sortOrder=asc&page=1&genderIds=3"
                   className="menu-header__link"
+                  onClick={handleBurger}
                 >
                   {t("components.header.nav.item4")}
                 </Link>
@@ -257,6 +263,7 @@ export const Header = () => {
                 <Link
                   to="/catalog/?minPrice=0&maxPrice=10000&sortField=name&sortOrder=asc&page=1&genderIds=4"
                   className="menu-header__link"
+                  onClick={handleBurger}
                 >
                   {t("components.header.nav.item5")}
                 </Link>
@@ -266,6 +273,7 @@ export const Header = () => {
                 <Link
                   to="/catalog/?minPrice=0&maxPrice=10000&sortField=name&sortOrder=asc&page=1"
                   className="menu-header__link"
+                  onClick={handleBurger}
                 >
                   {t("components.header.nav.item6")}
                 </Link>

@@ -1,11 +1,12 @@
 import React, { useState, useEffect, useMemo } from "react";
 import { useNavigate } from "react-router-dom";
 import { useTranslation } from "react-i18next";
+import { useDispatch } from "react-redux";
 
-import classNames from "classnames";
 import Slider from "rc-slider";
 
-import { useDispatch } from "react-redux";
+import { useAsideContext } from "../../../context/AsideContext";
+
 import { useAppSelector } from "../../../app/hooks";
 import { RootState } from "../../../app/store";
 import { fetchFilterData } from "../../../features/catalog";
@@ -22,14 +23,17 @@ import { updateUrlWithFiltersAndPrice } from "../../../helpers/updateUrlWithPara
 import { FilterType } from "../../../types/Filters";
 
 import btnBack from "../../../assets/img/icons/btn-back.svg";
+import close from "../../../assets/img/icons/close.svg";
 
-import styles from "./Aside.module.scss";
+import "./Aside.scss";
 import "rc-slider/assets/index.css";
 
 export const Aside: React.FC = () => {
   const dispatch = useDispatch();
   const navigate = useNavigate();
   const { t } = useTranslation();
+
+  const { isAside, closeAside } = useAsideContext();
 
   const {
     selectedCategories,
@@ -156,28 +160,27 @@ export const Aside: React.FC = () => {
   }, [selectedFilters, priceRange, navigate, selectedSort]);
 
   return (
-    <aside className={styles.aside}>
-      <div className={classNames(styles.aside__filter, styles.filter)}>
+    <aside className={`aside ${isAside ? "_active" : ""}`}>
+      <div className="aside__title-block">
+        <h2 className="aside__title title-3">{t("components.catalog.aside.filter")}</h2>
+        <img className="aside__close" src={close} onClick={closeAside} />
+      </div>
+      <div className={`aside__filter filter spoiler ${openSections["priceRange" as FilterType] ? "_active" : ""}`}>
         <div
-          className={classNames(styles.filter__spoiler)}
+          className="filter__title-block spoiler__header"
           onClick={() => toggleSection("priceRange" as FilterType)}
         >
-          <p className={`${styles.filter__title} title-3`}>
+          <h2 className="filter__title title-3">
             {t("components.catalog.aside.priceRange")}
-          </p>
+          </h2>
           <img
-            className={classNames(styles.filter__arrow, {
-              [styles.open]: openSections["priceRange" as FilterType],
-            })}
+            className="filter__arrow"
             src={btnBack}
             alt="btn-back"
           />
         </div>
-
         <div
-          className={classNames(styles.filter__content, {
-            [styles.open]: openSections["priceRange" as FilterType],
-          })}
+          className="spoiler__content"
         >
           <Slider
             range
@@ -187,64 +190,55 @@ export const Aside: React.FC = () => {
             onChange={(value) =>
               handlePriceRangeChange(value as [number, number])
             }
-            className={styles.filter__slider}
+            className="filter__slider"
           />
-          <div className={styles.filter__priceLabels}>
+          <div className="filter__priceLabels">
             <span>${priceRange[0]}</span> - <span>${priceRange[1]}</span>
           </div>
         </div>
       </div>
-
       {filterConfigs.map(({ type, label }) => {
         const items = getItems(type);
         const isOpen = openSections[type];
         const itemsToShow = showMore[type] ? items : items.slice(0, 4);
 
         return (
-          <div
-            className={classNames(styles.aside__filter, styles.filter)}
-            key={type}
-          >
+          <div className={`aside__filter filter spoiler ${isOpen ? "_active" : ""}`} key={type}>
             <div
-              className={classNames(styles.filter__spoiler)}
+              className="filter__title-block spoiler__header"
               onClick={() => toggleSection(type)}
             >
-              <p className={styles.filter__title}>{label}</p>
+              <p className="filter__title">{label}</p>
               <img
-                className={classNames(styles.filter__arrow, {
-                  [styles.open]: isOpen,
-                })}
+                className="filter__arrow"
                 src={btnBack}
                 alt="btn-back"
               />
             </div>
-
-            <ul
-              className={classNames(styles.filter__content, {
-                [styles.open]: isOpen,
-              })}
-            >
+            <ul className="spoiler__content">
               {itemsToShow.map((item) => (
-                <li className={styles.checkbox} key={item.id}>
-                  <label className={styles.checkbox__label}>
-                    <input
-                      type="checkbox"
-                      className={styles.checkbox__index}
-                      checked={isChecked(type, item.id)}
-                      onChange={() => handleCheckboxChange(type, item.id)}
-                      id={`checkbox-${item.id}`}
-                    />
+                <li className="filter__item checkbox" key={item.id}>
+                  <input
+                    type="checkbox"
+                    className="checkbox__index"
+                    checked={isChecked(type, item.id)}
+                    onChange={() => handleCheckboxChange(type, item.id)}
+                    id={`checkbox-${item.id}`}
+                  />
+                  <label className="checkbox__label" htmlFor={`checkbox-${item.id}`}>
                     {item.name}
                   </label>
                 </li>
               ))}
               {items.length > 4 && !showMore[type] && (
-                <button
-                  onClick={() => handleShowMoreClick(type)}
-                  className={styles.filter__showMoreButton}
-                >
-                  {t("components.catalog.aside.showMore")}
-                </button>
+                <div className="filter__item showmore-wrapper">
+                  <button
+                    onClick={() => handleShowMoreClick(type)}
+                    className="showmore"
+                  >
+                    {t("components.catalog.aside.showMore")}
+                  </button>
+                </div>
               )}
             </ul>
           </div>

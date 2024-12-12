@@ -109,14 +109,14 @@
     top: 0;
     left: -100%;
     width: 100%;
-    height: calc(100% - 70px);
+    height: 100%;
     padding: 15px;
     background-color: var(--color-background-reverse);
     overflow: scroll;
     opacity: 0;
     visibility: hidden;
     transition: all 0.3s ease;
-    z-index: 3;
+    z-index: 10;
 
     &._menu-open {
       opacity: 1;

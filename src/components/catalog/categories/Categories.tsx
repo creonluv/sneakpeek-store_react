@@ -34,7 +34,7 @@ export const Categories: React.FC = () => {
     (state: RootState) => state.catalog
   );
 
-  const { toggleAside } = useAsideContext();
+  const { openAside } = useAsideContext();
 
   const {
     selectedCategories,
@@ -173,7 +173,7 @@ export const Categories: React.FC = () => {
           ))}
         </select>
 
-        <button onClick={toggleAside} className="categories__toggleAsideButton">
+        <button onClick={openAside} className="categories__toggleAsideButton">
           <img src={aside} alt="Toggle Aside" />{" "}
         </button>
       </div>
