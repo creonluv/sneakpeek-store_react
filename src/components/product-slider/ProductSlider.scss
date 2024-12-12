@@ -51,11 +51,23 @@
 
   &__cards {
     display: flex;
-    gap: 20px;
+    gap: 16px;
   }
 
   &__card {
-    flex: 0 0 285px;
+    flex: 0 0 100%;
+
+    @include on-mobile-landscape {
+      flex: 0 0 calc(50% - 8px);
+    }
+
+    @include on-tablet {
+      flex: 0 0 calc(33.333333% - 32px / 3);
+    }
+
+    @include on-tablet-landscape {
+      flex: 0 0 calc(25% - 12px);
+    }
   }
 
   &__button_right {
