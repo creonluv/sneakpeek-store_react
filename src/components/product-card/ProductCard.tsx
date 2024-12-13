@@ -17,7 +17,6 @@ import { Category } from "../../types/Categories";
 import { Product as ProductFav } from "../../types/Bucket";
 
 import clockIcon from "../../assets/img/icons/clock.svg";
-import arrowIcon from "../../assets/img/icons/arrow.svg";
 import heartIcon from "../../assets/img/icons/heart.svg";
 import heartPressedIcon from "../../assets/img/icons/heart-pressed.svg";
 import shoesImg from "../../assets/img/categories/shoes.png";
@@ -78,8 +77,8 @@ export const ProductCard: React.FC<Props> = ({
             type !== "category"
               ? `https://localhost:9091/api/images/${product?.main_photo_id}`
               : category?.id
-                ? photosOfCategory[category.id - 1]
-                : photosOfCategory[0]
+              ? photosOfCategory[category.id - 1]
+              : photosOfCategory[0]
           }
           alt="img-of-item"
         />
@@ -99,20 +98,45 @@ export const ProductCard: React.FC<Props> = ({
               {category && category?.description}
             </p>
           </div>
-          {product && <p className="card__price">${product?.price || "N/A"}</p>}
+          {product && (
+            <p className="card__price">
+              {"current_discount" in product && product.current_discount ? (
+                <>
+                  <span className="card__price--discount">
+                    ${product.current_discount.discounted_price}
+                  </span>
+                  <span className="card__price--old">${product.price}</span>
+                </>
+              ) : (
+                <span>${product.price || "N/A"}</span>
+              )}
+            </p>
+          )}
         </div>
       </Link>
 
       <div className="card__infolabel">
-        <span>
-          {type !== "category" ? "new" : category?.infolabel || "N/A"}
-        </span>
+        {product && (
+          <>
+            <span>
+              {"current_discount" in product && product.current_discount
+                ? product.current_discount.type === "PERCENTAGE"
+                  ? `-${product.current_discount.value}%`
+                  : `-${product.current_discount.value}$`
+                : "new"}
+            </span>
 
-        <img
-          className="card__infolabel_icon"
-          src={type !== "category" ? clockIcon : arrowIcon}
-          alt=""
-        />
+            <img
+              className="card__infolabel_icon"
+              src={
+                "current_discount" in product && product.current_discount
+                  ? product.current_discount.type && ""
+                  : clockIcon
+              }
+              alt=""
+            />
+          </>
+        )}
       </div>
 
       {isAuth && product && (

@@ -182,7 +182,7 @@ export const ProductPage = () => {
               {loading ? (
                 <PhotoSliderSkeleton imagesCount={5} />
               ) : (
-                <PhotoSlider images={imagesArr} />
+                <PhotoSlider images={imagesArr} product={product} />
               )}
             </div>
 
@@ -201,12 +201,34 @@ export const ProductPage = () => {
                         {product?.name}
                       </h1>
 
-                      <p className="product__sex title-4">{product?.gender.name}</p>
+                      <p className="product__sex title-4">
+                        {product?.gender.name}
+                      </p>
                     </div>
 
-                    <div className="product__price">
+                    {/* <div className="product__price">
                       <p className="product__cost">${product?.price}</p>
-                    </div>
+                    </div> */}
+
+                    {product && (
+                      <p className="product__price">
+                        {"current_discount" in product &&
+                        product.current_discount ? (
+                          <>
+                            <span className="product__cost">
+                              ${product.current_discount.discounted_price}
+                            </span>
+                            <span className="product__price--old">
+                              ${product.price}
+                            </span>
+                          </>
+                        ) : (
+                          <span className="product__cost">
+                            ${product.price || "N/A"}
+                          </span>
+                        )}
+                      </p>
+                    )}
                   </div>
 
                   <div className="product__interactive">
@@ -220,14 +242,16 @@ export const ProductPage = () => {
                             (productInstanceInfo) => (
                               <div
                                 key={productInstanceInfo.product_instance_id}
-                                className={`product__size ${productInstanceInfo.product_instance_id ===
+                                className={`product__size ${
+                                  productInstanceInfo.product_instance_id ===
                                   productInstance
-                                  ? "product__size_checked"
-                                  : ""
-                                  } ${productInstanceInfo.present === 0
+                                    ? "product__size_checked"
+                                    : ""
+                                } ${
+                                  productInstanceInfo.present === 0
                                     ? "product__size_disabled"
                                     : ""
-                                  }`}
+                                }`}
                                 onClick={() =>
                                   handleSizeButton(
                                     productInstanceInfo.product_instance_id
@@ -243,8 +267,9 @@ export const ProductPage = () => {
 
                       <div className="product__buttons">
                         <button
-                          className={`button button_lg button_default button_full-size ${isAddedToBucket ? "active" : ""
-                            }`}
+                          className={`button button_lg button_default button_full-size ${
+                            isAddedToBucket ? "active" : ""
+                          }`}
                           type="submit"
                           onClick={handleBuyButton}
                         >
@@ -322,8 +347,9 @@ export const ProductPage = () => {
                   {tabs.map((tab, index) => (
                     <div key={index} className="product__tabsButton">
                       <p
-                        className={`product__tablink ${index === activeTab ? "product__active" : ""
-                          }`}
+                        className={`product__tablink ${
+                          index === activeTab ? "product__active" : ""
+                        }`}
                         onClick={() => setActiveTab(index)}
                       >
                         {tab.title}

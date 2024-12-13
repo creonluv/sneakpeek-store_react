@@ -43,11 +43,19 @@
   }
 
   &__price {
+    display: flex;
+    flex-direction: row;
+    gap: 8px;
     font-size: 24px;
-    font-weight: 600;
+    font-weight: 500;
     line-height: 1.29;
     letter-spacing: 0%;
     color: var(--color-text);
+  }
+
+  &__price--old {
+    color: var(--color-secondary-grey);
+    text-decoration: line-through;
   }
 
   &__information {

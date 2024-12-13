@@ -4,12 +4,14 @@ import arrowSlider from "../../assets/img/icons/scrollingArrows.svg";
 import clockIcon from "../../assets/img/icons/clock.svg";
 
 import "./PhotoSlider.scss";
+import { Product } from "../../types/Products";
 
 type Props = {
   images: string[] | undefined;
+  product: Product | null;
 };
 
-export const PhotoSlider: React.FC<Props> = ({ images }) => {
+export const PhotoSlider: React.FC<Props> = ({ images, product }) => {
   const initialImage = images && images.length > 0 ? images[0] : "";
 
   const [selectedImg, setSelectedImg] = useState(initialImage);
@@ -103,6 +105,30 @@ export const PhotoSlider: React.FC<Props> = ({ images }) => {
         <div className="slider__infolabel">
           new
           <img className="slider__infolabel_icon" src={clockIcon} alt="" />
+        </div>
+
+        <div className="slider__infolabel">
+          {product && (
+            <>
+              <span>
+                {"current_discount" in product && product.current_discount
+                  ? product.current_discount.type === "PERCENTAGE"
+                    ? `-${product.current_discount.value}%`
+                    : `-${product.current_discount.value}$`
+                  : "new"}
+              </span>
+
+              <img
+                className="slider__infolabel_icon"
+                src={
+                  "current_discount" in product && product.current_discount
+                    ? product.current_discount.type && ""
+                    : clockIcon
+                }
+                alt=""
+              />
+            </>
+          )}
         </div>
 
         <div className="slider__togles">
