@@ -89,11 +89,11 @@ export const PriceRange: React.FC<PriceRangeProps> = ({ min, max, handleChange }
           className="thumb thumb--right"
         />
 
-        <div className="slider">
-          <div className="slider__track" />
-          <div ref={range} className="slider__range" />
-          <div className="slider__left-value">{minVal}</div>
-          <div className="slider__right-value">{maxVal}</div>
+        <div className="pricerange">
+          <div className="pricerange__track" />
+          <div ref={range} className="pricerange__range" />
+          <div className="pricerange__left-value">{minVal}</div>
+          <div className="pricerange__right-value">{maxVal}</div>
         </div>
       </li>
     </>
