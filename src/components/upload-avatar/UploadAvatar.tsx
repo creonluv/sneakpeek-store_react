@@ -10,6 +10,7 @@ import { Profile } from "../../types/Profile";
 import noPhoto from "../../assets/img/no-photo.jpg";
 import close from "../../assets/img/icons/close.svg";
 
+import "../../shared/commonStyles/modal.scss";
 import "./UploadAvatar.scss";
 
 interface UploadAvatarProps {
@@ -72,8 +73,8 @@ export const UploadAvatar: React.FC<UploadAvatarProps> = ({
   }, [profile]);
 
   return (
-    <div className="avatar">
-      <img className="avatar__img" src={preview || noPhoto} alt="User" onClick={openModal} />
+    <div className="modal">
+      <img className="modal__img" src={preview || noPhoto} alt="User" onClick={openModal} />
       <Modal
         isOpen={isOpenModal}
         onRequestClose={closeModal}
@@ -93,9 +94,9 @@ export const UploadAvatar: React.FC<UploadAvatarProps> = ({
           },
         }}
       >
-        <div className="avatar__control">
-          <h3 className="avatar__title title-3">{t("components.upload")}</h3>
-          <img className="avatar__close" src={close} alt="Close" onClick={closeModal} />
+        <div className="modal__control avatar">
+          <h3 className="title-3">{t("components.upload")}</h3>
+          <img className="modal__close" src={close} alt="Close" onClick={closeModal} />
         </div>
         <Avatar
           width={avatarSize}

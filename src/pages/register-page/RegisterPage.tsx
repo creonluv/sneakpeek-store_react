@@ -11,7 +11,7 @@ import { RegisterPageMessages } from "../../shared/utils/modalMessages";
 
 import logo from "../../assets/img/logo.svg";
 
-import "./RegisterPage.scss";
+import "../../shared/commonStyles/authorization.scss";
 
 interface FormData {
   username: string;

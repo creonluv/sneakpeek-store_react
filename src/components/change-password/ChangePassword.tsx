@@ -11,7 +11,7 @@ import { ChangePasswordMessages } from "../../shared/utils/modalMessages";
 
 import close from "../../assets/img/icons/close.svg";
 
-import "./ChangePassword.scss";
+import "../../shared/commonStyles/modal.scss";
 
 interface PasswordData {
   old_password: string;
@@ -103,12 +103,12 @@ export const ChangePassword = () => {
           },
         }}
       >
-        <div className="changepassword__control">
-          <h3 className="changepassword__title title-3">
+        <div className="modal__control">
+          <h3 className="title-3">
             {t("components.changePassword.title")}
           </h3>
           <img
-            className="changepassword__close"
+            className="modal__close"
             src={close}
             alt="Close"
             onClick={closeModal}

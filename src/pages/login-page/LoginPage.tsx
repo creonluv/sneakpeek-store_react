@@ -13,7 +13,7 @@ import { AuthData } from "../../types/Auth";
 
 import logo from "../../assets/img/logo.svg";
 
-import "./LoginPage.scss";
+import "../../shared/commonStyles/authorization.scss";
 
 export const LoginPage: React.FC = () => {
   const navigate = useNavigate();

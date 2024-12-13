@@ -14,6 +14,7 @@ import { Blog } from "../../components/blog";
 import { Sale } from "../../components/sale";
 
 import "./MainPage.scss";
+import "../../shared/commonStyles/sale.scss";
 
 export const MainPage = () => {
   const dispatch = useDispatch();

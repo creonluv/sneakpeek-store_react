@@ -6,7 +6,7 @@ import { ModalState } from '../../types/modal';
 
 import close from "../../assets/img/icons/close.svg";
 
-import "./GlobalModal.scss";
+import "../../shared/commonStyles/modal.scss";
 
 interface GlobalModalProps {
   title: string;
