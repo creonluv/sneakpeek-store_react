@@ -93,19 +93,11 @@ export const PriceRange: React.FC<PriceRangeProps> = ({
           className="thumb thumb--right"
         />
 
-<<<<<<< HEAD
-        <div className="pricerange">
-          <div className="pricerange__track" />
-          <div ref={range} className="pricerange__range" />
-          <div className="pricerange__left-value">{minVal}</div>
-          <div className="pricerange__right-value">{maxVal}</div>
-=======
         <div className="price-range">
           <div className="price-range__track" />
           <div ref={range} className="price-range__range" />
           <div className="price-range__left-value">{minVal}</div>
           <div className="price-range__right-value">{maxVal}</div>
->>>>>>> 0cafa85 (fix: fix style conflicts in PriceRange)
         </div>
       </li>
     </>

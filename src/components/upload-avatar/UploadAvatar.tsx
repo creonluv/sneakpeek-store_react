@@ -74,7 +74,7 @@ export const UploadAvatar: React.FC<UploadAvatarProps> = ({
 
   return (
     <div className="modal">
-      <img className="modal__img" src={preview || noPhoto} alt="User" onClick={openModal} />
+      <img className="profile__img" src={preview || noPhoto} alt="User" onClick={openModal} />
       <Modal
         isOpen={isOpenModal}
         onRequestClose={closeModal}
