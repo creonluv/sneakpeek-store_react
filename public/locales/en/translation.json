@@ -13,7 +13,8 @@
         "item4": "Kids",
         "item5": "Brands",
         "item6": "Sale"
-      }
+      },
+      "help": "Help"
     },
     "buttonBack": "back",
     "blog": {
@@ -91,7 +92,8 @@
     "sale": {
       "title": "off for only this friday and get special gift",
       "text": "Subscribe to the our newsletter and get a bonus code for a 35% discount during this friday sale, plus a cool gift!!",
-      "button": "Go"
+      "button": "Go",
+      "email": "Enter email"
     },
     "upload": "Update image"
   },

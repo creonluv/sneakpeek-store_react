@@ -25,7 +25,7 @@ export const Sale = () => {
                   className="form-sale__input text-muted"
                   type="email"
                   name="email"
-                  placeholder="Enter email"
+                  placeholder={t("components.sale.email")}
                 />
                 <button className="form-sale__button" type="submit">
                   {t("components.sale.button")}

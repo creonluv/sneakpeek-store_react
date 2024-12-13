@@ -13,18 +13,19 @@
         "item4": "Kinder",
         "item5": "Marken",
         "item6": "Sale"
-      }
+      },
+      "help": "Hilfe"
     },
-    "buttonBack": "Zurück",
+    "buttonBack": "zurück",
     "blog": {
       "title": "Unser Blog",
-      "mainButton": "Alles ansehen",
-      "button": "Lookbook 2023",
-      "subtitle": "Neue Ausgabe",
-      "text": "Wir präsentieren die neuen Trends für 2023",
-      "buttonWatch": "Trends ansehen",
+      "mainButton": "Alle ansehen",
+      "button": "2023 Lookbook",
+      "subtitle": "Neuerscheinung",
+      "text": "Präsentation neuer Trends für 2023",
+      "buttonWatch": "Trend ansehen",
       "buttonSubscribe": "Abonnieren",
-      "content": "Abonnieren Sie unseren Newsletter und erhalten Sie exklusive Angebote und Rabatte."
+      "content": "Abonnieren Sie den Newsletter und erhalten Sie neue Angebote aus unserem Shop mit heißen Aktionen."
     },
     "catalog": {
       "aside": {
@@ -33,10 +34,12 @@
         "size": "Größe",
         "gender": "Geschlecht",
         "priceRange": "Preisspanne",
-        "showMore": "Mehr anzeigen"
+        "showMore": "Mehr anzeigen",
+        "filter": "Filtern",
+        "apply": "Anwenden"
       },
       "categories": {
-        "reset": "Alle Filter zurücksetzen",
+        "reset": "Alle Einstellungen zurücksetzen",
         "sort": "Sortieren nach"
       }
     },
@@ -49,37 +52,37 @@
     },
     "footer": {
       "catalog": "Katalog",
-      "discount": "Rabatte",
+      "discount": "Rabatt",
       "brands": "Marken",
       "office": "Büro",
       "service": "Service",
       "orders": "Bestellungen",
       "returns": "Rücksendungen",
-      "faq": "Häufige Fragen",
+      "faq": "FAQ",
       "policy": "Richtlinien",
       "about": "Über uns",
-      "loyal": "Treue",
+      "loyal": "Treueprogramm",
       "blog": "Blog",
       "sustainability": "Nachhaltigkeit",
-      "governance": "Unternehmensführung",
+      "governance": "Governance",
       "contacts": "Kontakte",
-      "sustain": "Nachhaltigkeit",
+      "sustain": "Nachhaltig",
       "corporate": "Unternehmen",
-      "copyright": "© Urheberrecht 2023 SNEAKPEEK. Alle Rechte vorbehalten."
+      "copyright": "© Copyright 2023 SNEAKPEEK. Alle Rechte vorbehalten."
     },
     "mainscreen": {
-      "text1": "Im gesamten Sommerstil ist dies",
-      "text2": "der beste Designer-Look"
+      "text1": "In der gesamten Sommerausstellung ist dies",
+      "text2": "der bisher beste Look des Designers"
     },
     "slider": {
       "new": "Neue Kollektion",
       "best": "Bestseller",
       "categories": "Kategorien",
-      "default": "Vielleicht gefällt Ihnen"
+      "default": "Das könnte Ihnen auch gefallen"
     },
     "timer": {
-      "title": "Sommerkollektion Ausverkauf - erhalten Sie",
-      "text": "Die begehrtesten Styles warten jetzt auf Sie. Finden Sie die besten modernen Looks an einem Ort.",
+      "title": "Sommerkollektion Rabatt erhalten",
+      "text": "Die begehrtesten Styles warten jetzt auf Sie. Finden Sie die besten modernen Outfits an einem Ort.",
       "button": "Jetzt kaufen",
       "days": "Tage",
       "hours": "Stunden",
@@ -87,36 +90,37 @@
       "seconds": "Sekunden"
     },
     "sale": {
-      "title": "Rabatt nur diesen Freitag und erhalten Sie ein spezielles Geschenk",
-      "text": "Abonnieren Sie unseren Newsletter und erhalten Sie einen Bonuscode für 35% Rabatt diesen Freitag sowie ein tolles Geschenk!",
-      "button": "Gehe zu"
+      "title": "Rabatt nur an diesem Freitag und ein besonderes Geschenk",
+      "text": "Abonnieren Sie unseren Newsletter und erhalten Sie einen Bonuscode für 35% Rabatt während des Freitagverkaufs sowie ein tolles Geschenk!",
+      "button": "Los",
+      "email": "E-Mail eingeben"
     },
     "upload": "Bild aktualisieren"
   },
   "pages": {
     "bucket": {
       "title": "Warenkorb",
-      "summary": "Warenkorbübersicht",
+      "summary": "Warenkorb Zusammenfassung",
       "items": "Artikel:",
       "total": "Gesamt:",
       "subtotal": "Zwischensumme:",
-      "button": "Zur Kasse"
+      "button": "Zur Kasse gehen"
     },
     "catalog": {
       "title": "Katalog",
-      "nothing": "Oh! Keine Artikel gefunden!"
+      "nothing": "Oooops! Keine Produkte gefunden!"
     },
     "checkout": {
-      "title": "Zur Kasse",
+      "title": "Kasse",
       "steps": "3 Schritte",
       "contact": "Kontaktinformationen",
       "name": "Name eingeben",
-      "select": "Filiale auswählen",
+      "select": "Postfiliale auswählen",
       "courier": "Kurierlieferung",
-      "state": "Region",
+      "state": "Bundesland",
       "city": "Stadt",
-      "branch": "Filiale Adresse",
-      "selectOffice": "Filiale auswählen",
+      "branch": "Filialadresse",
+      "selectOffice": "Postfiliale auswählen",
       "street": "Straße",
       "apartment": "Wohnung",
       "payment": "Zahlungsmethode",
@@ -125,7 +129,7 @@
       "order": "Ihre Bestellung",
       "size": "Größe:",
       "items": "Artikel:",
-      "delivery": "Lieferung:",
+      "delivery": "Lieferung",
       "total": "Gesamt:",
       "lastname": "Nachname eingeben",
       "card": "Karte*",
@@ -136,7 +140,7 @@
     },
     "login": {
       "title": "Anmelden",
-      "noAccount": "Kein Konto?",
+      "noAccount": "Noch kein Konto?",
       "register": "Hier registrieren",
       "username": "Benutzername",
       "password": "Passwort",
@@ -144,23 +148,23 @@
     },
     "notfound": {
       "title": "404, Seite nicht gefunden",
-      "text": "Entschuldigung, wir konnten die gesuchte Seite nicht finden.",
+      "text": "Entschuldigung, wir konnten die von Ihnen gesuchte Seite nicht finden.",
       "link": "Startseite"
     },
     "product": {
       "sizes": "Größen:",
-      "SP": "Versand und Zahlung",
-      "check": "Verfügbarkeit im Geschäft prüfen",
-      "code": "Artikelnummer:",
+      "SP": "Versand & Zahlung",
+      "check": "Verfügbarkeit im Laden prüfen",
+      "code": "Produktcode:",
       "desc": "Beschreibung",
-      "material": "Material und Pflege",
+      "material": "Material & Pflege",
       "reviews": "Bewertungen"
     },
     "profile": {
       "title": "Profil",
       "save": "Speichern",
       "cancel": "Abbrechen",
-      "info": "Grundinformationen",
+      "info": "Grundlegende Informationen",
       "address": "Adresse",
       "phone": "Telefonnummer eingeben",
       "email": "E-Mail eingeben",
@@ -169,31 +173,36 @@
       "street": "Straße eingeben",
       "apartment": "Wohnung eingeben",
       "city": "Stadt eingeben",
-      "state": "Region eingeben",
+      "state": "Bundesland eingeben",
       "contacts": "Kontakte",
-      "namev": "Name",
+      "namev":"Name",
       "surnamev": "Nachname",
       "emailv": "E-Mail",
       "phonev": "Telefon",
       "apartmentv": "Wohnung",
       "streetv": "Straße",
       "cityv": "Stadt",
-      "statev": "Region"
+      "statev": "Bundesland"
     },
     "register": {
-      "title": "Registrieren",
+      "title": "Registrierung",
       "noAccount": "Bereits ein Konto?",
       "link": "Anmelden",
       "button": "Registrieren",
-      "agree": "Ich habe die Nutzungsbedingungen und die Datenschutzrichtlinie gelesen und stimme zu",
+      "agree": "Ich habe die Allgemeinen Geschäftsbedingungen und die Datenschutzrichtlinie gelesen und stimme zu",
       "username": "Benutzername",
       "password": "Passwort",
       "email": "E-Mail"
     },
     "thankyou": {
       "orderSuccess": "Bestellung erfolgreich!",
-      "order": "Ihre Bestellung",
-      "wait": "Warten Sie auf eine Nachricht mit den Details"
+      "order":"Ihre Bestellung",
+      "wait": "Warten Sie auf eine SMS-Nachricht mit weiteren Details auf Ihrem Telefon"
+    },
+    "indevelopment": {
+      "title": "Seite in Entwicklung",
+      "text": "Diese Seite ist derzeit in Entwicklung. Bitte schauen Sie später für Updates vorbei!",
+      "link": "Startseite"
     }
   }
 }

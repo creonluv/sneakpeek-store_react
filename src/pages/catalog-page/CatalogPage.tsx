@@ -97,7 +97,7 @@ export const CatalogPage = () => {
 
             {!loading && products.content.length === 0 && (
               <p className="catalog__error title-3">
-                {t("components.pages.catalog.nothing")}
+                {t("pages.catalog.nothing")}
               </p>
             )}
 

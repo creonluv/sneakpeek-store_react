@@ -13,18 +13,19 @@
         "item4": "Niños",
         "item5": "Marcas",
         "item6": "Ofertas"
-      }
+      },
+      "help": "Ayuda"
     },
     "buttonBack": "Atrás",
     "blog": {
       "title": "Nuestro Blog",
-      "mainButton": "Ver todo",
-      "button": "Lookbook 2023",
+      "mainButton": "Ver Todo",
+      "button": "Catálogo 2023",
       "subtitle": "Nuevo Lanzamiento",
-      "text": "Presentando las nuevas tendencias de 2023",
-      "buttonWatch": "Ver tendencias",
+      "text": "Presentando nuevas tendencias de 2023",
+      "buttonWatch": "Ver Tendencias",
       "buttonSubscribe": "Suscribirse",
-      "content": "Suscríbete al boletín y recibe nuevas ofertas de nuestra tienda con grandes promociones."
+      "content": "Suscríbete al boletín y recibe nuevas ofertas de nuestra tienda con ofertas exclusivas."
     },
     "catalog": {
       "aside": {
@@ -33,7 +34,9 @@
         "size": "Tamaño",
         "gender": "Género",
         "priceRange": "Rango de precios",
-        "showMore": "Mostrar más"
+        "showMore": "Mostrar más",
+        "filter": "Filtrar",
+        "apply": "Aplicar"
       },
       "categories": {
         "reset": "Restablecer todos los ajustes",
@@ -46,7 +49,7 @@
       "newPassword": "Nueva contraseña",
       "confirmNewPassword": "Confirmar nueva contraseña",
       "button": "Enviar"
-    }, 
+    },
     "footer": {
       "catalog": "Catálogo",
       "discount": "Descuento",
@@ -55,7 +58,7 @@
       "service": "Servicio",
       "orders": "Pedidos",
       "returns": "Devoluciones",
-      "faq": "FAQ",
+      "faq": "Preguntas frecuentes",
       "policy": "Política",
       "about": "Acerca de",
       "loyal": "Lealtad",
@@ -78,18 +81,19 @@
       "default": "También te puede interesar"
     },
     "timer": {
-      "title": "Rebajas de verano obtén",
-      "text": "Los estilos más deseados te están esperando ahora mismo. Encuentra los mejores estilos de atuendos modernos en un solo lugar.",
-      "button": "Comprar ahora",
+      "title": "Oferta para la colección de verano",
+      "text": "Los estilos más deseados te esperan ahora mismo. Encuentra los mejores estilos de atuendos modernos en un solo lugar.",
+      "button": "Comprar Ahora",
       "days": "Días",
       "hours": "Horas",
       "minutes": "Minutos",
       "seconds": "Segundos"
     },
     "sale": {
-      "title": "descuento solo este viernes y recibe un regalo especial",
-      "text": "Suscríbete a nuestro boletín y obtén un código de bonificación para un descuento del 35% durante esta venta de viernes, ¡además de un regalo genial!",
-      "button": "Ir"
+      "title": "descuento solo por este viernes y obtén un regalo especial",
+      "text": "Suscríbete a nuestro boletín y obtén un código de bonificación para un descuento del 35% durante la venta de este viernes, ¡además de un regalo genial!",
+      "button": "Ir",
+      "email": "Introduce tu correo electrónico"
     },
     "upload": "Actualizar imagen"
   },
@@ -100,34 +104,34 @@
       "items": "artículos:",
       "total": "Total:",
       "subtotal": "Subtotal:",
-      "button": "Ir a la caja"
+      "button": "Ir a pagar"
     },
     "catalog": {
       "title": "Catálogo",
-      "nothing": "¡Ups! ¡No se encontraron productos!"
+      "nothing": "¡Vaya! ¡No se encontraron productos!"
     },
     "checkout": {
-      "title": "Caja",
+      "title": "Pagar",
       "steps": "3 pasos",
       "contact": "Información de contacto",
-      "name": "Ingrese nombre",
-      "select": "Seleccione oficina postal",
+      "name": "Introduce el nombre",
+      "select": "Seleccionar Oficina de Correos",
       "courier": "Entrega por mensajero",
       "state": "Estado",
       "city": "Ciudad",
       "branch": "Dirección de la sucursal",
-      "selectOffice": "Seleccione oficina postal",
+      "selectOffice": "Seleccionar Oficina de Correos",
       "street": "Calle",
       "apartment": "Apartamento",
-      "payment": "Método de pago",
-      "agree": "Estoy de acuerdo con los términos",
+      "payment": "Método de Pago",
+      "agree": "Acepto los términos",
       "button": "comprar ahora",
       "order": "Tu pedido",
       "size": "Tamaño:",
       "items": "artículos:",
-      "delivery": "Entrega:",
+      "delivery": "Entrega",
       "total": "Total:",
-      "lastname": "Ingrese apellido",
+      "lastname": "Introduce el apellido",
       "card": "Tarjeta*",
       "security": "Código de seguridad*"
     },
@@ -144,13 +148,13 @@
     },
     "notfound": {
       "title": "404, página no encontrada",
-      "text": "Lo sentimos, no pudimos encontrar la página que estabas buscando.",
+      "text": "Lo sentimos, no pudimos encontrar la página que buscabas.",
       "link": "Página principal"
     },
     "product": {
       "sizes": "Tamaños:",
       "SP": "Envío y Pago",
-      "check": "Consultar disponibilidad en tienda",
+      "check": "Comprobar disponibilidad en tienda",
       "code": "Código del producto:",
       "desc": "Descripción",
       "material": "Material y Cuidado",
@@ -160,16 +164,16 @@
       "title": "Perfil",
       "save": "Guardar",
       "cancel": "Cancelar",
-      "info": "Información básica",
+      "info": "Información Básica",
       "address": "Dirección",
-      "phone": "Ingrese número de teléfono",
-      "email": "Ingrese correo electrónico",
-      "surname": "Ingrese apellido",
-      "name": "Ingrese nombre",
-      "street": "Ingrese calle",
-      "apartment": "Ingrese apartamento",
-      "city": "Ingrese ciudad",
-      "state": "Ingrese estado",
+      "phone": "Introduce el número de teléfono",
+      "email": "Introduce el correo electrónico",
+      "surname": "Introduce el apellido",
+      "name": "Introduce el nombre",
+      "street": "Introduce la calle",
+      "apartment": "Introduce el apartamento",
+      "city": "Introduce la ciudad",
+      "state": "Introduce el estado",
       "contacts": "Contactos",
       "namev": "Nombre",
       "surnamev": "Apellido",
@@ -194,6 +198,11 @@
       "orderSuccess": "¡Pedido exitoso!",
       "order": "Tu pedido",
       "wait": "Espera un mensaje SMS en tu teléfono con más detalles"
+    },
+    "indevelopment": {
+      "title": "Página en Desarrollo",
+      "text": "Esta página está en desarrollo. ¡Vuelve más tarde para actualizaciones!",
+      "link": "Página principal"
     }
   }
 }

@@ -210,9 +210,9 @@ export const Aside: React.FC = () => {
                     className="checkbox__index"
                     checked={isChecked(type, item.id)}
                     onChange={() => handleCheckboxChange(type, item.id)}
-                    id={`checkbox-${item.id}`}
+                    id={`checkbox-${type}-${item.id}`}
                   />
-                  <label className="checkbox__label" htmlFor={`checkbox-${item.id}`}>
+                  <label className="checkbox__label" htmlFor={`checkbox-${type}-${item.id}`}>
                     {item.name}
                   </label>
                 </li>
