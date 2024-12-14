@@ -98,17 +98,33 @@ export const ProductCard: React.FC<Props> = ({
               {category && category?.description}
             </p>
           </div>
+
           {product && (
             <p className="card__price">
               {"current_discount" in product && product.current_discount ? (
                 <>
                   <span className="card__price--discount">
-                    ${product.current_discount.discounted_price}
+                    {Number.isInteger(product.current_discount.discounted_price)
+                      ? product.current_discount.discounted_price
+                      : product.current_discount.discounted_price.toFixed(2)}
+                    ₴
                   </span>
-                  <span className="card__price--old">${product.price}</span>
+                  <span className="card__price--old">
+                    {Number.isInteger(product.price)
+                      ? product.price
+                      : product.price.toFixed(2)}
+                    ₴
+                  </span>
                 </>
               ) : (
-                <span>${product.price || "N/A"}</span>
+                <span>
+                  {product.price
+                    ? Number.isInteger(product.price)
+                      ? product.price
+                      : product.price.toFixed(2)
+                    : "N/A"}
+                  ₴
+                </span>
               )}
             </p>
           )}
@@ -122,7 +138,7 @@ export const ProductCard: React.FC<Props> = ({
               {"current_discount" in product && product.current_discount
                 ? product.current_discount.type === "PERCENTAGE"
                   ? `-${product.current_discount.value}%`
-                  : `-${product.current_discount.value}$`
+                  : `-${product.current_discount.value}₴`
                 : "new"}
             </span>
 

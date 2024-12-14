@@ -164,7 +164,12 @@ export const CheckoutPage = () => {
     );
   }, []);
 
+  const calculateTotalAmount = useCallback((cartItems: CartItem[]) => {
+    return cartItems.reduce((total, item) => total + item.quantity, 0);
+  }, []);
+
   const totalPrice = calculateTotalPrice(bucket?.cart_items || []);
+  const totalAmount = calculateTotalAmount(bucket?.cart_items || []);
 
   return (
     <section className="checkout">
@@ -782,7 +787,7 @@ export const CheckoutPage = () => {
                   <div className="checkout__information">
                     <div className="checkout__info">
                       <p className="checkout__infoKey text-muted">
-                        {bucket?.cart_items.length} {t("pages.checkout.items")}
+                        {totalAmount} {t("pages.checkout.items")}
                       </p>
                       <p className="checkout__infoValue">${totalPrice}</p>
                     </div>
