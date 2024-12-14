@@ -120,22 +120,22 @@ export const CheckoutPage = () => {
       delivery_details: {
         delivery_type:
           typeof data.delivery_type === "string" &&
-            data.delivery_type === "home"
+          data.delivery_type === "home"
             ? "home"
             : "branch",
         shipment_method: data.shipment_method,
         ...(typeof data.delivery_type === "string" &&
-          data.delivery_type === "home"
+        data.delivery_type === "home"
           ? {
-            state: data.state,
-            city: data.city,
-            street: data.street,
-            apartment: data.apartment,
-          }
+              state: data.state,
+              city: data.city,
+              street: data.street,
+              apartment: data.apartment,
+            }
           : {
-            branch_id: data.branch_id,
-            branch_address: data.branch_address,
-          }),
+              branch_id: data.branch_id,
+              branch_address: data.branch_address,
+            }),
       },
     };
 
@@ -306,14 +306,17 @@ export const CheckoutPage = () => {
                       )}
                       <hr className="checkout__line" />
 
-                      <label>
+                      <div className="form__checkbox checkbox">
                         <input
                           type="checkbox"
                           className="checkbox__index"
+                          id="agree"
                           {...register("delivery_type")}
                         />
-                        {t("pages.checkout.courier")}
-                      </label>
+                        <label className="checkbox__label" htmlFor="agree">
+                          {t("pages.checkout.courier")}
+                        </label>
+                      </div>
 
                       {isCourierSelected && (
                         <div className="checkout__form_wrapper_courier">
@@ -435,14 +438,17 @@ export const CheckoutPage = () => {
                       )}
                       <hr className="checkout__line" />
 
-                      <label>
+                      <div className="form__checkbox checkbox">
                         <input
                           type="checkbox"
                           className="checkbox__index"
+                          id="agree"
                           {...register("delivery_type")}
                         />
-                        {t("pages.checkout.courier")}
-                      </label>
+                        <label className="checkbox__label" htmlFor="agree">
+                          {t("pages.checkout.courier")}
+                        </label>
+                      </div>
 
                       {isCourierSelected && (
                         <div className="checkout__form_wrapper_courier">
@@ -564,14 +570,17 @@ export const CheckoutPage = () => {
                       )}
                       <hr className="checkout__line" />
 
-                      <label>
+                      <div className="form__checkbox checkbox">
                         <input
                           type="checkbox"
                           className="checkbox__index"
+                          id="agree"
                           {...register("delivery_type")}
                         />
-                        {t("pages.checkout.courier")}
-                      </label>
+                        <label className="checkbox__label" htmlFor="agree">
+                          {t("pages.checkout.courier")}
+                        </label>
+                      </div>
 
                       {isCourierSelected && (
                         <div className="checkout__form_wrapper_courier">
@@ -673,14 +682,18 @@ export const CheckoutPage = () => {
 
                   <hr className="checkout__line" />
 
-                  <label>
+                  <div className="form__checkbox checkbox">
                     <input
                       type="checkbox"
                       className="checkbox__index"
+                      id="agree"
                       {...register("terms")}
                     />
-                    {t("pages.checkout.agree")}
-                  </label>
+                    <label className="checkbox__label" htmlFor="agree">
+                      {t("pages.checkout.agree")}
+                    </label>
+                  </div>
+
                   {errors.terms && (
                     <span className="checkout__error">
                       {errors.terms.message}
@@ -692,8 +705,9 @@ export const CheckoutPage = () => {
               <div className="button-wrapper">
                 <button
                   type="submit"
-                  className={`button button_lg button_default button_full-size ${isOrdered ? "active" : ""
-                    }`}
+                  className={`button button_lg button_default button_full-size ${
+                    isOrdered ? "active" : ""
+                  }`}
                 >
                   <span>{t("pages.checkout.button")}</span>
                   <img className="icon-arrow" src={arrowWhite} alt="" />
@@ -714,54 +728,56 @@ export const CheckoutPage = () => {
 
                   <hr className="checkout__line" />
 
-                  {bucket?.cart_items.map((item) => (
-                    <div key={item.id} className="checkout__item">
-                      <Link
-                        key={item.id}
-                        className="checkout__itemLeft"
-                        to={`/product/${item.product_instance.product.id}`}
-                      >
-                        <img
-                          className="checkout__img"
-                          src={`https://localhost:9091/api/images/${item.product_instance.product.main_photo_id}`}
-                          alt=""
-                        />
-                      </Link>
+                  <div className="checkout__final-item">
+                    {bucket?.cart_items.map((item) => (
+                      <div key={item.id} className="checkout__item">
+                        <Link
+                          key={item.id}
+                          className="checkout__itemLeft"
+                          to={`/product/${item.product_instance.product.id}`}
+                        >
+                          <img
+                            className="checkout__img"
+                            src={`https://localhost:9091/api/images/${item.product_instance.product.main_photo_id}`}
+                            alt=""
+                          />
+                        </Link>
 
-                      <div className="checkout__itemTop">
-                        <div className="checkout__titles">
-                          <span className="checkout__subtitle title-5">
-                            {item.product_instance.product.producer.name}
-                          </span>
-
-                          <Link
-                            key={item.id}
-                            className="checkout__link"
-                            to={`/product/${item.product_instance.product.id}`}
-                          >
-                            <h3 className="checkout__itemTitle title-4">
-                              {item.product_instance.product.name}
-                            </h3>
-                          </Link>
-                        </div>
-
-                        <div className="checkout__bottom">
-                          <div className="checkout__sizes">
-                            <span className="checkout__sizeTitle title-5">
-                              {t("pages.checkout.size")}
+                        <div className="checkout__itemTop">
+                          <div className="checkout__titles">
+                            <span className="checkout__subtitle title-5">
+                              {item.product_instance.product.producer.name}
                             </span>
-                            <p className="checkout__size title-5">
-                              {item.product_instance.size.name}
-                            </p>
+
+                            <Link
+                              key={item.id}
+                              className="checkout__link"
+                              to={`/product/${item.product_instance.product.id}`}
+                            >
+                              <h3 className="checkout__itemTitle title-4">
+                                {item.product_instance.product.name}
+                              </h3>
+                            </Link>
                           </div>
 
-                          <p className="checkout__price title-4">
-                            ${item.product_instance.product.price}
-                          </p>
+                          <div className="checkout__bottom">
+                            <div className="checkout__sizes">
+                              <span className="checkout__sizeTitle title-5">
+                                {t("pages.checkout.size")}
+                              </span>
+                              <p className="checkout__size title-5">
+                                {item.product_instance.size.name}
+                              </p>
+                            </div>
+
+                            <p className="checkout__price title-4">
+                              ${item.product_instance.product.price}
+                            </p>
+                          </div>
                         </div>
                       </div>
-                    </div>
-                  ))}
+                    ))}
+                  </div>
 
                   <div className="checkout__information">
                     <div className="checkout__info">
@@ -785,7 +801,9 @@ export const CheckoutPage = () => {
                     <p className="checkout__title title-3">
                       {t("pages.checkout.total")}
                     </p>
-                    <p className="checkout__priceTotal title-3">${totalPrice + 100}</p>
+                    <p className="checkout__priceTotal title-3">
+                      ${totalPrice + 100}
+                    </p>
                   </div>
                 </div>
               )}
