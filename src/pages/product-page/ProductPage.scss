@@ -52,12 +52,23 @@
   &__price {
     display: flex;
     flex-direction: row;
+    align-items: center;
     gap: 8px;
     font-size: 24px;
-    font-weight: 500;
+    font-weight: 600;
     line-height: 1.29;
     letter-spacing: 0%;
     color: var(--color-text);
+  }
+
+  &__price--old {
+    color: var(--color-text-muted);
+    font-size: 16px;
+    text-decoration: line-through;
+  }
+
+  &__price--discount {
+    color: var(--color-text-accent);
   }
 
   &__interactive_top {

@@ -3,7 +3,8 @@
 .slider {
   display: flex;
   flex-direction: column;
-  gap: 16px;
+  gap: 20px;
+  max-height: 590px;
 
   @include on-desktop {
     flex-direction: row;
@@ -12,20 +13,10 @@
   &__miniPhoto {
     display: flex;
     flex-direction: row;
-    gap: 24px;
+    gap: 20px;
+    overflow-y: auto;
     cursor: pointer;
-
-    @media screen and (max-width: 1100px) {
-      img:nth-child(n + 6) {
-        display: none;
-      }
-    }
-
-    @media screen and (max-width: 911px) {
-      img:nth-child(n + 5) {
-        display: none;
-      }
-    }
+    min-height: 82px;
 
     @include on-desktop {
       flex-direction: column;
@@ -33,10 +24,7 @@
   }
 
   &__photo {
-    box-sizing: border-box;
-
-    width: 82px;
-    height: 82px;
+    max-height: 82px;
     border-radius: 5px;
   }
 
@@ -76,8 +64,7 @@
     width: 100%;
     height: 100%;
     display: none;
-    background-repeat: repeat;
-    background-size: 200%;
+    background-size: 250%;
     pointer-events: none;
   }
 

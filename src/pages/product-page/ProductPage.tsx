@@ -206,25 +206,36 @@ export const ProductPage = () => {
                       </p>
                     </div>
 
-                    {/* <div className="product__price">
-                      <p className="product__cost">${product?.price}</p>
-                    </div> */}
-
                     {product && (
                       <p className="product__price">
                         {"current_discount" in product &&
                         product.current_discount ? (
                           <>
-                            <span className="product__cost">
-                              ${product.current_discount.discounted_price}
+                            <span className="product__price--discount">
+                              {Number.isInteger(
+                                product.current_discount.discounted_price
+                              )
+                                ? product.current_discount.discounted_price
+                                : product.current_discount.discounted_price.toFixed(
+                                    2
+                                  )}
+                              ₴
                             </span>
                             <span className="product__price--old">
-                              ${product.price}
+                              {Number.isInteger(product.price)
+                                ? product.price
+                                : product.price.toFixed(2)}
+                              ₴
                             </span>
                           </>
                         ) : (
-                          <span className="product__cost">
-                            ${product.price || "N/A"}
+                          <span>
+                            {product.price
+                              ? Number.isInteger(product.price)
+                                ? product.price
+                                : product.price.toFixed(2)
+                              : "N/A"}
+                            ₴
                           </span>
                         )}
                       </p>

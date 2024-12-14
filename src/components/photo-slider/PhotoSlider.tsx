@@ -39,6 +39,7 @@ export const PhotoSlider: React.FC<Props> = ({ images, product }) => {
 
       setSelectedImg(images[nextIndex]);
       setCurrentIndex(nextIndex);
+      setZoomStyle({ display: "none", backgroundPosition: "0% 0%" });
     }
   };
 
@@ -48,6 +49,7 @@ export const PhotoSlider: React.FC<Props> = ({ images, product }) => {
 
       setSelectedImg(images[prevIndex]);
       setCurrentIndex(prevIndex);
+      setZoomStyle({ display: "none", backgroundPosition: "0% 0%" });
     }
   };
 
@@ -114,7 +116,7 @@ export const PhotoSlider: React.FC<Props> = ({ images, product }) => {
                 {"current_discount" in product && product.current_discount
                   ? product.current_discount.type === "PERCENTAGE"
                     ? `-${product.current_discount.value}%`
-                    : `-${product.current_discount.value}$`
+                    : `-${product.current_discount.value}₴`
                   : "new"}
               </span>
 
