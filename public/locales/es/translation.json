@@ -95,7 +95,19 @@
       "button": "Ir",
       "email": "Introduce tu correo electrónico"
     },
-    "upload": "Actualizar imagen"
+    "upload": "Actualizar imagen",
+    "forgotPassword": {
+      "title": "¿Olvidó su contraseña?",
+      "text": "¿Olvidó su contraseña?",
+      "link": "Restablécela aquí",
+      "textInitiate": "Ingrese su dirección de correo electrónico a continuación, y le enviaremos un código para restablecer su contraseña.",
+      "buttonInitiate": "Enviar código",
+      "buttonInitiateResend": "Reenviar código",
+      "textValidate": "Ingrese el código que enviamos a su correo electrónico. Si no lo recibió, haga clic en el botón para reenviarlo.",
+      "buttonValidate": "Verificar código",
+      "textComplete": "Ingrese su nueva contraseña para restablecerla.",
+      "buttonComplete": "Actualizar contraseña"
+    }
   },
   "pages": {
     "bucket": {
@@ -204,5 +216,10 @@
       "text": "Esta página está en desarrollo. ¡Vuelve más tarde para actualizaciones!",
       "link": "Página principal"
     }
+  },
+  "placeholder": {
+    "email": "Ingrese correo electrónico",
+    "code": "Código",
+    "new_password": "Ingrese nueva contraseña"
   }
 }

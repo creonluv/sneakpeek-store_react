@@ -95,7 +95,19 @@
       "button": "Los",
       "email": "E-Mail eingeben"
     },
-    "upload": "Bild aktualisieren"
+    "upload": "Bild aktualisieren",
+    "forgotPassword": {
+      "title": "Passwort vergessen",
+      "text": "Passwort vergessen?",
+      "link": "Hier zurücksetzen",
+      "textInitiate": "Geben Sie Ihre E-Mail-Adresse ein, und wir senden Ihnen einen Code, um Ihr Passwort zurückzusetzen.",
+      "buttonInitiate": "Code senden",
+      "buttonInitiateResend": "Code erneut senden",
+      "textValidate": "Geben Sie den Code ein, den wir an Ihre E-Mail gesendet haben. Wenn Sie ihn nicht erhalten haben, klicken Sie auf die Schaltfläche, um ihn erneut zu senden.",
+      "buttonValidate": "Code verifizieren",
+      "textComplete": "Geben Sie Ihr neues Passwort ein, um es zurückzusetzen.",
+      "buttonComplete": "Passwort aktualisieren"
+    }
   },
   "pages": {
     "bucket": {
@@ -204,5 +216,10 @@
       "text": "Diese Seite ist derzeit in Entwicklung. Bitte schauen Sie später für Updates vorbei!",
       "link": "Startseite"
     }
+  },
+  "placeholder": {
+    "email": "E-Mail eingeben",
+    "code": "Code eingeben",
+    "new_password": "Neues Passwort eingeben"
   }
 }

@@ -9,6 +9,8 @@ import { useModalContext } from "../../context/ModalContext";
 
 import { LoginPageMessages } from "../../shared/utils/modalMessages";
 
+import { ForgotPassword } from "../../components/forgot-password";
+
 import { AuthData } from "../../types/Auth";
 
 import logo from "../../assets/img/logo.svg";
@@ -88,6 +90,7 @@ export const LoginPage: React.FC = () => {
                 required
               />
             </div>
+            <ForgotPassword />
             <div className="form__button">
               <div className="form__button button-wrapper">
                 <button

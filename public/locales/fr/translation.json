@@ -95,7 +95,19 @@
       "button": "Aller",
       "email": "Entrer l'email"
     },
-    "upload": "Mettre à jour l'image"
+    "upload": "Mettre à jour l'image",
+    "forgotPassword": {
+      "title": "Mot de passe oublié",
+      "text": "Mot de passe oublié ?",
+      "link": "Réinitialisez ici",
+      "textInitiate": "Entrez votre adresse e-mail ci-dessous, et nous vous enverrons un code pour réinitialiser votre mot de passe.",
+      "buttonInitiate": "Envoyer le code",
+      "buttonInitiateResend": "Renvoyer le code",
+      "textValidate": "Entrez le code envoyé à votre e-mail. Si vous ne l'avez pas reçu, cliquez sur le bouton pour le renvoyer.",
+      "buttonValidate": "Vérifier le code",
+      "textComplete": "Entrez votre nouveau mot de passe ci-dessous pour le réinitialiser.",
+      "buttonComplete": "Mettre à jour le mot de passe"
+    }
   },
   "pages": {
     "bucket": {
@@ -204,5 +216,10 @@
       "text": "Cette page est actuellement en cours de développement. Revenez plus tard pour des mises à jour!",
       "link": "Page principale"
     }
+  },
+  "placeholder": {
+    "email": "Entrez l'email",
+    "code": "Code",
+    "new_password": "Entrez le nouveau mot de passe"
   }
 }

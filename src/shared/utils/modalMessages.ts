@@ -14,6 +14,11 @@ type ModalState = 'error' | 'success' | 'warning';
 export enum LoginPageMessages {
   LOGIN_ERROR = "LOGIN_ERROR",
   LOGIN_SUCCESS = "LOGIN_SUCCESS",
+  INVALID_EMAIL = "INVALID_EMAIL",
+  EMAIL_NOT_FOUND = "EMAIL_NOT_FOUND",
+  CODE_ERROR = "CODE_ERROR",
+  PASSWORD_UPDATE_SUCCESS = "PASSWORD_UPDATE_SUCCESS",
+  PASSWORD_UPDATE_ERROR = "PASSWORD_UPDATE_ERROR",
 }
 
 export enum RegisterPageMessages {
@@ -81,6 +86,31 @@ const ModalMessages: Record<messages, { title: string; description: string; stat
     title: "Login Success",
     description: "You have successfully logged in. Redirecting to the homepage...",
     state: 'success',
+  },
+  [LoginPageMessages.INVALID_EMAIL]: {
+    title: "Invalid Email",
+    description: "The email address you entered is not valid. Please check and try again.",
+    state: "error",
+  },
+  [LoginPageMessages.EMAIL_NOT_FOUND]: {
+    title: "Email Not Found",
+    description: "The email address you entered does not exist in our system. Please check and try again or create a new account.",
+    state: "error",
+  },
+  [LoginPageMessages.CODE_ERROR]: {
+    title: "Verification Code Error",
+    description: "The code you entered is incorrect or expired. Please try again or request a new code.",
+    state: "error",
+  },
+  [LoginPageMessages.PASSWORD_UPDATE_SUCCESS]: {
+    title: "Password Updated",
+    description: "Your password has been updated successfully. You can now log in with your new password.",
+    state: "success",
+  },
+  [LoginPageMessages.PASSWORD_UPDATE_ERROR]: {
+    title: "Password Update Error",
+    description: "An error occurred while updating your password. Please try again later.",
+    state: "error",
   },
 
   // Register page modal messages

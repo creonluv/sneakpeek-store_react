@@ -6,6 +6,25 @@ export interface AuthData {
 
 export interface AuthResponse {}
 
+export interface ResetPasswordInitiateData {
+  email: string;
+}
+
+export interface ResetPasswordValidateOTPData {
+  email: string;
+  otp: number;
+}
+
+export interface ResetPasswordCompleteData {
+  email: string;
+  otp: number;
+  new_password: string;
+}
+
+export interface ResetPasswordResponse {
+  
+}
+
 export enum ErrorType {
   INVALID_REGISTRATION_DATA = "INVALID_REGISTRATION_DATA",
   INVALID_LOGIN_DATA = "INVALID_LOGIN_DATA",

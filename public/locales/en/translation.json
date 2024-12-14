@@ -95,7 +95,19 @@
       "button": "Go",
       "email": "Enter email"
     },
-    "upload": "Update image"
+    "upload": "Update image",
+    "forgotPassword": {
+      "title": "Forgot password",
+      "text": "Forgot your password?",
+      "link": "Reset it here",
+      "textInitiate": "Enter your email address below, and we'll send you a code to reset your password.",
+      "buttonInitiate": "Send code",
+      "buttonInitiateResend": "Resend code",
+      "textValidate": "Enter the code we sent to your email. If you didn’t receive it, click the button to resend.",
+      "buttonValidate": "Verify code",
+      "textComplete": "Enter your new password below to reset it.",
+      "buttonComplete": "Update password"
+    }
   },
   "pages": {
     "bucket": {
@@ -204,5 +216,10 @@
       "text": "This page is currently under development. Please check back later for updates!",
       "link": "Main page"
     }
+  },
+  "placeholder": {
+    "email": "Enter email",
+    "code": "Enter code",
+    "new_password": "Enter new password"
   }
 }

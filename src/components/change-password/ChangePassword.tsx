@@ -60,20 +60,20 @@ export const ChangePassword = () => {
 
     const { old_password, new_password, confirm_new_password } = formData;
 
+    if (!old_password || !new_password || !confirm_new_password) {
+      showModal(ChangePasswordMessages.ALL_FIELDS_REQUIRED);
+      return;
+    }
+
+    if (new_password !== confirm_new_password) {
+      showModal(ChangePasswordMessages.INVALID_PASSWORD_CONFIRMATION);
+      return;
+    }
+
     try {
-      if (!old_password || !new_password || !confirm_new_password) {
-        showModal(ChangePasswordMessages.ALL_FIELDS_REQUIRED);
-        return;
-      }
-
-      if (new_password !== confirm_new_password) {
-        showModal(ChangePasswordMessages.INVALID_PASSWORD_CONFIRMATION);
-        return;
-      }
-
       await changePassword({ old_password, new_password });
       showModal(ChangePasswordMessages.CHANGE_PASSWORD_SUCCESS);
-    } catch (error) {
+    } catch {
       showModal(ChangePasswordMessages.CHANGE_PASSWORD_ERROR);
     } finally {
       closeModal();
