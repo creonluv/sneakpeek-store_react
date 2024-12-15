@@ -14,7 +14,6 @@ import { useAppDispatch, useAppSelector } from "../../app/hooks";
 
 import { Product } from "../../types/Products";
 import { Category } from "../../types/Categories";
-import { Product as ProductFav } from "../../types/Bucket";
 
 import clockIcon from "../../assets/img/icons/clock.svg";
 import heartIcon from "../../assets/img/icons/heart.svg";
@@ -27,7 +26,7 @@ import jeensImg from "../../assets/img/categories/jeans.png";
 import "./ProductCard.scss";
 
 type Props = {
-  product?: Product | ProductCatalog | ProductFav;
+  product?: Product | ProductCatalog;
   type: string;
   category?: Category;
   id: number;
@@ -101,12 +100,12 @@ export const ProductCard: React.FC<Props> = ({
 
           {product && (
             <p className="card__price">
-              {"current_discount" in product && product.current_discount ? (
+              {"current_discount" in product && product.final_price ? (
                 <>
                   <span className="card__price--discount">
-                    {Number.isInteger(product.current_discount.discounted_price)
-                      ? product.current_discount.discounted_price
-                      : product.current_discount.discounted_price.toFixed(2)}
+                    {Number.isInteger(product.final_price)
+                      ? product.final_price
+                      : product.final_price.toFixed(2)}
                     ₴
                   </span>
                   <span className="card__price--old">

@@ -18,13 +18,13 @@ type Discount = {
   name: string;
   type: "PERCENTAGE" | "FIXED_AMOUNT";
   value: number;
-  discounted_price: number;
   end_date: string;
 };
 
 export interface Product {
   id: number;
   producer: Producer;
+  final_price: number;
   category: Category;
   current_discount?: Discount;
   gender: Gender;

@@ -1,3 +1,5 @@
+import { Product } from "./Products";
+
 interface Color {
   id: number;
   name: string;
@@ -6,38 +8,6 @@ interface Color {
 interface Size {
   id: number;
   name: string;
-}
-
-interface MainPhoto {
-  id: number;
-}
-
-interface Category {
-  id: number;
-  name: string;
-}
-
-interface Gender {
-  id: number;
-  name: string;
-}
-
-interface Producer {
-  id: number;
-  name: string;
-}
-
-export interface Product {
-  id: number;
-  producer: Producer;
-  category: Category;
-  gender: Gender;
-  name: string;
-  description: string;
-  mainPhoto: MainPhoto;
-  images: number[];
-  price: number;
-  main_photo_id: number;
 }
 
 interface ProductInstance {
@@ -54,8 +24,16 @@ export interface CartItem {
   quantity: number;
 }
 
+export interface PromoCodeInfo {
+  code: string;
+  type: "PERCENTAGE" | "FIXED";
+  value: number;
+  end_date: string;
+}
+
 export interface Bucket {
   id: number;
+  applied_promo_code: PromoCodeInfo | null;
   cart_items: CartItem[];
   user_id: number;
 }

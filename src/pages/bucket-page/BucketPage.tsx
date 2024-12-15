@@ -25,6 +25,7 @@ import arrowWhite from "../../assets/img/icons/arrow-white.svg";
 import del from "../../assets/img/icons/del.svg";
 
 import "./BucketPage.scss";
+import { applyPromocode, deletePromocode } from "../../api/promocode";
 
 export const BucketPage = () => {
   const { t } = useTranslation();
@@ -33,6 +34,7 @@ export const BucketPage = () => {
 
   const [, setMessageCounter] = useState(0);
   const [wasModalShown, setWasModalShown] = useState(false);
+  const [promoValue, setPromoValue] = useState("");
 
   const { products } = useAppSelector((state: RootState) => state.products);
   const { bucket, loading, messages } = useAppSelector(
@@ -74,11 +76,16 @@ export const BucketPage = () => {
 
   const handleCounter = useCallback(
     (product: CartItem, isIncrement: boolean) => {
+      if (!bucket?.id) return;
+
+      const quantity = product.quantity + (isIncrement ? 1 : -1);
+      if (quantity <= 0) return;
+
       const itemToUpdate: UpdateItemInBucketPayload = {
         id: product.id,
-        cart_id: bucket?.id,
+        cart_id: bucket.id,
         product_instance_id: product.product_instance.id,
-        quantity: product.quantity + (isIncrement ? 1 : -1),
+        quantity,
       };
 
       debouncedUpdateItemInBucket(dispatch, itemToUpdate);
@@ -93,15 +100,63 @@ export const BucketPage = () => {
     [dispatch]
   );
 
+  const handleChangePromoInput = (
+    e: React.ChangeEvent<HTMLInputElement>
+  ): void => {
+    setPromoValue(e.target.value);
+  };
+
   const calculateTotalPrice = useCallback((cartItems: CartItem[]) => {
-    return cartItems.reduce(
-      (total, item) =>
-        total + item.quantity * item.product_instance.product.price,
-      0
-    );
+    return cartItems
+      .reduce((total, item) => {
+        const quantity = item.quantity || 0;
+        const finalPrice = item.product_instance.product.current_discount
+          ? item.product_instance?.product?.final_price
+          : item.product_instance.product.price;
+        return total + quantity * finalPrice;
+      }, 0)
+      .toFixed(2);
   }, []);
 
   const totalPrice = calculateTotalPrice(bucket?.cart_items || []);
+
+  const applyPromoCode = async () => {
+    if (!bucket?.id) {
+      console.error("Bucket ID is missing");
+      return;
+    }
+
+    const data = {
+      cart_id: bucket?.id,
+      promo_code: promoValue,
+    };
+
+    try {
+      const result = await applyPromocode(data);
+      dispatch(fetchBucket());
+      return result;
+    } catch (error) {
+      console.error("Error applying promo code:", error);
+    }
+  };
+
+  const deletePromoCode = async () => {
+    if (!bucket?.id) {
+      console.error("Bucket ID is missing");
+      return;
+    }
+
+    try {
+      const result = await deletePromocode(bucket?.id);
+      dispatch(fetchBucket());
+      setPromoValue("");
+      return result;
+    } catch (error) {
+      console.error("Error deleting promo code:", error);
+    }
+  };
+
+  const hasAppliedPromo = bucket?.applied_promo_code || false;
 
   return (
     <section className="bucket">
@@ -118,7 +173,7 @@ export const BucketPage = () => {
             <div className="bucket__left">
               <div className="bucket__items">
                 {bucket?.cart_items.map((item, index) => {
-                  console.log(bucket?.cart_items[index]?.product_instance.present);
+                  console.log(item);
 
                   return (
                     <div key={item.id} className="bucket__item">
@@ -156,10 +211,6 @@ export const BucketPage = () => {
                                 </h2>
                               </Link>
                             </div>
-
-                            <div className="bucket__price title-3">
-                              ${item.product_instance.product.price}
-                            </div>
                           </div>
 
                           <p className="bucket__gender title-4">
@@ -167,10 +218,52 @@ export const BucketPage = () => {
                           </p>
 
                           <div className="bucket__sizes">
-                            <span className="bucket__sizeTitle text-muted">Size:</span>
+                            <span className="bucket__sizeTitle text-muted">
+                              Size:
+                            </span>
                             <p>{item.product_instance.size.name}</p>
                           </div>
                         </div>
+
+                        <p className="bucket__price title-3">
+                          {item.product_instance.product.final_price ? (
+                            <>
+                              <span className="card__price--old">
+                                {Number.isInteger(
+                                  item.product_instance.product.price
+                                )
+                                  ? item.product_instance.product.price
+                                  : item.product_instance.product.price.toFixed(
+                                      2
+                                    )}
+                                ₴
+                              </span>
+                              <span className="bucket__price--discount">
+                                {Number.isInteger(
+                                  item.product_instance.product.final_price
+                                )
+                                  ? item.product_instance.product.final_price
+                                  : item.product_instance.product.final_price.toFixed(
+                                      2
+                                    )}
+                                ₴
+                              </span>
+                            </>
+                          ) : (
+                            <span>
+                              {item.product_instance.product.price
+                                ? Number.isInteger(
+                                    item.product_instance.product.price
+                                  )
+                                  ? item.product_instance.product.price
+                                  : item.product_instance.product.price.toFixed(
+                                      2
+                                    )
+                                : "N/A"}
+                              ₴
+                            </span>
+                          )}
+                        </p>
 
                         <div className="bucket__bottomItem">
                           <div className="bucket__counter">
@@ -187,7 +280,8 @@ export const BucketPage = () => {
                               onClick={() => handleCounter(item, true)}
                               disabled={
                                 item.quantity ===
-                                bucket?.cart_items[index]?.product_instance.present
+                                bucket?.cart_items[index]?.product_instance
+                                  .present
                               }
                             >
                               +
@@ -214,17 +308,44 @@ export const BucketPage = () => {
               </div>
 
               <div className="bucket__subtotal">
-                <p className="bucket__title">{t("pages.bucket.subtotal")}</p>
+                <p className="bucket__title title-3">
+                  {t("pages.bucket.subtotal")}
+                </p>
                 <p className="bucket__price title-3">${totalPrice}</p>
               </div>
             </div>
 
             <div className="bucket__right">
               <div className="bucket__card">
-                <h2 className="bucket__title title-3">{t("pages.bucket.summary")}</h2>
+                <h2 className="bucket__title title-3">
+                  {t("pages.bucket.summary")}
+                </h2>
 
                 <div className="bucket__main">
                   <div className="bucket__middle">
+                    <div className="form-sale__item">
+                      <input
+                        className="form-sale__input text-muted"
+                        type="text"
+                        name="promo"
+                        placeholder="Enter promocode"
+                        value={
+                          bucket?.applied_promo_code?.code
+                            ? bucket.applied_promo_code.code
+                            : promoValue
+                        }
+                        onChange={handleChangePromoInput}
+                      />
+                      <button
+                        className="form-sale__button"
+                        onClick={
+                          hasAppliedPromo ? deletePromoCode : applyPromoCode
+                        }
+                      >
+                        {hasAppliedPromo ? "x" : t("components.sale.button")}
+                      </button>
+                    </div>
+
                     <div className="bucket__info">
                       <p className="bucket__infoKey text-muted">
                         {bucket?.cart_items.length} {t("pages.bucket.items")}

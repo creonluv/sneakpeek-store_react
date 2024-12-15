@@ -209,16 +209,12 @@ export const ProductPage = () => {
                     {product && (
                       <p className="product__price">
                         {"current_discount" in product &&
-                        product.current_discount ? (
+                        product.final_price ? (
                           <>
                             <span className="product__price--discount">
-                              {Number.isInteger(
-                                product.current_discount.discounted_price
-                              )
-                                ? product.current_discount.discounted_price
-                                : product.current_discount.discounted_price.toFixed(
-                                    2
-                                  )}
+                              {Number.isInteger(product.final_price)
+                                ? product.final_price
+                                : product.final_price.toFixed(2)}
                               ₴
                             </span>
                             <span className="product__price--old">
