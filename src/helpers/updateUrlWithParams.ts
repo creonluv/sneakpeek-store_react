@@ -6,9 +6,13 @@ export const updateUrlWithFiltersAndPrice = (
   priceRange: [number, number] | null,
   sortOption: SortOptions | null,
   currentPage: number,
-  resetPage: boolean = false
+  resetPage: boolean = false,
+  isNew: boolean = false,
+  onDiscount: boolean = false
 ) => {
   const params = new URLSearchParams(window.location.search);
+
+  console.log(isNew);
 
   Object.keys(filters).forEach((key) => {
     params.delete(key);
@@ -34,6 +38,20 @@ export const updateUrlWithFiltersAndPrice = (
   } else {
     params.delete("sortField");
     params.delete("sortOrder");
+  }
+
+  if (isNew) {
+    console.log(params);
+
+    params.set("isNew", isNew.toString());
+  } else {
+    params.delete("isNew");
+  }
+
+  if (onDiscount) {
+    params.set("onDiscount", onDiscount.toString());
+  } else {
+    params.delete("onDiscount");
   }
 
   params.set("page", resetPage ? "1" : currentPage.toString());

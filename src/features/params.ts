@@ -10,6 +10,8 @@ export interface ParamsState {
   priceRange: [number, number];
   currentPage: number;
   name: string | null;
+  isNew: boolean;
+  onDiscount: boolean;
 }
 
 const initialState: ParamsState = {
@@ -24,6 +26,8 @@ const initialState: ParamsState = {
   priceRange: [0, 10000],
   currentPage: 1,
   name: "",
+  isNew: false,
+  onDiscount: false,
 };
 
 const loadFromUrl = (
@@ -36,7 +40,18 @@ const loadFromUrl = (
   const gendersIds = params.getAll("genderIds").map(Number);
   const name = params.get("name");
 
-  console.log("REDUX: " + name);
+  const isNew =
+    params.get("isNew") === "true"
+      ? true
+      : params.get("isNew") === "false"
+      ? false
+      : undefined;
+  const onDiscount =
+    params.get("onDiscount") === "true"
+      ? true
+      : params.get("onDiscount") === "false"
+      ? false
+      : undefined;
 
   const priceRange: [number, number] = [
     Number(params.get("minPrice") || 0),
@@ -59,11 +74,16 @@ const loadFromUrl = (
     priceRange,
     selectedSort: { sortField, sortOrder },
     name,
+    isNew: isNew ?? defaultState.isNew,
+    onDiscount: onDiscount ?? defaultState.onDiscount,
   };
 };
 
 const params = new URLSearchParams(window.location.search);
 const loadedState: ParamsState = loadFromUrl(params, initialState);
+
+console.log(params);
+console.log(loadedState);
 
 const paramsSlice = createSlice({
   name: "params",
@@ -139,6 +159,20 @@ const paramsSlice = createSlice({
     setInputSearch(state, action: PayloadAction<string>) {
       state.name = action.payload;
     },
+    toggleIsNew(state, action: PayloadAction<boolean | undefined>) {
+      if (action.payload !== undefined) {
+        state.isNew = action.payload;
+      } else {
+        state.isNew = !state.isNew;
+      }
+    },
+    toggleOnDiscount(state, action: PayloadAction<boolean | undefined>) {
+      if (action.payload !== undefined) {
+        state.onDiscount = action.payload;
+      } else {
+        state.onDiscount = !state.onDiscount;
+      }
+    },
   },
 });
 
@@ -148,6 +182,8 @@ export const {
   toggleSize,
   toggleGender,
   toggleSort,
+  toggleIsNew,
+  toggleOnDiscount,
   setFiltersFromUrl,
   setPriceRange,
   setCurrentPage,

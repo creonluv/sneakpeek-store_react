@@ -12,6 +12,8 @@ import {
   setPriceRange,
   toggleCategory,
   toggleGender,
+  toggleIsNew,
+  toggleOnDiscount,
   toggleProducer,
   toggleSize,
 } from "../../../features/params";
@@ -42,8 +44,11 @@ export const Aside: React.FC = () => {
     priceRange,
     selectedSort,
     currentPage,
-    name,
+    isNew,
+    onDiscount,
   } = useAppSelector((state: RootState) => state.params);
+
+  console.log(isNew);
 
   const { categories, producers, sizes, genders } = useAppSelector(
     (state: RootState) => state.catalog
@@ -59,14 +64,15 @@ export const Aside: React.FC = () => {
     [selectedCategories, selectedProducers, selectedSizes, selectedGenders]
   );
 
-  const [openSections, setOpenSections] = useState<Record<FilterType, boolean>>(
-    {
-      categoryIds: true,
-      producerIds: false,
-      sizeIds: false,
-      genderIds: false,
-    }
-  );
+  const [openSections, setOpenSections] = useState<
+    Record<FilterType | "checkboxes", boolean>
+  >({
+    categoryIds: false,
+    producerIds: false,
+    sizeIds: false,
+    genderIds: false,
+    checkboxes: false,
+  });
 
   const [showMore, setShowMore] = useState<Record<FilterType, boolean>>({
     categoryIds: false,
@@ -115,8 +121,11 @@ export const Aside: React.FC = () => {
     return selectedFilters[type].includes(id);
   };
 
-  const toggleSection = (type: FilterType) => {
-    setOpenSections((prev) => ({ ...prev, [type]: !prev[type] }));
+  const toggleSection = (section: FilterType | "checkboxes") => {
+    setOpenSections((prev) => ({
+      ...prev,
+      [section]: !prev[section],
+    }));
   };
 
   const getItems = (type: FilterType) => {
@@ -142,6 +151,14 @@ export const Aside: React.FC = () => {
     dispatch(setPriceRange(value));
   };
 
+  const handleIsNewChange = (value: boolean) => {
+    dispatch(toggleIsNew(value));
+  };
+
+  const handleOnDiscountChange = (value: boolean) => {
+    dispatch(toggleOnDiscount(value));
+  };
+
   useEffect(() => {
     dispatch(fetchFilterData() as any);
   }, [dispatch]);
@@ -154,17 +171,64 @@ export const Aside: React.FC = () => {
       selectedSort,
       currentPage,
       true,
-      name
+      isNew,
+      onDiscount
     );
-  }, [selectedFilters, priceRange, navigate, selectedSort]);
+  }, [selectedFilters, priceRange, navigate, selectedSort, isNew, onDiscount]);
 
   return (
     <aside className={`aside ${isAside ? "_active" : ""}`}>
       <div className="aside__title-block">
-        <h2 className="aside__title title-3">{t("components.catalog.aside.filter")}</h2>
+        <h2 className="aside__title title-3">
+          {t("components.catalog.aside.filter")}
+        </h2>
         <img className="aside__close" src={close} onClick={closeAside} />
       </div>
-      <div className={`aside__filter filter spoiler ${openSections["priceRange" as FilterType] ? "_active" : ""}`}>
+      <div
+        className={`aside__filter filter spoiler ${
+          openSections["checkboxes"] ? "_active" : ""
+        }`}
+      >
+        <div
+          className="filter__title-block spoiler__header"
+          onClick={() => toggleSection("checkboxes")}
+        >
+          <h2 className="filter__title title-3">Types</h2>
+          <img className="filter__arrow" src={btnBack} alt="btn-back" />
+        </div>
+        <ul className="spoiler__content">
+          <li className="filter__item">
+            <input
+              type="checkbox"
+              className="checkbox__index"
+              checked={isNew}
+              onChange={(e) => handleIsNewChange(e.target.checked)}
+              id={`checkbox-type-new`}
+            />
+            <label className="checkbox__label" htmlFor={`checkbox-type-new`}>
+              New
+            </label>
+          </li>
+          <li className="filter__item">
+            <input
+              type="checkbox"
+              className="checkbox__index"
+              checked={onDiscount}
+              onChange={(e) => handleOnDiscountChange(e.target.checked)}
+              id={`checkbox-type-sale`}
+            />
+            <label className="checkbox__label" htmlFor={`checkbox-type-sale`}>
+              Sale
+            </label>
+          </li>
+        </ul>
+      </div>
+
+      <div
+        className={`aside__filter filter spoiler ${
+          openSections["priceRange" as FilterType] ? "_active" : ""
+        }`}
+      >
         <div
           className="filter__title-block spoiler__header"
           onClick={() => toggleSection("priceRange" as FilterType)}
@@ -172,16 +236,14 @@ export const Aside: React.FC = () => {
           <h2 className="filter__title title-3">
             {t("components.catalog.aside.priceRange")}
           </h2>
-          <img
-            className="filter__arrow"
-            src={btnBack}
-            alt="btn-back"
-          />
+          <img className="filter__arrow" src={btnBack} alt="btn-back" />
         </div>
-        <ul
-          className="spoiler__content"
-        >
-          <PriceRange min={0} max={10000} handleChange={handlePriceRangeChange} />
+        <ul className="spoiler__content">
+          <PriceRange
+            min={0}
+            max={10000}
+            handleChange={handlePriceRangeChange}
+          />
         </ul>
       </div>
       {filterConfigs.map(({ type, label }) => {
@@ -190,17 +252,18 @@ export const Aside: React.FC = () => {
         const itemsToShow = showMore[type] ? items : items.slice(0, 4);
 
         return (
-          <div className={`aside__filter filter spoiler ${isOpen ? "_active" : ""}`} key={type}>
+          <div
+            className={`aside__filter filter spoiler ${
+              isOpen ? "_active" : ""
+            }`}
+            key={type}
+          >
             <div
               className="filter__title-block spoiler__header"
               onClick={() => toggleSection(type)}
             >
               <p className="filter__title">{label}</p>
-              <img
-                className="filter__arrow"
-                src={btnBack}
-                alt="btn-back"
-              />
+              <img className="filter__arrow" src={btnBack} alt="btn-back" />
             </div>
             <ul className="spoiler__content">
               {itemsToShow.map((item) => (
@@ -212,7 +275,10 @@ export const Aside: React.FC = () => {
                     onChange={() => handleCheckboxChange(type, item.id)}
                     id={`checkbox-${type}-${item.id}`}
                   />
-                  <label className="checkbox__label" htmlFor={`checkbox-${type}-${item.id}`}>
+                  <label
+                    className="checkbox__label"
+                    htmlFor={`checkbox-${type}-${item.id}`}
+                  >
                     {item.name}
                   </label>
                 </li>
@@ -231,7 +297,8 @@ export const Aside: React.FC = () => {
           </div>
         );
       })}
-      {isAside &&
+
+      {isAside && (
         <div className="aside__button button-wrapper">
           <button
             className="button button_lg button_default button_full-size"
@@ -240,7 +307,7 @@ export const Aside: React.FC = () => {
             <span>{t("components.catalog.aside.apply")}</span>
           </button>
         </div>
-      }
+      )}
     </aside>
   );
 };
