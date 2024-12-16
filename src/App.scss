@@ -22,6 +22,29 @@ body {
   > * {
     min-width: 0;
   }
+
+  &::after {
+    content: "";
+    position: fixed;
+    left: 0;
+    top: 0;
+    width: 100%;
+    height: 102px;
+    z-index: 100;
+    background-color: var(--color-background-reverse);
+
+    @include on-tablet {
+      height: 175px;
+    }
+  }
+}
+
+.page {
+  padding-top: 102px;
+
+  @include on-tablet {
+    padding-top: 175px;
+  }
 }
 
 [class*="__container"] {

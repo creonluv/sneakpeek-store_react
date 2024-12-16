@@ -1,6 +1,6 @@
 import { useEffect } from "react";
-
 import { useDispatch } from "react-redux";
+
 import { RootState } from "../../app/store";
 import { useAppSelector } from "../../app/hooks";
 import { fetchAllProducts } from "../../features/products";
