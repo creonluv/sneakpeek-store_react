@@ -2,36 +2,30 @@ import { useEffect, useState } from "react";
 import { Link, useNavigate } from "react-router-dom";
 import { useTranslation } from "react-i18next";
 
-import { logout } from "../../api/auth";
-
 import { useAppDispatch, useAppSelector } from "../../app/hooks";
 import { RootState } from "../../app/store";
 import { fetchBucket } from "../../features/bucket";
 import { fetchFavourite } from "../../features/favourite";
 
 import { useAuthContext } from "../../context/AuthContext";
-import { useModalContext } from "../../context/ModalContext";
+import { useWindowSizeContext } from "../../context/WindowSizeContext";
 
-import { AuthMessages } from "../../shared/utils/modalMessages";
+import { AuthModal } from "../auth-modal";
 
 import logo from "../../assets/img/icons/logo.svg";
 import iconSearch from "../../assets/img/icons/search.svg";
 import cart from "../../assets/img/icons/cart.svg";
-import account from "../../assets/img/icons/account.svg";
 import likes from "../../assets/img/icons/likes.svg";
 import close from "../../assets/img/icons/close.svg";
 import favicon from "../../assets/img/icons/favicon.svg"
 
 import "./Header.scss";
-import { useWindowSizeContext } from "../../context/WindowSizeContext";
 
 export const Header = () => {
   const [burger, setBurger] = useState(false);
-  const [isModalOpen, setIsModalOpen] = useState(false);
   const [searchTerm, setSearchTerm] = useState("");
 
-  const { isAuth, signout } = useAuthContext();
-  const { showModal } = useModalContext();
+  const { isAuth } = useAuthContext();
   const { width } = useWindowSizeContext();
 
   const dispatch = useAppDispatch();
@@ -41,8 +35,6 @@ export const Header = () => {
   const { favourite } = useAppSelector((state: RootState) => state.favourite);
 
   const { t, i18n } = useTranslation();
-
-  const toggleModal = () => setIsModalOpen(!isModalOpen);
 
   const handleBurger = () => {
     if (width < 768) {
@@ -56,17 +48,6 @@ export const Header = () => {
   ) => {
     setSearchTerm(event.target.value);
   };
-
-  async function handleLogout() {
-    try {
-      await logout();
-      signout();
-      toggleModal();
-      showModal(AuthMessages.LOGOUT_SUCCESS);
-    } catch {
-      showModal(AuthMessages.LOGOUT_ERROR);
-    }
-  }
 
   const handleSearchSubmit = (event: React.FormEvent<HTMLFormElement>) => {
     event.preventDefault();
@@ -166,42 +147,7 @@ export const Header = () => {
                   </div>
                 )}
               </Link>
-              <button className="header__icon" onClick={toggleModal}>
-                <img src={account} alt="account" />
-              </button>
-              <div className={`list ${isModalOpen ? "" : "_hidden"}`}>
-                {isAuth ? (
-                  <>
-                    <Link
-                      className="list__item"
-                      to="/profile"
-                      onClick={toggleModal}
-                    >
-                      {t("components.header.profile")}
-                    </Link>
-                    <button className="list__item" onClick={handleLogout}>
-                      {t("components.header.logout")}
-                    </button>
-                  </>
-                ) : (
-                  <>
-                    <Link
-                      className="list__item"
-                      to="/login"
-                      onClick={toggleModal}
-                    >
-                      {t("components.header.login")}
-                    </Link>
-                    <Link
-                      className="list__item"
-                      to="/register"
-                      onClick={toggleModal}
-                    >
-                      {t("components.header.register")}
-                    </Link>
-                  </>
-                )}
-              </div>
+              <AuthModal />
             </div>
             <div
               className={`header__burger burger${burger ? " _menu-open" : ""}`}
