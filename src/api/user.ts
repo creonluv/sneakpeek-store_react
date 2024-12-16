@@ -15,9 +15,9 @@ export async function resetPasswordInitiate(data: ResetPasswordInitiateData) {
 }
 
 export async function resetPasswordValidateOTP(data: ResetPasswordValidateOTPData) {
-  return client.post<ResetPasswordResponse>("", data);
+  return client.post<ResetPasswordResponse>("/users/password/reset/validate-otp", data);
 }
 
 export async function resetPasswordComplete(data: ResetPasswordCompleteData) {
-  return client.post<ResetPasswordResponse>("", data);
+  return client.post<ResetPasswordResponse>("/users/password/reset/complete", data);
 }

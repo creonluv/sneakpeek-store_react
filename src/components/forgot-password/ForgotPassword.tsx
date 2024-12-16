@@ -72,7 +72,7 @@ export const ForgotPassword = () => {
     }
 
     try {
-      //await resetPasswordInitiate({ email });
+      await resetPasswordInitiate({ email });
       setCurrentStage(ResetStage.VERIFY_CODE);
     } catch (error) {
       showModal(LoginPageMessages.EMAIL_NOT_FOUND);
@@ -81,7 +81,7 @@ export const ForgotPassword = () => {
 
   const handleCodeSubmit = async () => {
     try {
-      // await resetPasswordValidateOTP({ email: formData.email, otp: formData.otp });
+      await resetPasswordValidateOTP({ email: formData.email, otp: formData.otp });
       setCurrentStage(ResetStage.NEW_PASSWORD);
     } catch (error) {
       showModal(LoginPageMessages.CODE_ERROR);
@@ -90,7 +90,7 @@ export const ForgotPassword = () => {
 
   const handlePasswordUpdate = async () => {
     try {
-      // await resetPasswordComplete({ email: formData.email, otp: formData.otp, new_password: formData.new_password });
+      await resetPasswordComplete({ email: formData.email, otp: formData.otp, new_password: formData.new_password });
       closeModal();
       showModal(LoginPageMessages.PASSWORD_UPDATE_SUCCESS);
     } catch (error) {
