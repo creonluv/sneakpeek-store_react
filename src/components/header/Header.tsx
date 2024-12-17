@@ -168,63 +168,63 @@ export const Header = () => {
             </button>
             <ul className="header__menu menu-header">
               <li className="menu-header__item">
-                <Link
-                  to="/catalog/?minPrice=0&maxPrice=10000&sortField=name&sortOrder=asc&page=1"
+                <a
+                  href="/catalog/?minPrice=0&maxPrice=10000&sortField=name&sortOrder=asc&page=1"
                   className="menu-header__link"
                   onClick={handleBurger}
                 >
                   {t("components.header.nav.item1")}
-                </Link>
+                </a>
               </li>
 
               <li className="menu-header__item">
-                <Link
-                  to="/catalog/?minPrice=0&maxPrice=10000&sortField=name&sortOrder=asc&page=1&genderIds=1"
+                <a
+                  href="/catalog/?minPrice=0&maxPrice=10000&sortField=name&sortOrder=asc&page=1&genderIds=1"
                   className="menu-header__link"
                   onClick={handleBurger}
                 >
                   {t("components.header.nav.item2")}
-                </Link>
+                </a>
               </li>
 
               <li className="menu-header__item">
-                <Link
-                  to="/catalog/?minPrice=0&maxPrice=10000&sortField=name&sortOrder=asc&page=1&genderIds=2"
+                <a
+                  href="/catalog/?minPrice=0&maxPrice=10000&sortField=name&sortOrder=asc&page=1&genderIds=2"
                   className="menu-header__link"
                   onClick={handleBurger}
                 >
                   {t("components.header.nav.item3")}
-                </Link>
+                </a>
               </li>
 
               <li className="menu-header__item">
-                <Link
-                  to="/catalog/?minPrice=0&maxPrice=10000&sortField=name&sortOrder=asc&page=1&genderIds=3"
+                <a
+                  href="/catalog/?minPrice=0&maxPrice=10000&sortField=name&sortOrder=asc&page=1&genderIds=3"
                   className="menu-header__link"
                   onClick={handleBurger}
                 >
                   {t("components.header.nav.item4")}
-                </Link>
+                </a>
               </li>
 
               <li className="menu-header__item">
-                <Link
-                  to="/catalog/?minPrice=0&maxPrice=10000&sortField=name&sortOrder=asc&page=1&genderIds=4"
+                <a
+                  href="/catalog/?minPrice=0&maxPrice=10000&sortField=name&sortOrder=asc&page=1&genderIds=4"
                   className="menu-header__link"
                   onClick={handleBurger}
                 >
                   {t("components.header.nav.item5")}
-                </Link>
+                </a>
               </li>
 
               <li className="menu-header__item">
-                <Link
-                  to="/catalog/?minPrice=0&maxPrice=10000&sortField=name&sortOrder=asc&page=1"
+                <a
+                  href="/catalog/?minPrice=0&maxPrice=10000&sortField=name&sortOrder=asc&page=1"
                   className="menu-header__link"
                   onClick={handleBurger}
                 >
                   {t("components.header.nav.item6")}
-                </Link>
+                </a>
               </li>
             </ul>
           </nav>

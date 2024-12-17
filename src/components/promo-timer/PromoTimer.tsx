@@ -100,13 +100,13 @@ export const PromoTimer = () => {
               <div className="timer__items">{timerComponents}</div>
             </div>
             <div className="sale__button button-wrapper">
-              <Link
+              <a
                 className="button button_lg button_default"
-                to="/catalog/?minPrice=0&maxPrice=10000&sortField=name&sortOrder=asc&page=1&onDiscount=true"
+                href="/catalog/?minPrice=0&maxPrice=10000&sortField=name&sortOrder=asc&page=1&onDiscount=true"
               >
                 <span>{t("components.timer.button")}</span>
                 <img className="button__icon" src={arrowWhite} alt="arrow" />
-              </Link>
+              </a>
             </div>
           </div>
         </div>

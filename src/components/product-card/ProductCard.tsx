@@ -69,7 +69,7 @@ export const ProductCard: React.FC<Props> = ({
 
   return (
     <div className="card">
-      <Link className="card__link" to={getLink(id, category)}>
+      <a className="card__link" href={getLink(id, category)}>
         <img
           className="card__img"
           src={
@@ -81,7 +81,7 @@ export const ProductCard: React.FC<Props> = ({
           }
           alt="img-of-item"
         />
-      </Link>
+      </a>
 
       <Link className="card__linkInfo" to={`/product/${id}`}>
         <div className="card__information">
