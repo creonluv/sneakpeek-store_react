@@ -1,11 +1,13 @@
 import { useState, useEffect } from "react";
 import { Link } from "react-router-dom";
 import { useTranslation } from "react-i18next";
+import { parseISO } from "date-fns";
 
 import sale from "../../assets/img/sale/sale-1.jpg";
 import arrowWhite from "../../assets/img/icons/arrow-white.svg";
 
 import "./PromoTimer.scss";
+import { getAllDiscounts } from "../../api/promocode";
 
 type TimeLeft = {
   days: number;
@@ -17,8 +19,12 @@ type TimeLeft = {
 export const PromoTimer = () => {
   const { t } = useTranslation();
 
+  const [endTime, setEndTime] = useState<Date | null>(null);
+
   const calculateTimeLeft = (): TimeLeft | {} => {
-    const difference = +new Date("2024-12-25") - +new Date();
+    if (!endTime) return {};
+
+    const difference = +endTime - +new Date();
     let timeLeft: TimeLeft | {} = {};
 
     if (difference > 0) {
@@ -43,6 +49,24 @@ export const PromoTimer = () => {
     return () => clearTimeout(timer);
   });
 
+  useEffect(() => {
+    const fetchDiscounts = async () => {
+      try {
+        const result = await getAllDiscounts();
+
+        if (result.length > 0) {
+          const utcEndDate = parseISO(result[0].end_date);
+
+          setEndTime(utcEndDate);
+        }
+      } catch (error) {
+        console.error("Error in receiving all discounts", error);
+      }
+    };
+
+    fetchDiscounts();
+  }, []);
+
   const timerComponents = Object.keys(timeLeft).map((interval) => {
     const value = (timeLeft as TimeLeft)[interval as keyof TimeLeft];
     return (
@@ -51,7 +75,7 @@ export const PromoTimer = () => {
         className={`timer__item timer__${interval}`}
         data-title={t(`components.timer.${interval}`)}
       >
-        {value < 10 ? `0${value}` : value}
+        {value !== undefined && value < 10 ? `0${value}` : value}
       </div>
     );
   });
@@ -78,7 +102,7 @@ export const PromoTimer = () => {
             <div className="sale__button button-wrapper">
               <Link
                 className="button button_lg button_default"
-                to="/catalog/1/sale"
+                to="/catalog/?minPrice=0&maxPrice=10000&sortField=name&sortOrder=asc&page=1&onDiscount=true"
               >
                 <span>{t("components.timer.button")}</span>
                 <img className="button__icon" src={arrowWhite} alt="arrow" />

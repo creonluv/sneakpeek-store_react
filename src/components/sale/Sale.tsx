@@ -1,6 +1,6 @@
 import { useTranslation } from "react-i18next";
 
-import sale from "../../assets/img/sale/sale-1.jpg";
+import sale from "../../assets/img/sale/sale-2.jpg";
 
 import "./Sale.scss";
 
@@ -16,8 +16,12 @@ export const Sale = () => {
           </div>
           <div className="sale__content">
             <div className="sale__block">
-              <h2 className="sale__title title-2">35% {t("components.sale.title")}</h2>
-              <p className="sale__text text-muted">{t("components.sale.text")}</p>
+              <h2 className="sale__title title-2">
+                35% {t("components.sale.title")}
+              </h2>
+              <p className="sale__text text-muted">
+                {t("components.sale.text")}
+              </p>
             </div>
             <form className="sale__form form-sale" action="#">
               <div className="form-sale__item">
