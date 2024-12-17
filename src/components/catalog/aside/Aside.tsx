@@ -48,8 +48,6 @@ export const Aside: React.FC = () => {
     onDiscount,
   } = useAppSelector((state: RootState) => state.params);
 
-  console.log(isNew);
-
   const { categories, producers, sizes, genders } = useAppSelector(
     (state: RootState) => state.catalog
   );

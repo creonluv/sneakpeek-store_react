@@ -108,8 +108,6 @@ export const ProductPage = () => {
     return !!isAddedToFav;
   }, [isAddedToFav]);
 
-  console.log(isItemInFavourites);
-
   const tabs = [
     {
       title: t("pages.product.desc"),

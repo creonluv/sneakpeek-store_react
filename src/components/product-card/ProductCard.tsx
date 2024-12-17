@@ -131,6 +131,8 @@ export const ProductCard: React.FC<Props> = ({
       </Link>
 
       <div className="card__infolabel">
+        {category && <span>{category?.infolabel || "N/A"}</span>}
+
         {product && (
           <>
             <span>

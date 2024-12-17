@@ -1,4 +1,5 @@
 import { client } from "../shared/utils/fetchClient";
+import { Discount } from "../types/Discount";
 
 type PromoData = {
   cart_id: number;
@@ -7,6 +8,10 @@ type PromoData = {
 
 export const applyPromocode = (data: PromoData) => {
   return client.post(`/cart-promo-codes/apply`, data);
+};
+
+export const getAllDiscounts = (): Promise<Discount[]> => {
+  return client.get(`/discounts/active`);
 };
 
 export const deletePromocode = (cartId: number) => {

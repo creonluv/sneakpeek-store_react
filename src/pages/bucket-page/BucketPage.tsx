@@ -173,8 +173,6 @@ export const BucketPage = () => {
             <div className="bucket__left">
               <div className="bucket__items">
                 {bucket?.cart_items.map((item, index) => {
-                  console.log(item);
-
                   return (
                     <div key={item.id} className="bucket__item">
                       <div className="bucket__loader">
@@ -228,16 +226,20 @@ export const BucketPage = () => {
                         <p className="bucket__price title-3">
                           {item.product_instance.product.final_price ? (
                             <>
-                              <span className="card__price--old">
-                                {Number.isInteger(
-                                  item.product_instance.product.price
-                                )
-                                  ? item.product_instance.product.price
-                                  : item.product_instance.product.price.toFixed(
-                                      2
-                                    )}
-                                ₴
-                              </span>
+                              {item.product_instance.product.final_price !==
+                              item.product_instance.product.price ? (
+                                <span className="card__price--old">
+                                  {Number.isInteger(
+                                    item.product_instance.product.price
+                                  )
+                                    ? item.product_instance.product.price
+                                    : item.product_instance.product.price.toFixed(
+                                        2
+                                      )}
+                                  ₴
+                                </span>
+                              ) : null}
+
                               <span className="bucket__price--discount">
                                 {Number.isInteger(
                                   item.product_instance.product.final_price

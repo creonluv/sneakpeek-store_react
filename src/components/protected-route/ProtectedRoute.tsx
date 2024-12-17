@@ -4,6 +4,7 @@ import { Navigate, useOutlet } from "react-router-dom";
 import { checkAuth } from "../../api/auth";
 
 import { useAuthContext } from "../../context/AuthContext";
+import { Loader } from "../loader";
 
 export const ProtectedRoute = () => {
   const { isAuth, signin, signout } = useAuthContext();
@@ -27,7 +28,7 @@ export const ProtectedRoute = () => {
   }, []);
 
   if (isLoading) {
-    return <div>Loading...</div>
+    return <Loader />;
   }
 
   if (!isAuth) {
