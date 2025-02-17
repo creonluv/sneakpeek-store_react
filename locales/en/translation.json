@@ -1,0 +1,225 @@
+{
+  "components": {
+    "header": {
+      "profile": "User profile",
+      "logout": "Logout",
+      "login": "Login",
+      "register": "Register",
+      "search": "Search",
+      "nav": {
+        "item1": "New arrives",
+        "item2": "Men",
+        "item3": "Woman",
+        "item4": "Kids",
+        "item5": "Brands",
+        "item6": "Sale"
+      },
+      "help": "Help"
+    },
+    "buttonBack": "back",
+    "blog": {
+      "title": "Our Blog",
+      "mainButton": "View All",
+      "button": "2023 Lookbook",
+      "subtitle": "New Release",
+      "text": "Presenting new trends of 2023",
+      "buttonWatch": "Watch Trending",
+      "buttonSubscribe": "Subscribe",
+      "content": "Subscribe to the newsletter and receive new offers from our store with hot offers."
+    },
+    "catalog": {
+      "aside": {
+        "category": "Category",
+        "producer": "Producer",
+        "size": "Size",
+        "gender": "Gender",
+        "priceRange": "Price Range",
+        "showMore": "Show more",
+        "filter": "Filter",
+        "apply": "Apply"
+      },
+      "categories": {
+        "reset": "Reset all settings",
+        "sort": "Sort by"
+      }
+    },
+    "changePassword": {
+      "title": "Change password",
+      "oldPassword": "Old password",
+      "newPassword": "New password",
+      "confirmNewPassword": "Confirm new password",
+      "button": "Send"
+    }, 
+    "footer": {
+      "catalog": "Catalog",
+      "discount": "Discount",
+      "brands": "Brands",
+      "office": "Office",
+      "service": "Service",
+      "orders": "Orders",
+      "returns": "Returns",
+      "faq": "FAQ",
+      "policy": "Policy",
+      "about": "About",
+      "loyal": "Loyal",
+      "blog": "Blog",
+      "sustainability": "Sustainability",
+      "governance": "Governance",
+      "contacts": "Contacts",
+      "sustain": "Sustain",
+      "corporate": "Corporate",
+      "copyright": "© Copyright 2023 SNEAKPEEK. All rights reserved."
+    },
+    "mainscreen": {
+      "text1": "In the whole summer show, this",
+      "text2": "is the designer’s best look yet"
+    },
+    "slider": {
+      "new": "New Collection",
+      "best": "Best Seller",
+      "categories": "Categories",
+      "default": "You May Also Like"
+    },
+    "timer": {
+      "title": "Sale for summer collection get",
+      "text": "The most wanted styles are waiting for you right now. Find the best styles of modern outfits for you at one place.",
+      "button": "Buy Now",
+      "days": "Days",
+      "hours": "Hours",
+      "minutes": "Minutes",
+      "seconds": "Seconds"
+    },
+    "sale": {
+      "title": "off for only this friday and get special gift",
+      "text": "Subscribe to the our newsletter and get a bonus code for a 35% discount during this friday sale, plus a cool gift!!",
+      "button": "Go",
+      "email": "Enter email"
+    },
+    "upload": "Update image",
+    "forgotPassword": {
+      "title": "Forgot password",
+      "text": "Forgot your password?",
+      "link": "Reset it here",
+      "textInitiate": "Enter your email address below, and we'll send you a code to reset your password.",
+      "buttonInitiate": "Send code",
+      "buttonInitiateResend": "Resend code",
+      "textValidate": "Enter the code we sent to your email. If you didn’t receive it, click the button to resend.",
+      "buttonValidate": "Verify code",
+      "textComplete": "Enter your new password below to reset it.",
+      "buttonComplete": "Update password"
+    }
+  },
+  "pages": {
+    "bucket": {
+      "title": "Basket",
+      "summary": "Basket summary",
+      "items": "items:",
+      "total": "Total:",
+      "subtotal": "Subtotal:",
+      "button": "Go to checkout"
+    },
+    "catalog": {
+      "title": "Catalog",
+      "nothing": "Oooops! No products found!"
+    },
+    "checkout": {
+      "title": "Checkout",
+      "steps": "3 steps",
+      "contact": "Contact Information",
+      "name": "Enter name",
+      "select": "Select Post Office",
+      "courier": "Courier delivery",
+      "state": "State",
+      "city": "City",
+      "branch": "Adress of branch",
+      "selectOffice": "Select Post Office",
+      "street": "Street",
+      "apartment": "Apartment",
+      "payment": "Payment Method",
+      "agree": "I agree to the terms",
+      "button": "buy now",
+      "order": "Your order",
+      "size": "Size:",
+      "items": "items:",
+      "delivery": "Delivery",
+      "total": "Total:",
+      "lastname": "Enter last name",
+      "card": "Card*",
+      "security": "Security code*"
+    },
+    "favourite": {
+      "title": "Favourite"
+    },
+    "login": {
+      "title": "Login",
+      "noAccount": "Don't have an account?",
+      "register": "Register here",
+      "username": "Username",
+      "password": "Password",
+      "button": "Login"
+    },
+    "notfound": {
+      "title": "404, page not found",
+      "text": "Sorry, but we couldn't find the page you were looking for.",
+      "link": "Main page"
+    },
+    "product": {
+      "sizes": "Sizes:",
+      "SP": "Shipping & Payment",
+      "check": "Check avaibility in store",
+      "code": "Product code:",
+      "desc": "Description",
+      "material": "Material & Care",
+      "reviews": "Rewiews"
+    },
+    "profile": {
+      "title": "Profile",
+      "save": "Save",
+      "cancel": "Cancel",
+      "info": "Basic Info",
+      "address": "Address",
+      "phone": "Enter phone number",
+      "email": "Enter email",
+      "surname": "Enter surname",
+      "name": "Enter name",
+      "street": "Enter street",
+      "apartment": "Enter apartment",
+      "city": "Enter city",
+      "state": "Enter state",
+      "contacts": "Contacts",
+      "namev":"Name",
+      "surnamev": "Surname",
+      "emailv": "Email",
+      "phonev": "Phone",
+      "apartmentv": "Apartment",
+      "streetv": "Street",
+      "cityv": "City",
+      "statev": "State"
+    },
+    "register": {
+      "title": "Registration",
+      "noAccount": "Already have an account?",
+      "link": "Log in",
+      "button": "Register",
+      "agree": "I have read and agree to the terms & conditions and privacy policy",
+      "username": "Username",
+      "password": "Password",
+      "email": "Email"
+    },
+    "thankyou": {
+      "orderSuccess": "Order success!",
+      "order":"Your order",
+      "wait": "Wait for an sms message to your phone with other details"
+    },
+    "indevelopment": {
+      "title": "Page Under Development",
+      "text": "This page is currently under development. Please check back later for updates!",
+      "link": "Main page"
+    }
+  },
+  "placeholder": {
+    "email": "Enter email",
+    "code": "Enter code",
+    "new_password": "Enter new password"
+  }
+}

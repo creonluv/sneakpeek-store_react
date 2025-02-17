@@ -1,0 +1,225 @@
+{
+  "components": {
+    "header": {
+      "profile": "Benutzerprofil",
+      "logout": "Abmelden",
+      "login": "Anmelden",
+      "register": "Registrieren",
+      "search": "Suche",
+      "nav": {
+        "item1": "Neuheiten",
+        "item2": "Herren",
+        "item3": "Damen",
+        "item4": "Kinder",
+        "item5": "Marken",
+        "item6": "Sale"
+      },
+      "help": "Hilfe"
+    },
+    "buttonBack": "zurück",
+    "blog": {
+      "title": "Unser Blog",
+      "mainButton": "Alle ansehen",
+      "button": "2023 Lookbook",
+      "subtitle": "Neuerscheinung",
+      "text": "Präsentation neuer Trends für 2023",
+      "buttonWatch": "Trend ansehen",
+      "buttonSubscribe": "Abonnieren",
+      "content": "Abonnieren Sie den Newsletter und erhalten Sie neue Angebote aus unserem Shop mit heißen Aktionen."
+    },
+    "catalog": {
+      "aside": {
+        "category": "Kategorie",
+        "producer": "Hersteller",
+        "size": "Größe",
+        "gender": "Geschlecht",
+        "priceRange": "Preisspanne",
+        "showMore": "Mehr anzeigen",
+        "filter": "Filtern",
+        "apply": "Anwenden"
+      },
+      "categories": {
+        "reset": "Alle Einstellungen zurücksetzen",
+        "sort": "Sortieren nach"
+      }
+    },
+    "changePassword": {
+      "title": "Passwort ändern",
+      "oldPassword": "Altes Passwort",
+      "newPassword": "Neues Passwort",
+      "confirmNewPassword": "Neues Passwort bestätigen",
+      "button": "Senden"
+    },
+    "footer": {
+      "catalog": "Katalog",
+      "discount": "Rabatt",
+      "brands": "Marken",
+      "office": "Büro",
+      "service": "Service",
+      "orders": "Bestellungen",
+      "returns": "Rücksendungen",
+      "faq": "FAQ",
+      "policy": "Richtlinien",
+      "about": "Über uns",
+      "loyal": "Treueprogramm",
+      "blog": "Blog",
+      "sustainability": "Nachhaltigkeit",
+      "governance": "Governance",
+      "contacts": "Kontakte",
+      "sustain": "Nachhaltig",
+      "corporate": "Unternehmen",
+      "copyright": "© Copyright 2023 SNEAKPEEK. Alle Rechte vorbehalten."
+    },
+    "mainscreen": {
+      "text1": "In der gesamten Sommerausstellung ist dies",
+      "text2": "der bisher beste Look des Designers"
+    },
+    "slider": {
+      "new": "Neue Kollektion",
+      "best": "Bestseller",
+      "categories": "Kategorien",
+      "default": "Das könnte Ihnen auch gefallen"
+    },
+    "timer": {
+      "title": "Sommerkollektion Rabatt erhalten",
+      "text": "Die begehrtesten Styles warten jetzt auf Sie. Finden Sie die besten modernen Outfits an einem Ort.",
+      "button": "Jetzt kaufen",
+      "days": "Tage",
+      "hours": "Stunden",
+      "minutes": "Minuten",
+      "seconds": "Sekunden"
+    },
+    "sale": {
+      "title": "Rabatt nur an diesem Freitag und ein besonderes Geschenk",
+      "text": "Abonnieren Sie unseren Newsletter und erhalten Sie einen Bonuscode für 35% Rabatt während des Freitagverkaufs sowie ein tolles Geschenk!",
+      "button": "Los",
+      "email": "E-Mail eingeben"
+    },
+    "upload": "Bild aktualisieren",
+    "forgotPassword": {
+      "title": "Passwort vergessen",
+      "text": "Passwort vergessen?",
+      "link": "Hier zurücksetzen",
+      "textInitiate": "Geben Sie Ihre E-Mail-Adresse ein, und wir senden Ihnen einen Code, um Ihr Passwort zurückzusetzen.",
+      "buttonInitiate": "Code senden",
+      "buttonInitiateResend": "Code erneut senden",
+      "textValidate": "Geben Sie den Code ein, den wir an Ihre E-Mail gesendet haben. Wenn Sie ihn nicht erhalten haben, klicken Sie auf die Schaltfläche, um ihn erneut zu senden.",
+      "buttonValidate": "Code verifizieren",
+      "textComplete": "Geben Sie Ihr neues Passwort ein, um es zurückzusetzen.",
+      "buttonComplete": "Passwort aktualisieren"
+    }
+  },
+  "pages": {
+    "bucket": {
+      "title": "Warenkorb",
+      "summary": "Warenkorb Zusammenfassung",
+      "items": "Artikel:",
+      "total": "Gesamt:",
+      "subtotal": "Zwischensumme:",
+      "button": "Zur Kasse gehen"
+    },
+    "catalog": {
+      "title": "Katalog",
+      "nothing": "Oooops! Keine Produkte gefunden!"
+    },
+    "checkout": {
+      "title": "Kasse",
+      "steps": "3 Schritte",
+      "contact": "Kontaktinformationen",
+      "name": "Name eingeben",
+      "select": "Postfiliale auswählen",
+      "courier": "Kurierlieferung",
+      "state": "Bundesland",
+      "city": "Stadt",
+      "branch": "Filialadresse",
+      "selectOffice": "Postfiliale auswählen",
+      "street": "Straße",
+      "apartment": "Wohnung",
+      "payment": "Zahlungsmethode",
+      "agree": "Ich stimme den Bedingungen zu",
+      "button": "Jetzt kaufen",
+      "order": "Ihre Bestellung",
+      "size": "Größe:",
+      "items": "Artikel:",
+      "delivery": "Lieferung",
+      "total": "Gesamt:",
+      "lastname": "Nachname eingeben",
+      "card": "Karte*",
+      "security": "Sicherheitscode*"
+    },
+    "favourite": {
+      "title": "Favoriten"
+    },
+    "login": {
+      "title": "Anmelden",
+      "noAccount": "Noch kein Konto?",
+      "register": "Hier registrieren",
+      "username": "Benutzername",
+      "password": "Passwort",
+      "button": "Anmelden"
+    },
+    "notfound": {
+      "title": "404, Seite nicht gefunden",
+      "text": "Entschuldigung, wir konnten die von Ihnen gesuchte Seite nicht finden.",
+      "link": "Startseite"
+    },
+    "product": {
+      "sizes": "Größen:",
+      "SP": "Versand & Zahlung",
+      "check": "Verfügbarkeit im Laden prüfen",
+      "code": "Produktcode:",
+      "desc": "Beschreibung",
+      "material": "Material & Pflege",
+      "reviews": "Bewertungen"
+    },
+    "profile": {
+      "title": "Profil",
+      "save": "Speichern",
+      "cancel": "Abbrechen",
+      "info": "Grundlegende Informationen",
+      "address": "Adresse",
+      "phone": "Telefonnummer eingeben",
+      "email": "E-Mail eingeben",
+      "surname": "Nachname eingeben",
+      "name": "Name eingeben",
+      "street": "Straße eingeben",
+      "apartment": "Wohnung eingeben",
+      "city": "Stadt eingeben",
+      "state": "Bundesland eingeben",
+      "contacts": "Kontakte",
+      "namev":"Name",
+      "surnamev": "Nachname",
+      "emailv": "E-Mail",
+      "phonev": "Telefon",
+      "apartmentv": "Wohnung",
+      "streetv": "Straße",
+      "cityv": "Stadt",
+      "statev": "Bundesland"
+    },
+    "register": {
+      "title": "Registrierung",
+      "noAccount": "Bereits ein Konto?",
+      "link": "Anmelden",
+      "button": "Registrieren",
+      "agree": "Ich habe die Allgemeinen Geschäftsbedingungen und die Datenschutzrichtlinie gelesen und stimme zu",
+      "username": "Benutzername",
+      "password": "Passwort",
+      "email": "E-Mail"
+    },
+    "thankyou": {
+      "orderSuccess": "Bestellung erfolgreich!",
+      "order":"Ihre Bestellung",
+      "wait": "Warten Sie auf eine SMS-Nachricht mit weiteren Details auf Ihrem Telefon"
+    },
+    "indevelopment": {
+      "title": "Seite in Entwicklung",
+      "text": "Diese Seite ist derzeit in Entwicklung. Bitte schauen Sie später für Updates vorbei!",
+      "link": "Startseite"
+    }
+  },
+  "placeholder": {
+    "email": "E-Mail eingeben",
+    "code": "Code eingeben",
+    "new_password": "Neues Passwort eingeben"
+  }
+}
