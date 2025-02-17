@@ -75,7 +75,7 @@ export const PhotoSlider: React.FC<Props> = ({ images, product }) => {
         {images?.slice(0, 6).map((image, index) => (
           <img
             key={index}
-            src={`https://localhost:9091/api/images/${image}`}
+            src={`https://52.207.220.16:9091/api/images/${image}`}
             alt={`mini-photo-${index}`}
             className={`slider__photo ${
               index === currentIndex ? "slider__selected" : ""
@@ -93,7 +93,7 @@ export const PhotoSlider: React.FC<Props> = ({ images, product }) => {
         {selectedImg && (
           <img
             className="slider__main_photo"
-            src={`https://localhost:9091/api/images/${selectedImg}`}
+            src={`https://52.207.220.16:9091/api/images/${selectedImg}`}
             alt="main-photo"
           />
         )}
@@ -101,7 +101,7 @@ export const PhotoSlider: React.FC<Props> = ({ images, product }) => {
           className="slider__zoom"
           style={{
             ...zoomStyle,
-            backgroundImage: `url(https://localhost:9091/api/images/${selectedImg})`,
+            backgroundImage: `url(https://52.207.220.16:9091/api/images/${selectedImg})`,
           }}
         ></div>
         <div className="slider__infolabel">
