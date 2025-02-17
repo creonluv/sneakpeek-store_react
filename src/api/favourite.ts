@@ -1,5 +1,5 @@
 import { client } from "../shared/utils/fetchClient";
-import { Product } from "../types/Bucket";
+import { Product } from "../types/Products";
 
 export function getFavourite(): Promise<Product[]> {
   return client.get(`/users/wishlist`);

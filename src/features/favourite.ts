@@ -3,10 +3,10 @@ import {
   deleteItemToFavourite,
   getFavourite,
 } from "../api/favourite";
-import { Product } from "../types/Bucket";
 import { PayloadAction, createSlice, createAsyncThunk } from "@reduxjs/toolkit";
 import { RootState } from "../app/store";
 import { FavouritePageMessages } from "../shared/utils/modalMessages";
+import { Product } from "../types/Products";
 
 export type FavouriteState = {
   favourite: Product[];
@@ -99,8 +99,9 @@ export const favouriteSlice = createSlice({
         (state, action: PayloadAction<deleteItemResult>) => {
           state.favourite =
             state.favourite?.filter(
-              (product) => product.id !== action.payload.id
+              (product: Product) => product.id !== action.payload.id
             ) || [];
+
           state.loading = false;
         }
       )
@@ -121,9 +122,9 @@ export const favouriteSlice = createSlice({
             if (itemAction === "added") {
               state.favourite.push(item);
             } else if (itemAction === "removed") {
-              state.favourite = state.favourite.filter(
-                (favItem) => favItem.id !== item.id
-              );
+              state.favourite?.filter(
+                (favItem: Product) => favItem.id !== item.id
+              ) || [];
             }
           } else {
             state.favourite = itemAction === "added" ? [item] : [];

@@ -8,4 +8,11 @@ export default defineConfig({
     port: 5173,
   },
   plugins: [react()],
+  build: {
+    outDir: "dist",
+    assetsDir: "assets",
+    rollupOptions: {
+      input: "index.html",
+    },
+  },
 });

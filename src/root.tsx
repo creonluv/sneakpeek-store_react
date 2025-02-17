@@ -46,16 +46,19 @@ export const Root = () => {
 
                       <Route path="register" element={<RegisterPage />} />
                       <Route path="login" element={<LoginPage />} />
+                      <Route path="profile" element={<ProfilePage />} />
 
                       <Route element={<ProtectedRoute />}>
                         <Route path="bucket" element={<BucketPage />} />
                         <Route path="favourite" element={<FavouritePage />} />
-                        <Route path="profile" element={<ProfilePage />} />
                         <Route path="checkout" element={<CheckoutPage />} />
                         <Route path="thankyou" element={<ThankYouPage />} />
                       </Route>
 
-                      <Route path="indevelopment" element={<InDevelopmentPage />} />
+                      <Route
+                        path="indevelopment"
+                        element={<InDevelopmentPage />}
+                      />
 
                       <Route path="*" element={<NotFoundPage />} />
                     </Route>

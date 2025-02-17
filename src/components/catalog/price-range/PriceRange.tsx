@@ -25,7 +25,7 @@ export const PriceRange: React.FC<PriceRangeProps> = ({
   );
 
   const debounce = (func: (...args: any[]) => void, delay: number) => {
-    let timer: number | undefined;
+    let timer: any;
     return (...args: any[]) => {
       clearTimeout(timer);
       timer = setTimeout(() => {

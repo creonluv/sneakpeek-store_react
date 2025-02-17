@@ -17,6 +17,6 @@ export const filtersToServer = {
   genderIds: [...selectedGenders],
   minPrice: priceRange[0],
   maxPrice: priceRange[1],
-  sortField: selectedSort.sort_field,
-  sortOrder: selectedSort.sort_order,
+  sortField: selectedSort.sortField,
+  sortOrder: selectedSort.sortOrder,
 };
