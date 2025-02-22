@@ -1,7 +1,7 @@
 import { refresh } from "../../api/auth";
 import { ErrorType } from "../../types/Auth";
 
-export const BASE_URL = "https://52.207.220.16:9091/api";
+export const BASE_URL = process.env.REACT_APP_BASE_URL;
 
 type RequestMethod = "GET" | "POST" | "PATCH" | "DELETE" | "PUT";
 

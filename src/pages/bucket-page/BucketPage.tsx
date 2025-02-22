@@ -186,7 +186,7 @@ export const BucketPage = () => {
                       >
                         <img
                           className="bucket__img"
-                          src={`https://52.207.220.16:9091/api/images/${item.product_instance.product.main_photo_id}`}
+                          src={`${process.env.REACT_APP_BASE_URL}/images/${item.product_instance.product.main_photo_id}`}
                           alt=""
                         />
                       </Link>
