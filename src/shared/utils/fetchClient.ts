@@ -1,7 +1,7 @@
 import { refresh } from "../../api/auth";
 import { ErrorType } from "../../types/Auth";
 
-export const BASE_URL = process.env.REACT_APP_BASE_URL;
+export const BASE_URL = "https://localhost:9091/api";
 
 type RequestMethod = "GET" | "POST" | "PATCH" | "DELETE" | "PUT";
 
@@ -17,7 +17,7 @@ async function handleRefresh() {
 async function request<T>(
   url: string,
   method: RequestMethod = "GET",
-  data: any = null
+  data: unknown = null
 ): Promise<T> {
   const options: RequestInit = {
     method,
@@ -96,8 +96,8 @@ async function request<T>(
 
 export const client = {
   get: <T>(url: string) => request<T>(url),
-  post: <T>(url: string, data: any) => request<T>(url, "POST", data),
-  patch: <T>(url: string, data: any) => request<T>(url, "PATCH", data),
-  put: <T>(url: string, data: any) => request<T>(url, "PUT", data),
+  post: <T>(url: string, data: unknown) => request<T>(url, "POST", data),
+  patch: <T>(url: string, data: unknown) => request<T>(url, "PATCH", data),
+  put: <T>(url: string, data: unknown) => request<T>(url, "PUT", data),
   delete: <T>(url: string) => request<T>(url, "DELETE"),
 };

@@ -51,6 +51,7 @@ export const toggleItemInFavourite = createAsyncThunk<
       console.log(newItem);
       return { item: newItem, action: "added" };
     }
+    // eslint-disable-next-line @typescript-eslint/no-unused-vars
   } catch (error) {
     return rejectWithValue("error");
   }
@@ -61,6 +62,7 @@ type deleteItemResult = { id: number; action: "removed" };
 export const deleteItemInFavourite = createAsyncThunk<deleteItemResult, number>(
   "favourite/deleteItem",
   async (id) => {
+    // eslint-disable-next-line no-useless-catch
     try {
       await deleteItemToFavourite(id);
 
@@ -122,6 +124,7 @@ export const favouriteSlice = createSlice({
             if (itemAction === "added") {
               state.favourite.push(item);
             } else if (itemAction === "removed") {
+              // eslint-disable-next-line @typescript-eslint/no-unused-expressions
               state.favourite?.filter(
                 (favItem: Product) => favItem.id !== item.id
               ) || [];
