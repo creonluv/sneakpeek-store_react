@@ -64,7 +64,7 @@ To run this project locally, you will need:
 
    Open your browser and go to http://localhost:3000 to view your application.
 
-## Author
+## Authors
 
 Developed by Ivan Shlikhutka, Volodymyr Novikov. You can reach us via:
 
@@ -73,9 +73,9 @@ Email:
 - volodymyr.novikovv@gmail.com
 
 Linkedin: 
-- (https://www.linkedin.com/in/ivanshlikhutka/)
-- (https://www.linkedin.com/in/volodymyrnovikovv/)
+- https://www.linkedin.com/in/ivanshlikhutka/
+- https://www.linkedin.com/in/volodymyrnovikovv/
 
 Github: 
-- (https://github.com/creonluv/)
-- (https://github.com/BHunterS)
+- https://github.com/creonluv/
+- https://github.com/BHunterS
